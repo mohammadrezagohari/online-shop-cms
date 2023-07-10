@@ -13,12 +13,13 @@ return new class extends Migration
     {
         Schema::create('otps', function (Blueprint $table) {
             $table->id();
-            $table->string('token');
+            $table->string('token')->nullable();
             $table->foreignId('user_id')->constrained('users');
             $table->string('otp_code');
-            $table->string('login_id')->default(0)->comment('0=>email address ,1=> mobile number');
+            $table->string('login_id')->default(0)->comment('0=> mobile number, 1=>email address');
             $table->tinyInteger('type')->default(0)->comment('0 => mobile number , 1 => email');
             $table->tinyInteger('used')->default(0)->comment('0 => not used , 1 => used');
+            $table->timestamp('expire_at')->nullable();
             $table->tinyInteger('status')->default(0);
             $table->timestamps();
         });

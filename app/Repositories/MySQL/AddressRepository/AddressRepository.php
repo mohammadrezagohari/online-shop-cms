@@ -5,7 +5,7 @@ namespace App\Repositories\MySQL\AddressRepository;
 use App\Models\Address;
 use App\Repositories\MySQL\BaseRepository;
 
-class CityRepository extends BaseRepository implements InterfaceAddressRepository{
+class AddressRepository extends BaseRepository implements InterfaceAddressRepository{
 
     protected Address $model;
 

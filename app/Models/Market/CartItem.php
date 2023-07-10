@@ -3,7 +3,7 @@
 namespace App\Models\Market;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
 
 class CartItem extends Model

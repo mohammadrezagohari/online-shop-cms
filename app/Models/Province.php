@@ -3,18 +3,28 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
 
 class Province extends Model
 {
     use HasFactory,SoftDeletes;
 
+protected $table="provinces";
 
+
+protected $fillable=["name"];
 
 
     public function cities()
     {
         return $this->hasMany(City::class);
+    }
+
+
+
+    public function scopeSearchByName($query, $name)
+    {
+        return $query->where('name', 'like', "%{$name}%");
     }
 }

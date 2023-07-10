@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Market;
 
 use App\Models\Market\ProductColor;
 use App\Models\Market\ProductImage;
 use App\Models\Market\ProductProperty;
-use illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 

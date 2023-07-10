@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedTinyInteger('avatar')->default(0)->comment('0 => women, 1 => men');
             $table->string('email')->unique()->nullable();
             $table->string('mobile',11)->unique()->index();
-            $table->string('password');
+            $table->string('password')->nullable();
             $table->string('national_code')->unique()->nullable();
             $table->string('first_name')->nullable();
             $table->string('last_name')->nullable();

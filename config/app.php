@@ -168,6 +168,10 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        Kavenegar\Laravel\ServiceProvider::class,
+        App\Providers\RepositoryProvider::class
+
+
     ])->toArray(),
 
     /*
@@ -183,6 +187,8 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'Example' => App\Facades\Example::class,
+
+        'Kavenegar' => Kavenegar\Laravel\Facade::class,
     ])->toArray(),
 
 ];

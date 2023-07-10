@@ -4,15 +4,16 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
-use illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable,SoftDeletes;
+    use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -33,7 +34,7 @@ class User extends Authenticatable
         'activation',
         'user_type',
         'status'
-        
+
     ];
 
     /**
@@ -61,6 +62,11 @@ class User extends Authenticatable
         return "{$this->first_name} {$this->last_name}";
     }
 
+    public function getAccesstokenAttribute()
+    {
+        return $this->createToken("auth_token")->plainTextToken;
+    }
+
     public function addresses()
     {
         return $this->hasMany(Address::class);
@@ -72,7 +78,7 @@ class User extends Authenticatable
     }
 
 
-    public function otp():HasOne
+    public function otp(): HasOne
     {
         return $this->hasOne(Otp::class);
     }
@@ -88,5 +94,14 @@ class User extends Authenticatable
     }
 
 
-    
+    public function scopeWhereMobile($query, $mobile)
+    {
+        return $query->where('mobile', '=', $mobile);
+    }
+
+
+    public function Otps():HasMany
+    {
+        return $this->hasMany(Otp::class);
+    }
 }
