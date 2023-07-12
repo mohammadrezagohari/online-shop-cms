@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('cities', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->foreignId('province_id')->constrained('provinces') ;
+            $table->string('name')->index();
+            $table->string('slug');
+            $table->foreignId('province_id')->constrained('provinces');
             $table->timestamps();
             $table->softDeletes();
         });

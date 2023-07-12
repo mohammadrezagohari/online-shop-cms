@@ -2,18 +2,47 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreOtpRequest;
-use App\Http\Requests\UpdateOtpRequest;
+use App\Http\Requests\otp\OtpRequest;
+use App\Http\Requests\otp\StoreOtpRequest;
+use App\Http\Requests\otp\UpdateOtpRequest;
+use App\Http\Resources\otp\OtpResource;
 use App\Models\Otp;
+use App\Repositories\MySQL\OtpRepository\InterfaceOtpRepository;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Support\Carbon;
+use Symfony\Component\HttpFoundation\Response as HTTPResponse;
 
 class OtpController extends Controller
 {
+    private InterfaceOtpRepository $interfaceOtpRepository;
+
+
+    public function __construct(InterfaceOtpRepository $interfaceOtpRepository)
+    {
+        $this->interfaceOtpRepository=$interfaceOtpRepository;
+    }
+
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(OtpRequest $request):AnonymousResourceCollection
     {
-        //
+        $count = @$request->count ?? 10;
+        $loginType = @$request->login_type;
+        $userId = @$request->user_id;
+        $otps=$this->interfaceOtpRepository->query();
+
+        if(@$loginType)
+            $otps->whereLoginType($loginType);
+        if(@$userId)
+            $otps->whereUserId($userId);
+
+        $otps = $otps->paginate($count);
+
+        return OtpResource::collection($otps);
+
+
     }
 
     /**
@@ -29,15 +58,14 @@ class OtpController extends Controller
      */
     public function store(StoreOtpRequest $request)
     {
-        //
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Otp $otp)
+    public function show(int $id):OtpResource
     {
-        //
+         return  OtpResource::make($this->interfaceOtpRepository->findById($id));
     }
 
     /**
@@ -59,8 +87,10 @@ class OtpController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Otp $otp)
+    public function destroy(int $id):JsonResponse
     {
-        //
+        if($this->interfaceOtpRepository->deleteData($id))
+            return response()->json(['message' => 'successfully your transaction!'], HTTPResponse::HTTP_OK);
+        return response()->json(['message' => 'sorry, your transaction fails!'], HTTPResponse::HTTP_BAD_REQUEST);
     }
 }

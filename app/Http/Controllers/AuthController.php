@@ -40,17 +40,17 @@ class AuthController extends Controller
      * you must assign two parameters for login
      * email address and password
      */
-    public function login(LoginRequest $request)
+    public function login(LoginRequest $request):JsonResponse
     {
         $credentials = $request->only('mobile', 'password');
-    
+
 
         if (!Auth::attempt($credentials))
             return response()->json([
                 'message' => 'Invalid login details'
             ], HTTPResponse::HTTP_UNAUTHORIZED);
         $user = Auth::user();
-        
+
         return response()->json([
             'status' => true,
             'token' => $user->accesstoken
@@ -65,7 +65,7 @@ class AuthController extends Controller
     public function register(RegisterRequest $request)
     {
 
-        
+
         try {
 
             $user = User::create([
@@ -74,7 +74,7 @@ class AuthController extends Controller
                 'password'=>Hash::make($request->password)
             ]);
 
-			
+
             $credentials = $request->only('mobile', 'password');
             if (!Auth::attempt($credentials))
                 return response()->json([
@@ -92,7 +92,7 @@ class AuthController extends Controller
     }
 
 
-    public function OTP(Request $request)
+    public function OTP(Request $request):JsonResponse
     {
         $validation = \validator::make($request->only('mobile'), [
             'mobile' => 'required|ir_mobile',
@@ -112,10 +112,10 @@ class AuthController extends Controller
                 $user = User::create([
                     'mobile' => $request->mobile,
                 ]);
-               
+
             }
             $userOtp = otp_generator($user);
-            
+
             VerificationSMSCodeJob::dispatch($userOtp->otp_code, $user);
             return response()->json([
                 'message' => 'successfully send code, please enter the code',
@@ -128,7 +128,7 @@ class AuthController extends Controller
 
     public function verifyMobile(Request $request):JsonResponse
     {
-        
+
         $validation = \Validator::make($request->all(), [
             'code' => 'required|numeric|exists:otps,otp_code',
             'mobile' => 'required|exists:users,mobile',

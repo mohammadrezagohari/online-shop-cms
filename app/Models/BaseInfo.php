@@ -23,8 +23,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|BaseInfo whereSection($value)
  * @method static \Illuminate\Database\Eloquent\Builder|BaseInfo whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|BaseInfo whereValue($value)
- * @mixin \Eloquent
  * @method static \Illuminate\Database\Eloquent\Builder|BaseInfo whereHasKey($key)
+ * @mixin \Eloquent
  */
 class BaseInfo extends Model
 {

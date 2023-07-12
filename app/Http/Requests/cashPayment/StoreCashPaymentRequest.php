@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests\cashPayment;
 
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
 
 class StoreCashPaymentRequest extends FormRequest
 {
@@ -11,7 +13,7 @@ class StoreCashPaymentRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +24,21 @@ class StoreCashPaymentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'amount'=>'required',
+            'user_id'=>'required|exists:users,id',
+            'cash_receiver'=>'required|string|max:255|min:3',
+            'status'=>'required|numeric|in:0,1'
+
+
         ];
+    }
+
+    public function failedValidation(Validator $validator)
+    {
+        throw new HttpResponseException(response()->json([
+            'success' => false,
+            'message' => 'Validation errors',
+            'data' => $validator->errors()
+        ]));
     }
 }

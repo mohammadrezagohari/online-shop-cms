@@ -94,6 +94,7 @@ class ProvinceController extends Controller
      */
     public function update(UpdateProvinceRequest $request, int $id)
     {
+        
         $data = $request->except(['_token']);
         if ($this->interfaceProvinceRepository->updateItem($id, $data))
             return response()->json(['message' => 'successfully your transaction!'], HTTPResponse::HTTP_OK);

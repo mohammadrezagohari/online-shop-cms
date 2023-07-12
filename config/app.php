@@ -70,7 +70,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'Asia/Tehran',
 
     /*
     |--------------------------------------------------------------------------
@@ -168,8 +168,11 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        App\Providers\TelescopeServiceProvider::class,
         Kavenegar\Laravel\ServiceProvider::class,
-        App\Providers\RepositoryProvider::class
+        App\Providers\RepositoryProvider::class,
+        Spatie\Permission\PermissionServiceProvider::class,
+
 
 
     ])->toArray(),

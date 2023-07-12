@@ -78,8 +78,8 @@ if (!function_exists("otp_generator")) {
      ********************************/
     function otp_generator(\App\Models\User $user): Model
     {
-        
-        
+
+
         return $user->Otps()->create([
             'otp_code' => random_otp_generator(),
             'user_id'=> $user->id ,
@@ -92,11 +92,12 @@ if (!function_exists("upload_asset_file")) {
     /*********************************
      * upload asset file on storage
      ********************************/
-    function upload_asset_file($file): string
+    function upload_asset_file($file,$path)
     {
         $fileName = time() . '.' . $file->extension();
-        $prefix_asset = 'assets/icon';
-        return $file->move(public_path($prefix_asset), $fileName);
+        $prefix_asset = $path;
+         $file->move(public_path($prefix_asset), $fileName);
+         return $fileName;
 //        return $file->storeAs($prefix_asset, $fileName);
     }
 }

@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests\brand;
 
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
 
 class StoreBrandRequest extends FormRequest
 {
@@ -11,7 +13,7 @@ class StoreBrandRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +24,20 @@ class StoreBrandRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+          'persian_name' =>'required|string|max:255',
+          'original_name' =>'required|string|max:255',
+          'logo' =>'required|image|mimes:png,jpg,jpeg,gif|max:2048',
+          'status' =>'required|numeric|in:0,1',
         ];
+    }
+
+
+    public function failedValidation(Validator $validator)
+    {
+        throw new HttpResponseException(response()->json([
+            'success'   => false,
+            'message'   => 'Validation errors',
+            'data'      => $validator->errors()
+        ]));
     }
 }

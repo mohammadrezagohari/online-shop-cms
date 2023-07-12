@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests\city;
 
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
 
 class UpdateCityRequest extends FormRequest
 {
@@ -11,7 +13,7 @@ class UpdateCityRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +24,19 @@ class UpdateCityRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            "name"=>"required|string",
+            "slug"=>"required|string",
+            "province_id"=>"required|string"
         ];
+    }
+
+
+    public function failedValidation(Validator $validator)
+    {
+        throw new HttpResponseException(response()->json([
+            'success'   => false,
+            'message'   => 'Validation errors',
+            'data'      => $validator->errors()
+        ]));
     }
 }

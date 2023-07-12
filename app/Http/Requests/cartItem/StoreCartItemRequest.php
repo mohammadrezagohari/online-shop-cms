@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests\cartItem;
 
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
 
 class StoreCartItemRequest extends FormRequest
 {
@@ -11,7 +13,7 @@ class StoreCartItemRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +24,21 @@ class StoreCartItemRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'user_id'=>'required|exists:users,id',
+            'product_id'=>'required|exists:products,id',
+            'color_id'=>'required|exists:product_colors,id',
+            'guarantee_id'=>'required|exists:guarantees,id',
+            'number'=>'required|numeric'
         ];
+    }
+
+
+    public function failedValidation(Validator $validator)
+    {
+        throw new HttpResponseException(response()->json([
+            'success'   => false,
+            'message'   => 'Validation errors',
+            'data'      => $validator->errors()
+        ]));
     }
 }

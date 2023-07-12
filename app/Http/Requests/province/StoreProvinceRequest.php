@@ -25,6 +25,8 @@ class StoreProvinceRequest extends FormRequest
     {
         return [
             'name'=>'required|string',
+            'slug'=>'required|string',
+
         ];
     }
 
