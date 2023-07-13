@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests\offlinePayment;
 
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
 
 class StoreOfflinePaymentRequest extends FormRequest
 {
@@ -11,7 +13,7 @@ class StoreOfflinePaymentRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +24,19 @@ class StoreOfflinePaymentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'amount'=>'required|integer',
+            'user_id'=>'required|exists:users,id',
+            'transaction_id'=>'required|string|max:255',
+            'status'=>'required|numeric|in:0,1'
         ];
+    }
+
+    public function failedValidation(Validator $validator)
+    {
+        throw new HttpResponseException(response()->json([
+            'success'   => false,
+            'message'   => 'Validation errors',
+            'data'      => $validator->errors()
+        ]));
     }
 }

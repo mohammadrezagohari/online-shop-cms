@@ -5,6 +5,9 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Market\BrandController;
 use App\Http\Controllers\Market\CartItemController;
 use App\Http\Controllers\Market\CashPaymentController;
+use App\Http\Controllers\Market\DeliveryController;
+use App\Http\Controllers\Market\GuaranteeController;
+use App\Http\Controllers\Market\OfflinePaymentController;
 use App\Http\Controllers\OtpController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\ProvinceController;
@@ -120,6 +123,36 @@ Route::prefix('v1')->group(function () {
             Route::get('/show/{id}', [CashPaymentController::class, 'show'])->name('show');
             Route::patch('/update/{id}', [CashPaymentController::class, 'update'])->name('update'); //->middleware('is_admin')
             Route::delete('/delete/{id}', [CashPaymentController::class, 'destroy'])->name('delete');  //->middleware('is_admin')
+        });
+
+
+
+        Route::group(['prefix' => 'delivery'], function () {
+            Route::get('/', [DeliveryController::class, 'index'])->name('index');
+            Route::post('/store', [DeliveryController::class, 'store'])->name('store'); //->middleware('is_admin')
+            Route::get('/show/{id}', [DeliveryController::class, 'show'])->name('show');
+            Route::patch('/update/{id}', [DeliveryController::class, 'update'])->name('update'); //->middleware('is_admin')
+            Route::delete('/delete/{id}', [DeliveryController::class, 'destroy'])->name('delete');  //->middleware('is_admin')
+        });
+
+
+
+        Route::group(['prefix' => 'guarantee'], function () {
+            Route::get('/', [GuaranteeController::class, 'index'])->name('index');
+            Route::post('/store', [GuaranteeController::class, 'store'])->name('store'); //->middleware('is_admin')
+            Route::get('/show/{id}', [GuaranteeController::class, 'show'])->name('show');
+            Route::patch('/update/{id}', [GuaranteeController::class, 'update'])->name('update'); //->middleware('is_admin')
+            Route::delete('/delete/{id}', [GuaranteeController::class, 'destroy'])->name('delete');  //->middleware('is_admin')
+        });
+
+
+
+        Route::group(['prefix' => 'offline-payment'], function () {
+            Route::get('/', [OfflinePaymentController::class, 'index'])->name('index');
+            Route::post('/store', [OfflinePaymentController::class, 'store'])->name('store'); //->middleware('is_admin')
+            Route::get('/show/{id}', [OfflinePaymentController::class, 'show'])->name('show');
+            Route::patch('/update/{id}', [OfflinePaymentController::class, 'update'])->name('update'); //->middleware('is_admin')
+            Route::delete('/delete/{id}', [OfflinePaymentController::class, 'destroy'])->name('delete');  //->middleware('is_admin')
         });
 
 

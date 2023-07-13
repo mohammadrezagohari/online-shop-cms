@@ -2,7 +2,9 @@
 
 namespace App\Models\Market;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
 
@@ -47,5 +49,23 @@ class OfflinePayment extends Model
     public function payments()
     {
         return $this->morphMany('App\Models\Market\Payment', 'paymentable');
+    }
+
+
+    public function user():BelongsTo
+    {
+        return  $this->belongsTo(User::class);
+    }
+
+
+    public function scopeWhereUserId($query,$user_id)
+    {
+        return $query->where('user_id','=',$user_id);
+    }
+
+
+    public function scopeWhereStatus($query,$status)
+    {
+        return $query->where('status','=',$status);
     }
 }

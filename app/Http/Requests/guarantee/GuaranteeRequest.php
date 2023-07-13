@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Requests\offlinePayment;
+namespace App\Http\Requests\guarantee;
 
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class UpdateOfflinePaymentRequest extends FormRequest
+class GuaranteeRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,19 +24,18 @@ class UpdateOfflinePaymentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'amount' => 'nullable|integer',
-            'user_id' => 'nullable|exists:users,id',
-            'transaction_id' => 'nullable|string|max:255',
-            'status' => 'nullable|numeric|in:0,1'
+            'count'=>'nullable|numeric',
+            'product_id'=>'nullable|exists:products,id',
+            'status'=>'nullable|numeric|in:0,1'
         ];
     }
 
     public function failedValidation(Validator $validator)
     {
         throw new HttpResponseException(response()->json([
-            'success' => false,
-            'message' => 'Validation errors',
-            'data' => $validator->errors()
+            'success'   => false,
+            'message'   => 'Validation errors',
+            'data'      => $validator->errors()
         ]));
     }
 }

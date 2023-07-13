@@ -4,6 +4,7 @@ namespace App\Models\Market;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -38,6 +39,8 @@ class Guarantee extends Model
 {
     use HasFactory, SoftDeletes;
 
+    protected  $table="guarantees";
+
     protected $fillable = [
         'name',
         'product_id',
@@ -45,8 +48,18 @@ class Guarantee extends Model
         'status'
     ];
 
-    public function product()
+    public function product():BelongsTo
     {
         return $this->belongsTo(Product::class, 'product_id');
+    }
+
+    public function scopeWhereName($query,$name)
+    {
+        return $query->where('name','like',"%{$name}%");
+    }
+
+    public function scopeWhereStatus($query,$status)
+    {
+        return $query->where('status','=',$status);
     }
 }

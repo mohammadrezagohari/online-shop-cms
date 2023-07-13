@@ -43,4 +43,14 @@ class Delivery extends Model
 
 
     protected $fillable = ['name', 'amount', 'delivery_time', 'delivery_time_unit', 'status'];
+
+
+    public function scopeWhereName($query, $name){
+        return $query->where('name','like',"%{$name}%");
+    }
+
+    public function scopeWhereStatus($query ,$status)
+    {
+        return $query->where('status','=',$status);
+    }
 }
