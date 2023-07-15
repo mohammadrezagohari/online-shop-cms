@@ -11,6 +11,7 @@ use App\Http\Controllers\Market\OfflinePaymentController;
 use App\Http\Controllers\Market\ProductCategoryController;
 use App\Http\Controllers\Market\ProductController;
 use App\Http\Controllers\Market\ProductImageController;
+use App\Http\Controllers\Market\ProductColorController;
 use App\Http\Controllers\OtpController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\ProvinceController;
@@ -184,6 +185,14 @@ Route::prefix('v1')->group(function () {
             Route::get('/show/{id}', [ProductImageController::class, 'show'])->name('show');
             Route::post('/update/{id}', [ProductImageController::class, 'update'])->name('update'); //->middleware('is_admin')
             Route::delete('/delete/{id}', [ProductImageController::class, 'destroy'])->name('delete');  //->middleware('is_admin')
+        });
+
+        Route::group(['prefix' => 'product-color'], function () {
+            Route::get('/', [ProductColorController::class, 'index']);
+            Route::post('/store', [ProductColorController::class, 'store'])->name('store'); //->middleware('is_admin')
+            Route::get('/show/{id}', [ProductColorController::class, 'show'])->name('show');
+            Route::patch('/update/{id}', [ProductColorController::class, 'update'])->name('update'); //->middleware('is_admin')
+            Route::delete('/delete/{id}', [ProductColorController::class, 'destroy'])->name('delete');  //->middleware('is_admin')
         });
 
 

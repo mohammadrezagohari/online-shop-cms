@@ -49,11 +49,21 @@ class ProductColor extends Model
 
     protected $fillable = ['color_name', 'color' , 'product_id', 'price_increase', 'status', 'sold_number', 'frozen_number', 'marketable_number'];
 
-    protected $casts = ['image' => 'array'];
  protected  $table="product_colors";
 
     public function product()
     {
         return $this->belongsTo(Product::class);
+    }
+
+    public function  scopeWhereProductId($query,$product_id)
+    {
+
+        return $query->where('product_id','=',$product_id);
+    }
+
+    public function scopeWhereStatus($query,$status)
+    {
+        return $query->where('status','=',$status);
     }
 }
