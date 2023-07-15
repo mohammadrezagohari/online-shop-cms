@@ -33,7 +33,8 @@ class StoreProductRequest extends FormRequest
             'marketable_number'=>'required|integer',
             'brand_id'=>'required|exists:brands,id',
             'category_id'=>'required|exists:product_categories,id',
-            'images.*'=>'required|max:2048',
+            'images'=>'required',
+            'images.*'=>'mimes:png,jpg,jpeg,gif|max:2048',
 
 
         ];

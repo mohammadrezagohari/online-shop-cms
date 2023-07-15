@@ -42,4 +42,9 @@ class ProductImage extends Model
     {
         return $this->belongsTo(Product::class);
     }
+
+    public function scopeWhereProductId($query,$product_id){
+        return $query->where('product_id','=',$product_id);
+    }
+
 }
