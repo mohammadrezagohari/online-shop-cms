@@ -34,19 +34,16 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Province extends Model
 {
-    use HasFactory,SoftDeletes;
+    use HasFactory, SoftDeletes;
 
-protected $table="provinces";
+    protected $table = "provinces";
 
-
-protected $fillable=["name","slug"];
-
+    protected $fillable = ["name", "slug"];
 
     public function cities()
     {
         return $this->hasMany(City::class);
     }
-
 
 
     public function scopeSearchByName($query, $name)

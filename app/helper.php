@@ -82,7 +82,7 @@ if (!function_exists("otp_generator")) {
 
         return $user->Otps()->create([
             'otp_code' => random_otp_generator(),
-            'user_id'=> $user->id ,
+            'user_id' => $user->id,
             'expire_at' => expire_date(5)
         ]);
     }
@@ -92,12 +92,13 @@ if (!function_exists("upload_asset_file")) {
     /*********************************
      * upload asset file on storage
      ********************************/
-    function upload_asset_file($file,$path)
+    function upload_asset_file($file, $path)
     {
-        $fileName = time() . '.' . $file->extension();
+        $random=rand(1000,9999);
+        $fileName = time().$random . '.' . $file->extension();
         $prefix_asset = $path;
-         $file->move(public_path($prefix_asset), $fileName);
-         return $fileName;
+        $file->move(public_path($prefix_asset), $fileName);
+        return $path."/". $fileName;
 //        return $file->storeAs($prefix_asset, $fileName);
     }
 }

@@ -5,6 +5,9 @@ namespace App\Models\Market;
 use App\Models\Market\ProductColor;
 use App\Models\Market\ProductImage;
 use App\Models\Market\ProductProperty;
+use App\Models\User;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -15,7 +18,6 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $id
  * @property string $name
  * @property string $introduction
- * @property string $image
  * @property int $status
  * @property int $marketable 1 => marketable, 0 => is not marketable
  * @property int $sold_number
@@ -37,6 +39,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read int|null $guarantees_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, ProductImage> $images
  * @property-read int|null $images_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, User> $user
+ * @property-read int|null $user_count
  * @method static \Illuminate\Database\Eloquent\Builder|Product newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Product newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Product onlyTrashed()
@@ -47,7 +51,6 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereDeletedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereFrozenNumber($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Product whereImage($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereIntroduction($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereMarketable($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereMarketableNumber($value)
@@ -65,6 +68,9 @@ class Product extends Model
     use HasFactory,SoftDeletes;
 
 
+    protected  $guarded=['id'];
+
+
 
     public function user()
     {
@@ -72,35 +78,47 @@ class Product extends Model
     }
 
 
-    public function guarantees()
+    public function guarantees():HasMany
     {
         return $this->hasMany(Guarantee::class,'guarantee_id');
     }
 
 
-    public function category(){
+    public function category():BelongsTo
+    {
         return $this->belongsTo(ProductCategory::class, 'category_id');
     }
 
-    public function brand()
+    public function brand():BelongsTo
     {
         return $this->belongsTo(Brand::class, 'brand_id');
     }
 
-    public function Properties()
+    public function Properties():HasMany
     {
         return $this->hasMany(ProductProperty::class);
     }
 
-    public function colors(){
-
+    public function colors():HasMany
+    {
         return $this->hasMany(ProductColor::class);
     }
 
 
-    public function images(){
-
+    public function images():HasMany
+    {
         return $this->hasMany(ProductImage::class);
+    }
+
+    public  function scopeWhereName($query,$name)
+    {
+        return $query->where('name','like',"%{$name}%");
+    }
+
+    public function scopeWhereStatus($query ,$status)
+    {
+        return $query->where('status','=',$status);
+
     }
 
 }

@@ -38,6 +38,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|CartItem whereUserId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CartItem withTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|CartItem withoutTrashed()
+ * @property-read User $user
  * @mixin \Eloquent
  */
 class CartItem extends Model

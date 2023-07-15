@@ -45,6 +45,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Address whereUserId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Address withTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Address withoutTrashed()
+ * @property-read \App\Models\City $city
+ * @property-read \App\Models\Province $province
  * @mixin \Eloquent
  */
 class Address extends Model

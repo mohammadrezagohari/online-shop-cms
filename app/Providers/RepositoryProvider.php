@@ -54,7 +54,6 @@ class RepositoryProvider extends ServiceProvider
     public function register(): void
     {
         $this->app->bind(IBaseRepository::class, BaseRepository::class);
-        $this->app->bind(InterfaceProductRepository::class, ProductRepository::class);
         $this->app->bind(InterfaceAddressRepository::class, AddressRepository::class);
         $this->app->bind(InterfaceBrandRepository::class, BrandRepository::class);
         $this->app->bind(InterfaceCartItemRepository::class, CartItemRepository::class);
@@ -72,9 +71,9 @@ class RepositoryProvider extends ServiceProvider
         $this->app->bind(InterfaceProductColorRepository::class, ProductColorRepository::class);
         $this->app->bind(InterfaceProductImageRepository::class, ProductImageRepository::class);
         $this->app->bind(InterfaceProductPropertyRepository::class, ProductPropertyRepository::class);
-        $this->app->bind(InterfaceProductRepository::class, ProductRepository::class);
         $this->app->bind(InterfaceProvinceRepository::class, ProvinceRepository::class);
         $this->app->bind(InterfaceTransactionRepository::class, TransactionRepository::class);
+        $this->app->bind(InterfaceProductRepository::class,ProductRepository::class);
     }
 
     /**

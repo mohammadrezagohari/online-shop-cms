@@ -47,11 +47,11 @@ class ProductCategory extends Model
 {
     use HasFactory, SoftDeletes;
 
-    
+    protected $table="product_categories";
 
-    protected $casts = ['image' => 'array'];
+  //  protected $casts = ['image' => 'array'];
 
-    protected $fillable = ['name', 'description', 'slug', 'image', 'status', 'tags', 'show_in_menu', 'parent_id'];
+    protected $fillable = ['name', 'description', 'image', 'status',  'show_in_menu', 'parent_id'];
 
     public function parent()
     {
@@ -68,6 +68,13 @@ class ProductCategory extends Model
         return $this->hasMany(Product::class, 'category_id');
     }
 
-  
+    public function scopeWhereName($query,$name){
+        return $query->where('name','like',"%{$name}%");
+    }
+    public function scopeWhereStatus($query,$status){
+        return $query->where('status','=',$status);
+    }
+
+
 
 }

@@ -37,6 +37,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Otp whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Otp whereUsed($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Otp whereUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Otp whereLoginType($loginType)
  * @mixin \Eloquent
  */
 class Otp extends Model

@@ -37,6 +37,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|CashPayment whereUserId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CashPayment withTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|CashPayment withoutTrashed()
+ * @property-read User $user
  * @mixin \Eloquent
  */
 class CashPayment extends Model

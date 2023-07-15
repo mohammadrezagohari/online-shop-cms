@@ -59,6 +59,7 @@ class BrandController extends Controller
     {
         $data=$request->except(['_token']);
         $result =upload_asset_file($request->file('logo'),'brands');
+
         $data['logo']="brands/".$result;
         if($this->interfaceBrandRepository->insertData($data))
             return response()->json(['message' => 'successfully your transaction!'], HTTPResponse::HTTP_OK);

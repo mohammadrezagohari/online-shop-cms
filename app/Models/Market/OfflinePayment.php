@@ -37,6 +37,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|OfflinePayment whereUserId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|OfflinePayment withTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|OfflinePayment withoutTrashed()
+ * @property-read User $user
  * @mixin \Eloquent
  */
 class OfflinePayment extends Model

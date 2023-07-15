@@ -34,6 +34,9 @@ class ProductImage extends Model
 {
     use HasFactory,SoftDeletes;
 
+    protected $guarded=['id'];
+
+    protected $table="product_images";
 
     public function product()
     {
