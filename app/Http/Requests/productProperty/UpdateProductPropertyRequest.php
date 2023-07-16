@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Requests\productImage;
+namespace App\Http\Requests\productProperty;
 
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class ProductImageRequest extends FormRequest
+class UpdateProductPropertyRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,9 @@ class ProductImageRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'count'=>'nullable|integer',
-            'product_id'=>'nullable|exists:product_images'
+            'property_key'=>'nullable|string|max:255',
+            'property_value'=>'nullable|string|max:255',
+            'product_id'=>'nullable|integer|exists:products,id',
         ];
     }
 

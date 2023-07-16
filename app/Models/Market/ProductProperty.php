@@ -3,6 +3,7 @@
 namespace App\Models\Market;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
 
@@ -20,4 +21,20 @@ use Illuminate\Database\Eloquent\Model;
 class ProductProperty extends Model
 {
     use HasFactory,SoftDeletes;
+
+
+    protected $table="product_property";
+
+    protected $guarded=['id'];
+
+
+    public function product():BelongsTo
+    {
+        return $this->belongsTo(Product::class);
+    }
+
+    public function scopeWhereProductId($query,$product_id)
+    {
+        return $query->where('product_id','=',$product_id);
+    }
 }

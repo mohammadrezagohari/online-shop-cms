@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\productPropery;
+namespace App\Http\Requests\productProperty;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -11,7 +11,7 @@ class StoreProductPropertyRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,9 @@ class StoreProductPropertyRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+           'property_key'=>'required|string|max:255',
+           'property_value'=>'required|string|max:255',
+           'product_id'=>'required|integer|exists:products,id',
         ];
     }
 }

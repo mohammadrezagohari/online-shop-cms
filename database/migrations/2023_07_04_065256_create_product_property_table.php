@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('property_key');
             $table->string('property_value');
             $table->foreignId('product_id')->constrained('products');
+            $table->timestamps();
             $table->softDeletes();
         });
     }
