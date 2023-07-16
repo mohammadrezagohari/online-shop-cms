@@ -13,6 +13,7 @@ use App\Http\Controllers\Market\ProductController;
 use App\Http\Controllers\Market\ProductImageController;
 use App\Http\Controllers\Market\ProductColorController;
 use App\Http\Controllers\Market\ProductPropertyController;
+use App\Http\Controllers\Market\PaymentController;
 use App\Http\Controllers\OtpController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\ProvinceController;
@@ -207,6 +208,13 @@ Route::prefix('v1')->group(function () {
             Route::delete('/delete/{id}', [ProductPropertyController::class, 'destroy'])->name('delete');  //->middleware('is_admin')
         });
 
+        Route::group(['prefix' => 'payment'], function () {
+            Route::get('/', [PaymentController::class, 'index']);
+            Route::post('/store', [PaymentController::class, 'store'])->name('store'); //->middleware('is_admin')
+            Route::get('/show/{id}', [PaymentController::class, 'show'])->name('show');
+            Route::patch('/update/{id}', [PaymentController::class, 'update'])->name('update'); //->middleware('is_admin')
+            Route::delete('/delete/{id}', [PaymentController::class, 'destroy'])->name('delete');  //->middleware('is_admin')
+        });
 
 
     });

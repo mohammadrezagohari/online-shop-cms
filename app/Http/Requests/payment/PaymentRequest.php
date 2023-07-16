@@ -6,7 +6,7 @@ use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class StorePaymentRequest extends FormRequest
+class PaymentRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,12 +24,10 @@ class StorePaymentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'amount'=>'required|integer',
-            'user_id'=>'required|integer|exists:users,id',
-            'status'=>'required|numeric|in:0,1',
-            'type'=>'required|numeric|in:0,1,2',
-            'paymentable_id'=>'required|integer',
-            'paymentable_type'=>'required|string',
+            'user_id'=>'nullable|integer|exists:users,id',
+            'status'=>'nullable|numeric|in:0,1',
+            'type'=>'nullable|numeric|in:0,1,2',
+
         ];
     }
 

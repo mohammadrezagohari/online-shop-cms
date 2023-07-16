@@ -46,6 +46,6 @@ class OnlinePayment extends Model
 
     public function payments()
     {
-        return $this->morphMany('App\Models\Market\Payment', 'paymentable');
+        return $this->morphMany(Payment::class, 'paymentable');
     }
 }

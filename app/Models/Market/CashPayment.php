@@ -48,7 +48,7 @@ class CashPayment extends Model
 
     public function payments()
     {
-        return $this->morphMany('App\Models\Market\Payment', 'paymentable');
+        return $this->morphMany(Payment::class, 'paymentable');
     }
 
     public function user():BelongsTo
