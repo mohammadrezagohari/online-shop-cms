@@ -5,12 +5,14 @@ namespace App\Http\Controllers\Market;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\order\OrderRequest;
 use App\Http\Requests\order\StoreOrderRequest;
+use App\Http\Requests\order\UpdateOrderRequest;
 use App\Http\Resources\order\OrderResource;
 use App\Models\Market\CartItem;
 use App\Models\Market\Order;
 use App\Repositories\MySQL\CartItemRepository\InterfaceCartItemRepository;
 use App\Repositories\MySQL\OrderItemRepository\InterfaceOrderItemRepository;
 use App\Repositories\MySQL\OrderRepository\InterfaceOrderRepository;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Symfony\Component\HttpFoundation\Response as HTTPResponse;
@@ -64,14 +66,16 @@ class OrderController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreOrderRequest $request)
+    public function store(StoreOrderRequest $request): JsonResponse
     {
         $data = $request->except(['_token']);
         $user_id = $request->user_id;
 
-        if ($this->interfaceOrderRepository->insertData($data)) {
+        if ($order = $this->interfaceOrderRepository->insertData($data)) {
             $cartItems = $this->interfaceCartItemRepository->findByUserId($user_id);
+
             foreach ($cartItems as $cartItem) {
+                $cartItem['order_id'] = $order->id;
 
                 $this->interfaceOrderItemRepository->insertData($cartItem);
             }
@@ -89,9 +93,9 @@ class OrderController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Order $order)
+    public function show(int $id): OrderResource
     {
-        //
+        return OrderResource::make($this->interfaceOrderRepository->findById($id));
     }
 
     /**
@@ -105,16 +109,27 @@ class OrderController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Order $order)
+    public function update(UpdateOrderRequest $request, int $id):JsonResponse
     {
-        //
+
+        $data = $request->except(['_token']);
+        if ($this->interfaceOrderRepository->updateItem($id, $data))
+
+            return response()->json(['message' => 'successfully your transaction!'], HTTPResponse::HTTP_OK);
+        return response()->json(['message' => 'sorry, your transaction fails!'], HTTPResponse::HTTP_BAD_REQUEST);
+
+
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Order $order)
+    public function destroy(int $id):JsonResponse
     {
-        //
+        if($this->interfaceOrderItemRepository->findByOrderIdAndDelete($id)){
+            if($this->interfaceOrderRepository->deleteData($id))
+                return response()->json(['message' => 'successfully your transaction!'], HTTPResponse::HTTP_OK);
+        }
+        return response()->json(['message' => 'sorry, your transaction fails!'], HTTPResponse::HTTP_BAD_REQUEST);
     }
 }

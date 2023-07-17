@@ -55,12 +55,12 @@ class OrderItem extends Model
         return $this->belongsTo(Order::class);
     }
 
-    public function singleProduct()
+    public function product()
     {
         return $this->belongsTo(Product::class, 'product_id');
     }
 
-  
+
 
     public function color()
     {
@@ -72,5 +72,24 @@ class OrderItem extends Model
         return $this->belongsTo(Guarantee::class);
     }
 
-  
+    public function scopeWhereOrderId($query ,$order_id)
+    {
+        return $query->where('order_id','=',$order_id);
+    }
+
+    public function scopeWhereProductId($query ,$product_id)
+    {
+        return $query->where('product_id','=',$product_id);
+    }
+
+    public function scopeWhereColorId($query ,$color_id)
+    {
+        return $query->where('color_id','=',$color_id);
+    }
+    public function scopeWhereGuaranteeId($query ,$guarantee_id)
+    {
+        return $query->where('guarantee_id','=',$guarantee_id);
+    }
+
+
 }

@@ -14,4 +14,9 @@ class OrderItemRepository extends BaseRepository implements InterfaceOrderItemRe
         parent::__construct($model);
         $this->model=$model;
     }
+
+    public function findByOrderIdAndDelete(int $orderId): bool
+    {
+      return $this->model->where('order_id','=',$orderId)->delete();
+    }
 }

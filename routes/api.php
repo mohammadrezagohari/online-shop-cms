@@ -15,6 +15,7 @@ use App\Http\Controllers\Market\ProductColorController;
 use App\Http\Controllers\Market\ProductPropertyController;
 use App\Http\Controllers\Market\OnlinePaymentController;
 use App\Http\Controllers\Market\ProductTransactionController;
+use App\Http\Controllers\Market\OrderItemController;
 use App\Http\Controllers\Market\OrderController;
 use App\Http\Controllers\Market\PaymentController;
 use App\Http\Controllers\OtpController;
@@ -250,6 +251,15 @@ Route::prefix('v1')->group(function () {
             Route::get('/show/{id}', [OrderController::class, 'show'])->name('show');
             Route::patch('/update/{id}', [OrderController::class, 'update'])->name('update'); //->middleware('is_admin')
             Route::delete('/delete/{id}', [OrderController::class, 'destroy'])->name('delete');  //->middleware('is_admin')
+        });
+
+
+        Route::group(['prefix' => 'order-item'], function () {
+            Route::get('/', [OrderItemController::class, 'index'])->name('index');
+            Route::post('/store', [OrderItemController::class, 'store'])->name('store'); //->middleware('is_admin')
+            Route::get('/show/{id}', [OrderItemController::class, 'show'])->name('show');
+            Route::patch('/update/{id}', [OrderItemController::class, 'update'])->name('update'); //->middleware('is_admin')
+            Route::delete('/delete/{id}', [OrderItemController::class, 'destroy'])->name('delete');  //->middleware('is_admin')
         });
 
 

@@ -6,7 +6,7 @@ use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class StoreOrderItemRequest extends FormRequest
+class OrderItemRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,10 @@ class StoreOrderItemRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+           'order_id'=>'nullable|integer|exists:orders,id',
+           'product_id'=>'nullable|integer|exists:products,id',
+           'color_id'=>'nullable|integer|exists:product_colors,id',
+           'guarantee_id'=>'nullable|integer|exists:guarantees,id',
         ];
     }
 
