@@ -54,7 +54,17 @@ class ProductPropertyController extends Controller
     public function store(StoreProductPropertyRequest $request)
     {
         $data=$request->except(['_token']);
-        if($this->interfaceProductPropertyRepository->insertData($data))
+        $results=json_decode($request->list);
+        $product_id=$data['product_id'];
+
+        foreach ($results as $key=>$value){
+            $this->interfaceProductPropertyRepository->insertData([
+                'product_id'=>$product_id,
+                'property_key'=>$key,
+                'property_value'=>$value
+            ]);
+        }
+        if($this->interfaceProductPropertyRepository->insertData($results))
            return response()->json(['message' => 'successfully your transaction!'], HTTPResponse::HTTP_OK);
         return response()->json(['message' => 'sorry, your transaction fails!'], HTTPResponse::HTTP_BAD_REQUEST);
     }

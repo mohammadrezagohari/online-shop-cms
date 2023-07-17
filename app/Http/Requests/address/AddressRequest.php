@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests\address;
 
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
 
 class AddressRequest extends FormRequest
 {
@@ -26,5 +28,15 @@ class AddressRequest extends FormRequest
             'count'     => 'nullable|numeric',
             'user_id'     => 'nullable|exists:users,id',
         ];
+    }
+
+
+    public function failedValidation(Validator $validator)
+    {
+        throw new HttpResponseException(response()->json([
+            'success'   => false,
+            'message'   => 'Validation errors',
+            'data'      => $validator->errors()
+        ]));
     }
 }

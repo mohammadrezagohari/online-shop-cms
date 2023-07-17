@@ -14,7 +14,7 @@ class OnlinePaymentController extends Controller
      */
     public function index()
     {
-        //
+
     }
 
     /**

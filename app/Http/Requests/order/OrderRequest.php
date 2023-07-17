@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Requests\transaction;
+namespace App\Http\Requests\order;
 
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class StoreTransactionRequest extends FormRequest
+class OrderRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,20 +24,18 @@ class StoreTransactionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'amount'=>'required|integer',
-            'bank'=>'required|string|max:255',
-            'user_id'=>'required|integer|exists:users,id',
-            'order_id'=>'required|integer|exists:orders,id',
-            'status'=>'required|numeric|in:0,1',
+
+            'count'=>'nullable|integer',
+            'user_id'=>'nullable|exists:users,id',
+            'order_status'=>'nullable|numeric|in:0,1',
         ];
     }
-
     public function failedValidation(Validator $validator)
     {
         throw new HttpResponseException(response()->json([
-            'success' => false,
-            'message' => 'Validation errors',
-            'data' => $validator->errors()
+            'success'   => false,
+            'message'   => 'Validation errors',
+            'data'      => $validator->errors()
         ]));
     }
 }

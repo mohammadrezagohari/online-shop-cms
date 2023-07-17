@@ -15,11 +15,13 @@ class CashPaymentResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'user'=>$this->user,
+            'id'=>$this->id,
             'amount'=>$this->amount,
             'cash_receiver'=>$this->cash_receiver,
             'pay_date'=>$this->pay_date,
-            'status'=>$this->status
+            'status'=>$this->status,
+            'user'=>$this->user,
+            'payment'=>$this->payments
         ];
     }
 }

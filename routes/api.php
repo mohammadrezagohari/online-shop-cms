@@ -13,6 +13,9 @@ use App\Http\Controllers\Market\ProductController;
 use App\Http\Controllers\Market\ProductImageController;
 use App\Http\Controllers\Market\ProductColorController;
 use App\Http\Controllers\Market\ProductPropertyController;
+use App\Http\Controllers\Market\OnlinePaymentController;
+use App\Http\Controllers\Market\ProductTransactionController;
+use App\Http\Controllers\Market\OrderController;
 use App\Http\Controllers\Market\PaymentController;
 use App\Http\Controllers\OtpController;
 use App\Http\Controllers\CityController;
@@ -132,6 +135,15 @@ Route::prefix('v1')->group(function () {
         });
 
 
+        Route::group(['prefix' => 'online-payment'], function () {
+            Route::get('/', [OnlinePaymentController::class, 'index'])->name('index');
+            Route::post('/store', [OnlinePaymentController::class, 'store'])->name('store'); //->middleware('is_admin')
+            Route::get('/show/{id}', [OnlinePaymentController::class, 'show'])->name('show');
+            Route::patch('/update/{id}', [OnlinePaymentController::class, 'update'])->name('update'); //->middleware('is_admin')
+            Route::delete('/delete/{id}', [OnlinePaymentController::class, 'destroy'])->name('delete');  //->middleware('is_admin')
+        });
+
+
 
         Route::group(['prefix' => 'delivery'], function () {
             Route::get('/', [DeliveryController::class, 'index'])->name('index');
@@ -140,6 +152,8 @@ Route::prefix('v1')->group(function () {
             Route::patch('/update/{id}', [DeliveryController::class, 'update'])->name('update'); //->middleware('is_admin')
             Route::delete('/delete/{id}', [DeliveryController::class, 'destroy'])->name('delete');  //->middleware('is_admin')
         });
+
+
 
 
 
@@ -160,6 +174,8 @@ Route::prefix('v1')->group(function () {
             Route::patch('/update/{id}', [OfflinePaymentController::class, 'update'])->name('update'); //->middleware('is_admin')
             Route::delete('/delete/{id}', [OfflinePaymentController::class, 'destroy'])->name('delete');  //->middleware('is_admin')
         });
+
+
 
 
         Route::group(['prefix' => 'product-category'], function () {
@@ -214,6 +230,26 @@ Route::prefix('v1')->group(function () {
             Route::get('/show/{id}', [PaymentController::class, 'show'])->name('show');
             Route::patch('/update/{id}', [PaymentController::class, 'update'])->name('update'); //->middleware('is_admin')
             Route::delete('/delete/{id}', [PaymentController::class, 'destroy'])->name('delete');  //->middleware('is_admin')
+        });
+
+
+
+
+        Route::group(['prefix' => 'transaction'], function () {
+            Route::get('/', [ProductTransactionController::class, 'index'])->name('index');
+            Route::post('/store', [ProductTransactionController::class, 'store'])->name('store'); //->middleware('is_admin')
+            Route::get('/show/{id}', [ProductTransactionController::class, 'show'])->name('show');
+            Route::patch('/update/{id}', [ProductTransactionController::class, 'update'])->name('update'); //->middleware('is_admin')
+            Route::delete('/delete/{id}', [ProductTransactionController::class, 'destroy'])->name('delete');  //->middleware('is_admin')
+        });
+
+
+        Route::group(['prefix' => 'order'], function () {
+            Route::get('/', [OrderController::class, 'index'])->name('index');
+            Route::post('/store', [OrderController::class, 'store'])->name('store'); //->middleware('is_admin')
+            Route::get('/show/{id}', [OrderController::class, 'show'])->name('show');
+            Route::patch('/update/{id}', [OrderController::class, 'update'])->name('update'); //->middleware('is_admin')
+            Route::delete('/delete/{id}', [OrderController::class, 'destroy'])->name('delete');  //->middleware('is_admin')
         });
 
 

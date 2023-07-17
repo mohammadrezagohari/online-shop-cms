@@ -3,6 +3,8 @@
 namespace App\Models\Market;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
 
@@ -44,8 +46,14 @@ class OnlinePayment extends Model
     protected $guarded = ['id'];
 
 
-    public function payments()
+    public function payments():MorphMany
     {
         return $this->morphMany(Payment::class, 'paymentable');
+    }
+
+
+    public function transaction():BelongsTo
+    {
+        return $this->belongsTo(Transaction::class,'transaction_id');
     }
 }

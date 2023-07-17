@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
             $table->unsignedDouble("amount")->index();
-            $table->unsignedTinyInteger("bank")->index();  //// Use Enum BankName => BankName::ALL
+            $table->enum("bank",App\Enums\GatewayType::ALL)->default(App\Enums\GatewayType::Zarinpal)->index();  //// Use Enum BankName => BankName::ALL
             $table->string("subject")->nullable();   //// عنوان تراکنش
             $table->string("trace_number")->nullable(); // شماره پیگیری
             $table->string("document_number")->nullable();//// rnn شماره سند
@@ -28,6 +28,7 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->unsignedBigInteger('invoice_id')->index();
             $table->timestamps();   //// date paid update
+            $table->softDeletes();
         });
     }
 

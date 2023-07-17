@@ -3,18 +3,49 @@
 namespace App\Http\Controllers\Market;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreTransactionRequest;
-use App\Http\Requests\UpdateTransactionRequest;
+use App\Http\Requests\transaction\StoreTransactionRequest;
+use App\Http\Requests\transaction\TransactionRequest;
+use App\Http\Requests\transaction\UpdateTransactionRequest;
+use App\Http\Resources\tranaction\TransactionResource;
 use App\Models\Market\Transaction;
+use App\Repositories\MySQL\TransactionRepository\InterfaceTransactionRepository;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class ProductTransactionController extends Controller
 {
+    private  InterfaceTransactionRepository $interfaceTransactionRepository;
+
+    public  function __construct(InterfaceTransactionRepository $interfaceTransactionRepository)
+    {
+        $this->interfaceTransactionRepository=$interfaceTransactionRepository;
+    }
+
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(TransactionRequest $request):AnonymousResourceCollection
     {
-        //
+      $count=@$request->count ?? 10;
+      $bank=@$request->bank;
+      $user_id=@$request->user_id;
+      $order_id=@$request->order_id;
+      $status=@$request->status;
+      $transactions=$this->interfaceTransactionRepository->query();
+
+      if(@$bank)
+          $transactions=$transactions->whereBank($bank);
+      if(@$status != null)
+          $transactions=$transactions->whereStatus($status);
+
+        if(@$user_id)
+          $transactions=$transactions->whereUserId($user_id);
+      if(@$order_id)
+          $transactions=$transactions->whereOrderId($order_id);
+
+
+
+      return TransactionResource::collection($transactions->paginate($count));
+
     }
 
     /**
@@ -30,7 +61,14 @@ class ProductTransactionController extends Controller
      */
     public function store(StoreTransactionRequest $request)
     {
-        //
+        $data=$request->except(['_token']);
+
+      if($this->interfaceTransactionRepository->insertData($data)){
+
+
+
+      }
+
     }
 
     /**

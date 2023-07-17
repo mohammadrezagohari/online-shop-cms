@@ -2,7 +2,9 @@
 
 namespace App\Models\Market;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
 
@@ -51,5 +53,39 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Transaction extends Model
 {
-    use HasFactory,SoftDeletes;
+    use HasFactory, SoftDeletes;
+
+    protected $guarded = ['id'];
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+
+
+    public function order(): BelongsTo
+    {
+        return $this->belongsTo(Order::class);
+    }
+
+    public function scopeWhereBank($query, $bank)
+    {
+        return $query->where('bank', 'like', "%{$bank}%");
+    }
+
+    public function scopeWhereUserId($query, $user_id)
+    {
+        return $query->where('user_id', '=', $user_id);
+    }
+
+    public function scopeWhereOrderId($query, $order_id)
+    {
+        return $query->where('order_id', '=', $order_id);
+    }
+
+    public function scopeWhereStatus($query, $status)
+    {
+
+        return $query->where('status', '=', $status);
+    }
 }

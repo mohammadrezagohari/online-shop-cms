@@ -24,8 +24,8 @@ class StoreProductPropertyRequest extends FormRequest
     public function rules(): array
     {
         return [
-           'property_key'=>'required|string|max:255',
-             'property_value'=>'nullable|string|max:255',
+         // 'property_key'=>'required|string|max:255',
+          //   'property_value'=>'nullable|string|max:255',
             'product_id' => 'required|integer|exists:products,id',
             //'list.*.property_key' => 'required|string|exists:products,id',
             //'list.*.property_value' => 'required|string|exists:products,id',
