@@ -39,4 +39,7 @@ class UpdateProductPropertyRequest extends FormRequest
             'data'      => $validator->errors()
         ]));
     }
+
+
+
 }

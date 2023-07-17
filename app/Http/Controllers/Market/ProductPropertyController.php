@@ -20,19 +20,20 @@ class ProductPropertyController extends Controller
 
     public function __construct(InterfaceProductPropertyRepository $interfaceProductPropertyRepository)
     {
-        $this->interfaceProductPropertyRepository=$interfaceProductPropertyRepository;
+        $this->interfaceProductPropertyRepository = $interfaceProductPropertyRepository;
     }
+
     /**
      * Display a listing of the resource.
      */
-    public function index(ProductPropertyRequest $request):AnonymousResourceCollection
+    public function index(ProductPropertyRequest $request): AnonymousResourceCollection
     {
-        $count=@$request->count ?? 10;
-        $product_id=@$request->product_id;
-        $productProperties=$this->interfaceProductPropertyRepository->query();
+        $count = @$request->count ?? 10;
+        $product_id = @$request->product_id;
+        $productProperties = $this->interfaceProductPropertyRepository->query();
 
-        if(@$product_id)
-            $productProperties=$productProperties->whereProductId($product_id);
+        if (@$product_id)
+            $productProperties = $productProperties->whereProductId($product_id);
 
         return ProductPropertyResource::collection($productProperties->paginate($count));
 
@@ -50,11 +51,11 @@ class ProductPropertyController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreProductPropertyRequest $request):JsonResponse
+    public function store(StoreProductPropertyRequest $request)
     {
         $data=$request->except(['_token']);
         if($this->interfaceProductPropertyRepository->insertData($data))
-            return response()->json(['message' => 'successfully your transaction!'], HTTPResponse::HTTP_OK);
+           return response()->json(['message' => 'successfully your transaction!'], HTTPResponse::HTTP_OK);
         return response()->json(['message' => 'sorry, your transaction fails!'], HTTPResponse::HTTP_BAD_REQUEST);
     }
 
@@ -62,7 +63,7 @@ class ProductPropertyController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(int $id):ProductPropertyResource
+    public function show(int $id): ProductPropertyResource
     {
         return ProductPropertyResource::make($this->interfaceProductPropertyRepository->findById($id));
     }
@@ -78,19 +79,20 @@ class ProductPropertyController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateProductPropertyRequest $request, int $id):JsonResponse
+    public function update(UpdateProductPropertyRequest $request, int $id): JsonResponse
     {
-        $data=@$request->except(['_token']);
-        if($this->interfaceProductPropertyRepository->updateItem($id,$data))
+        $data = @$request->except(['_token']);
+        if ($this->interfaceProductPropertyRepository->updateItem($id, $data))
             return response()->json(['message' => 'successfully your transaction!'], HTTPResponse::HTTP_OK);
         return response()->json(['message' => 'sorry, your transaction fails!'], HTTPResponse::HTTP_BAD_REQUEST);
     }
+
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(int  $id):JsonResponse
+    public function destroy(int $id): JsonResponse
     {
-        if($this->interfaceProductPropertyRepository->deleteData($id))
+        if ($this->interfaceProductPropertyRepository->deleteData($id))
             return response()->json(['message' => 'successfully your transaction!'], HTTPResponse::HTTP_OK);
         return response()->json(['message' => 'sorry, your transaction fails!'], HTTPResponse::HTTP_BAD_REQUEST);
     }
