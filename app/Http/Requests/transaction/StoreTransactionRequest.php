@@ -24,11 +24,9 @@ class StoreTransactionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'amount'=>'required|integer',
             'bank'=>'required|string|max:255',
             'user_id'=>'required|integer|exists:users,id',
             'order_id'=>'required|integer|exists:orders,id',
-            'status'=>'required|numeric|in:0,1',
         ];
     }
 

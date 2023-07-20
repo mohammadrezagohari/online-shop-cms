@@ -236,13 +236,6 @@ Route::prefix('v1')->group(function () {
 
 
 
-        Route::group(['prefix' => 'transaction'], function () {
-            Route::get('/', [ProductTransactionController::class, 'index'])->name('index');
-            Route::post('/store', [ProductTransactionController::class, 'store'])->name('store'); //->middleware('is_admin')
-            Route::get('/show/{id}', [ProductTransactionController::class, 'show'])->name('show');
-            Route::patch('/update/{id}', [ProductTransactionController::class, 'update'])->name('update'); //->middleware('is_admin')
-            Route::delete('/delete/{id}', [ProductTransactionController::class, 'destroy'])->name('delete');  //->middleware('is_admin')
-        });
 
 
         Route::group(['prefix' => 'order'], function () {
@@ -263,5 +256,19 @@ Route::prefix('v1')->group(function () {
         });
 
 
+        Route::group(['prefix' => 'transaction'], function () {
+            Route::get('/', [ProductTransactionController::class, 'index'])->name('index');
+            Route::post('/verify', [ProductTransactionController::class, 'verify'])->name('verify'); //->middleware('is_admin')
+            Route::get('/callback', [ProductTransactionController::class, 'callback'])->name('callback'); //->middleware('is_admin')
+            Route::get('/show/{id}', [ProductTransactionController::class, 'show'])->name('show');
+            Route::patch('/update/{id}', [ProductTransactionController::class, 'update'])->name('update'); //->middleware('is_admin')
+            Route::delete('/delete/{id}', [ProductTransactionController::class, 'destroy'])->name('delete');  //->middleware('is_admin')
+        });
+
+
+
     });
+    Route::get('/transaction/callback', [ProductTransactionController::class, 'callback'])->name('callback'); //->middleware('is_admin')
+
+
 });

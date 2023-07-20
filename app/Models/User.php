@@ -6,7 +6,9 @@ namespace App\Models;
 use App\Models\Market\Order;
 use App\Models\Market\Payment;
 use App\Models\Market\Product;
+use App\Models\Market\Transaction;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -162,6 +164,11 @@ class User extends Authenticatable
     public function payments()
     {
         return $this->hasMany(Payment::class);
+    }
+
+    public function transactions():BelongsToMany
+    {
+        return $this->belongsToMany(Transaction::class);
     }
 
 

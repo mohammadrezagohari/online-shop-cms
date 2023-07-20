@@ -172,6 +172,8 @@ return [
         Kavenegar\Laravel\ServiceProvider::class,
         App\Providers\RepositoryProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
+        Shetabit\Payment\Provider\PaymentServiceProvider::class,
+
 
 
 
@@ -190,6 +192,8 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'Example' => App\Facades\Example::class,
+        'Payment' => Shetabit\Payment\Facade\Payment::class,
+
 
         'Kavenegar' => Kavenegar\Laravel\Facade::class,
     ])->toArray(),
