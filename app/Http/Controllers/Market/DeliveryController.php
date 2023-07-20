@@ -55,7 +55,7 @@ class DeliveryController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreDeliveryRequest $request)
+    public function store(StoreDeliveryRequest $request):JsonResponse
     {
         $data=$request->except(['_token']);
         if($this->interfaceDeliveryRepository->insertData($data))

@@ -25,10 +25,9 @@ class StoreOrderRequest extends FormRequest
     {
         return [
             'user_id'=>'required|exists:users,id',
+            'address_id'=>'required|exists:users,id',
             'payment_type'=>'required|in:0,1,2',
-            'payment_status'=>'required|in:0,1,2',
-            'delivery_status'=>'required|in:0,1,2,3',
-            'order_status'=>'required|in:0,1,2,3,4,5,6',
+            'delivery_id'=>'required|exists:delivery,id',
 
         ];
     }

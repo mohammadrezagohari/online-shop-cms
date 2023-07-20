@@ -7,6 +7,8 @@ use App\Models\Address;
 use App\Models\Market\Payment;
 use App\Models\Market\Delivery;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -72,9 +74,9 @@ class Order extends Model
         return $this->belongsTo(Payment::class);
     }
 
-    public function delivery()
+    public function delivery():BelongsTo
     {
-        return $this->belongsTo(Delivery::class);
+        return $this->belongsTo(\App\Models\Market\Delivery::class);
     }
 
     public function user()
@@ -82,9 +84,14 @@ class Order extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function address()
+    public function address():BelongsTo
     {
         return $this->belongsTo(Address::class);
+    }
+
+    public function products():BelongsToMany
+    {
+        return  $this->belongsToMany(Product::class,'order_product',);
     }
 
 

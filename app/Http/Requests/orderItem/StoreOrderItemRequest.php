@@ -24,7 +24,11 @@ class StoreOrderItemRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'order_id'=>'required|exists:orders,id',
+            'product_id'=>'required|exists:products,id',
+            'color_id'=>'required|exists:product_colors,id',
+            'guarantee_id'=>'required|exists:guarantees,id',
+            'number'=>'nullable|integer',
         ];
     }
 

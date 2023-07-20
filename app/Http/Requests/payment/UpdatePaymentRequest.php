@@ -24,12 +24,10 @@ class UpdatePaymentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'amount'=>'required|integer',
-            'user_id'=>'required|integer|exists:users,id',
-            'status'=>'required|numeric|in:0,1',
-            'type'=>'required|numeric|in:0,1,2',
-            'paymentable_id'=>'required|integer',
-            'paymentable_type'=>'required|string',
+            'amount'=>'nullable|integer',
+            'user_id'=>'nullable|integer|exists:users,id',
+            'status'=>'nullable|numeric|in:0,1',
+
         ];
     }
 

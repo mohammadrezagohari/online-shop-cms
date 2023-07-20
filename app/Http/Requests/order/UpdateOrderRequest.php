@@ -24,11 +24,9 @@ class UpdateOrderRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'user_id'=>'nullable|exists:users,id',
+            'address_id'=>'nullable|exists:addresses,id',
             'payment_type'=>'nullable|in:0,1,2',
-            'payment_status'=>'nullable|in:0,1,2',
-            'delivery_status'=>'nullable|in:0,1,2,3',
-            'order_status'=>'nullable|in:0,1,2,3,4,5,6',
+            'delivery_id'=>'nullable|exists:delivery,id',
         ];
     }
 

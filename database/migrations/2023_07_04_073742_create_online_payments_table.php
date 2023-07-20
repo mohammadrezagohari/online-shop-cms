@@ -16,7 +16,7 @@ return new class extends Migration
             $table->decimal('amount', 20, 3);
             $table->foreignId('user_id')->constrained('users') ;
             $table->string('gateway')->nullable();
-            $table->foreignId('transaction_id')->constrained('transactions') ;
+            $table->foreignId('transaction_id')->nullable()->constrained('transactions') ;
             $table->tinyInteger('status')->default(0);
             $table->timestamps();
             $table->softDeletes();

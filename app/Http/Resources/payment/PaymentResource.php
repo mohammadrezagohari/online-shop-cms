@@ -23,7 +23,7 @@ class PaymentResource extends JsonResource
             'type'=>$this->type,
             'paymentable_id'=>$this->paymentable_id,
             'paymentable_type'=>$this->paymentable_type,
-            'payment' => Payment::find(1)->paymentable ,
+            'paymentable' => Payment::find($this->id)->paymentable ,
 
         ];
     }

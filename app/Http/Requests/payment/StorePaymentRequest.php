@@ -26,10 +26,10 @@ class StorePaymentRequest extends FormRequest
         return [
             'amount'=>'required|integer',
             'user_id'=>'required|integer|exists:users,id',
-            'status'=>'required|numeric|in:0,1',
             'type'=>'required|numeric|in:0,1,2',
-            'paymentable_id'=>'required|integer',
-            'paymentable_type'=>'required|string',
+            'gateway'=>'nullable|string',
+
+
         ];
     }
 

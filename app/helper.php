@@ -103,6 +103,57 @@ if (!function_exists("upload_asset_file")) {
     }
 }
 
+
+if (!function_exists("final_amount_cart_items")) {
+    /*********************************
+     * upload asset file on storage
+     ********************************/
+    function final_amount_cart_items($number, $price,$color_price_increase,$guarantee_price_increase): string
+    {
+        return ($number*$price)+$color_price_increase+$guarantee_price_increase;
+
+    }
+}
+
+
+if (!function_exists("order_final_amount")) {
+    /*********************************
+     * upload asset file on storage
+     ********************************/
+    function order_final_amount($id): int
+    {
+        return $id;
+
+    }
+}
+
+
+
+if (!function_exists("final_product_price")) {
+    /*********************************
+     * upload asset file on storage
+     ********************************/
+    function final_product_price($price,$color_price_increase,$guarantee_price_increase): int
+    {
+        return $price+$color_price_increase+$guarantee_price_increase;
+
+    }
+}
+
+
+
+if (!function_exists("final_total_price")) {
+    /*********************************
+     * upload asset file on storage
+     ********************************/
+    function final_total_price($number,$final_product_price): int
+    {
+        return $number*($final_product_price);
+
+    }
+}
+
+
 if (!function_exists("upload_asset_background_file")) {
     /*********************************
      * upload asset file on storage

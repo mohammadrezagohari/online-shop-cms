@@ -24,7 +24,11 @@ class UpdateOrderItemRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'order_id'=>'nullable|exists:orders,id',
+            'product_id'=>'nullable|exists:products,id',
+            'color_id'=>'nullable|exists:product_colors,id',
+            'guarantee_id'=>'nullable|exists:guarantees,id',
+            'number'=>'nullable|integer',
         ];
     }
 

@@ -7,6 +7,7 @@ use App\Models\Market\ProductImage;
 use App\Models\Market\ProductProperty;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -94,9 +95,9 @@ class Product extends Model
         return $this->belongsTo(Brand::class, 'brand_id');
     }
 
-    public function Properties():HasMany
+    public function orders():BelongsToMany
     {
-        return $this->hasMany(ProductProperty::class);
+        return  $this->belongsToMany(Order::class,'order_product');
     }
 
     public function colors():HasMany
