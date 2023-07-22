@@ -74,7 +74,6 @@ class ProductTransactionController extends Controller
      */
     public function verify(StoreTransactionRequest $request)
     {
-        $token= $request->header('Authorization');
         $data = $request->except(['_token']);
         $user = User::find($data['user_id']);
         $amount = $this->interfaceOrderRepository->findById($data['order_id'])['order_final_amount'];
@@ -87,8 +86,9 @@ class ProductTransactionController extends Controller
         ])->post('https://api.zarinpal.com/pg/v4/payment/request.json', [
             "merchant_id" => "1344b5d4-0048-11e8-94db-005056a205be",
             "amount" => $amount,
-            "callback_url" => "http://localhost:8000/api/v1/transaction/callback/" . $data['order_id'] ,
+            "callback_url" => "http://localhost:8000/api/v1/transaction/callback/" . $data['order_id'],
             "description" => "خرید محصول توسط کاربر" . $data['user_id'],
+            "order_id" => $request->order_id,
             "metadata" => [
                 'mobile' => $user->mobile,
                 'email' => $user->email
@@ -102,40 +102,69 @@ class ProductTransactionController extends Controller
     public function callback(Request $request, int $id)
     {
         $order = $this->interfaceOrderRepository->findById($id);
+        $amount = $this->interfaceOrderRepository->findById($id)['order_final_amount'];
+        $authority = $request["Authority"];
         if ($request['Status'] == "OK") {
-            $this->interfaceTransactionRepository->query()->where('order_id', '=', $id)->update(['status' => 1]);
-            $this->interfaceOrderRepository->updateItem($id, [
-                'payment_status' => 1
+
+            $response = Http::withHeaders([
+                'accept: application/json',
+                'content-type: application/json'
+
+            ])->post('https://api.zarinpal.com/pg/v4/payment/verify.json', [
+                "merchant_id" => "1344b5d4-0048-11e8-94db-005056a205be",
+                "amount" => $amount,
+                "authority" => $authority,
             ]);
-            $this->interfacePaymentRepository->updateItem($order->payment_id, ['status' => 1]);
-            $this->interfacePaymentRepository->getPaymentableWithPaymentId($order->payment_id);
+            $results = json_decode($response, true)["data"];
+            if ($results["code"] == 100) {
+                $results['status'] = 1;
+                $results['order_id'] = $order->id;
+                $this->interfaceTransactionRepository->query()->where('order_id', '=', $id)->update($results);
+                $this->interfaceOrderRepository->updateItem($id, [
+                    'payment_status' => 1
+                ]);
+                $this->interfacePaymentRepository->updateItem($order->payment_id, ['status' => 1]);
+                $this->interfacePaymentRepository->getPaymentableWithPaymentId($order->payment_id);
+                return response()->json(['message' => 'successfully your transaction!'], HTTPResponse::HTTP_OK);
+            }
+            $results['order_id'] = $order->id;
+            $this->interfaceTransactionRepository->query()->where('order_id', '=', $id)->update($results);
+
+            return response()->json(["message" => $results["code"]], HTTPResponse::HTTP_BAD_REQUEST);
         }
-    }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(int $id):TransactionResource
-    {
-        return TransactionResource::make($this->interfaceTransactionRepository->findById($id));
-    }
+        return response()->json(["message" => "not ok response in bank"], HTTPResponse::HTTP_BAD_REQUEST);
+
+}
+
+/**
+ * Display the specified resource.
+ */
+public
+function show(int $id): TransactionResource
+{
+    return TransactionResource::make($this->interfaceTransactionRepository->findById($id));
+}
 
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateTransactionRequest $request, int $id)
-    {
-        $data=$request->all();
-        if($this->interfaceTransactionRepository->updateItem($id,$data))
-            return response()->json(['message' => 'successfully your transaction!'], HTTPResponse::HTTP_OK);
-        return response()->json(['message' => 'sorry, your transaction fails!'], HTTPResponse::HTTP_BAD_REQUEST);
-    }
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(int $id)
-    {
-        //
-    }
+/**
+ * Update the specified resource in storage.
+ */
+public
+function update(UpdateTransactionRequest $request, int $id)
+{
+    $data = $request->all();
+    if ($this->interfaceTransactionRepository->updateItem($id, $data))
+        return response()->json(['message' => 'successfully your transaction!'], HTTPResponse::HTTP_OK);
+    return response()->json(['message' => 'sorry, your transaction fails!'], HTTPResponse::HTTP_BAD_REQUEST);
+}
+
+/**
+ * Remove the specified resource from storage.
+ */
+public
+function destroy(int $id)
+{
+    //
+}
 }
