@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Repositories\MySQL\AmazingSaleRepository\AmazingSaleRepository;
+use App\Repositories\MySQL\AmazingSaleRepository\InterfaceAmazingSaleRepository;
 use App\Repositories\MySQL\IBaseRepository;
 use App\Repositories\MySQL\BaseRepository;
 use App\Repositories\MySQL\AddressRepository\AddressRepository;
@@ -74,6 +76,7 @@ class RepositoryProvider extends ServiceProvider
         $this->app->bind(InterfaceProvinceRepository::class, ProvinceRepository::class);
         $this->app->bind(InterfaceTransactionRepository::class, TransactionRepository::class);
         $this->app->bind(InterfaceProductRepository::class,ProductRepository::class);
+        $this->app->bind(InterfaceAmazingSaleRepository::class,AmazingSaleRepository::class);
     }
 
     /**

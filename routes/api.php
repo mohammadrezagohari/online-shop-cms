@@ -13,6 +13,7 @@ use App\Http\Controllers\Market\ProductController;
 use App\Http\Controllers\Market\ProductImageController;
 use App\Http\Controllers\Market\ProductColorController;
 use App\Http\Controllers\Market\ProductPropertyController;
+use App\Http\Controllers\Market\AmazingSaleController;
 use App\Http\Controllers\Market\OnlinePaymentController;
 use App\Http\Controllers\Market\ProductTransactionController;
 use App\Http\Controllers\Market\OrderItemController;
@@ -267,8 +268,21 @@ Route::prefix('v1')->group(function () {
 
 
 
+
+        Route::group(['prefix' => 'amazing-sale'], function () {
+            Route::get('/', [AmazingSaleController::class, 'index'])->name('index');
+            Route::post('/store', [AmazingSaleController::class, 'store'])->name('verify'); //->middleware('is_admin')
+            Route::get('/show/{id}', [AmazingSaleController::class, 'show'])->name('show');
+            Route::patch('/update/{id}', [AmazingSaleController::class, 'update'])->name('update'); //->middleware('is_admin')
+            Route::delete('/delete/{id}', [AmazingSaleController::class, 'destroy'])->name('delete');  //->middleware('is_admin')
+        });
+
+
+
+
+
     });
-    Route::get('/transaction/callback', [ProductTransactionController::class, 'callback'])->name('callback'); //->middleware('is_admin')
+    Route::get('/transaction/callback/{id}', [ProductTransactionController::class, 'callback'])->name('callback'); //->middleware('is_admin')
 
 
 });

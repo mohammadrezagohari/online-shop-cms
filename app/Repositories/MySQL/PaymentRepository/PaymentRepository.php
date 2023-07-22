@@ -14,4 +14,11 @@ class PaymentRepository extends BaseRepository implements InterfacePaymentReposi
         parent::__construct($model);
         $this->model=$model;
     }
+
+    public function getPaymentableWithPaymentId(int $paymentId):bool
+    {
+      return $this->model->find($paymentId)->paymentable->update([
+          'status'=>1
+      ]);
+    }
 }

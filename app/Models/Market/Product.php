@@ -95,6 +95,17 @@ class Product extends Model
         return $this->belongsTo(Brand::class, 'brand_id');
     }
 
+    public function amazingSales():HasMany
+    {
+        return $this->hasMany(AmazingSale::class);
+    }
+
+    public function activeAmazingSales()
+    {
+        return $this->amazingSales()->where('start_date', '<', Carbon::now())->where('end_date', '>', Carbon::now())->first();
+    }
+
+
     public function orders():BelongsToMany
     {
         return  $this->belongsToMany(Order::class,'order_product');

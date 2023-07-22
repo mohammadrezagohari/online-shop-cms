@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Requests\transaction;
+namespace App\Http\Requests\amazingSale;
 
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class UpdateTransactionRequest extends FormRequest
+class AmazingSaleRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,21 +24,18 @@ class UpdateTransactionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'subject'=>'nullable|string',
-            'trace_number'=>'nullable|string',
-            'document_number'=>'nullable|string',
-            'digital_receipt'=>'nullable|string',
-            'is_suer_bank'=>'nullable|string',
-            'card_number'=>'nullable|string',
+           'count'=>'nullable|integer',
+            'product_id'=>'nullable|exists:products,id',
+            'status'=>'nullable|in:0,1'
         ];
     }
 
     public function failedValidation(Validator $validator)
     {
         throw new HttpResponseException(response()->json([
-            'success' => false,
-            'message' => 'Validation errors',
-            'data' => $validator->errors()
+            'success'   => false,
+            'message'   => 'Validation errors',
+            'data'      => $validator->errors()
         ]));
     }
 }

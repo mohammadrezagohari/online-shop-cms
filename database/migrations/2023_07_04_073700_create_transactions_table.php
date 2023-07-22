@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string("is_suer_bank")->nullable(); // بانک صادرکننده کارت
             $table->string("card_number")->nullable()->index(); // شماره کارت
             $table->string("access_token")->nullable()->index(); //// token که از بانک دریافت می کنیم
-            $table->enum("status", ResultStatusBank::ALL)->nullable()->index();
+            $table->enum("status")->nullable()->default(0)->index();
             $table->text("payload")->nullable();///// description text
             $table->unsignedBigInteger("user_id")->index(); //// equals to invoiceID
             $table->foreign('user_id')->references('id')->on('users');
