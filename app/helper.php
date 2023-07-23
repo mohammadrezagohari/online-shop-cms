@@ -133,9 +133,9 @@ if (!function_exists("final_product_price")) {
     /*********************************
      * upload asset file on storage
      ********************************/
-    function final_product_price($price,$color_price_increase,$guarantee_price_increase): int
+    function final_product_price($price,$percentage,$color_price_increase,$guarantee_price_increase): int
     {
-        return $price+$color_price_increase+$guarantee_price_increase;
+        return $price*(1-$percentage/100)+$color_price_increase+$guarantee_price_increase;
 
     }
 }

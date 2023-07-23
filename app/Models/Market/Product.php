@@ -102,7 +102,7 @@ class Product extends Model
 
     public function activeAmazingSales()
     {
-        return $this->amazingSales()->where('start_date', '<', Carbon::now())->where('end_date', '>', Carbon::now())->first();
+        return $this->amazingSales()->where('start_date', '<', Carbon::now())->where('end_date', '>', Carbon::now())->where('status','=',1)->first();
     }
 
 

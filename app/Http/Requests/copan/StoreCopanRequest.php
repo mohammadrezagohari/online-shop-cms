@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Requests\order;
+namespace App\Http\Requests\copan;
 
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class StoreOrderRequest extends FormRequest
+class StoreCopanRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,14 +24,19 @@ class StoreOrderRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'user_id'=>'required|exists:users,id',
-            'address_id'=>'required|exists:users,id',
-            'payment_type'=>'required|in:0,1,2',
-            'delivery_id'=>'required|exists:delivery,id',
-            'code'=>'nullable|string'
-
+            'code'=>'required|string|max:255|min:3',
+            'amount'=>'required|integer',
+            'amount_type'=>'required|numeric|in:0,1',
+            'discount_ceiling'=>'nullable|integer',
+            'type'=>'required|numeric|in:0,1',
+            'status'=>'required|numeric|in:0,1',
+            'max_use_code'=>'required|integer',
+            'start_date'=>'required|date|date_format:Y-m-d H:i:s',
+            'end_date'=>'required|date|date_format:Y-m-d H:i:s',
+            'user_id'=>'nullable|exists:users,id',
         ];
     }
+
 
     public function failedValidation(Validator $validator)
     {

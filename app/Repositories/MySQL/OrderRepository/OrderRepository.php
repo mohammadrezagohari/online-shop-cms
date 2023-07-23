@@ -14,4 +14,6 @@ class OrderRepository extends BaseRepository implements InterfaceOrderRepository
         parent::__construct($model);
         $this->model=$model;
     }
+
+
 }

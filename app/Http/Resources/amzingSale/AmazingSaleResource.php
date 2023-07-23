@@ -19,8 +19,8 @@ class AmazingSaleResource extends JsonResource
             'product'=>$this->product ,
             'percentage'=>$this->percentage,
             'status'=>$this->status,
-            'start_date'=>$this->start_date,
-            'end_date'=>$this->end_date,
+            'start_date'=>\Morilog\Jalali\Jalalian::fromCarbon($this->start_date)->format('Y-m-d H:i:s'),
+            'end_date'=>\Morilog\Jalali\Jalalian::fromCarbon($this->end_date)->format('Y-m-d H:i:s'),
         ];
     }
 }

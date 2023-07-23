@@ -27,8 +27,8 @@ class UpdateAmazingSaleRequest extends FormRequest
             'product_id'=>'nullable|exists:products,id',
             'percentage'=>'nullable|numeric|min:1|max:100',
             'status'=>'nullable|numeric|in:0,1',
-            'start_date'=>'nullable|numeric',
-            'end_date'=>'nullable|numeric',
+            'start_date'=>'required|date|date_format:Y-m-d H:i:s',
+            'end_date'=>'required|date|date_format:Y-m-d H:i:s',
         ];
     }
 

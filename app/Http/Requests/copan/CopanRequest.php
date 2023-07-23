@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Requests\productProperty;
+namespace App\Http\Requests\copan;
 
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class StoreProductPropertyRequest extends FormRequest
+class CopanRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,10 +24,11 @@ class StoreProductPropertyRequest extends FormRequest
     public function rules(): array
     {
         return [
-
-            'product_id' => 'required|integer|exists:products,id',
-            'list' => 'required|json',
-
+           'code'=>'nullable|string',
+           'amount_type'=>'nullable|numeric|in:0,1',
+           'type'=>'nullable|numeric|in:0,1',
+           'status'=>'nullable|numeric|in:0,1',
+           'count'=>'nullable|integer'
         ];
     }
 
@@ -35,9 +36,9 @@ class StoreProductPropertyRequest extends FormRequest
     public function failedValidation(Validator $validator)
     {
         throw new HttpResponseException(response()->json([
-            'success' => false,
-            'message' => 'Validation errors',
-            'data' => $validator->errors()
+            'success'   => false,
+            'message'   => 'Validation errors',
+            'data'      => $validator->errors()
         ]));
     }
 }

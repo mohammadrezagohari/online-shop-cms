@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Requests\order;
+namespace App\Http\Requests\copan;
 
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class StoreOrderRequest extends FormRequest
+class UpdateCopanRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,15 +24,18 @@ class StoreOrderRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'user_id'=>'required|exists:users,id',
-            'address_id'=>'required|exists:users,id',
-            'payment_type'=>'required|in:0,1,2',
-            'delivery_id'=>'required|exists:delivery,id',
-            'code'=>'nullable|string'
-
+            'code'=>'nullable|string|max:255|min:3',
+            'amount'=>'nullable|integer',
+            'amount_type'=>'nullable|numeric|in:0,1',
+            'discount_ceiling'=>'nullable|integer',
+            'type'=>'nullable|numeric|in:0,1',
+            'status'=>'nullable|numeric|in:0,1',
+            'max_use_code'=>'nullable|integer',
+            'start_date'=>'nullable|date|date_format:Y-m-d H:i:s',
+            'end_date'=>'nullable|date|date_format:Y-m-d H:i:s',
+            'user_id'=>'nullable|exists:users,id',
         ];
     }
-
     public function failedValidation(Validator $validator)
     {
         throw new HttpResponseException(response()->json([

@@ -8,10 +8,7 @@ use App\Http\Requests\order\OrderRequest;
 use App\Http\Requests\order\StoreOrderRequest;
 use App\Http\Requests\order\UpdateOrderRequest;
 use App\Http\Resources\order\OrderResource;
-use App\Models\Market\CartItem;
-use App\Models\Market\Delivery;
 use App\Models\Market\Order;
-use App\Models\Market\Product;
 use App\Repositories\MySQL\CartItemRepository\InterfaceCartItemRepository;
 use App\Repositories\MySQL\CashPaymentRepository\InterfaceCashPaymentRepository;
 use App\Repositories\MySQL\DeliveryRepository\InterfaceDeliveryRepository;
@@ -105,7 +102,7 @@ class OrderController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreOrderRequest $request): JsonResponse
+    public function store(StoreOrderRequest $request)
     {
         $data = $request->except(['_token']);
         $user_id = $request->user_id;
@@ -113,22 +110,23 @@ class OrderController extends Controller
         $data["delivery_amount"] = $delivery["amount"];
         $data["delivery_date"] = Carbon::now()->addDay($delivery->delivery_time);
 
-        if ($this->interfaceCartItemRepository->query()->count() > 0) {
+        if ($this->interfaceCartItemRepository->findByUserId($data["user_id"])->count() > 0) {
 
             if ($order = $this->interfaceOrderRepository->insertData($data)) {
                 $cartItems = $this->interfaceCartItemRepository->findByUserId($user_id);
                 $final_total_price = 0;
                 foreach ($cartItems as $cartItem) {
-                    $products[] = $cartItem['product_id'];
                     $cartItem['order_id'] = $order->id;
                     $product = $this->interfaceProductRepository->findById($cartItem["product_id"]);
+                    $percentage= $product->activeAmazingSales->percentage;
                     $color = $this->interfaceProductColorRepository->findById($cartItem["color_id"]);
                     $guarantee = $this->interfaceGuaranteeRepository->findById($cartItem["guarantee_id"]);
-                    $cartItem['final_product_price'] = final_product_price($product["price"], $color["price_increase"], $guarantee["price_increase"]);
+                    $cartItem['final_product_price'] = final_product_price($product["price"],$percentage, $color["price_increase"], $guarantee["price_increase"]);
                     $cartItem['final_total_price'] = final_total_price($cartItem["number"], $cartItem['final_product_price']);
                     $final_total_price += $cartItem['final_total_price'];
                     $this->interfaceOrderItemRepository->insertData($cartItem);
                 }
+
                 $this->interfaceOrderRepository->updateItem($order->id, [
                     'order_final_amount' => $final_total_price + $order->delivery_amount,
                 ]);

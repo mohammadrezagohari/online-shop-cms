@@ -16,6 +16,7 @@ use App\Http\Controllers\Market\ProductPropertyController;
 use App\Http\Controllers\Market\AmazingSaleController;
 use App\Http\Controllers\Market\OnlinePaymentController;
 use App\Http\Controllers\Market\ProductTransactionController;
+use App\Http\Controllers\Market\CopanController;
 use App\Http\Controllers\Market\OrderItemController;
 use App\Http\Controllers\Market\OrderController;
 use App\Http\Controllers\Market\PaymentController;
@@ -275,6 +276,15 @@ Route::prefix('v1')->group(function () {
             Route::get('/show/{id}', [AmazingSaleController::class, 'show'])->name('show');
             Route::patch('/update/{id}', [AmazingSaleController::class, 'update'])->name('update'); //->middleware('is_admin')
             Route::delete('/delete/{id}', [AmazingSaleController::class, 'destroy'])->name('delete');  //->middleware('is_admin')
+        });
+
+
+        Route::group(['prefix' => 'copan'], function () {
+            Route::get('/', [CopanController::class, 'index'])->name('index');
+            Route::post('/store', [CopanController::class, 'store'])->name('verify'); //->middleware('is_admin')
+            Route::get('/show/{id}', [CopanController::class, 'show'])->name('show');
+            Route::patch('/update/{id}', [CopanController::class, 'update'])->name('update'); //->middleware('is_admin')
+            Route::delete('/delete/{id}', [CopanController::class, 'destroy'])->name('delete');  //->middleware('is_admin')
         });
 
 
