@@ -2,9 +2,11 @@
 
 namespace App\Models\Market;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+
 
 class Copan extends Model
 {
@@ -14,6 +16,10 @@ class Copan extends Model
     protected  $table="copans";
 
     protected $guarded=['id'];
+    protected $casts=[
+        'start_date' => 'datetime',
+        'end_date' => 'datetime',
+    ];
 
 
 
@@ -36,5 +42,8 @@ class Copan extends Model
     {
         return $query->where('type','=',$type);
     }
+
+
+
 
 }

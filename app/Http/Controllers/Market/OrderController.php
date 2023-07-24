@@ -9,8 +9,10 @@ use App\Http\Requests\order\StoreOrderRequest;
 use App\Http\Requests\order\UpdateOrderRequest;
 use App\Http\Resources\order\OrderResource;
 use App\Models\Market\Order;
+use App\Repositories\MySQL\AmazingSaleRepository\InterfaceAmazingSaleRepository;
 use App\Repositories\MySQL\CartItemRepository\InterfaceCartItemRepository;
 use App\Repositories\MySQL\CashPaymentRepository\InterfaceCashPaymentRepository;
+use App\Repositories\MySQL\CopanRepository\InterfaceCopanRepository;
 use App\Repositories\MySQL\DeliveryRepository\InterfaceDeliveryRepository;
 use App\Repositories\MySQL\GuaranteeRepository\InterfaceGuaranteeRepository;
 use App\Repositories\MySQL\OfflinePaymentRepository\InterfaceOfflinePaymentRepository;
@@ -24,8 +26,13 @@ use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Symfony\Component\HttpFoundation\Response as HTTPResponse;
+use function App\check_code_of_copan;
 use function App\final_product_price;
+use function App\final_product_price_with_amazing_sale;
+use function App\final_product_price_without_amazing_sale;
 use function App\final_total_price;
+use function App\final_total_price_with_amazing_sale;
+use function App\final_total_price_without_amazing_sale;
 
 class OrderController extends Controller
 {
@@ -41,8 +48,25 @@ class OrderController extends Controller
     private InterfaceOnlinePaymentRepository $interfaceOnlinePaymentRepository;
     private InterfaceOfflinePaymentRepository $interfaceOfflinePaymentRepository;
     private InterfaceCashPaymentRepository $interfaceCashPaymentRepository;
+    private InterfaceCopanRepository $interfaceCopanRepository;
+    private InterfaceAmazingSaleRepository $interfaceAmazingSaleRepository;
 
 
+    /**
+     * @param InterfaceOrderRepository $interfaceOrderRepository
+     * @param InterfaceCartItemRepository $interfaceCartItemRepository
+     * @param InterfaceOrderItemRepository $interfaceOrderItemRepository
+     * @param InterfaceDeliveryRepository $interfaceDeliveryRepository
+     * @param InterfaceProductRepository $interfaceProductRepository
+     * @param InterfaceProductColorRepository $interfaceProductColorRepository
+     * @param InterfaceGuaranteeRepository $interfaceGuaranteeRepository
+     * @param InterfacePaymentRepository $interfacePaymentRepository
+     * @param InterfaceOnlinePaymentRepository $interfaceOnlinePaymentRepository
+     * @param InterfaceOfflinePaymentRepository $interfaceOfflinePaymentRepository
+     * @param InterfaceCashPaymentRepository $interfaceCashPaymentRepository
+     * @param InterfaceCopanRepository $interfaceCopanRepository
+     * @param InterfaceAmazingSaleRepository $interfaceAmazingSaleRepository
+     */
     public function __construct(InterfaceOrderRepository          $interfaceOrderRepository,
                                 InterfaceCartItemRepository       $interfaceCartItemRepository,
                                 InterfaceOrderItemRepository      $interfaceOrderItemRepository,
@@ -54,6 +78,8 @@ class OrderController extends Controller
                                 InterfaceOnlinePaymentRepository  $interfaceOnlinePaymentRepository,
                                 InterfaceOfflinePaymentRepository $interfaceOfflinePaymentRepository,
                                 InterfaceCashPaymentRepository    $interfaceCashPaymentRepository,
+                                InterfaceCopanRepository          $interfaceCopanRepository,
+                                InterfaceAmazingSaleRepository    $interfaceAmazingSaleRepository,
 
 
     )
@@ -70,6 +96,8 @@ class OrderController extends Controller
         $this->interfaceOnlinePaymentRepository = $interfaceOnlinePaymentRepository;
         $this->interfaceOfflinePaymentRepository = $interfaceOfflinePaymentRepository;
         $this->interfaceCashPaymentRepository = $interfaceCashPaymentRepository;
+        $this->interfaceCopanRepository = $interfaceCopanRepository;
+        $this->interfaceAmazingSaleRepository = $interfaceAmazingSaleRepository;
     }
 
     /**
@@ -104,32 +132,81 @@ class OrderController extends Controller
      */
     public function store(StoreOrderRequest $request)
     {
-        $data = $request->except(['_token']);
-        $user_id = $request->user_id;
+        $data = @$request->except(['_token']);
+        $copan_amount = null;
+        $copan_amount_type = null;
+        if (@$data["code"]) {
+            switch ($this->check_code($data["code"], $data["user_id"])) {
+                case 0:
+                    return response()->json(['message' => 'sorry,The code not exists!'], HTTPResponse::HTTP_BAD_REQUEST);
+                case  1:
+                    return response()->json(['message' => 'sorry,This code expired!'], HTTPResponse::HTTP_BAD_REQUEST);
+                case 2:
+                    return response()->json(['message' => 'sorry,The number of uses of the sent code is greater than the limit!'], HTTPResponse::HTTP_BAD_REQUEST);
+
+                case 3:
+                    return response()->json(['message' => 'sorry,The code sent is not for use by this user!'], HTTPResponse::HTTP_BAD_REQUEST);
+                case 4:
+                    $copan = $this->interfaceCopanRepository->query()->where('code', '=', $data["code"])->first();
+                    $copan_amount = $copan->amount;
+                    $copan_amount_type = $copan->amount_type;
+                    break;
+            }
+        }
+
+
         $delivery = $this->interfaceDeliveryRepository->findById($data["delivery_id"]);
         $data["delivery_amount"] = $delivery["amount"];
         $data["delivery_date"] = Carbon::now()->addDay($delivery->delivery_time);
 
-        if ($this->interfaceCartItemRepository->findByUserId($data["user_id"])->count() > 0) {
-
+        if ($this->interfaceCartItemRepository->findByUserId($data["user_id"])) {
             if ($order = $this->interfaceOrderRepository->insertData($data)) {
-                $cartItems = $this->interfaceCartItemRepository->findByUserId($user_id);
+                $cartItems = $this->interfaceCartItemRepository->findByUserId($data["user_id"]);
                 $final_total_price = 0;
                 foreach ($cartItems as $cartItem) {
                     $cartItem['order_id'] = $order->id;
                     $product = $this->interfaceProductRepository->findById($cartItem["product_id"]);
-                    $percentage= $product->activeAmazingSales->percentage;
                     $color = $this->interfaceProductColorRepository->findById($cartItem["color_id"]);
                     $guarantee = $this->interfaceGuaranteeRepository->findById($cartItem["guarantee_id"]);
-                    $cartItem['final_product_price'] = final_product_price($product["price"],$percentage, $color["price_increase"], $guarantee["price_increase"]);
-                    $cartItem['final_total_price'] = final_total_price($cartItem["number"], $cartItem['final_product_price']);
-                    $final_total_price += $cartItem['final_total_price'];
+                    $cartItem['final_product_price_without_amazing_sale'] = final_product_price_without_amazing_sale($product["price"], $color["price_increase"], $guarantee["price_increase"]);
+                    $cartItem['final_total_price_without_amazing_sale'] = final_total_price_without_amazing_sale($cartItem["number"], $cartItem['final_product_price_without_amazing_sale']);
+
+                    if ($amazing_sale = $this->interfaceAmazingSaleRepository->amazingSaleWithProductIdAndActive($product->id)) {
+
+                        $cartItem['final_product_price_with_amazing_sale'] = final_product_price_with_amazing_sale($product["price"], $amazing_sale->percentage, $color["price_increase"], $guarantee["price_increase"]);
+                        $cartItem['final_total_price_with_amazing_sale'] = final_total_price_with_amazing_sale($cartItem["number"], $cartItem["final_product_price_with_amazing_sale"]);
+                        $cartItem["amazing_sale_id"] = $amazing_sale->id;
+
+                    } else {
+
+                        $cartItem['final_product_price_with_amazing_sale'] = $cartItem['final_product_price_without_amazing_sale'];
+                        $cartItem['final_total_price_with_amazing_sale'] = $cartItem['final_total_price_without_amazing_sale'];
+                    }
+                    $final_total_price += $cartItem['final_total_price_with_amazing_sale'];
+
+
                     $this->interfaceOrderItemRepository->insertData($cartItem);
+
+
+                }
+                if ($copan_amount_type == 0) {
+                    $this->interfaceOrderRepository->updateItem($order->id, [
+                        'order_final_amount' => $final_total_price + $order->delivery_amount,
+                        'order_final_amount_with_copan_discount' => $final_total_price * (1 - $copan_amount / 100) + $order->delivery_amount,
+                    ]);
+                } elseif ($copan_amount_type == 1) {
+                    $this->interfaceOrderRepository->updateItem($order->id, [
+                        'order_final_amount' => $final_total_price + $order->delivery_amount,
+                        'order_final_amount_with_copan_discount' => ($final_total_price - $copan_amount) + $order->delivery_amount,
+                    ]);
+                } else {
+                    $this->interfaceOrderRepository->updateItem($order->id, [
+                        'order_final_amount' => $final_total_price + $order->delivery_amount,
+                        'order_final_amount_with_copan_discount' => $final_total_price + $order->delivery_amount,
+                    ]);
                 }
 
-                $this->interfaceOrderRepository->updateItem($order->id, [
-                    'order_final_amount' => $final_total_price + $order->delivery_amount,
-                ]);
+
                 $paymentType = null;
                 switch ($data['payment_type']) {
                     case 0;
@@ -164,7 +241,7 @@ class OrderController extends Controller
                     'paymentable_type' => $paymentType,
                 ]);
 
-                $this->interfaceCartItemRepository->deleteCollection($user_id);
+                $this->interfaceCartItemRepository->deleteCollection($data["user_id"]);
 
                 return response()->json(['message' => 'successfully your transaction!'], HTTPResponse::HTTP_OK);
 
@@ -174,6 +251,7 @@ class OrderController extends Controller
 
         }
         return response()->json(['message' => 'sorry, your transaction fails because cart-items empty!'], HTTPResponse::HTTP_BAD_REQUEST);
+
 
     }
 
@@ -208,7 +286,7 @@ class OrderController extends Controller
 
         }
 
-        if ($order->deliver_id != $data['delivery_id']) {
+        if ($order->delivery_id != $data['delivery_id']) {
             $delivery_amount = $this->interfaceDeliveryRepository->findById($data['delivery_id'])['amount'];
             $delivery_time = $this->interfaceDeliveryRepository->findById($data['delivery_id'])['delivery_time'];
             $orderItems_final_amount = $this->interfaceOrderItemRepository->getSumFinalTotalPriceOrderItemsByOrderId($order->id);
@@ -297,5 +375,35 @@ class OrderController extends Controller
                 return response()->json(['message' => 'successfully your transaction!'], HTTPResponse::HTTP_OK);
         }
         return response()->json(['message' => 'sorry, your transaction fails!'], HTTPResponse::HTTP_BAD_REQUEST);
+    }
+
+
+    public function check_code($code, $userId)
+    {
+        if ($this->interfaceCopanRepository->query()->where('code', '=', $code)->count() > 0) {
+
+            if ($this->interfaceCopanRepository->query()->where('code', '=', $code)->where('start_date', '<', Carbon::now())->where('end_date', '>', Carbon::now())->where('status', '=', 1)->first()) {
+
+                $copanCode = $this->interfaceCopanRepository->query()->where('code', '=', $code)->first();
+
+                if ($copanCode["type"] == 1) {
+                    if ($copanCode["user_id"] != $userId)
+                        return 3;//
+                    return 4; //
+
+                } else {
+                    if ($copanCode["number_of_use_code"] >= $copanCode["max_use_code"])
+                        return 2;//
+                    return 4; //ok
+
+                }
+            } else {
+                return 1;//
+
+            }
+        } else {
+            return 0;//
+
+        }
     }
 }

@@ -23,7 +23,7 @@ class CartItemRepository extends BaseRepository implements InterfaceCartItemRepo
     }
 
 
-    public function findByUserId(int $userId):array|Collection|\Illuminate\Support\Collection
+    public function findByUserId(int $userId):array
     {
     return $this->model->where('user_id','=',$userId)->get()->toArray();
     }

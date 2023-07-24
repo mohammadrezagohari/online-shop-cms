@@ -129,29 +129,55 @@ if (!function_exists("order_final_amount")) {
 
 
 
-if (!function_exists("final_product_price")) {
+if (!function_exists("final_product_price_without_amazing_sale")) {
     /*********************************
      * upload asset file on storage
      ********************************/
-    function final_product_price($price,$percentage,$color_price_increase,$guarantee_price_increase): int
+    function final_product_price_without_amazing_sale($price,$color_price_increase,$guarantee_price_increase): int
     {
-        return $price*(1-$percentage/100)+$color_price_increase+$guarantee_price_increase;
+        return $price+$color_price_increase+$guarantee_price_increase;
 
     }
 }
 
 
 
-if (!function_exists("final_total_price")) {
+if (!function_exists("final_total_price_without_amazing_sale")) {
     /*********************************
      * upload asset file on storage
      ********************************/
-    function final_total_price($number,$final_product_price): int
+    function final_total_price_without_amazing_sale($number,$final_product_price): int
     {
         return $number*($final_product_price);
 
     }
 }
+
+
+if (!function_exists("final_product_price_with_amazing_sale")) {
+    /*********************************
+     * upload asset file on storage
+     ********************************/
+    function final_product_price_with_amazing_sale($price,$percentage,$color_price_increase,$guarantee_price_increase): int
+    {
+        return ($price*((100-$percentage)/100))+$color_price_increase+$guarantee_price_increase;
+
+    }
+}
+
+
+
+if (!function_exists("final_total_price_with_amazing_sale")) {
+    /*********************************
+     * upload asset file on storage
+     ********************************/
+    function final_total_price_with_amazing_sale($number,$final_product_price_with_amazing_sale): int
+    {
+        return $number*$final_product_price_with_amazing_sale;
+
+    }
+}
+
 
 
 if (!function_exists("upload_asset_background_file")) {

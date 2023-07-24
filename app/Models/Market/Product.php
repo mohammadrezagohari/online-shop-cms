@@ -2,10 +2,9 @@
 
 namespace App\Models\Market;
 
-use App\Models\Market\ProductColor;
-use App\Models\Market\ProductImage;
-use App\Models\Market\ProductProperty;
+
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;

@@ -23,7 +23,6 @@ return new class extends Migration
             $table->decimal('final_product_price_with_amazing_sale',20, 3)->nullable();
             $table->decimal('final_total_price_with_amazing_sale',20, 3)->nullable()->comment('number * final_product_price');
             $table->foreignId('amazing_sale_id')->constrained('amazing_sales');
-            $table->foreignId('amazing_copan_id')->constrained('copans');
             $table->timestamps();
             $table->softDeletes();
         });
