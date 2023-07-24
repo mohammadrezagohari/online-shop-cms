@@ -16,6 +16,7 @@ use App\Http\Controllers\Market\ProductPropertyController;
 use App\Http\Controllers\Market\AmazingSaleController;
 use App\Http\Controllers\Market\OnlinePaymentController;
 use App\Http\Controllers\Market\ProductTransactionController;
+use App\Http\Controllers\Market\PostCategoryController;
 use App\Http\Controllers\Market\CopanController;
 use App\Http\Controllers\Market\OrderItemController;
 use App\Http\Controllers\Market\OrderController;
@@ -287,6 +288,13 @@ Route::prefix('v1')->group(function () {
             Route::delete('/delete/{id}', [CopanController::class, 'destroy'])->name('delete');  //->middleware('is_admin')
         });
 
+        Route::group(['prefix' => 'post-category'], function () {
+            Route::get('/', [PostCategoryController::class, 'index'])->name('index');
+            Route::post('/store', [PostCategoryController::class, 'store'])->name('verify'); //->middleware('is_admin')
+            Route::get('/show/{id}', [PostCategoryController::class, 'show'])->name('show');
+            Route::patch('/update/{id}', [PostCategoryController::class, 'update'])->name('update'); //->middleware('is_admin')
+            Route::delete('/delete/{id}', [PostCategoryController::class, 'destroy'])->name('delete');  //->middleware('is_admin')
+        });
 
 
 

@@ -18247,7 +18247,265 @@
      
 }
 
-        namespace Kavenegar\Laravel { 
+        namespace Shetabit\Payment\Facade { 
+            /**
+     * Class Payment
+     *
+     * @package Shetabit\Payment\Facade
+     * @see \Shetabit\Multipay\Payment
+     */ 
+        class Payment {
+                    /**
+         * Retrieve Default config's path.
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function getDefaultConfigPath()
+        {
+                        return \Shetabit\Multipay\Payment::getDefaultConfigPath();
+        }
+                    /**
+         * Set custom configs
+         * we can use this method when we want to use dynamic configs
+         *
+         * @param $key
+         * @param $value|null
+         * @return \Shetabit\Multipay\Payment 
+         * @static 
+         */ 
+        public static function config($key, $value = null)
+        {
+                        /** @var \Shetabit\Multipay\Payment $instance */
+                        return $instance->config($key, $value);
+        }
+                    /**
+         * Set callbackUrl.
+         *
+         * @param $url|null
+         * @return \Shetabit\Multipay\Payment 
+         * @static 
+         */ 
+        public static function callbackUrl($url = null)
+        {
+                        /** @var \Shetabit\Multipay\Payment $instance */
+                        return $instance->callbackUrl($url);
+        }
+                    /**
+         * Reset the callbackUrl to its original that exists in configs.
+         *
+         * @return \Shetabit\Multipay\Payment 
+         * @static 
+         */ 
+        public static function resetCallbackUrl()
+        {
+                        /** @var \Shetabit\Multipay\Payment $instance */
+                        return $instance->resetCallbackUrl();
+        }
+                    /**
+         * Set payment amount.
+         *
+         * @param $amount
+         * @return \Shetabit\Multipay\Payment 
+         * @throws \Exception
+         * @static 
+         */ 
+        public static function amount($amount)
+        {
+                        /** @var \Shetabit\Multipay\Payment $instance */
+                        return $instance->amount($amount);
+        }
+                    /**
+         * Set a piece of data to the details.
+         *
+         * @param $key
+         * @param $value|null
+         * @return \Shetabit\Multipay\Payment 
+         * @static 
+         */ 
+        public static function detail($key, $value = null)
+        {
+                        /** @var \Shetabit\Multipay\Payment $instance */
+                        return $instance->detail($key, $value);
+        }
+                    /**
+         * Set transaction's id
+         *
+         * @param $id
+         * @return \Shetabit\Multipay\Payment 
+         * @static 
+         */ 
+        public static function transactionId($id)
+        {
+                        /** @var \Shetabit\Multipay\Payment $instance */
+                        return $instance->transactionId($id);
+        }
+                    /**
+         * Change the driver on the fly.
+         *
+         * @param $driver
+         * @return \Shetabit\Multipay\Payment 
+         * @throws \Exception
+         * @static 
+         */ 
+        public static function via($driver)
+        {
+                        /** @var \Shetabit\Multipay\Payment $instance */
+                        return $instance->via($driver);
+        }
+                    /**
+         * Purchase the invoice
+         *
+         * @param \Shetabit\Multipay\Invoice $invoice|null
+         * @param $finalizeCallback|null
+         * @return \Shetabit\Multipay\Payment 
+         * @throws \Exception
+         * @static 
+         */ 
+        public static function purchase($invoice = null, $finalizeCallback = null)
+        {
+                        /** @var \Shetabit\Multipay\Payment $instance */
+                        return $instance->purchase($invoice, $finalizeCallback);
+        }
+                    /**
+         * Pay the purchased invoice.
+         *
+         * @param $initializeCallback|null
+         * @return mixed 
+         * @throws \Exception
+         * @static 
+         */ 
+        public static function pay($initializeCallback = null)
+        {
+                        /** @var \Shetabit\Multipay\Payment $instance */
+                        return $instance->pay($initializeCallback);
+        }
+                    /**
+         * Verifies the payment
+         *
+         * @param $finalizeCallback|null
+         * @return \Shetabit\Multipay\Contracts\ReceiptInterface 
+         * @throws InvoiceNotFoundException
+         * @static 
+         */ 
+        public static function verify($finalizeCallback = null)
+        {
+                        /** @var \Shetabit\Multipay\Payment $instance */
+                        return $instance->verify($finalizeCallback);
+        }
+                    /**
+         * Set view path of redirection form.
+         *
+         * @param string $path
+         * @return void 
+         * @static 
+         */ 
+        public static function setRedirectionFormViewPath($path)
+        {
+                        \Shetabit\Multipay\Payment::setRedirectionFormViewPath($path);
+        }
+                    /**
+         * Retrieve default view path of redirection form.
+         *
+         * @return void 
+         * @static 
+         */ 
+        public static function getRedirectionFormDefaultViewPath()
+        {
+                        \Shetabit\Multipay\Payment::getRedirectionFormDefaultViewPath();
+        }
+                    /**
+         * Retrieve current view path of redirection form.
+         *
+         * @return void 
+         * @static 
+         */ 
+        public static function getRedirectionFormViewPath()
+        {
+                        \Shetabit\Multipay\Payment::getRedirectionFormViewPath();
+        }
+                    /**
+         * Set view renderer
+         *
+         * @param callable $renderer
+         * @static 
+         */ 
+        public static function setRedirectionFormViewRenderer($renderer)
+        {
+                        return \Shetabit\Multipay\Payment::setRedirectionFormViewRenderer($renderer);
+        }
+                    /**
+         * Add verification event listener.
+         *
+         * @param callable $listener
+         * @return void 
+         * @static 
+         */ 
+        public static function addPurchaseListener($listener)
+        {
+                        \Shetabit\Multipay\Payment::addPurchaseListener($listener);
+        }
+                    /**
+         * Remove verification event listener.
+         *
+         * @param callable|null $listener
+         * @return void 
+         * @static 
+         */ 
+        public static function removePurchaseListener($listener = null)
+        {
+                        \Shetabit\Multipay\Payment::removePurchaseListener($listener);
+        }
+                    /**
+         * Add pay event listener.
+         *
+         * @param callable $listener
+         * @return void 
+         * @static 
+         */ 
+        public static function addPayListener($listener)
+        {
+                        \Shetabit\Multipay\Payment::addPayListener($listener);
+        }
+                    /**
+         * Remove pay event listener.
+         *
+         * @param callable|null $listener
+         * @return void 
+         * @static 
+         */ 
+        public static function removePayListener($listener = null)
+        {
+                        \Shetabit\Multipay\Payment::removePayListener($listener);
+        }
+                    /**
+         * Add verification event listener.
+         *
+         * @param callable $listener
+         * @return void 
+         * @static 
+         */ 
+        public static function addVerifyListener($listener)
+        {
+                        \Shetabit\Multipay\Payment::addVerifyListener($listener);
+        }
+                    /**
+         * Remove verification event listener.
+         *
+         * @param callable|null $listener
+         * @return void 
+         * @static 
+         */ 
+        public static function removeVerifyListener($listener = null)
+        {
+                        \Shetabit\Multipay\Payment::removeVerifyListener($listener);
+        }
+         
+    }
+     
+}
+
+    namespace Kavenegar\Laravel { 
             /**
      * 
      *
@@ -22801,6 +23059,7 @@ namespace  {
             class Validator extends \Illuminate\Support\Facades\Validator {}
             class View extends \Illuminate\Support\Facades\View {}
             class Vite extends \Illuminate\Support\Facades\Vite {}
+            class Payment extends \Shetabit\Payment\Facade\Payment {}
             class Kavenegar extends \Kavenegar\Laravel\Facade {}
             class Flare extends \Spatie\LaravelIgnition\Facades\Flare {}
      

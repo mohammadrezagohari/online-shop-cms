@@ -135,6 +135,7 @@ class OrderController extends Controller
         $data = @$request->except(['_token']);
         $copan_amount = null;
         $copan_amount_type = null;
+        $copan_id=null;
         if (@$data["code"]) {
             switch ($this->check_code($data["code"], $data["user_id"])) {
                 case 0:
@@ -150,10 +151,10 @@ class OrderController extends Controller
                     $copan = $this->interfaceCopanRepository->query()->where('code', '=', $data["code"])->first();
                     $copan_amount = $copan->amount;
                     $copan_amount_type = $copan->amount_type;
+                    $copan_id=$copan->id;
                     break;
             }
         }
-
 
         $delivery = $this->interfaceDeliveryRepository->findById($data["delivery_id"]);
         $data["delivery_amount"] = $delivery["amount"];
@@ -193,12 +194,15 @@ class OrderController extends Controller
                     $this->interfaceOrderRepository->updateItem($order->id, [
                         'order_final_amount' => $final_total_price + $order->delivery_amount,
                         'order_final_amount_with_copan_discount' => $final_total_price * (1 - $copan_amount / 100) + $order->delivery_amount,
+
                     ]);
+                //    $this->interfaceCopanRepository->addNumberOfUseCode($copan_id);
                 } elseif ($copan_amount_type == 1) {
                     $this->interfaceOrderRepository->updateItem($order->id, [
                         'order_final_amount' => $final_total_price + $order->delivery_amount,
                         'order_final_amount_with_copan_discount' => ($final_total_price - $copan_amount) + $order->delivery_amount,
                     ]);
+               //     $this->interfaceCopanRepository->addNumberOfUseCode($copan_id);
                 } else {
                     $this->interfaceOrderRepository->updateItem($order->id, [
                         'order_final_amount' => $final_total_price + $order->delivery_amount,

@@ -34,6 +34,8 @@ use App\Repositories\MySQL\OtpRepository\InterfaceOtpRepository;
 use App\Repositories\MySQL\OtpRepository\OtpRepository;
 use App\Repositories\MySQL\PaymentRepository\InterfacePaymentRepository;
 use App\Repositories\MySQL\PaymentRepository\PaymentRepository;
+use App\Repositories\MySQL\PostCategoryRepository\PostCategoryRepository;
+use App\Repositories\MySQL\PostCategoryRepository\InterfacePostCategoryRepository;
 use App\Repositories\MySQL\ProductCategoryRepository\InterfaceProductCategoryRepository;
 use App\Repositories\MySQL\ProductCategoryRepository\ProductCategoryRepository;
 use App\Repositories\MySQL\ProductColorRepository\InterfaceProductColorRepository;
@@ -80,6 +82,7 @@ class RepositoryProvider extends ServiceProvider
         $this->app->bind(InterfaceProductRepository::class,ProductRepository::class);
         $this->app->bind(InterfaceAmazingSaleRepository::class,AmazingSaleRepository::class);
         $this->app->bind(InterfaceCopanRepository::class,CopanRepository::class);
+        $this->app->bind(InterfacePostCategoryRepository::class,PostCategoryRepository::class);
     }
 
     /**
