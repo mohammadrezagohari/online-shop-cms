@@ -43,7 +43,7 @@ class PostController extends Controller
             $posts = $posts->whereStatus($status);
         if (@$user_id)
             $posts = $posts->whereUserId($user_id);
-        if (@$category_id)
+        if (@$category_id != null)
             $posts = $posts->whereCategoryId($category_id);
 
 

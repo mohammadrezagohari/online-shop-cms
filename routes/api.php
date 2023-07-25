@@ -17,6 +17,7 @@ use App\Http\Controllers\Market\ProductPropertyController;
 use App\Http\Controllers\Market\AmazingSaleController;
 use App\Http\Controllers\Market\OnlinePaymentController;
 use App\Http\Controllers\Market\ProductTransactionController;
+use App\Http\Controllers\Market\CommentController;
 use App\Http\Controllers\Market\PostCategoryController;
 use App\Http\Controllers\Market\CopanController;
 use App\Http\Controllers\Market\OrderItemController;
@@ -305,6 +306,17 @@ Route::prefix('v1')->group(function () {
             Route::post('/update/{id}', [PostController::class, 'update'])->name('update'); //->middleware('is_admin')
             Route::delete('/delete/{id}', [PostController::class, 'destroy'])->name('delete');  //->middleware('is_admin')
         });
+
+
+
+        Route::group(['prefix' => 'comment'], function () {
+            Route::get('/', [commentController::class, 'index'])->name('index');
+            Route::post('/store', [commentController::class, 'store'])->name('verify'); //->middleware('is_admin')
+            Route::get('/show/{id}', [commentController::class, 'show'])->name('show');
+            Route::post('/update/{id}', [commentController::class, 'update'])->name('update'); //->middleware('is_admin')
+            Route::delete('/delete/{id}', [commentController::class, 'destroy'])->name('delete');  //->middleware('is_admin')
+        });
+
 
 
 

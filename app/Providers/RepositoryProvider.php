@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Repositories\MySQL\CommentRepository\CommentRepository;
+use App\Repositories\MySQL\CommentRepository\InterfaceCommentRepository;
 use App\Repositories\MySQL\CopanRepository\CopanRepository;
 use App\Repositories\MySQL\AmazingSaleRepository\AmazingSaleRepository;
 use App\Repositories\MySQL\AmazingSaleRepository\InterfaceAmazingSaleRepository;
@@ -86,6 +88,7 @@ class RepositoryProvider extends ServiceProvider
         $this->app->bind(InterfaceCopanRepository::class,CopanRepository::class);
         $this->app->bind(InterfacePostCategoryRepository::class,PostCategoryRepository::class);
         $this->app->bind(InterfacePostRepository::class,PostRepository::class);
+        $this->app->bind(InterfaceCommentRepository::class,CommentRepository::class);
     }
 
     /**
