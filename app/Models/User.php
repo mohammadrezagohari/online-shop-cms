@@ -82,6 +82,8 @@ use Spatie\Permission\Traits\HasRoles;
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUserType($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User withTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|User withoutTrashed()
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, Transaction> $transactions
+ * @property-read int|null $transactions_count
  * @mixin \Eloquent
  */
 class User extends Authenticatable

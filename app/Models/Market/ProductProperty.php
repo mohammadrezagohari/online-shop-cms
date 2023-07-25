@@ -16,6 +16,21 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|ProductProperty query()
  * @method static \Illuminate\Database\Eloquent\Builder|ProductProperty withTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|ProductProperty withoutTrashed()
+ * @property int $id
+ * @property string $property_key
+ * @property string $property_value
+ * @property int $product_id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read \App\Models\Market\Product $product
+ * @method static \Illuminate\Database\Eloquent\Builder|ProductProperty whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ProductProperty whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ProductProperty whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ProductProperty whereProductId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ProductProperty wherePropertyKey($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ProductProperty wherePropertyValue($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ProductProperty whereUpdatedAt($value)
  * @mixin \Eloquent
  */
 class ProductProperty extends Model

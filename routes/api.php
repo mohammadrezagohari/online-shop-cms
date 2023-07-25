@@ -10,6 +10,7 @@ use App\Http\Controllers\Market\GuaranteeController;
 use App\Http\Controllers\Market\OfflinePaymentController;
 use App\Http\Controllers\Market\ProductCategoryController;
 use App\Http\Controllers\Market\ProductController;
+use App\Http\Controllers\Market\PostController;
 use App\Http\Controllers\Market\ProductImageController;
 use App\Http\Controllers\Market\ProductColorController;
 use App\Http\Controllers\Market\ProductPropertyController;
@@ -295,6 +296,17 @@ Route::prefix('v1')->group(function () {
             Route::patch('/update/{id}', [PostCategoryController::class, 'update'])->name('update'); //->middleware('is_admin')
             Route::delete('/delete/{id}', [PostCategoryController::class, 'destroy'])->name('delete');  //->middleware('is_admin')
         });
+
+
+        Route::group(['prefix' => 'post'], function () {
+            Route::get('/', [PostController::class, 'index'])->name('index');
+            Route::post('/store', [PostController::class, 'store'])->name('verify'); //->middleware('is_admin')
+            Route::get('/show/{id}', [PostController::class, 'show'])->name('show');
+            Route::post('/update/{id}', [PostController::class, 'update'])->name('update'); //->middleware('is_admin')
+            Route::delete('/delete/{id}', [PostController::class, 'destroy'])->name('delete');  //->middleware('is_admin')
+        });
+
+
 
 
 

@@ -61,6 +61,12 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product withTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Product withoutTrashed()
+ * @property int $price
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Market\AmazingSale> $amazingSales
+ * @property-read int|null $amazing_sales_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Market\Order> $orders
+ * @property-read int|null $orders_count
+ * @method static \Illuminate\Database\Eloquent\Builder|Product wherePrice($value)
  * @mixin \Eloquent
  */
 class Product extends Model

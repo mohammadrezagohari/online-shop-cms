@@ -61,6 +61,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @method static \Illuminate\Database\Eloquent\Builder|Order whereUserId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Order withTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Order withoutTrashed()
+ * @property string|null $order_final_amount_with_copan_discount
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Market\Product> $products
+ * @property-read int|null $products_count
+ * @method static \Illuminate\Database\Eloquent\Builder|Order whereOrderFinalAmountWithCopanDiscount($value)
  * @mixin \Eloquent
  */
 class Order extends Model

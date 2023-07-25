@@ -49,6 +49,26 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Transaction whereUserId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Transaction withTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Transaction withoutTrashed()
+ * @property int $order_id
+ * @property string|null $message
+ * @property string|null $code
+ * @property string|null $card_hash
+ * @property string|null $card_pan
+ * @property string|null $ref_id
+ * @property string|null $fee_type
+ * @property string|null $fee
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read \App\Models\Market\Order $order
+ * @property-read User $user
+ * @method static \Illuminate\Database\Eloquent\Builder|Transaction whereCardHash($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Transaction whereCardPan($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Transaction whereCode($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Transaction whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Transaction whereFee($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Transaction whereFeeType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Transaction whereMessage($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Transaction whereOrderId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Transaction whereRefId($value)
  * @mixin \Eloquent
  */
 class Transaction extends Model

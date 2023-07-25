@@ -2,7 +2,7 @@
 
 namespace App\Repositories\MySQL\PostCategoryRepository;
 
-use App\Models\Address;
+
 use App\Models\Market\PostCategory;
 use App\Repositories\MySQL\BaseRepository;
 

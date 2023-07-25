@@ -41,6 +41,17 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @method static \Illuminate\Database\Eloquent\Builder|OrderItem whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|OrderItem withTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|OrderItem withoutTrashed()
+ * @property string|null $final_product_price_without_amazing_sale
+ * @property string|null $final_total_price_without_amazing_sale number * final_product_price
+ * @property string|null $final_product_price_with_amazing_sale
+ * @property string|null $final_total_price_with_amazing_sale number * final_product_price
+ * @property int $amazing_sale_id
+ * @property-read \App\Models\Market\Product $product
+ * @method static \Illuminate\Database\Eloquent\Builder|OrderItem whereAmazingSaleId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|OrderItem whereFinalProductPriceWithAmazingSale($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|OrderItem whereFinalProductPriceWithoutAmazingSale($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|OrderItem whereFinalTotalPriceWithAmazingSale($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|OrderItem whereFinalTotalPriceWithoutAmazingSale($value)
  * @mixin \Eloquent
  */
 class OrderItem extends Model
