@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Resources\sms;
+namespace App\Http\Resources\email;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class SmsResource extends JsonResource
+class EmailResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,12 +15,11 @@ class SmsResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'title'=>$this->title,
-            'body	'=>$this->body,
+            'id'=>$this->id,
+            'subject'=>$this->subject,
+            'body'=>$this->body,
             'status'=>$this->status,
-            'published_at'=>\Morilog\Jalali\Jalalian::fromCarbon( $this->published_at)->format('Y-m-d H:i:s') ,
-
-
+            'published_at'=>\Morilog\Jalali\Jalalian::fromCarbon($this->published_at)->format('Y-m-d H:i:s'),
         ];
     }
 }

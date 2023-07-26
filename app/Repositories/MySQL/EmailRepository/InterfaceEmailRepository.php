@@ -5,6 +5,8 @@ namespace App\Repositories\MySQL\EmailRepository;
 
 
 
-interface InterfaceEmailRepository extends IBaseRepository{
+use App\Repositories\MySQL\IBaseRepository;
+
+interface InterfaceEmailRepository extends IBaseRepository {
 
 }

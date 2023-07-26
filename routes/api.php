@@ -24,6 +24,7 @@ use App\Http\Controllers\Market\CopanController;
 use App\Http\Controllers\Market\OrderItemController;
 use App\Http\Controllers\Market\OrderController;
 use App\Http\Controllers\Market\PaymentController;
+use App\Http\Controllers\Market\EmailController;
 use App\Http\Controllers\OtpController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\ProvinceController;
@@ -325,6 +326,16 @@ Route::prefix('v1')->group(function () {
             Route::get('/show/{id}', [SmsController::class, 'show'])->name('show');
             Route::patch('/update/{id}', [SmsController::class, 'update'])->name('update'); //->middleware('is_admin')
             Route::delete('/delete/{id}', [SmsController::class, 'destroy'])->name('delete');  //->middleware('is_admin')
+        });
+
+
+
+        Route::group(['prefix' => 'email'], function () {
+            Route::get('/', [EmailController::class, 'index'])->name('index');
+            Route::post('/store', [EmailController::class, 'store'])->name('verify'); //->middleware('is_admin')
+            Route::get('/show/{id}', [EmailController::class, 'show'])->name('show');
+            Route::patch('/update/{id}', [EmailController::class, 'update'])->name('update'); //->middleware('is_admin')
+            Route::delete('/delete/{id}', [EmailController::class, 'destroy'])->name('delete');  //->middleware('is_admin')
         });
 
 
