@@ -323,7 +323,7 @@ Route::prefix('v1')->group(function () {
             Route::get('/', [SmsController::class, 'index'])->name('index');
             Route::post('/store', [SmsController::class, 'store'])->name('verify'); //->middleware('is_admin')
             Route::get('/show/{id}', [SmsController::class, 'show'])->name('show');
-            Route::post('/update/{id}', [SmsController::class, 'update'])->name('update'); //->middleware('is_admin')
+            Route::patch('/update/{id}', [SmsController::class, 'update'])->name('update'); //->middleware('is_admin')
             Route::delete('/delete/{id}', [SmsController::class, 'destroy'])->name('delete');  //->middleware('is_admin')
         });
 

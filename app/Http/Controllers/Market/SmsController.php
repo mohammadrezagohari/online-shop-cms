@@ -5,9 +5,13 @@ namespace App\Http\Controllers\Market;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\sms\SmsRequest;
 use App\Http\Requests\sms\StoreSmsRequest;
+use App\Http\Requests\sms\UpdateSmsRequest;
 use App\Http\Resources\sms\SmsResource;
 use App\Repositories\MySQL\SmsRepository\InterfaceSmsRepository;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Symfony\Component\HttpFoundation\Response as HTTPResponse;
 
 class SmsController extends Controller
 {
@@ -22,7 +26,7 @@ class SmsController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(SmsRequest $request)
+    public function index(SmsRequest $request):AnonymousResourceCollection
     {
       $count=@$request->count ?? 10;
       $title=@$request->title;
@@ -55,18 +59,22 @@ class SmsController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreSmsRequest $request)
+    public function store(StoreSmsRequest $request):JsonResponse
     {
      $data=$request->except(['_token']);
-
+     $data['published_at']=\Morilog\Jalali\Jalalian::fromFormat('Y-m-d H:i:s',$data['published_at'])->toCarbon();
+        if ($this->interfaceSmsRepository->insertData($data))
+            return response()->json(['message' => 'successfully your transaction!'], HTTPResponse::HTTP_OK);
+        return response()->json(['message' => 'sorry, your transaction fails!'], HTTPResponse::HTTP_BAD_REQUEST);
     }
+
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(int $id):SmsResource
     {
-        //
+        return SmsResource::make($this->interfaceSmsRepository->findById($id));
     }
 
     /**
@@ -80,16 +88,23 @@ class SmsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateSmsRequest $request, int $id):JsonResponse
     {
-        //
+      $data=@$request->except(['_token']);
+      if(@$data['published_at'])
+          $data['published_at']=\Morilog\Jalali\Jalalian::fromFormat('Y-m-d H:i:s',$data['published_at'])->toCarbon();
+      if($this->interfaceSmsRepository->updateItem($id,$data))
+          return response()->json(['message' => 'successfully your transaction!'], HTTPResponse::HTTP_OK);
+        return response()->json(['message' => 'sorry, your transaction fails!'], HTTPResponse::HTTP_BAD_REQUEST);
     }
-
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(int $id):JsonResponse
     {
-        //
+      if($this->interfaceSmsRepository->deleteData($id))
+          return response()->json(['message' => 'successfully your transaction!'], HTTPResponse::HTTP_OK);
+        return response()->json(['message' => 'sorry, your transaction fails!'], HTTPResponse::HTTP_BAD_REQUEST);
+
     }
 }
