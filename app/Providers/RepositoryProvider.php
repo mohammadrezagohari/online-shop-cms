@@ -8,6 +8,10 @@ use App\Repositories\MySQL\CopanRepository\CopanRepository;
 use App\Repositories\MySQL\AmazingSaleRepository\AmazingSaleRepository;
 use App\Repositories\MySQL\AmazingSaleRepository\InterfaceAmazingSaleRepository;
 use App\Repositories\MySQL\CopanRepository\InterfaceCopanRepository;
+use App\Repositories\MySQL\EmailFileRepository\EmailFileRepository;
+use App\Repositories\MySQL\EmailFileRepository\InterfaceEmailFileRepository;
+use App\Repositories\MySQL\EmailRepository\EmailRepository;
+use App\Repositories\MySQL\EmailRepository\InterfaceEmailRepository;
 use App\Repositories\MySQL\IBaseRepository;
 use App\Repositories\MySQL\BaseRepository;
 use App\Repositories\MySQL\AddressRepository\AddressRepository;
@@ -52,6 +56,8 @@ use App\Repositories\MySQL\ProductRepository\InterfaceProductRepository;
 use App\Repositories\MySQL\ProductRepository\ProductRepository;
 use App\Repositories\MySQL\ProvinceRepository\InterfaceProvinceRepository;
 use App\Repositories\MySQL\ProvinceRepository\ProvinceRepository;
+use App\Repositories\MySQL\SmsRepository\InterfaceSmsRepository;
+use App\Repositories\MySQL\SmsRepository\SmsRepository;
 use App\Repositories\MySQL\TransactionRepository\InterfaceTransactionRepository;
 use App\Repositories\MySQL\TransactionRepository\TransactionRepository;
 use Illuminate\Support\ServiceProvider;
@@ -89,6 +95,9 @@ class RepositoryProvider extends ServiceProvider
         $this->app->bind(InterfacePostCategoryRepository::class,PostCategoryRepository::class);
         $this->app->bind(InterfacePostRepository::class,PostRepository::class);
         $this->app->bind(InterfaceCommentRepository::class,CommentRepository::class);
+        $this->app->bind(InterfaceSmsRepository::class,SmsRepository::class);
+        $this->app->bind(InterfaceEmailRepository::class,EmailRepository::class);
+        $this->app->bind(InterfaceEmailFileRepository::class,EmailFileRepository::class);
     }
 
     /**

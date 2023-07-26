@@ -23,6 +23,9 @@ use App\Http\Controllers\Market\CopanController;
 use App\Http\Controllers\Market\OrderItemController;
 use App\Http\Controllers\Market\OrderController;
 use App\Http\Controllers\Market\PaymentController;
+use App\Http\Controllers\Market\SmsController;
+use App\Http\Controllers\Market\EmailController;
+use App\Http\Controllers\Market\EmailFileController;
 use App\Http\Controllers\OtpController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\ProvinceController;
@@ -315,6 +318,15 @@ Route::prefix('v1')->group(function () {
             Route::get('/show/{id}', [commentController::class, 'show'])->name('show');
             Route::post('/update/{id}', [commentController::class, 'update'])->name('update'); //->middleware('is_admin')
             Route::delete('/delete/{id}', [commentController::class, 'destroy'])->name('delete');  //->middleware('is_admin')
+        });
+
+
+        Route::group(['prefix' => 'sms'], function () {
+            Route::get('/', [SmsController::class, 'index'])->name('index');
+            Route::post('/store', [SmsController::class, 'store'])->name('verify'); //->middleware('is_admin')
+            Route::get('/show/{id}', [SmsController::class, 'show'])->name('show');
+            Route::post('/update/{id}', [SmsController::class, 'update'])->name('update'); //->middleware('is_admin')
+            Route::delete('/delete/{id}', [SmsController::class, 'destroy'])->name('delete');  //->middleware('is_admin')
         });
 
 

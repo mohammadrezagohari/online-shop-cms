@@ -3,18 +3,16 @@
 namespace App\Http\Controllers\Market;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreOnlinePaymentRequest;
-use App\Http\Requests\UpdateOnlinePaymentRequest;
-use App\Models\Market\OnlinePayment;
+use Illuminate\Http\Request;
 
-class OnlinePaymentController extends Controller
+class EmailController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-
+        //
     }
 
     /**
@@ -28,7 +26,7 @@ class OnlinePaymentController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreOnlinePaymentRequest $request)
+    public function store(Request $request)
     {
         //
     }
@@ -36,7 +34,7 @@ class OnlinePaymentController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(OnlinePayment $onlinePayment)
+    public function show(string $id)
     {
         //
     }
@@ -44,7 +42,7 @@ class OnlinePaymentController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(OnlinePayment $onlinePayment)
+    public function edit(string $id)
     {
         //
     }
@@ -52,7 +50,7 @@ class OnlinePaymentController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateOnlinePaymentRequest $request, OnlinePayment $onlinePayment)
+    public function update(Request $request, string $id)
     {
         //
     }
@@ -60,7 +58,7 @@ class OnlinePaymentController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(OnlinePayment $onlinePayment)
+    public function destroy(string $id)
     {
         //
     }
