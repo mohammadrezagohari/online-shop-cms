@@ -25,6 +25,7 @@ use App\Http\Controllers\Market\OrderItemController;
 use App\Http\Controllers\Market\OrderController;
 use App\Http\Controllers\Market\PaymentController;
 use App\Http\Controllers\Market\EmailController;
+use App\Http\Controllers\Market\EmailFileController;
 use App\Http\Controllers\OtpController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\ProvinceController;
@@ -336,6 +337,15 @@ Route::prefix('v1')->group(function () {
             Route::get('/show/{id}', [EmailController::class, 'show'])->name('show');
             Route::patch('/update/{id}', [EmailController::class, 'update'])->name('update'); //->middleware('is_admin')
             Route::delete('/delete/{id}', [EmailController::class, 'destroy'])->name('delete');  //->middleware('is_admin')
+        });
+
+
+        Route::group(['prefix' => 'email-file'], function () {
+            Route::get('/', [EmailFileController::class, 'index'])->name('index');
+            Route::post('/store', [EmailFileController::class, 'store'])->name('verify'); //->middleware('is_admin')
+            Route::get('/show/{id}', [EmailFileController::class, 'show'])->name('show');
+            Route::post('/update/{id}', [EmailFileController::class, 'update'])->name('update'); //->middleware('is_admin')
+            Route::delete('/delete/{id}', [EmailFileController::class, 'destroy'])->name('delete');  //->middleware('is_admin')
         });
 
 
