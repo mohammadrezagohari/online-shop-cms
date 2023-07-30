@@ -92,11 +92,13 @@ class AuthController extends Controller
     }
 
 
-    public function OTP(Request $request):JsonResponse
+    public function OTP(Request $request)
     {
+
         $validation = \validator::make($request->only('mobile'), [
             'mobile' => 'required|ir_mobile',
         ]);
+
         if ($validation->fails())
             return response()->json([
                 'message' => $validation->messages(),

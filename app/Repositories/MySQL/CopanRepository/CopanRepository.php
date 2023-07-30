@@ -22,7 +22,12 @@ class CopanRepository extends BaseRepository implements InterfaceCopanRepository
     public function addNumberOfUseCode(int $id): void
     {
        $copan= $this->model->find($id)->first();
-       $copan["number_of_use_code	"]= $copan["number_of_use_code	"]+1;
+       $copan["number_of_use_code"]= $copan["number_of_use_code	"]+1;
        $copan->save();
+    }
+
+    public function whereCode(string $code)
+    {
+       return $this->model->where('code', '=', $code)->first();
     }
 }

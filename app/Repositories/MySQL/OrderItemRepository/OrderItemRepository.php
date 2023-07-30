@@ -20,13 +20,16 @@ class OrderItemRepository extends BaseRepository implements InterfaceOrderItemRe
       return $this->model->where('order_id','=',$orderId)->delete();
     }
 
-    public function getSumFinalTotalPriceOrderItemsByOrderId(int $orderId):int
+    public function getSumFinalTotalPriceOrderItemsByOrderId(int $orderId):array
     {
        $results=$this->model->where('order_id','=',$orderId)->get();
-        $sumOfCartItemsAmount=0;
+        $sumOfOrderItemsAmountWithoutAmazingSale=0;
+        $sumOfOrderItemsAmountWithAmazingSale=0;
+
        foreach ($results as $result){
-           $sumOfCartItemsAmount+=$result["final_total_price"];
+           $sumOfOrderItemsAmountWithoutAmazingSale+=$result["final_total_price_without_amazing_sale"];
+           $sumOfOrderItemsAmountWithAmazingSale+=$result["final_total_price_with_amazing_sale"];
        }
-       return $sumOfCartItemsAmount;
+       return [$sumOfOrderItemsAmountWithoutAmazingSale,$sumOfOrderItemsAmountWithAmazingSale];
     }
 }

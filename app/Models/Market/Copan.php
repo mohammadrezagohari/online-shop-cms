@@ -2,9 +2,11 @@
 
 namespace App\Models\Market;
 
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 
@@ -47,44 +49,49 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Eloquent\Builder|Copan whereUserId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Copan withTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Copan withoutTrashed()
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, User> $users
+ * @property-read int|null $users_count
  * @mixin \Eloquent
  */
 class Copan extends Model
 {
-    use HasFactory,SoftDeletes;
+    use HasFactory, SoftDeletes;
 
 
-    protected  $table="copans";
+    protected $table = "copans";
 
-    protected $guarded=['id'];
-    protected $casts=[
+    protected $guarded = ['id'];
+    protected $casts = [
         'start_date' => 'datetime',
         'end_date' => 'datetime',
     ];
 
 
-
-    public function scopeWhereCode($query,$code)
+    public function scopeWhereCode($query, $code)
     {
-        return $query->where('code','=',$code);
+        return $query->where('code', '=', $code);
 
     }
 
-    public function scopeWhereStatus($query,$status)
+    public function scopeWhereStatus($query, $status)
     {
-        return $query->where('status','=',$status);
-    }
-    public function scopeWhereAmountType($query,$amount_type)
-    {
-        return $query->where('amount_type','=',$amount_type);
+        return $query->where('status', '=', $status);
     }
 
-    public function scopeWhereType($query,$type)
+    public function scopeWhereAmountType($query, $amount_type)
     {
-        return $query->where('type','=',$type);
+        return $query->where('amount_type', '=', $amount_type);
     }
 
+    public function scopeWhereType($query, $type)
+    {
+        return $query->where('type', '=', $type);
+    }
 
+    public function users(): BelongsToMany
+    {
+        return  $this->belongsToMany(User::class);
+    }
 
 
 }

@@ -2,7 +2,8 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+ use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Market\Copan;
 use App\Models\Market\Order;
 use App\Models\Market\Payment;
 use App\Models\Market\Product;
@@ -90,9 +91,11 @@ use Spatie\Permission\Traits\HasRoles;
  * @property-read \Illuminate\Database\Eloquent\Collection<int, Transaction> $transactions
  * @method static \Illuminate\Database\Eloquent\Builder|User permission($permissions)
  * @method static \Illuminate\Database\Eloquent\Builder|User role($roles, $guard = null)
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, Copan> $copans
+ * @property-read int|null $copans_count
  * @mixin \Eloquent
  */
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable, SoftDeletes , HasRoles;
 
@@ -118,7 +121,6 @@ class User extends Authenticatable
 
     ];
 
-    protected $guard_name = 'sanctum';
 
 
     /**
@@ -192,5 +194,11 @@ class User extends Authenticatable
     public function Otps(): HasMany
     {
         return $this->hasMany(Otp::class);
+    }
+
+
+    public function copans():BelongsToMany
+    {
+        return $this->belongsToMany(Copan::class);
     }
 }

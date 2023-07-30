@@ -350,9 +350,6 @@ Route::prefix('v1')->group(function () {
         });
 
 
-
-
-
     });
     Route::get('/transaction/callback/{id}', [ProductTransactionController::class, 'callback'])->name('callback'); //->middleware('is_admin')
 
