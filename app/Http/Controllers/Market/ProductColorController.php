@@ -14,7 +14,13 @@ use App\Repositories\MySQL\ProductColorRepository\InterfaceProductColorRepositor
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Symfony\Component\HttpFoundation\Response as HTTPResponse;
-
+/**
+ * @group ProductColor
+ *
+ *API endpoints for ProductColor Services
+ *
+ *
+ */
 class ProductColorController extends Controller
 {
 

@@ -1,0 +1,293 @@
+name: Guarantee
+description: |-
+
+  API endpoints for Guarantee Services
+endpoints:
+  -
+    httpMethods:
+      - GET
+    uri: api/v1/guarantee
+    metadata:
+      groupName: Guarantee
+      groupDescription: |-
+
+        API endpoints for Guarantee Services
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Display a listing of the resource.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      count:
+        name: count
+        description: ''
+        required: false
+        example: 59663613.282651
+        type: number
+        custom: []
+      product_id:
+        name: product_id
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+      status:
+        name: status
+        description: 'Must be one of <code>0</code> or <code>1</code>.'
+        required: false
+        example: '0'
+        type: number
+        custom: []
+    cleanBodyParameters:
+      count: 59663613.282651
+      status: '0'
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/guarantee/store
+    metadata:
+      groupName: Guarantee
+      groupDescription: |-
+
+        API endpoints for Guarantee Services
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Store a newly created resource in storage.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      name:
+        name: name
+        description: 'Must match the regex /^[ا-یa-zA-Z0-9\-۰-۹ء-ي., ]+$/u. Must not be greater than 255 characters.'
+        required: true
+        example: oyrpbmv
+        type: string
+        custom: []
+      product_id:
+        name: product_id
+        description: ''
+        required: true
+        example: itaque
+        type: string
+        custom: []
+      price_increase:
+        name: price_increase
+        description: ''
+        required: true
+        example: 3
+        type: integer
+        custom: []
+      status:
+        name: status
+        description: 'Must be one of <code>0</code> or <code>1</code>.'
+        required: true
+        example: '0'
+        type: number
+        custom: []
+    cleanBodyParameters:
+      name: oyrpbmv
+      product_id: itaque
+      price_increase: 3
+      status: '0'
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/v1/guarantee/show/{id}'
+    metadata:
+      groupName: Guarantee
+      groupDescription: |-
+
+        API endpoints for Guarantee Services
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Display the specified resource.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the show.'
+        required: true
+        example: nihil
+        type: string
+        custom: []
+    cleanUrlParameters:
+      id: nihil
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PATCH
+    uri: 'api/v1/guarantee/update/{id}'
+    metadata:
+      groupName: Guarantee
+      groupDescription: |-
+
+        API endpoints for Guarantee Services
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Update the specified resource in storage.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the update.'
+        required: true
+        example: quod
+        type: string
+        custom: []
+    cleanUrlParameters:
+      id: quod
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      name:
+        name: name
+        description: 'Must match the regex /^[ا-یa-zA-Z0-9\-۰-۹ء-ي., ]+$/u. Must not be greater than 255 characters.'
+        required: false
+        example: gvhvusvlbnkk
+        type: string
+        custom: []
+      product_id:
+        name: product_id
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+      price_increase:
+        name: price_increase
+        description: ''
+        required: false
+        example: 3
+        type: integer
+        custom: []
+      status:
+        name: status
+        description: 'Must be one of <code>0</code> or <code>1</code>.'
+        required: false
+        example: '0'
+        type: number
+        custom: []
+    cleanBodyParameters:
+      name: gvhvusvlbnkk
+      price_increase: 3
+      status: '0'
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/v1/guarantee/delete/{id}'
+    metadata:
+      groupName: Guarantee
+      groupDescription: |-
+
+        API endpoints for Guarantee Services
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Remove the specified resource from storage.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the delete.'
+        required: true
+        example: velit
+        type: string
+        custom: []
+    cleanUrlParameters:
+      id: velit
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []

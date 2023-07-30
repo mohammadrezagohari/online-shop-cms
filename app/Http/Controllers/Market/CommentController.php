@@ -12,7 +12,13 @@ use App\Repositories\MySQL\CommentRepository\InterfaceCommentRepository;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Symfony\Component\HttpFoundation\Response as HTTPResponse;
-
+/**
+ * @group Comment
+ *
+ *API endpoints for Comment Services
+ *
+ *
+ */
 class CommentController extends Controller
 {
 

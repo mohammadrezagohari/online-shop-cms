@@ -7,6 +7,8 @@ use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
+
 
 
 class AdminSeeder extends Seeder
@@ -27,6 +29,9 @@ class AdminSeeder extends Seeder
             'last_name' => 'ابراهیمی',
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
         ]);
-     //   $admin->assignRole(Role::where('name', '=', Roles::Admin)->first());
+        $admin->assignRole(Role::where('name', '=', Roles::Admin)->first());
+
+
+
     }
 }

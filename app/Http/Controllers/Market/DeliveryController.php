@@ -12,7 +12,13 @@ use App\Repositories\MySQL\DeliveryRepository\InterfaceDeliveryRepository;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Symfony\Component\HttpFoundation\Response as HTTPResponse;
-
+/**
+ * @group Delivery
+ *
+ *API endpoints for Delivery Services
+ *
+ *
+ */
 class DeliveryController extends Controller
 {
     private InterfaceDeliveryRepository $interfaceDeliveryRepository;

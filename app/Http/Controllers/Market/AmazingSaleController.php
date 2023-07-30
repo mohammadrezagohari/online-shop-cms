@@ -12,6 +12,14 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response as HTTPResponse;
 
+/**
+ * @group AmazingSale
+ *
+ *API endpoints for AmazingSale Services
+ *
+ *
+ */
+
 class AmazingSaleController extends Controller
 {
     private InterfaceAmazingSaleRepository $interfaceAmazingSaleRepository;

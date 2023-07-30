@@ -12,7 +12,13 @@ use App\Repositories\MySQL\ProductPropertyRepository\InterfaceProductPropertyRep
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Symfony\Component\HttpFoundation\Response as HTTPResponse;
-
+/**
+ * @group ProductProperty
+ *
+ *API endpoints for ProductProperty Services
+ *
+ *
+ */
 class ProductPropertyController extends Controller
 {
     private InterfaceProductPropertyRepository $interfaceProductPropertyRepository;

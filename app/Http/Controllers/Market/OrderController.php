@@ -33,7 +33,13 @@ use function App\final_product_price_without_amazing_sale;
 use function App\final_total_price;
 use function App\final_total_price_with_amazing_sale;
 use function App\final_total_price_without_amazing_sale;
-
+/**
+ * @group Order
+ *
+ *API endpoints for Order Services
+ *
+ *
+ */
 class OrderController extends Controller
 {
 

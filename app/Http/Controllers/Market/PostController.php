@@ -13,7 +13,13 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Symfony\Component\HttpFoundation\Response as HTTPResponse;
 use function App\upload_asset_file;
-
+/**
+ * @group Post
+ *
+ *API endpoints for Post Services
+ *
+ *
+ */
 class PostController extends Controller
 {
 

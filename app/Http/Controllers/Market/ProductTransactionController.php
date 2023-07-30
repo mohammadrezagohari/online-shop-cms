@@ -16,7 +16,13 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Facades\Http;
 use Symfony\Component\HttpFoundation\Response as HTTPResponse;
-
+/**
+ * @group ProductTransaction
+ *
+ *API endpoints for ProductTransaction Services
+ *
+ *
+ */
 class ProductTransactionController extends Controller
 {
     private InterfaceTransactionRepository $interfaceTransactionRepository;

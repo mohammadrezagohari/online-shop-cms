@@ -12,7 +12,13 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Carbon;
 use Symfony\Component\HttpFoundation\Response as HTTPResponse;
-
+/**
+ * @group Otp
+ *
+ *API endpoints for Otp Services
+ *
+ *
+ */
 class OtpController extends Controller
 {
     private InterfaceOtpRepository $interfaceOtpRepository;

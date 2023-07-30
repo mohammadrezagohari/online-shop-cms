@@ -12,6 +12,13 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Symfony\Component\HttpFoundation\Response as HTTPResponse;
 
+/**
+ * @group Address
+ *
+ *API endpoints for Address Services
+ *
+ *
+ */
 
 class AddressController extends Controller
 {
@@ -22,9 +29,8 @@ class AddressController extends Controller
         $this->interfaceAddressRepository = $interfaceAddressRepository;
     }
 
-    /**
-     * Display a listing of the resource.
-     */
+
+
     public function index(AddressRequest $request):AnonymousResourceCollection
     {
         $count = @$request->count ?? 10;

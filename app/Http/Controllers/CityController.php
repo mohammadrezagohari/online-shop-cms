@@ -14,7 +14,13 @@ use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Http\JsonResponse;
 use Symfony\Component\HttpFoundation\Response as HTTPResponse;
 
-
+/**
+ * @group City
+ *
+ *API endpoints for City Services
+ *
+ *
+ */
 class CityController extends Controller
 {
 

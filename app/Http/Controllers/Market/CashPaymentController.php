@@ -18,6 +18,13 @@ use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use PhpParser\Builder\Interface_;
 use Symfony\Component\HttpFoundation\Response as HTTPResponse;
 
+/**
+ * @group CashPayment
+ *
+ *API endpoints for CashPayment Services
+ *
+ *
+ */
 class CashPaymentController extends Controller
 {
     private  InterfaceCashPaymentRepository $interfaceCashPaymentRepository;

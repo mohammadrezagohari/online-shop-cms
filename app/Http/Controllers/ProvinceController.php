@@ -11,7 +11,13 @@ use App\Repositories\MySQL\ProvinceRepository\InterfaceProvinceRepository;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Symfony\Component\HttpFoundation\Response as HTTPResponse;
-
+/**
+ * @group Province
+ *
+ *API endpoints for Province Services
+ *
+ *
+ */
 class ProvinceController extends Controller
 {
 
@@ -94,7 +100,7 @@ class ProvinceController extends Controller
      */
     public function update(UpdateProvinceRequest $request, int $id)
     {
-        
+
         $data = $request->except(['_token']);
         if ($this->interfaceProvinceRepository->updateItem($id, $data))
             return response()->json(['message' => 'successfully your transaction!'], HTTPResponse::HTTP_OK);

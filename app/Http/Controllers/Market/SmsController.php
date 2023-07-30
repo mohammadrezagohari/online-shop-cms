@@ -12,7 +12,13 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Symfony\Component\HttpFoundation\Response as HTTPResponse;
-
+/**
+ * @group Sms
+ *
+ *API endpoints for Sms Services
+ *
+ *
+ */
 class SmsController extends Controller
 {
 

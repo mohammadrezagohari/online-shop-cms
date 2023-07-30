@@ -15,7 +15,13 @@ use App\Repositories\MySQL\PaymentRepository\InterfacePaymentRepository;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Symfony\Component\HttpFoundation\Response as HTTPResponse;
-
+/**
+ * @group OfflinePayment
+ *
+ *API endpoints for OfflinePayment Services
+ *
+ *
+ */
 class OfflinePaymentController extends Controller
 {
     private InterfaceOfflinePaymentRepository $interfaceOfflinePaymentRepository;

@@ -1,0 +1,327 @@
+name: ProductCategory
+description: |-
+
+  API endpoints for ProductCategory Services
+endpoints:
+  -
+    httpMethods:
+      - GET
+    uri: api/v1/product-category
+    metadata:
+      groupName: ProductCategory
+      groupDescription: |-
+
+        API endpoints for ProductCategory Services
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Display a listing of the resource.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      count:
+        name: count
+        description: ''
+        required: false
+        example: consequatur
+        type: string
+        custom: []
+      name:
+        name: name
+        description: 'Must not be greater than 255 characters.'
+        required: false
+        example: tjztmuooiwrbhpnhlelqnijq
+        type: string
+        custom: []
+      status:
+        name: status
+        description: 'Must be one of <code>0</code> or <code>1</code>.'
+        required: false
+        example: '0'
+        type: number
+        custom: []
+    cleanBodyParameters:
+      count: consequatur
+      name: tjztmuooiwrbhpnhlelqnijq
+      status: '0'
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/product-category/store
+    metadata:
+      groupName: ProductCategory
+      groupDescription: |-
+
+        API endpoints for ProductCategory Services
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Store a newly created resource in storage.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: multipart/form-data
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      name:
+        name: name
+        description: 'Must match the regex /^[ا-یa-zA-Z0-9\-۰-۹ء-ي., ]+$/u. Must not be greater than 255 characters.'
+        required: true
+        example: wtxyc
+        type: string
+        custom: []
+      description:
+        name: description
+        description: 'Must match the regex /^[ا-یa-zA-Z0-9\-۰-۹ء-ي.,><\/;\n\r& ]+$/u. Must not be greater than 500 characters. Must be at least 5 characters.'
+        required: true
+        example: 'Fuga ab dignissimos aspernatur reprehenderit ut.'
+        type: string
+        custom: []
+      image:
+        name: image
+        description: 'Must be an image.'
+        required: true
+        example: null
+        type: file
+        custom: []
+      status:
+        name: status
+        description: 'Must be one of <code>0</code> or <code>1</code>.'
+        required: true
+        example: '0'
+        type: number
+        custom: []
+      show_in_menu:
+        name: show_in_menu
+        description: 'Must be one of <code>0</code> or <code>1</code>.'
+        required: true
+        example: '1'
+        type: number
+        custom: []
+      parent_id:
+        name: parent_id
+        description: 'Must match the regex /^[0-9]+$/u. Must be at least 1 character. Must not be greater than 100000000 characters.'
+        required: false
+        example: wftpjfxarbai
+        type: string
+        custom: []
+    cleanBodyParameters:
+      name: wtxyc
+      description: 'Fuga ab dignissimos aspernatur reprehenderit ut.'
+      status: '0'
+      show_in_menu: '1'
+      parent_id: wftpjfxarbai
+    fileParameters:
+      image: null
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/v1/product-category/show/{id}'
+    metadata:
+      groupName: ProductCategory
+      groupDescription: |-
+
+        API endpoints for ProductCategory Services
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Display the specified resource.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the show.'
+        required: true
+        example: aperiam
+        type: string
+        custom: []
+    cleanUrlParameters:
+      id: aperiam
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: 'api/v1/product-category/update/{id}'
+    metadata:
+      groupName: ProductCategory
+      groupDescription: |-
+
+        API endpoints for ProductCategory Services
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Update the specified resource in storage.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: multipart/form-data
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the update.'
+        required: true
+        example: alias
+        type: string
+        custom: []
+    cleanUrlParameters:
+      id: alias
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      name:
+        name: name
+        description: 'Must match the regex /^[ا-یa-zA-Z0-9\-۰-۹ء-ي., ]+$/u. Must not be greater than 120 characters. Must be at least 2 characters.'
+        required: false
+        example: hecepphpvfkyqllhqpcuvkjompoyutohliaynrugcfpiwvaxukhomdjfqcrttkyenbfykzmtkrewsglqhxfbze
+        type: string
+        custom: []
+      description:
+        name: description
+        description: 'Must match the regex /^[ا-یa-zA-Z0-9\-۰-۹ء-ي.,><\/;\n\r& ]+$/u. Must not be greater than 500 characters. Must be at least 5 characters.'
+        required: false
+        example: 'Non ex quisquam quaerat autem officia.'
+        type: string
+        custom: []
+      image:
+        name: image
+        description: 'Must be an image.'
+        required: false
+        example: null
+        type: file
+        custom: []
+      status:
+        name: status
+        description: 'Must be one of <code>0</code> or <code>1</code>.'
+        required: false
+        example: '0'
+        type: number
+        custom: []
+      show_in_menu:
+        name: show_in_menu
+        description: 'Must be one of <code>0</code> or <code>1</code>.'
+        required: false
+        example: '1'
+        type: number
+        custom: []
+      parent_id:
+        name: parent_id
+        description: 'Must match the regex /^[0-9]+$/u. Must be at least 1 character. Must not be greater than 100000000 characters.'
+        required: false
+        example: tnavm
+        type: string
+        custom: []
+    cleanBodyParameters:
+      name: hecepphpvfkyqllhqpcuvkjompoyutohliaynrugcfpiwvaxukhomdjfqcrttkyenbfykzmtkrewsglqhxfbze
+      description: 'Non ex quisquam quaerat autem officia.'
+      status: '0'
+      show_in_menu: '1'
+      parent_id: tnavm
+    fileParameters:
+      image: null
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/v1/product-category/delete/{id}'
+    metadata:
+      groupName: ProductCategory
+      groupDescription: |-
+
+        API endpoints for ProductCategory Services
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Remove the specified resource from storage.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the delete.'
+        required: true
+        example: quibusdam
+        type: string
+        custom: []
+    cleanUrlParameters:
+      id: quibusdam
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []

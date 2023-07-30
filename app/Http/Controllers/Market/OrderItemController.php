@@ -12,7 +12,13 @@ use App\Repositories\MySQL\OrderItemRepository\InterfaceOrderItemRepository;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Symfony\Component\HttpFoundation\Response as HTTPResponse;
-
+/**
+ * @group OrderItem
+ *
+ *API endpoints for OrderItem Services
+ *
+ *
+ */
 class OrderItemController extends Controller
 {
 

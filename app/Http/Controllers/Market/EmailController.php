@@ -14,6 +14,13 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Symfony\Component\HttpFoundation\Response as HTTPResponse;
 
+/**
+ * @group Email
+ *
+ *API endpoints for Email Services
+ *
+ *
+ */
 class EmailController extends Controller
 {
 

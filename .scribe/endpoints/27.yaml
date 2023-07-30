@@ -1,0 +1,263 @@
+name: Sms
+description: |-
+
+  API endpoints for Sms Services
+endpoints:
+  -
+    httpMethods:
+      - GET
+    uri: api/v1/sms
+    metadata:
+      groupName: Sms
+      groupDescription: |-
+
+        API endpoints for Sms Services
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Display a listing of the resource.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      title:
+        name: title
+        description: 'Must not be greater than 255 characters.'
+        required: false
+        example: cuumybhwjsp
+        type: string
+        custom: []
+      status:
+        name: status
+        description: 'Must be one of <code>0</code> or <code>1</code>.'
+        required: false
+        example: '0'
+        type: number
+        custom: []
+      published_at:
+        name: published_at
+        description: 'Must be a valid date. Must be a valid date in the format <code>Y-m-d H:i:s</code>.'
+        required: false
+        example: '2023-07-29 12:53:49'
+        type: string
+        custom: []
+    cleanBodyParameters:
+      title: cuumybhwjsp
+      status: '0'
+      published_at: '2023-07-29 12:53:49'
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/sms/store
+    metadata:
+      groupName: Sms
+      groupDescription: |-
+
+        API endpoints for Sms Services
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Store a newly created resource in storage.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      title:
+        name: title
+        description: 'Must not be greater than 255 characters.'
+        required: true
+        example: cungzkvjjutlvjlfgneum
+        type: string
+        custom: []
+      body:
+        name: body
+        description: ''
+        required: true
+        example: blanditiis
+        type: string
+        custom: []
+      status:
+        name: status
+        description: 'Must be one of <code>0</code> or <code>1</code>.'
+        required: true
+        example: '0'
+        type: number
+        custom: []
+      published_at:
+        name: published_at
+        description: 'Must be a valid date. Must be a valid date in the format <code>Y-m-d H:i:s</code>.'
+        required: true
+        example: '2023-07-29 12:53:49'
+        type: string
+        custom: []
+    cleanBodyParameters:
+      title: cungzkvjjutlvjlfgneum
+      body: blanditiis
+      status: '0'
+      published_at: '2023-07-29 12:53:49'
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/v1/sms/show/{id}'
+    metadata:
+      groupName: Sms
+      groupDescription: |-
+
+        API endpoints for Sms Services
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Display the specified resource.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the show.'
+        required: true
+        example: et
+        type: string
+        custom: []
+    cleanUrlParameters:
+      id: et
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PATCH
+    uri: 'api/v1/sms/update/{id}'
+    metadata:
+      groupName: Sms
+      groupDescription: |-
+
+        API endpoints for Sms Services
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Update the specified resource in storage.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the update.'
+        required: true
+        example: inventore
+        type: string
+        custom: []
+    cleanUrlParameters:
+      id: inventore
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/v1/sms/delete/{id}'
+    metadata:
+      groupName: Sms
+      groupDescription: |-
+
+        API endpoints for Sms Services
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Remove the specified resource from storage.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the delete.'
+        required: true
+        example: ullam
+        type: string
+        custom: []
+    cleanUrlParameters:
+      id: ullam
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []

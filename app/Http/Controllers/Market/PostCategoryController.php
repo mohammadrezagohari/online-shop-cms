@@ -12,7 +12,13 @@ use App\Repositories\MySQL\PostCategoryRepository\InterfacePostCategoryRepositor
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Symfony\Component\HttpFoundation\Response as HTTPResponse;
-
+/**
+ * @group PostCategory
+ *
+ *API endpoints for PostCategory Services
+ *
+ *
+ */
 class PostCategoryController extends Controller
 {
 

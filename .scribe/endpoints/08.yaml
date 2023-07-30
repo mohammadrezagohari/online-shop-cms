@@ -1,0 +1,292 @@
+name: CashPayment
+description: |-
+
+  API endpoints for CashPayment Services
+endpoints:
+  -
+    httpMethods:
+      - GET
+    uri: api/v1/cash-payment
+    metadata:
+      groupName: CashPayment
+      groupDescription: |-
+
+        API endpoints for CashPayment Services
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Display a listing of the resource.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      user_id:
+        name: user_id
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+      cash_receiver:
+        name: cash_receiver
+        description: 'Must not be greater than 255 characters.'
+        required: false
+        example: kakbcwtfnzgyufpsywlzf
+        type: string
+        custom: []
+      count:
+        name: count
+        description: ''
+        required: false
+        example: 30469.063626355
+        type: number
+        custom: []
+    cleanBodyParameters:
+      cash_receiver: kakbcwtfnzgyufpsywlzf
+      count: 30469.063626355
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/cash-payment/store
+    metadata:
+      groupName: CashPayment
+      groupDescription: |-
+
+        API endpoints for CashPayment Services
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Store a newly created resource in storage.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      amount:
+        name: amount
+        description: ''
+        required: true
+        example: illum
+        type: string
+        custom: []
+      user_id:
+        name: user_id
+        description: ''
+        required: true
+        example: reprehenderit
+        type: string
+        custom: []
+      cash_receiver:
+        name: cash_receiver
+        description: 'Must not be greater than 255 characters. Must be at least 3 characters.'
+        required: true
+        example: attfcnhdrvmmwdwdfkxqvgctidvanuhmohxlevzotnzqwcagfkctdztwvprmkjw
+        type: string
+        custom: []
+      status:
+        name: status
+        description: 'Must be one of <code>0</code> or <code>1</code>.'
+        required: true
+        example: '1'
+        type: number
+        custom: []
+    cleanBodyParameters:
+      amount: illum
+      user_id: reprehenderit
+      cash_receiver: attfcnhdrvmmwdwdfkxqvgctidvanuhmohxlevzotnzqwcagfkctdztwvprmkjw
+      status: '1'
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/v1/cash-payment/show/{id}'
+    metadata:
+      groupName: CashPayment
+      groupDescription: |-
+
+        API endpoints for CashPayment Services
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Display the specified resource.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the show.'
+        required: true
+        example: consequatur
+        type: string
+        custom: []
+    cleanUrlParameters:
+      id: consequatur
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PATCH
+    uri: 'api/v1/cash-payment/update/{id}'
+    metadata:
+      groupName: CashPayment
+      groupDescription: |-
+
+        API endpoints for CashPayment Services
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Update the specified resource in storage.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the update.'
+        required: true
+        example: aspernatur
+        type: string
+        custom: []
+    cleanUrlParameters:
+      id: aspernatur
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      amount:
+        name: amount
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+      user_id:
+        name: user_id
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+      cash_receiver:
+        name: cash_receiver
+        description: 'Must not be greater than 255 characters. Must be at least 3 characters.'
+        required: false
+        example: phcjbgimsecpzacgcazcjyjigaexhwurykbxxaajoixdtclduiaim
+        type: string
+        custom: []
+      status:
+        name: status
+        description: 'Must be one of <code>0</code> or <code>1</code>.'
+        required: false
+        example: '0'
+        type: number
+        custom: []
+    cleanBodyParameters:
+      cash_receiver: phcjbgimsecpzacgcazcjyjigaexhwurykbxxaajoixdtclduiaim
+      status: '0'
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/v1/cash-payment/delete/{id}'
+    metadata:
+      groupName: CashPayment
+      groupDescription: |-
+
+        API endpoints for CashPayment Services
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Remove the specified resource from storage.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the delete.'
+        required: true
+        example: non
+        type: string
+        custom: []
+    cleanUrlParameters:
+      id: non
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []

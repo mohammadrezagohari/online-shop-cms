@@ -5,7 +5,18 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
+use PHPUnit\Exception;
+use Request;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
+/**
+ * @group User
+ *
+ *API endpoints for User Services
+ *
+ *
+ */
 class UserController extends Controller
 {
     /**
@@ -13,7 +24,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+
     }
 
     /**
@@ -27,9 +38,10 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreUserRequest $request)
+    public function store(Request $request)
     {
-        //
+
+
     }
 
     /**

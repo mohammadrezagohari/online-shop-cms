@@ -1,0 +1,319 @@
+name: CartItem
+description: |-
+
+  API endpoints for CartItem Services
+endpoints:
+  -
+    httpMethods:
+      - GET
+    uri: api/v1/cart-item
+    metadata:
+      groupName: CartItem
+      groupDescription: |-
+
+        API endpoints for CartItem Services
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Display a listing of the resource.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      count:
+        name: count
+        description: ''
+        required: false
+        example: 168.0
+        type: number
+        custom: []
+      user_id:
+        name: user_id
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+      product_id:
+        name: product_id
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+      color_id:
+        name: color_id
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+      guarantee_id:
+        name: guarantee_id
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+    cleanBodyParameters:
+      count: 168.0
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/cart-item/store
+    metadata:
+      groupName: CartItem
+      groupDescription: |-
+
+        API endpoints for CartItem Services
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Store a newly created resource in storage.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      user_id:
+        name: user_id
+        description: ''
+        required: true
+        example: quibusdam
+        type: string
+        custom: []
+      product_id:
+        name: product_id
+        description: ''
+        required: true
+        example: ut
+        type: string
+        custom: []
+      color_id:
+        name: color_id
+        description: ''
+        required: true
+        example: ad
+        type: string
+        custom: []
+      guarantee_id:
+        name: guarantee_id
+        description: ''
+        required: true
+        example: unde
+        type: string
+        custom: []
+      number:
+        name: number
+        description: ''
+        required: true
+        example: 836165.8371
+        type: number
+        custom: []
+    cleanBodyParameters:
+      user_id: quibusdam
+      product_id: ut
+      color_id: ad
+      guarantee_id: unde
+      number: 836165.8371
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/v1/cart-item/show/{id}'
+    metadata:
+      groupName: CartItem
+      groupDescription: |-
+
+        API endpoints for CartItem Services
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Display the specified resource.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the show.'
+        required: true
+        example: corrupti
+        type: string
+        custom: []
+    cleanUrlParameters:
+      id: corrupti
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PATCH
+    uri: 'api/v1/cart-item/update/{id}'
+    metadata:
+      groupName: CartItem
+      groupDescription: |-
+
+        API endpoints for CartItem Services
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Update the specified resource in storage.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the update.'
+        required: true
+        example: in
+        type: string
+        custom: []
+    cleanUrlParameters:
+      id: in
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      user_id:
+        name: user_id
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+      product_id:
+        name: product_id
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+      color_id:
+        name: color_id
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+      guarantee_id:
+        name: guarantee_id
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+      number:
+        name: number
+        description: ''
+        required: false
+        example: 15154644.508504
+        type: number
+        custom: []
+    cleanBodyParameters:
+      number: 15154644.508504
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/v1/cart-item/delete/{id}'
+    metadata:
+      groupName: CartItem
+      groupDescription: |-
+
+        API endpoints for CartItem Services
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Remove the specified resource from storage.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the delete.'
+        required: true
+        example: et
+        type: string
+        custom: []
+    cleanUrlParameters:
+      id: et
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []

@@ -12,7 +12,13 @@ use App\Repositories\MySQL\CopanRepository\InterfaceCopanRepository;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Symfony\Component\HttpFoundation\Response as HTTPResponse;
-
+/**
+ * @group Copan
+ *
+ *API endpoints for Copan Services
+ *
+ *
+ */
 class CopanController extends Controller
 {
 

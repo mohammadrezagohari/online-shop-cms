@@ -1,0 +1,189 @@
+name: Authentication
+description: |-
+
+  API endpoints for Authentication Services
+endpoints:
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/auth/login
+    metadata:
+      groupName: Authentication
+      groupDescription: |-
+
+        API endpoints for Authentication Services
+      subgroup: ''
+      subgroupDescription: 'برای دسترسی به بخش های Authentication موبایل از این طریق به اطلاعات دسترسی پیدا کنید'
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      mobile:
+        name: mobile
+        description: 'Must not be greater than 150 characters.'
+        required: true
+        example: cqjg
+        type: string
+        custom: []
+      password:
+        name: password
+        description: 'Must be at least 6 characters.'
+        required: true
+        example: '<6=NQ5YGj^gu%H'
+        type: string
+        custom: []
+    cleanBodyParameters:
+      mobile: cqjg
+      password: '<6=NQ5YGj^gu%H'
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/auth/otp
+    metadata:
+      groupName: Authentication
+      groupDescription: |-
+
+        API endpoints for Authentication Services
+      subgroup: ''
+      subgroupDescription: 'برای دسترسی به بخش های Authentication موبایل از این طریق به اطلاعات دسترسی پیدا کنید'
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/auth/otp/verify
+    metadata:
+      groupName: Authentication
+      groupDescription: |-
+
+        API endpoints for Authentication Services
+      subgroup: ''
+      subgroupDescription: 'برای دسترسی به بخش های Authentication موبایل از این طریق به اطلاعات دسترسی پیدا کنید'
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      code:
+        name: code
+        description: ''
+        required: true
+        example: 8233.4
+        type: number
+        custom: []
+      mobile:
+        name: mobile
+        description: ''
+        required: true
+        example: mollitia
+        type: string
+        custom: []
+    cleanBodyParameters:
+      code: 8233.4
+      mobile: mollitia
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/auth/register
+    metadata:
+      groupName: Authentication
+      groupDescription: |-
+
+        API endpoints for Authentication Services
+      subgroup: ''
+      subgroupDescription: 'برای دسترسی به بخش های Authentication موبایل از این طریق به اطلاعات دسترسی پیدا کنید'
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      first_name:
+        name: first_name
+        description: ''
+        required: true
+        example: et
+        type: string
+        custom: []
+      mobile:
+        name: mobile
+        description: ''
+        required: true
+        example: voluptatibus
+        type: string
+        custom: []
+      password:
+        name: password
+        description: ''
+        required: true
+        example: \NupTqicfNHbUiI~Vt
+        type: string
+        custom: []
+    cleanBodyParameters:
+      first_name: et
+      mobile: voluptatibus
+      password: \NupTqicfNHbUiI~Vt
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []

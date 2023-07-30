@@ -1,0 +1,315 @@
+name: OrderItem
+description: |-
+
+  API endpoints for OrderItem Services
+endpoints:
+  -
+    httpMethods:
+      - GET
+    uri: api/v1/order-item
+    metadata:
+      groupName: OrderItem
+      groupDescription: |-
+
+        API endpoints for OrderItem Services
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Display a listing of the resource.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      order_id:
+        name: order_id
+        description: ''
+        required: false
+        example: 16
+        type: integer
+        custom: []
+      product_id:
+        name: product_id
+        description: ''
+        required: false
+        example: 13
+        type: integer
+        custom: []
+      color_id:
+        name: color_id
+        description: ''
+        required: false
+        example: 16
+        type: integer
+        custom: []
+      guarantee_id:
+        name: guarantee_id
+        description: ''
+        required: false
+        example: 11
+        type: integer
+        custom: []
+    cleanBodyParameters:
+      order_id: 16
+      product_id: 13
+      color_id: 16
+      guarantee_id: 11
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/order-item/store
+    metadata:
+      groupName: OrderItem
+      groupDescription: |-
+
+        API endpoints for OrderItem Services
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Store a newly created resource in storage.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      order_id:
+        name: order_id
+        description: ''
+        required: true
+        example: optio
+        type: string
+        custom: []
+      product_id:
+        name: product_id
+        description: ''
+        required: true
+        example: aliquam
+        type: string
+        custom: []
+      color_id:
+        name: color_id
+        description: ''
+        required: true
+        example: ut
+        type: string
+        custom: []
+      guarantee_id:
+        name: guarantee_id
+        description: ''
+        required: true
+        example: ut
+        type: string
+        custom: []
+      number:
+        name: number
+        description: ''
+        required: false
+        example: 19
+        type: integer
+        custom: []
+    cleanBodyParameters:
+      order_id: optio
+      product_id: aliquam
+      color_id: ut
+      guarantee_id: ut
+      number: 19
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/v1/order-item/show/{id}'
+    metadata:
+      groupName: OrderItem
+      groupDescription: |-
+
+        API endpoints for OrderItem Services
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Display the specified resource.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the show.'
+        required: true
+        example: hic
+        type: string
+        custom: []
+    cleanUrlParameters:
+      id: hic
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PATCH
+    uri: 'api/v1/order-item/update/{id}'
+    metadata:
+      groupName: OrderItem
+      groupDescription: |-
+
+        API endpoints for OrderItem Services
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Update the specified resource in storage.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the update.'
+        required: true
+        example: rerum
+        type: string
+        custom: []
+    cleanUrlParameters:
+      id: rerum
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      order_id:
+        name: order_id
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+      product_id:
+        name: product_id
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+      color_id:
+        name: color_id
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+      guarantee_id:
+        name: guarantee_id
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+      number:
+        name: number
+        description: ''
+        required: false
+        example: 11
+        type: integer
+        custom: []
+    cleanBodyParameters:
+      number: 11
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/v1/order-item/delete/{id}'
+    metadata:
+      groupName: OrderItem
+      groupDescription: |-
+
+        API endpoints for OrderItem Services
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Remove the specified resource from storage.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the delete.'
+        required: true
+        example: eos
+        type: string
+        custom: []
+    cleanUrlParameters:
+      id: eos
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []

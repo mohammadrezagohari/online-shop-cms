@@ -7,6 +7,13 @@ use App\Http\Requests\StoreOnlinePaymentRequest;
 use App\Http\Requests\UpdateOnlinePaymentRequest;
 use App\Models\Market\OnlinePayment;
 
+/**
+ * @group OnlinePayment
+ *
+ *API endpoints for OnlinePayment Services
+ *
+ *
+ */
 class OnlinePaymentController extends Controller
 {
     /**

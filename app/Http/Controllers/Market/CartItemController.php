@@ -14,7 +14,13 @@ use Illuminate\Http\Client\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Symfony\Component\HttpFoundation\Response as HTTPResponse;
-
+/**
+ * @group CartItem
+ *
+ *API endpoints for CartItem Services
+ *
+ *
+ */
 class CartItemController extends Controller
 {
     private InterfaceCartItemRepository $interfaceCartItemRepository;
