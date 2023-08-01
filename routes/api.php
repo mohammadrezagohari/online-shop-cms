@@ -336,8 +336,9 @@ Route::prefix('v1')->group(function () {
             Route::get('/', [EmailController::class, 'index'])->name('index');
             Route::post('/store', [EmailController::class, 'store'])->name('verify'); //->middleware('is_admin')
             Route::get('/show/{id}', [EmailController::class, 'show'])->name('show');
-            Route::patch('/update/{id}', [EmailController::class, 'update'])->name('update'); //->middleware('is_admin')
+            Route::post('/update/{id}', [EmailController::class, 'update'])->name('update'); //->middleware('is_admin')
             Route::delete('/delete/{id}', [EmailController::class, 'destroy'])->name('delete');  //->middleware('is_admin')
+            Route::get('/send-email/{id}',[EmailController::class,'sendEmail'])->name('sendEmail');
         });
 
 

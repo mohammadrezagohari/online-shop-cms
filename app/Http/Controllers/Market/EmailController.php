@@ -8,7 +8,13 @@ use App\Http\Requests\email\StoreEmailRequest;
 use App\Http\Requests\email\UpdateEmailRequest;
 use App\Http\Requests\sms\StoreSmsRequest;
 use App\Http\Resources\email\EmailResource;
+use App\Http\Services\Message\Email\EmailService;
+use App\Http\Services\Message\MessageService;
+use App\Jobs\SendEmail;
+use App\Models\Market\EmailFile;
+use App\Models\User;
 use App\Repositories\MySQL\EmailRepository\InterfaceEmailRepository;
+use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
@@ -114,6 +120,24 @@ class EmailController extends Controller
     {
         if($this->interfaceEmailRepository->deleteData($id))
             return response()->json(['message' => 'successfully your transaction!'], HTTPResponse::HTTP_OK);
+        return response()->json(['message' => 'sorry, your transaction fails!'], HTTPResponse::HTTP_BAD_REQUEST);
+    }
+
+
+    public function sendEmail(int $id):JsonResponse
+    {
+        $data=$this->interfaceEmailRepository->findById($id);
+            $subject=$data['subject'];
+            $body=$data['body'];
+            $users=User::where('email','!=',null)->get();
+            $attachment=EmailFile::where('public_mail_id','=',$data['id'])->first();
+          if(event(new \App\Events\SendEmail($subject,$body,$attachment['file_path']))){
+              $this->interfaceEmailRepository->updateItem($id,[
+                  'published_at'=>Carbon::now(),
+              ]);
+              return response()->json(['message' => 'successfully your transaction!'], HTTPResponse::HTTP_OK);
+
+          }
         return response()->json(['message' => 'sorry, your transaction fails!'], HTTPResponse::HTTP_BAD_REQUEST);
     }
 

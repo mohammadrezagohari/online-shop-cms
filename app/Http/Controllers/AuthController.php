@@ -7,6 +7,7 @@ use App\Http\Requests\RegisterRequest;
 use App\Jobs\VerificationSMSCodeJob;
 use App\Notifications\SMSActivationCodeNotification;
 use Exception;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -80,7 +81,6 @@ class AuthController extends Controller
                 return response()->json([
                     'message' => 'Invalid register details'
                 ], HTTPResponse::HTTP_UNAUTHORIZED);
-
             return response()->json([
                 'message' => 'your user created successfully',
                 'status' => true,

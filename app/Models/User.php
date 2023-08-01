@@ -190,6 +190,11 @@ class User extends Authenticatable implements MustVerifyEmail
         return $query->where('mobile', '=', $mobile);
     }
 
+    public function whereEmailNotNull()
+    {
+        return $this->where('email','!=',null)->get();
+    }
+
 
     public function Otps(): HasMany
     {
