@@ -28,7 +28,7 @@ class StoreCartItemRequest extends FormRequest
             'product_id'=>'required|exists:products,id',
             'color_id'=>'nullable|exists:product_colors,id',
             'guarantee_id'=>'nullable|exists:guarantees,id',
-            'number'=>'required|numeric'
+            'number'=>'required|numeric|min:1|max:10'
         ];
     }
 
