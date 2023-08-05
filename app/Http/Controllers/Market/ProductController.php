@@ -61,12 +61,12 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreProductRequest $request): JsonResponse
+    public function store(StoreProductRequest $request)
     {
         try {
-            $data = $request->except(['_token']);
+          $data = $request->except(['_token']);
 
-            $product = $this->interfaceProductRepository->insertData($data);
+          $product = $this->interfaceProductRepository->insertData($data);
             foreach ($request->file('images') as $key => $image) {
                 $url = upload_asset_file($image, "product-image");
 
