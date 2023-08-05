@@ -109,7 +109,7 @@ if (!function_exists("final_amount_cart_items")) {
     /*********************************
      * upload asset file on storage
      ********************************/
-    function final_amount_cart_items($number, $price,int $color_price_increase=0,int $guarantee_price_increase=0): string
+    function final_amount_cart_items($number, $price,$color_price_increase,$guarantee_price_increase): string
     {
         return ($number*$price)+$color_price_increase+$guarantee_price_increase;
 

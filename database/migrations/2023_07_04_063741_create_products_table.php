@@ -18,8 +18,8 @@ return new class extends Migration
             $table->decimal('price', 20, 3);
             $table->tinyInteger('status')->default(0);
             $table->tinyInteger('marketable')->default(1)->comment('1 => marketable, 0 => is not marketable');
-            $table->tinyInteger('sold_number')->nullable()->default(0);
-            $table->tinyInteger('frozen_number')->nullable()->default(0);
+            $table->tinyInteger('sold_number')->default(0);
+            $table->tinyInteger('frozen_number')->default(0);
             $table->tinyInteger('marketable_number')->default(0);
             $table->foreignId('brand_id')->constrained('brands');
             $table->foreignId('category_id')->constrained('product_categories');

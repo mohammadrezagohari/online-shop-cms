@@ -21,7 +21,7 @@ class CartItemResource extends JsonResource
             'color'=>$this->color,
             'guarantee'=>$this->guarantee,
             'number'=>$this->number,
-            'final_amount'=>final_amount_cart_items($this->number,$this->product->price,$this->color->price_increase ?? 0,$this->guarantee->price_increase ?? 0)
+            'final_amount'=>final_amount_cart_items($this->number,$this->product->price,$this->color->price_increase,$this->guarantee->price_increase)
 
         ];
     }

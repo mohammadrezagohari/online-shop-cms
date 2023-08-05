@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users') ;
             $table->foreignId('product_id')->constrained('products') ;
-            $table->foreignId('color_id')->nullable()->constrained('product_colors') ;
-            $table->foreignId('guarantee_id')->nullable()->constrained('guarantees') ;
+            $table->foreignId('color_id')->constrained('product_colors') ;
+            $table->foreignId('guarantee_id')->constrained('guarantees') ;
             $table->integer('number')->default(1);
             $table->timestamps();
             $table->softDeletes();
