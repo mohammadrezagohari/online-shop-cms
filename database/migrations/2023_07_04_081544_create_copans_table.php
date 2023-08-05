@@ -21,7 +21,7 @@ return new class extends Migration
             $table->tinyInteger('status')->default(0);
             $table->timestamp('start_date')->useCurrent();
             $table->timestamp('end_date')->useCurrent();
-            $table->foreignId('user_id')->nullable()->constrained('users')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('user_id')->nullable()->constrained('users');
             $table->integer('number_of_use_code')->nullable()->default(0);
             $table->integer('max_use_code');
             $table->timestamps();

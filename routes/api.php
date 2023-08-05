@@ -328,6 +328,7 @@ Route::prefix('v1')->group(function () {
             Route::get('/show/{id}', [SmsController::class, 'show'])->name('show');
             Route::patch('/update/{id}', [SmsController::class, 'update'])->name('update'); //->middleware('is_admin')
             Route::delete('/delete/{id}', [SmsController::class, 'destroy'])->name('delete');  //->middleware('is_admin')
+            Route::get('/send-sms/{id}', [SmsController::class, 'sendSms'])->name('sendSms');  //->middleware('is_admin')
         });
 
 
@@ -338,7 +339,7 @@ Route::prefix('v1')->group(function () {
             Route::get('/show/{id}', [EmailController::class, 'show'])->name('show');
             Route::post('/update/{id}', [EmailController::class, 'update'])->name('update'); //->middleware('is_admin')
             Route::delete('/delete/{id}', [EmailController::class, 'destroy'])->name('delete');  //->middleware('is_admin')
-            Route::get('/send-email/{id}',[EmailController::class,'sendEmail'])->name('sendEmail');
+            Route::get('/send-email/{id}',[EmailController::class,'sendEmailForAllUsers'])->name('sendEmail');
         });
 
 

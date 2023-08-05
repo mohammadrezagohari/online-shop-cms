@@ -30,19 +30,19 @@ endpoints:
         name: mobile
         description: 'Must not be greater than 150 characters.'
         required: true
-        example: cqjg
+        example: nteysd
         type: string
         custom: []
       password:
         name: password
         description: 'Must be at least 6 characters.'
         required: true
-        example: '<6=NQ5YGj^gu%H'
+        example: 'moeF3zYA}>'
         type: string
         custom: []
     cleanBodyParameters:
-      mobile: cqjg
-      password: '<6=NQ5YGj^gu%H'
+      mobile: nteysd
+      password: 'moeF3zYA}>'
     fileParameters: []
     responses: []
     responseFields: []
@@ -110,19 +110,19 @@ endpoints:
         name: code
         description: ''
         required: true
-        example: 8233.4
+        example: 7033.497065
         type: number
         custom: []
       mobile:
         name: mobile
         description: ''
         required: true
-        example: mollitia
+        example: autem
         type: string
         custom: []
     cleanBodyParameters:
-      code: 8233.4
-      mobile: mollitia
+      code: 7033.497065
+      mobile: autem
     fileParameters: []
     responses: []
     responseFields: []
@@ -158,27 +158,27 @@ endpoints:
         name: first_name
         description: ''
         required: true
-        example: et
+        example: possimus
         type: string
         custom: []
       mobile:
         name: mobile
         description: ''
         required: true
-        example: voluptatibus
+        example: animi
         type: string
         custom: []
       password:
         name: password
         description: ''
         required: true
-        example: \NupTqicfNHbUiI~Vt
+        example: Q`|0wh
         type: string
         custom: []
     cleanBodyParameters:
-      first_name: et
-      mobile: voluptatibus
-      password: \NupTqicfNHbUiI~Vt
+      first_name: possimus
+      mobile: animi
+      password: Q`|0wh
     fileParameters: []
     responses: []
     responseFields: []

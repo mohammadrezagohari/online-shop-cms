@@ -2,15 +2,14 @@
 
 namespace App\Http\Controllers\Market;
 
+use App\Events\SendEmailForAllUsersEvent;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\email\EmailRequest;
 use App\Http\Requests\email\StoreEmailRequest;
 use App\Http\Requests\email\UpdateEmailRequest;
 use App\Http\Requests\sms\StoreSmsRequest;
 use App\Http\Resources\email\EmailResource;
-use App\Http\Services\Message\Email\EmailService;
-use App\Http\Services\Message\MessageService;
-use App\Jobs\SendEmail;
+use App\Jobs\SendEmailForAllUsersJob;
 use App\Models\Market\EmailFile;
 use App\Models\User;
 use App\Repositories\MySQL\EmailRepository\InterfaceEmailRepository;
@@ -77,7 +76,7 @@ class EmailController extends Controller
     public function store(StoreEmailRequest $request): JsonResponse
     {
         $data = @$request->except(['_token']);
-        $data['published_at'] = \Morilog\Jalali\Jalalian::fromFormat('Y-m-d HidH:i:s', $data['published_at'])->toCarbon();
+        $data['published_at'] = \Morilog\Jalali\Jalalian::fromFormat('Y-m-d H:i:s', $data['published_at'])->toCarbon();
 
         if ($this->interfaceEmailRepository->insertData($data))
             return response()->json(['message' => 'successfully your transaction!'], HTTPResponse::HTTP_OK);
@@ -124,20 +123,21 @@ class EmailController extends Controller
     }
 
 
-    public function sendEmail(int $id):JsonResponse
+    public function sendEmailForAllUsers(int $id):JsonResponse
     {
-        $data=$this->interfaceEmailRepository->findById($id);
-            $subject=$data['subject'];
-            $body=$data['body'];
-            $users=User::where('email','!=',null)->get();
-            $attachment=EmailFile::where('public_mail_id','=',$data['id'])->first();
-          if(event(new \App\Events\SendEmail($subject,$body,$attachment['file_path']))){
-              $this->interfaceEmailRepository->updateItem($id,[
-                  'published_at'=>Carbon::now(),
-              ]);
-              return response()->json(['message' => 'successfully your transaction!'], HTTPResponse::HTTP_OK);
 
-          }
+        $data=$this->interfaceEmailRepository->findById($id);
+
+        $attachment=EmailFile::where('public_mail_id','=',$data['id'])->first();
+
+//        SendEmailForAllUsersJob::dispatch($data['subject'],$data['body'],$attachment['file_path']);
+           if(event(new SendEmailForAllUsersEvent($data['subject'],$data['body'],@$attachment['file_path']))){
+               $this->interfaceEmailRepository->updateItem($id,
+               [
+                   'published_at'=>now()
+               ]);
+               return response()->json(['message' => 'successfully your transaction!'], HTTPResponse::HTTP_OK);
+           }
         return response()->json(['message' => 'sorry, your transaction fails!'], HTTPResponse::HTTP_BAD_REQUEST);
     }
 

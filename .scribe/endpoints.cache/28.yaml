@@ -32,7 +32,7 @@ endpoints:
         name: count
         description: ''
         required: false
-        example: 11
+        example: 4
         type: integer
         custom: []
       status:
@@ -46,13 +46,13 @@ endpoints:
         name: published_at
         description: 'Must be a valid date.'
         required: false
-        example: '2023-07-29T12:53:49'
+        example: '2023-08-03T11:18:09'
         type: string
         custom: []
     cleanBodyParameters:
-      count: 11
+      count: 4
       status: '1'
-      published_at: '2023-07-29T12:53:49'
+      published_at: '2023-08-03T11:18:09'
     fileParameters: []
     responses:
       -
@@ -97,35 +97,35 @@ endpoints:
         name: subject
         description: 'Must not be greater than 255 characters.'
         required: true
-        example: cswpwuufegctzgdd
+        example: untftedilhjr
         type: string
         custom: []
       body:
         name: body
         description: ''
         required: true
-        example: et
+        example: animi
         type: string
         custom: []
       status:
         name: status
         description: 'Must be one of <code>0</code> or <code>1</code>.'
         required: true
-        example: '0'
+        example: '1'
         type: number
         custom: []
       published_at:
         name: published_at
         description: 'Must be a valid date. Must be a valid date in the format <code>Y-m-d H:i:s</code>.'
         required: true
-        example: '2023-07-29 12:53:49'
+        example: '2023-08-03 11:18:09'
         type: string
         custom: []
     cleanBodyParameters:
-      subject: cswpwuufegctzgdd
-      body: et
-      status: '0'
-      published_at: '2023-07-29 12:53:49'
+      subject: untftedilhjr
+      body: animi
+      status: '1'
+      published_at: '2023-08-03 11:18:09'
     fileParameters: []
     responses: []
     responseFields: []
@@ -157,11 +157,11 @@ endpoints:
         name: id
         description: 'The ID of the show.'
         required: true
-        example: adipisci
+        example: quibusdam
         type: string
         custom: []
     cleanUrlParameters:
-      id: adipisci
+      id: quibusdam
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -185,7 +185,7 @@ endpoints:
     custom: []
   -
     httpMethods:
-      - PATCH
+      - POST
     uri: 'api/v1/email/update/{id}'
     metadata:
       groupName: Email
@@ -206,11 +206,11 @@ endpoints:
         name: id
         description: 'The ID of the update.'
         required: true
-        example: accusantium
+        example: quam
         type: string
         custom: []
     cleanUrlParameters:
-      id: accusantium
+      id: quam
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -218,35 +218,35 @@ endpoints:
         name: subject
         description: 'Must not be greater than 255 characters.'
         required: false
-        example: yfbwfplllmsjriyrx
+        example: gyningqod
         type: string
         custom: []
       body:
         name: body
         description: ''
         required: false
-        example: ex
+        example: quo
         type: string
         custom: []
       status:
         name: status
         description: 'Must be one of <code>0</code> or <code>1</code>.'
         required: false
-        example: '0'
+        example: '1'
         type: number
         custom: []
       published_at:
         name: published_at
         description: 'Must be a valid date. Must be a valid date in the format <code>Y-m-d H:i:s</code>.'
         required: false
-        example: '2023-07-29 12:53:49'
+        example: '2023-08-03 11:18:09'
         type: string
         custom: []
     cleanBodyParameters:
-      subject: yfbwfplllmsjriyrx
-      body: ex
-      status: '0'
-      published_at: '2023-07-29 12:53:49'
+      subject: gyningqod
+      body: quo
+      status: '1'
+      published_at: '2023-08-03 11:18:09'
     fileParameters: []
     responses: []
     responseFields: []
@@ -278,17 +278,66 @@ endpoints:
         name: id
         description: 'The ID of the delete.'
         required: true
-        example: velit
+        example: in
         type: string
         custom: []
     cleanUrlParameters:
-      id: velit
+      id: in
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
     cleanBodyParameters: []
     fileParameters: []
     responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/v1/email/send-email/{id}'
+    metadata:
+      groupName: Email
+      groupDescription: |-
+
+        API endpoints for Email Services
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the send email.'
+        required: true
+        example: non
+        type: string
+        custom: []
+    cleanUrlParameters:
+      id: non
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
     responseFields: []
     auth: []
     controller: null

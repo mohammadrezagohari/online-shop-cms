@@ -2,10 +2,12 @@
 
 namespace App\Models\Market;
 
-use App\Models\Product;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Market\Product;
 
 /**
  * App\Models\Market\Brand
@@ -32,6 +34,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Brand whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Brand withTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Brand withoutTrashed()
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, Product> $products
+ * @property-read int|null $products_count
  * @mixin \Eloquent
  */
 class Brand extends Model
@@ -40,7 +44,8 @@ class Brand extends Model
 
 protected  $guarded=['id'];
 
-    public function products(){
+    public function products():HasMany
+    {
         return $this->hasMany(Product::class,'product_id');
     }
 

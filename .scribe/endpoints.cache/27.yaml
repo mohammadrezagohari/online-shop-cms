@@ -32,27 +32,27 @@ endpoints:
         name: title
         description: 'Must not be greater than 255 characters.'
         required: false
-        example: cuumybhwjsp
+        example: ndlyyknl
         type: string
         custom: []
       status:
         name: status
         description: 'Must be one of <code>0</code> or <code>1</code>.'
         required: false
-        example: '0'
+        example: '1'
         type: number
         custom: []
       published_at:
         name: published_at
         description: 'Must be a valid date. Must be a valid date in the format <code>Y-m-d H:i:s</code>.'
         required: false
-        example: '2023-07-29 12:53:49'
+        example: '2023-08-03 11:18:09'
         type: string
         custom: []
     cleanBodyParameters:
-      title: cuumybhwjsp
-      status: '0'
-      published_at: '2023-07-29 12:53:49'
+      title: ndlyyknl
+      status: '1'
+      published_at: '2023-08-03 11:18:09'
     fileParameters: []
     responses:
       -
@@ -97,35 +97,35 @@ endpoints:
         name: title
         description: 'Must not be greater than 255 characters.'
         required: true
-        example: cungzkvjjutlvjlfgneum
+        example: yvyypufjocjzk
         type: string
         custom: []
       body:
         name: body
         description: ''
         required: true
-        example: blanditiis
+        example: enim
         type: string
         custom: []
       status:
         name: status
         description: 'Must be one of <code>0</code> or <code>1</code>.'
         required: true
-        example: '0'
+        example: '1'
         type: number
         custom: []
       published_at:
         name: published_at
         description: 'Must be a valid date. Must be a valid date in the format <code>Y-m-d H:i:s</code>.'
         required: true
-        example: '2023-07-29 12:53:49'
+        example: '2023-08-03 11:18:09'
         type: string
         custom: []
     cleanBodyParameters:
-      title: cungzkvjjutlvjlfgneum
-      body: blanditiis
-      status: '0'
-      published_at: '2023-07-29 12:53:49'
+      title: yvyypufjocjzk
+      body: enim
+      status: '1'
+      published_at: '2023-08-03 11:18:09'
     fileParameters: []
     responses: []
     responseFields: []
@@ -157,11 +157,11 @@ endpoints:
         name: id
         description: 'The ID of the show.'
         required: true
-        example: et
+        example: nam
         type: string
         custom: []
     cleanUrlParameters:
-      id: et
+      id: nam
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -206,11 +206,11 @@ endpoints:
         name: id
         description: 'The ID of the update.'
         required: true
-        example: inventore
+        example: qui
         type: string
         custom: []
     cleanUrlParameters:
-      id: inventore
+      id: qui
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -246,17 +246,66 @@ endpoints:
         name: id
         description: 'The ID of the delete.'
         required: true
-        example: ullam
+        example: dolore
         type: string
         custom: []
     cleanUrlParameters:
-      id: ullam
+      id: dolore
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
     cleanBodyParameters: []
     fileParameters: []
     responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/v1/sms/send-sms/{id}'
+    metadata:
+      groupName: Sms
+      groupDescription: |-
+
+        API endpoints for Sms Services
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the send sm.'
+        required: true
+        example: impedit
+        type: string
+        custom: []
+    cleanUrlParameters:
+      id: impedit
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
     responseFields: []
     auth: []
     controller: null

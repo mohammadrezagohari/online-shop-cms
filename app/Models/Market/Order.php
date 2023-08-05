@@ -65,6 +65,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Market\Product> $products
  * @property-read int|null $products_count
  * @method static \Illuminate\Database\Eloquent\Builder|Order whereOrderFinalAmountWithCopanDiscount($value)
+ * @property int|null $copan_id
+ * @method static \Illuminate\Database\Eloquent\Builder|Order whereCopanId($value)
  * @mixin \Eloquent
  */
 class Order extends Model

@@ -30,7 +30,7 @@ endpoints:
         name: count
         description: ''
         required: false
-        example: 59663613.282651
+        example: 331.063920607
         type: number
         custom: []
       product_id:
@@ -44,12 +44,12 @@ endpoints:
         name: status
         description: 'Must be one of <code>0</code> or <code>1</code>.'
         required: false
-        example: '0'
+        example: '1'
         type: number
         custom: []
     cleanBodyParameters:
-      count: 59663613.282651
-      status: '0'
+      count: 331.063920607
+      status: '1'
     fileParameters: []
     responses:
       -
@@ -94,21 +94,21 @@ endpoints:
         name: name
         description: 'Must match the regex /^[ا-یa-zA-Z0-9\-۰-۹ء-ي., ]+$/u. Must not be greater than 255 characters.'
         required: true
-        example: oyrpbmv
+        example: cgjgjjd
         type: string
         custom: []
       product_id:
         name: product_id
         description: ''
         required: true
-        example: itaque
+        example: nisi
         type: string
         custom: []
       price_increase:
         name: price_increase
         description: ''
         required: true
-        example: 3
+        example: 6
         type: integer
         custom: []
       status:
@@ -119,9 +119,9 @@ endpoints:
         type: number
         custom: []
     cleanBodyParameters:
-      name: oyrpbmv
-      product_id: itaque
-      price_increase: 3
+      name: cgjgjjd
+      product_id: nisi
+      price_increase: 6
       status: '0'
     fileParameters: []
     responses: []
@@ -154,11 +154,11 @@ endpoints:
         name: id
         description: 'The ID of the show.'
         required: true
-        example: nihil
+        example: quam
         type: string
         custom: []
     cleanUrlParameters:
-      id: nihil
+      id: quam
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -203,11 +203,11 @@ endpoints:
         name: id
         description: 'The ID of the update.'
         required: true
-        example: quod
+        example: officia
         type: string
         custom: []
     cleanUrlParameters:
-      id: quod
+      id: officia
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -215,7 +215,7 @@ endpoints:
         name: name
         description: 'Must match the regex /^[ا-یa-zA-Z0-9\-۰-۹ء-ي., ]+$/u. Must not be greater than 255 characters.'
         required: false
-        example: gvhvusvlbnkk
+        example: jlrtszxlcemuujxitok
         type: string
         custom: []
       product_id:
@@ -229,20 +229,20 @@ endpoints:
         name: price_increase
         description: ''
         required: false
-        example: 3
+        example: 7
         type: integer
         custom: []
       status:
         name: status
         description: 'Must be one of <code>0</code> or <code>1</code>.'
         required: false
-        example: '0'
+        example: '1'
         type: number
         custom: []
     cleanBodyParameters:
-      name: gvhvusvlbnkk
-      price_increase: 3
-      status: '0'
+      name: jlrtszxlcemuujxitok
+      price_increase: 7
+      status: '1'
     fileParameters: []
     responses: []
     responseFields: []
@@ -274,11 +274,11 @@ endpoints:
         name: id
         description: 'The ID of the delete.'
         required: true
-        example: velit
+        example: optio
         type: string
         custom: []
     cleanUrlParameters:
-      id: velit
+      id: optio
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []

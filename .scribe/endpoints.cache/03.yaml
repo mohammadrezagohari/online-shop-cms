@@ -32,14 +32,14 @@ endpoints:
         name: keyword
         description: 'Must not be greater than 30 characters.'
         required: false
-        example: jdguyegoijkvaumqkvyfvrzdp
+        example: ynmjzjrkfohikoclz
         type: string
         custom: []
       count:
         name: count
         description: ''
         required: false
-        example: 0.428
+        example: 1256.253464
         type: number
         custom: []
       province_id:
@@ -50,8 +50,8 @@ endpoints:
         type: string
         custom: []
     cleanBodyParameters:
-      keyword: jdguyegoijkvaumqkvyfvrzdp
-      count: 0.428
+      keyword: ynmjzjrkfohikoclz
+      count: 1256.253464
     fileParameters: []
     responses:
       -
@@ -96,27 +96,27 @@ endpoints:
         name: name
         description: ''
         required: true
-        example: ut
+        example: debitis
         type: string
         custom: []
       slug:
         name: slug
         description: ''
         required: true
-        example: dignissimos
+        example: consequuntur
         type: string
         custom: []
       province_id:
         name: province_id
         description: ''
         required: true
-        example: asperiores
+        example: at
         type: string
         custom: []
     cleanBodyParameters:
-      name: ut
-      slug: dignissimos
-      province_id: asperiores
+      name: debitis
+      slug: consequuntur
+      province_id: at
     fileParameters: []
     responses: []
     responseFields: []
@@ -148,11 +148,11 @@ endpoints:
         name: id
         description: 'The ID of the show.'
         required: true
-        example: ratione
+        example: enim
         type: string
         custom: []
     cleanUrlParameters:
-      id: ratione
+      id: enim
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -197,11 +197,11 @@ endpoints:
         name: id
         description: 'The ID of the update.'
         required: true
-        example: voluptatem
+        example: unde
         type: string
         custom: []
     cleanUrlParameters:
-      id: voluptatem
+      id: unde
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -209,27 +209,27 @@ endpoints:
         name: name
         description: ''
         required: true
-        example: et
+        example: non
         type: string
         custom: []
       slug:
         name: slug
         description: ''
         required: true
-        example: unde
+        example: ratione
         type: string
         custom: []
       province_id:
         name: province_id
         description: ''
         required: true
-        example: explicabo
+        example: ipsam
         type: string
         custom: []
     cleanBodyParameters:
-      name: et
-      slug: unde
-      province_id: explicabo
+      name: non
+      slug: ratione
+      province_id: ipsam
     fileParameters: []
     responses: []
     responseFields: []
@@ -261,11 +261,11 @@ endpoints:
         name: id
         description: 'The ID of the delete.'
         required: true
-        example: exercitationem
+        example: quis
         type: string
         custom: []
     cleanUrlParameters:
-      id: exercitationem
+      id: quis
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []

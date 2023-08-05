@@ -32,14 +32,14 @@ endpoints:
         name: name
         description: 'Must match the regex /^[ا-یa-zA-Z0-9\-۰-۹ء-ي., ]+$/u. Must not be greater than 255 characters.'
         required: false
-        example: ejbqdjpglukicmrgbmeagkah
+        example: cribtkdczokblhrgjwynvo
         type: string
         custom: []
       count:
         name: count
         description: ''
         required: false
-        example: 34682.08
+        example: 0.0
         type: number
         custom: []
       status:
@@ -50,8 +50,8 @@ endpoints:
         type: number
         custom: []
     cleanBodyParameters:
-      name: ejbqdjpglukicmrgbmeagkah
-      count: 34682.08
+      name: cribtkdczokblhrgjwynvo
+      count: 0.0
       status: '1'
     fileParameters: []
     responses:
@@ -97,21 +97,21 @@ endpoints:
         name: name
         description: 'Must match the regex /^[ا-یa-zA-Z0-9\-۰-۹ء-ي., ]+$/u. Must not be greater than 255 characters.'
         required: true
-        example: cfqxjtx
+        example: qkympasiupvpuhdgquclflgsg
         type: string
         custom: []
       introduction:
         name: introduction
         description: 'Must match the regex /^[ا-یa-zA-Z0-9\-۰-۹ء-ي., ]+$/u.'
         required: true
-        example: !!binary SG6h2yQvdQ==
+        example: ffFM$/u
         type: string
         custom: []
       status:
         name: status
         description: 'Must be one of <code>0</code> or <code>1</code>.'
         required: true
-        example: '1'
+        example: '0'
         type: number
         custom: []
       marketable:
@@ -132,28 +132,28 @@ endpoints:
         name: frozen_number
         description: ''
         required: true
-        example: 6
+        example: 8
         type: integer
         custom: []
       marketable_number:
         name: marketable_number
         description: ''
         required: true
-        example: 14
+        example: 18
         type: integer
         custom: []
       brand_id:
         name: brand_id
         description: ''
         required: true
-        example: provident
+        example: et
         type: string
         custom: []
       category_id:
         name: category_id
         description: ''
         required: true
-        example: et
+        example: sint
         type: string
         custom: []
       images:
@@ -161,21 +161,21 @@ endpoints:
         description: 'Must not be greater than 2048 characters.'
         required: false
         example:
-          - oylbjuojck
+          - edkmysxnibkhccpjggmgz
         type: 'string[]'
         custom: []
     cleanBodyParameters:
-      name: cfqxjtx
-      introduction: !!binary SG6h2yQvdQ==
-      status: '1'
+      name: qkympasiupvpuhdgquclflgsg
+      introduction: ffFM$/u
+      status: '0'
       marketable: '0'
       sold_number: 8
-      frozen_number: 6
-      marketable_number: 14
-      brand_id: provident
-      category_id: et
+      frozen_number: 8
+      marketable_number: 18
+      brand_id: et
+      category_id: sint
       images:
-        - oylbjuojck
+        - edkmysxnibkhccpjggmgz
     fileParameters: []
     responses: []
     responseFields: []
@@ -207,11 +207,11 @@ endpoints:
         name: id
         description: 'The ID of the show.'
         required: true
-        example: odio
+        example: exercitationem
         type: string
         custom: []
     cleanUrlParameters:
-      id: odio
+      id: exercitationem
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -256,11 +256,11 @@ endpoints:
         name: id
         description: 'The ID of the update.'
         required: true
-        example: eum
+        example: et
         type: string
         custom: []
     cleanUrlParameters:
-      id: eum
+      id: et
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -268,14 +268,14 @@ endpoints:
         name: name
         description: 'Must match the regex /^[ا-یa-zA-Z0-9\-۰-۹ء-ي., ]+$/u. Must not be greater than 255 characters.'
         required: false
-        example: adyspuagpquuvfriu
+        example: bauckbopxo
         type: string
         custom: []
       introduction:
         name: introduction
         description: 'Must match the regex /^[ا-یa-zA-Z0-9\-۰-۹ء-ي., ]+$/u.'
         required: false
-        example: Q$/u
+        example: te$/u
         type: string
         custom: []
       status:
@@ -289,28 +289,28 @@ endpoints:
         name: marketable
         description: 'Must be one of <code>0</code> or <code>1</code>.'
         required: false
-        example: '0'
+        example: '1'
         type: number
         custom: []
       sold_number:
         name: sold_number
         description: ''
         required: false
-        example: 1
+        example: 13
         type: integer
         custom: []
       frozen_number:
         name: frozen_number
         description: ''
         required: false
-        example: 17
+        example: 13
         type: integer
         custom: []
       marketable_number:
         name: marketable_number
         description: ''
         required: false
-        example: 6
+        example: 18
         type: integer
         custom: []
       brand_id:
@@ -336,13 +336,13 @@ endpoints:
         type: 'file[]'
         custom: []
     cleanBodyParameters:
-      name: adyspuagpquuvfriu
-      introduction: Q$/u
+      name: bauckbopxo
+      introduction: te$/u
       status: '1'
-      marketable: '0'
-      sold_number: 1
-      frozen_number: 17
-      marketable_number: 6
+      marketable: '1'
+      sold_number: 13
+      frozen_number: 13
+      marketable_number: 18
     fileParameters:
       images:
         - null
@@ -376,11 +376,11 @@ endpoints:
         name: id
         description: 'The ID of the delete.'
         required: true
-        example: aut
+        example: officia
         type: string
         custom: []
     cleanUrlParameters:
-      id: aut
+      id: officia
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []

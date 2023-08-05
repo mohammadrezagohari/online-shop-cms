@@ -143,6 +143,7 @@ class OrderController extends Controller
         $data = @$request->except(['_token']);
         $copan_amount = null;
         $copan_amount_type = null;
+        $copan_id = null;
 
         if (@$data["code"]) {
             switch ($this->check_code($data["code"], $data["user_id"])) {
@@ -199,23 +200,29 @@ class OrderController extends Controller
 
 
                 }
-                $user = User::find($data['user_id']);
-                $user->copans()->attach($copan_id);
-                $this->interfaceCopanRepository->addNumberOfUseCode($copan_id);
+                if($copan_id){
+                    $user = User::find($data['user_id']);
+                    $user->copans()->attach($copan_id);
+                    $this->interfaceCopanRepository->addNumberOfUseCode($copan_id);
+                }
+
 
                 if ($copan_amount_type == 0) {
                     $this->interfaceOrderRepository->updateItem($order->id, [
+                        'copan_id' => $copan_id,
                         'order_final_amount' => $final_total_price + $order->delivery_amount,
                         'order_final_amount_with_copan_discount' => $final_total_price * (1 - $copan_amount / 100) + $order->delivery_amount,
 
                     ]);
                 } elseif ($copan_amount_type == 1) {
                     $this->interfaceOrderRepository->updateItem($order->id, [
+                        'copan_id' => $copan_id,
                         'order_final_amount' => $final_total_price + $order->delivery_amount,
                         'order_final_amount_with_copan_discount' => ($final_total_price - $copan_amount) + $order->delivery_amount,
                     ]);
                 } else {
                     $this->interfaceOrderRepository->updateItem($order->id, [
+                        'copan_id' => $copan_id,
                         'order_final_amount' => $final_total_price + $order->delivery_amount,
                         'order_final_amount_with_copan_discount' => $final_total_price + $order->delivery_amount,
                     ]);
@@ -223,11 +230,13 @@ class OrderController extends Controller
 
 
                 $paymentType = null;
+                $order_final_amount_with_copan_discount=$this->interfaceOrderRepository->findById($order->id)['order_final_amount_with_copan_discount'];
                 switch ($data['payment_type']) {
+
                     case 0;
                         $paymentType = PaymentType::OnlinePayment;
                         $paymentId = $this->interfaceOnlinePaymentRepository->insertData([
-                            'amount' => $final_total_price + $order->delivery_amount,
+                            'amount' => $order_final_amount_with_copan_discount,
                             'user_id' => $data["user_id"],
                         ])["id"];
                         break;
@@ -235,21 +244,21 @@ class OrderController extends Controller
                         $paymentType = PaymentType::OfflinePayment;
 
                         $paymentId = $this->interfaceOfflinePaymentRepository->insertData([
-                            'amount' => $final_total_price + $order->delivery_amount,
+                            'amount' => $order_final_amount_with_copan_discount,
                             'user_id' => $data["user_id"],
                         ])["id"];
                         break;
                     case 2:
                         $paymentType = PaymentType::CashPayment;
                         $paymentId = $this->interfaceCashPaymentRepository->insertData([
-                            'amount' => $final_total_price + $order->delivery_amount,
+                            'amount' => $order_final_amount_with_copan_discount,
                             'user_id' => $data["user_id"],
                         ])["id"];
                         break;
 
                 }
                 $this->interfacePaymentRepository->insertData([
-                    'amount' => $final_total_price,
+                    'amount' => $order_final_amount_with_copan_discount,
                     'user_id' => $data["user_id"],
                     'type' => $data['payment_type'],
                     'paymentable_id' => $paymentId,

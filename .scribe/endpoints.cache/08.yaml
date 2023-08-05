@@ -39,19 +39,19 @@ endpoints:
         name: cash_receiver
         description: 'Must not be greater than 255 characters.'
         required: false
-        example: kakbcwtfnzgyufpsywlzf
+        example: mipukdqex
         type: string
         custom: []
       count:
         name: count
         description: ''
         required: false
-        example: 30469.063626355
+        example: 5450.188
         type: number
         custom: []
     cleanBodyParameters:
-      cash_receiver: kakbcwtfnzgyufpsywlzf
-      count: 30469.063626355
+      cash_receiver: mipukdqex
+      count: 5450.188
     fileParameters: []
     responses:
       -
@@ -96,21 +96,21 @@ endpoints:
         name: amount
         description: ''
         required: true
-        example: illum
+        example: quis
         type: string
         custom: []
       user_id:
         name: user_id
         description: ''
         required: true
-        example: reprehenderit
+        example: iste
         type: string
         custom: []
       cash_receiver:
         name: cash_receiver
         description: 'Must not be greater than 255 characters. Must be at least 3 characters.'
         required: true
-        example: attfcnhdrvmmwdwdfkxqvgctidvanuhmohxlevzotnzqwcagfkctdztwvprmkjw
+        example: cracyowoptplep
         type: string
         custom: []
       status:
@@ -121,9 +121,9 @@ endpoints:
         type: number
         custom: []
     cleanBodyParameters:
-      amount: illum
-      user_id: reprehenderit
-      cash_receiver: attfcnhdrvmmwdwdfkxqvgctidvanuhmohxlevzotnzqwcagfkctdztwvprmkjw
+      amount: quis
+      user_id: iste
+      cash_receiver: cracyowoptplep
       status: '1'
     fileParameters: []
     responses: []
@@ -156,11 +156,11 @@ endpoints:
         name: id
         description: 'The ID of the show.'
         required: true
-        example: consequatur
+        example: ipsa
         type: string
         custom: []
     cleanUrlParameters:
-      id: consequatur
+      id: ipsa
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -205,11 +205,11 @@ endpoints:
         name: id
         description: 'The ID of the update.'
         required: true
-        example: aspernatur
+        example: a
         type: string
         custom: []
     cleanUrlParameters:
-      id: aspernatur
+      id: a
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -231,19 +231,19 @@ endpoints:
         name: cash_receiver
         description: 'Must not be greater than 255 characters. Must be at least 3 characters.'
         required: false
-        example: phcjbgimsecpzacgcazcjyjigaexhwurykbxxaajoixdtclduiaim
+        example: hjwjczsqiwpejicwaydcmjwqhrhpvbyceqsposrepywvcyicuvmthni
         type: string
         custom: []
       status:
         name: status
         description: 'Must be one of <code>0</code> or <code>1</code>.'
         required: false
-        example: '0'
+        example: '1'
         type: number
         custom: []
     cleanBodyParameters:
-      cash_receiver: phcjbgimsecpzacgcazcjyjigaexhwurykbxxaajoixdtclduiaim
-      status: '0'
+      cash_receiver: hjwjczsqiwpejicwaydcmjwqhrhpvbyceqsposrepywvcyicuvmthni
+      status: '1'
     fileParameters: []
     responses: []
     responseFields: []
@@ -275,11 +275,11 @@ endpoints:
         name: id
         description: 'The ID of the delete.'
         required: true
-        example: non
+        example: quod
         type: string
         custom: []
     cleanUrlParameters:
-      id: non
+      id: quod
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []

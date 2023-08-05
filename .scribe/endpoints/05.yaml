@@ -30,14 +30,14 @@ endpoints:
         name: login_type
         description: ''
         required: false
-        example: inventore
+        example: aut
         type: string
         custom: []
       count:
         name: count
         description: ''
         required: false
-        example: 7.5
+        example: 3590.0
         type: number
         custom: []
       user_id:
@@ -48,8 +48,8 @@ endpoints:
         type: string
         custom: []
     cleanBodyParameters:
-      login_type: inventore
-      count: 7.5
+      login_type: aut
+      count: 3590.0
     fileParameters: []
     responses:
       -
@@ -90,11 +90,11 @@ endpoints:
         name: id
         description: 'The ID of the show.'
         required: true
-        example: totam
+        example: assumenda
         type: string
         custom: []
     cleanUrlParameters:
-      id: totam
+      id: assumenda
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -139,11 +139,11 @@ endpoints:
         name: id
         description: 'The ID of the delete.'
         required: true
-        example: quidem
+        example: qui
         type: string
         custom: []
     cleanUrlParameters:
-      id: quidem
+      id: qui
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []

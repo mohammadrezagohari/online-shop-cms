@@ -39,7 +39,7 @@ endpoints:
         name: count
         description: ''
         required: false
-        example: 270132106.52485
+        example: 3417732.7
         type: number
         custom: []
       approved:
@@ -57,7 +57,7 @@ endpoints:
         type: number
         custom: []
     cleanBodyParameters:
-      count: 270132106.52485
+      count: 3417732.7
       approved: '1'
       status: '0'
     fileParameters: []
@@ -104,7 +104,7 @@ endpoints:
         name: body
         description: 'Must be at least 3 characters.'
         required: true
-        example: uuuokffzcxkyesjceocfupxkhbdratujbnzgeamuurbcnhnvxlevxvuhkbupgjgpacsvobf
+        example: ruxdwfhpevprnylqnplqpzyvczatqnarfyvmdhbsccgzyajhqbngj
         type: string
         custom: []
       parent_id:
@@ -118,21 +118,21 @@ endpoints:
         name: user_id
         description: ''
         required: true
-        example: quis
+        example: fugiat
         type: string
         custom: []
       type:
         name: type
         description: ''
         required: true
-        example: quia
+        example: ullam
         type: string
         custom: []
     cleanBodyParameters:
-      body: uuuokffzcxkyesjceocfupxkhbdratujbnzgeamuurbcnhnvxlevxvuhkbupgjgpacsvobf
+      body: ruxdwfhpevprnylqnplqpzyvczatqnarfyvmdhbsccgzyajhqbngj
       parent_id: 19
-      user_id: quis
-      type: quia
+      user_id: fugiat
+      type: ullam
     fileParameters: []
     responses: []
     responseFields: []
@@ -164,11 +164,11 @@ endpoints:
         name: id
         description: 'The ID of the show.'
         required: true
-        example: praesentium
+        example: rerum
         type: string
         custom: []
     cleanUrlParameters:
-      id: praesentium
+      id: rerum
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -213,11 +213,11 @@ endpoints:
         name: id
         description: 'The ID of the update.'
         required: true
-        example: tempore
+        example: consequuntur
         type: string
         custom: []
     cleanUrlParameters:
-      id: tempore
+      id: consequuntur
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -225,14 +225,14 @@ endpoints:
         name: body
         description: 'Must be at least 3 characters.'
         required: false
-        example: iepnjjktnkpleeqkwzctpnpftfxkompkuiecvenqbfwdwchtfhkkqvhoywiulnozqdpvxakxaylj
+        example: jneofmuiwublxvsiqydoaprwqzeelcespquyshvsppzwgerncwlocuxijnbbqvjahnvedhnjerll
         type: string
         custom: []
       parent_id:
         name: parent_id
         description: ''
         required: false
-        example: 8
+        example: 10
         type: integer
         custom: []
       user_id:
@@ -246,13 +246,13 @@ endpoints:
         name: type
         description: ''
         required: false
-        example: et
+        example: qui
         type: string
         custom: []
     cleanBodyParameters:
-      body: iepnjjktnkpleeqkwzctpnpftfxkompkuiecvenqbfwdwchtfhkkqvhoywiulnozqdpvxakxaylj
-      parent_id: 8
-      type: et
+      body: jneofmuiwublxvsiqydoaprwqzeelcespquyshvsppzwgerncwlocuxijnbbqvjahnvedhnjerll
+      parent_id: 10
+      type: qui
     fileParameters: []
     responses: []
     responseFields: []
@@ -284,11 +284,11 @@ endpoints:
         name: id
         description: 'The ID of the delete.'
         required: true
-        example: ut
+        example: aut
         type: string
         custom: []
     cleanUrlParameters:
-      id: ut
+      id: aut
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []

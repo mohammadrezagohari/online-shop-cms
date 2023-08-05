@@ -30,14 +30,14 @@ endpoints:
         name: name
         description: 'Must not be greater than 255 characters.'
         required: false
-        example: eaiqzlaqqat
+        example: kbqkrtsqkcinxvcbtdnx
         type: string
         custom: []
       count:
         name: count
         description: ''
         required: false
-        example: 60193.27527258
+        example: 11078452.9
         type: number
         custom: []
       status:
@@ -48,8 +48,8 @@ endpoints:
         type: number
         custom: []
     cleanBodyParameters:
-      name: eaiqzlaqqat
-      count: 60193.27527258
+      name: kbqkrtsqkcinxvcbtdnx
+      count: 11078452.9
       status: '1'
     fileParameters: []
     responses:
@@ -95,28 +95,28 @@ endpoints:
         name: name
         description: 'Must match the regex /^[ا-یa-zA-Z0-9\-۰-۹ء-ي., ]+$/u. Must not be greater than 255 characters.'
         required: true
-        example: isxldeshdobwnkjrrtwyz
+        example: lfrvqowuzvhantt
         type: string
         custom: []
       amount:
         name: amount
         description: ''
         required: true
-        example: consequatur
+        example: amet
         type: string
         custom: []
       delivery_time:
         name: delivery_time
         description: ''
         required: true
-        example: 13
+        example: 9
         type: integer
         custom: []
       delivery_time_unit:
         name: delivery_time_unit
         description: 'Must not be greater than 255 characters.'
         required: true
-        example: dctf
+        example: cgtycbwcopse
         type: string
         custom: []
       status:
@@ -127,10 +127,10 @@ endpoints:
         type: number
         custom: []
     cleanBodyParameters:
-      name: isxldeshdobwnkjrrtwyz
-      amount: consequatur
-      delivery_time: 13
-      delivery_time_unit: dctf
+      name: lfrvqowuzvhantt
+      amount: amet
+      delivery_time: 9
+      delivery_time_unit: cgtycbwcopse
       status: '0'
     fileParameters: []
     responses: []
@@ -163,11 +163,11 @@ endpoints:
         name: id
         description: 'The ID of the show.'
         required: true
-        example: modi
+        example: assumenda
         type: string
         custom: []
     cleanUrlParameters:
-      id: modi
+      id: assumenda
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -212,11 +212,11 @@ endpoints:
         name: id
         description: 'The ID of the update.'
         required: true
-        example: ea
+        example: velit
         type: string
         custom: []
     cleanUrlParameters:
-      id: ea
+      id: velit
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -224,14 +224,14 @@ endpoints:
         name: name
         description: 'Must match the regex /^[ا-یa-zA-Z0-9\-۰-۹ء-ي., ]+$/u. Must not be greater than 255 characters.'
         required: false
-        example: ratwnw
+        example: vgfxrdm
         type: string
         custom: []
       amount:
         name: amount
         description: ''
         required: false
-        example: 9
+        example: 7
         type: integer
         custom: []
       delivery_time:
@@ -245,7 +245,7 @@ endpoints:
         name: delivery_time_unit
         description: 'Must not be greater than 255 characters.'
         required: false
-        example: ltlkkddwjfble
+        example: i
         type: string
         custom: []
       status:
@@ -256,10 +256,10 @@ endpoints:
         type: number
         custom: []
     cleanBodyParameters:
-      name: ratwnw
-      amount: 9
+      name: vgfxrdm
+      amount: 7
       delivery_time: 6
-      delivery_time_unit: ltlkkddwjfble
+      delivery_time_unit: i
       status: '0'
     fileParameters: []
     responses: []
@@ -292,11 +292,11 @@ endpoints:
         name: id
         description: 'The ID of the delete.'
         required: true
-        example: sit
+        example: voluptatem
         type: string
         custom: []
     cleanUrlParameters:
-      id: sit
+      id: voluptatem
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []

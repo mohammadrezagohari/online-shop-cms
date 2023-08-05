@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('amazing_sales', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('product_id')->constrained('products')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('product_id')->constrained('products');
             $table->integer('percentage');
             $table->tinyInteger('status')->default(0);
             $table->timestamp('start_date')->useCurrent();

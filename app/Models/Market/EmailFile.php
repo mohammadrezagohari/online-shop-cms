@@ -38,7 +38,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class EmailFile extends Model
 {
     use HasFactory,SoftDeletes;
-    protected $table="public_email_file";
+    protected $table="public_mail_files";
     protected $guarded=["id"];
 
 }

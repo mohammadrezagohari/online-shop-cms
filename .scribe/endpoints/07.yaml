@@ -30,7 +30,7 @@ endpoints:
         name: count
         description: ''
         required: false
-        example: 168.0
+        example: 26905.34988709
         type: number
         custom: []
       user_id:
@@ -62,7 +62,7 @@ endpoints:
         type: string
         custom: []
     cleanBodyParameters:
-      count: 168.0
+      count: 26905.34988709
     fileParameters: []
     responses:
       -
@@ -107,43 +107,43 @@ endpoints:
         name: user_id
         description: ''
         required: true
-        example: quibusdam
+        example: molestiae
         type: string
         custom: []
       product_id:
         name: product_id
         description: ''
         required: true
-        example: ut
+        example: vitae
         type: string
         custom: []
       color_id:
         name: color_id
         description: ''
         required: true
-        example: ad
+        example: est
         type: string
         custom: []
       guarantee_id:
         name: guarantee_id
         description: ''
         required: true
-        example: unde
+        example: ut
         type: string
         custom: []
       number:
         name: number
         description: ''
         required: true
-        example: 836165.8371
+        example: 20487.5052
         type: number
         custom: []
     cleanBodyParameters:
-      user_id: quibusdam
-      product_id: ut
-      color_id: ad
-      guarantee_id: unde
-      number: 836165.8371
+      user_id: molestiae
+      product_id: vitae
+      color_id: est
+      guarantee_id: ut
+      number: 20487.5052
     fileParameters: []
     responses: []
     responseFields: []
@@ -175,11 +175,11 @@ endpoints:
         name: id
         description: 'The ID of the show.'
         required: true
-        example: corrupti
+        example: id
         type: string
         custom: []
     cleanUrlParameters:
-      id: corrupti
+      id: id
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -224,11 +224,11 @@ endpoints:
         name: id
         description: 'The ID of the update.'
         required: true
-        example: in
+        example: ut
         type: string
         custom: []
     cleanUrlParameters:
-      id: in
+      id: ut
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -264,11 +264,11 @@ endpoints:
         name: number
         description: ''
         required: false
-        example: 15154644.508504
+        example: 158607989.29373
         type: number
         custom: []
     cleanBodyParameters:
-      number: 15154644.508504
+      number: 158607989.29373
     fileParameters: []
     responses: []
     responseFields: []
@@ -300,11 +300,11 @@ endpoints:
         name: id
         description: 'The ID of the delete.'
         required: true
-        example: et
+        example: accusamus
         type: string
         custom: []
     cleanUrlParameters:
-      id: et
+      id: accusamus
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []

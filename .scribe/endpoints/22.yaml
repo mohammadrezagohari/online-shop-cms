@@ -30,7 +30,7 @@ endpoints:
         name: count
         description: ''
         required: false
-        example: 2
+        example: 6
         type: integer
         custom: []
       product_id:
@@ -48,7 +48,7 @@ endpoints:
         type: string
         custom: []
     cleanBodyParameters:
-      count: 2
+      count: 6
       status: '0'
     fileParameters: []
     responses:
@@ -94,14 +94,14 @@ endpoints:
         name: product_id
         description: ''
         required: true
-        example: consequuntur
+        example: magnam
         type: string
         custom: []
       percentage:
         name: percentage
         description: 'Must be at least 1. Must not be greater than 100.'
         required: true
-        example: 17
+        example: 5
         type: number
         custom: []
       status:
@@ -115,22 +115,22 @@ endpoints:
         name: start_date
         description: 'Must be a valid date. Must be a valid date in the format <code>Y-m-d H:i:s</code>.'
         required: true
-        example: '2023-07-29 12:53:49'
+        example: '2023-08-03 11:18:09'
         type: string
         custom: []
       end_date:
         name: end_date
         description: 'Must be a valid date. Must be a valid date in the format <code>Y-m-d H:i:s</code>.'
         required: true
-        example: '2023-07-29 12:53:49'
+        example: '2023-08-03 11:18:09'
         type: string
         custom: []
     cleanBodyParameters:
-      product_id: consequuntur
-      percentage: 17
+      product_id: magnam
+      percentage: 5
       status: '1'
-      start_date: '2023-07-29 12:53:49'
-      end_date: '2023-07-29 12:53:49'
+      start_date: '2023-08-03 11:18:09'
+      end_date: '2023-08-03 11:18:09'
     fileParameters: []
     responses: []
     responseFields: []
@@ -162,11 +162,11 @@ endpoints:
         name: id
         description: 'The ID of the show.'
         required: true
-        example: perferendis
+        example: maxime
         type: string
         custom: []
     cleanUrlParameters:
-      id: perferendis
+      id: maxime
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -211,11 +211,11 @@ endpoints:
         name: id
         description: 'The ID of the update.'
         required: true
-        example: eum
+        example: explicabo
         type: string
         custom: []
     cleanUrlParameters:
-      id: eum
+      id: explicabo
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -230,7 +230,7 @@ endpoints:
         name: percentage
         description: 'Must be at least 1. Must not be greater than 100.'
         required: false
-        example: 13
+        example: 15
         type: number
         custom: []
       status:
@@ -244,21 +244,21 @@ endpoints:
         name: start_date
         description: 'Must be a valid date. Must be a valid date in the format <code>Y-m-d H:i:s</code>.'
         required: true
-        example: '2023-07-29 12:53:49'
+        example: '2023-08-03 11:18:09'
         type: string
         custom: []
       end_date:
         name: end_date
         description: 'Must be a valid date. Must be a valid date in the format <code>Y-m-d H:i:s</code>.'
         required: true
-        example: '2023-07-29 12:53:49'
+        example: '2023-08-03 11:18:09'
         type: string
         custom: []
     cleanBodyParameters:
-      percentage: 13
+      percentage: 15
       status: '0'
-      start_date: '2023-07-29 12:53:49'
-      end_date: '2023-07-29 12:53:49'
+      start_date: '2023-08-03 11:18:09'
+      end_date: '2023-08-03 11:18:09'
     fileParameters: []
     responses: []
     responseFields: []
@@ -290,11 +290,11 @@ endpoints:
         name: id
         description: 'The ID of the delete.'
         required: true
-        example: quas
+        example: quam
         type: string
         custom: []
     cleanUrlParameters:
-      id: quas
+      id: quam
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []

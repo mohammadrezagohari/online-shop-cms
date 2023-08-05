@@ -88,67 +88,67 @@ endpoints:
         name: color_name
         description: 'Must match the regex /^[ا-یa-zA-Z0-9\-۰-۹ء-ي., ]+$/u. Must not be greater than 255 characters.'
         required: true
-        example: lzogtfrjfm
+        example: vuhmbzjrkcyevz
         type: string
         custom: []
       color:
         name: color
         description: 'Must not be greater than 255 characters.'
         required: true
-        example: jnlghg
+        example: cbpqjvgmoiqygqhkmezgdv
         type: string
         custom: []
       product_id:
         name: product_id
         description: ''
         required: true
-        example: aut
+        example: qui
         type: string
         custom: []
       price_increase:
         name: price_increase
         description: ''
         required: true
-        example: 15
+        example: 6
         type: integer
         custom: []
       status:
         name: status
         description: 'Must be one of <code>0</code> or <code>1</code>.'
         required: true
-        example: '1'
+        example: '0'
         type: number
         custom: []
       sold_number:
         name: sold_number
         description: ''
         required: true
-        example: 3
+        example: 9
         type: integer
         custom: []
       frozen_number:
         name: frozen_number
         description: ''
         required: true
-        example: 19
+        example: 12
         type: integer
         custom: []
       marketable_number:
         name: marketable_number
         description: ''
         required: true
-        example: 8
+        example: 20
         type: integer
         custom: []
     cleanBodyParameters:
-      color_name: lzogtfrjfm
-      color: jnlghg
-      product_id: aut
-      price_increase: 15
-      status: '1'
-      sold_number: 3
-      frozen_number: 19
-      marketable_number: 8
+      color_name: vuhmbzjrkcyevz
+      color: cbpqjvgmoiqygqhkmezgdv
+      product_id: qui
+      price_increase: 6
+      status: '0'
+      sold_number: 9
+      frozen_number: 12
+      marketable_number: 20
     fileParameters: []
     responses: []
     responseFields: []
@@ -180,11 +180,11 @@ endpoints:
         name: id
         description: 'The ID of the show.'
         required: true
-        example: animi
+        example: in
         type: string
         custom: []
     cleanUrlParameters:
-      id: animi
+      id: in
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -229,11 +229,11 @@ endpoints:
         name: id
         description: 'The ID of the update.'
         required: true
-        example: culpa
+        example: doloremque
         type: string
         custom: []
     cleanUrlParameters:
-      id: culpa
+      id: doloremque
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -241,14 +241,14 @@ endpoints:
         name: color_name
         description: 'Must match the regex /^[ا-یa-zA-Z0-9\-۰-۹ء-ي., ]+$/u. Must not be greater than 255 characters.'
         required: false
-        example: bxeniapv
+        example: turxrczzcmtzmfges
         type: string
         custom: []
       color:
         name: color
         description: 'Must not be greater than 255 characters.'
         required: false
-        example: ptmpjyvkwthysyxgghn
+        example: rmpzd
         type: string
         custom: []
       product_id:
@@ -262,45 +262,45 @@ endpoints:
         name: price_increase
         description: ''
         required: false
-        example: 4
+        example: 8
         type: integer
         custom: []
       status:
         name: status
         description: 'Must be one of <code>0</code> or <code>1</code>.'
         required: false
-        example: '1'
+        example: '0'
         type: number
         custom: []
       sold_number:
         name: sold_number
         description: ''
         required: false
-        example: 2
+        example: 1
         type: integer
         custom: []
       frozen_number:
         name: frozen_number
         description: ''
         required: false
-        example: 6
+        example: 2
         type: integer
         custom: []
       marketable_number:
         name: marketable_number
         description: ''
         required: false
-        example: 2
+        example: 3
         type: integer
         custom: []
     cleanBodyParameters:
-      color_name: bxeniapv
-      color: ptmpjyvkwthysyxgghn
-      price_increase: 4
-      status: '1'
-      sold_number: 2
-      frozen_number: 6
-      marketable_number: 2
+      color_name: turxrczzcmtzmfges
+      color: rmpzd
+      price_increase: 8
+      status: '0'
+      sold_number: 1
+      frozen_number: 2
+      marketable_number: 3
     fileParameters: []
     responses: []
     responseFields: []
@@ -332,11 +332,11 @@ endpoints:
         name: id
         description: 'The ID of the delete.'
         required: true
-        example: itaque
+        example: voluptas
         type: string
         custom: []
     cleanUrlParameters:
-      id: itaque
+      id: voluptas
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []

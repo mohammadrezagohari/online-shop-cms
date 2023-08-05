@@ -32,7 +32,7 @@ endpoints:
         name: count
         description: ''
         required: false
-        example: 18
+        example: 3
         type: integer
         custom: []
       user_id:
@@ -50,7 +50,7 @@ endpoints:
         type: number
         custom: []
     cleanBodyParameters:
-      count: 18
+      count: 3
       order_status: '0'
     fileParameters: []
     responses:
@@ -96,43 +96,43 @@ endpoints:
         name: user_id
         description: ''
         required: true
-        example: repudiandae
+        example: voluptatum
         type: string
         custom: []
       address_id:
         name: address_id
         description: ''
         required: true
-        example: quia
+        example: sed
         type: string
         custom: []
       payment_type:
         name: payment_type
         description: 'Must be one of <code>0</code>, <code>1</code>, or <code>2</code>.'
         required: true
-        example: '1'
+        example: '2'
         type: string
         custom: []
       delivery_id:
         name: delivery_id
         description: ''
         required: true
-        example: ut
+        example: quasi
         type: string
         custom: []
       code:
         name: code
         description: ''
         required: false
-        example: consequatur
+        example: molestiae
         type: string
         custom: []
     cleanBodyParameters:
-      user_id: repudiandae
-      address_id: quia
-      payment_type: '1'
-      delivery_id: ut
-      code: consequatur
+      user_id: voluptatum
+      address_id: sed
+      payment_type: '2'
+      delivery_id: quasi
+      code: molestiae
     fileParameters: []
     responses: []
     responseFields: []
@@ -164,11 +164,11 @@ endpoints:
         name: id
         description: 'The ID of the show.'
         required: true
-        example: nemo
+        example: perspiciatis
         type: string
         custom: []
     cleanUrlParameters:
-      id: nemo
+      id: perspiciatis
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -213,11 +213,11 @@ endpoints:
         name: id
         description: 'The ID of the update.'
         required: true
-        example: earum
+        example: vero
         type: string
         custom: []
     cleanUrlParameters:
-      id: earum
+      id: vero
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -232,7 +232,7 @@ endpoints:
         name: payment_type
         description: 'Must be one of <code>0</code>, <code>1</code>, or <code>2</code>.'
         required: false
-        example: '0'
+        example: '1'
         type: string
         custom: []
       delivery_id:
@@ -243,7 +243,7 @@ endpoints:
         type: string
         custom: []
     cleanBodyParameters:
-      payment_type: '0'
+      payment_type: '1'
     fileParameters: []
     responses: []
     responseFields: []
@@ -275,11 +275,11 @@ endpoints:
         name: id
         description: 'The ID of the delete.'
         required: true
-        example: atque
+        example: iusto
         type: string
         custom: []
     cleanUrlParameters:
-      id: atque
+      id: iusto
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []

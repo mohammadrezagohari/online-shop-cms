@@ -38,7 +38,7 @@ class Email extends Model
      use HasFactory,SoftDeletes;
 
 
-    protected $table="public_email";
+    protected $table="public_mail";
     protected $guarded=["id"];
     protected $casts=[
         'published_at'=>'datetime',

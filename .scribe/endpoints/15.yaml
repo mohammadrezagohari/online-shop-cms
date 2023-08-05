@@ -30,7 +30,7 @@ endpoints:
         name: count
         description: ''
         required: false
-        example: 13
+        example: 19
         type: integer
         custom: []
       product_id:
@@ -41,7 +41,7 @@ endpoints:
         type: string
         custom: []
     cleanBodyParameters:
-      count: 13
+      count: 19
     fileParameters: []
     responses:
       -
@@ -86,7 +86,7 @@ endpoints:
         name: product_id
         description: ''
         required: true
-        example: exercitationem
+        example: et
         type: string
         custom: []
       images:
@@ -98,7 +98,7 @@ endpoints:
         type: 'file[]'
         custom: []
     cleanBodyParameters:
-      product_id: exercitationem
+      product_id: et
     fileParameters:
       images:
         - null
@@ -132,11 +132,11 @@ endpoints:
         name: id
         description: 'The ID of the show.'
         required: true
-        example: adipisci
+        example: fugit
         type: string
         custom: []
     cleanUrlParameters:
-      id: adipisci
+      id: fugit
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -181,11 +181,11 @@ endpoints:
         name: id
         description: 'The ID of the update.'
         required: true
-        example: ullam
+        example: qui
         type: string
         custom: []
     cleanUrlParameters:
-      id: ullam
+      id: qui
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -238,11 +238,11 @@ endpoints:
         name: id
         description: 'The ID of the delete.'
         required: true
-        example: quidem
+        example: facere
         type: string
         custom: []
     cleanUrlParameters:
-      id: quidem
+      id: facere
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []

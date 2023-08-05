@@ -30,27 +30,27 @@ endpoints:
         name: user_id
         description: ''
         required: false
-        example: 18
+        example: 6
         type: integer
         custom: []
       status:
         name: status
         description: 'Must be one of <code>0</code> or <code>1</code>.'
         required: false
-        example: '1'
+        example: '0'
         type: number
         custom: []
       type:
         name: type
         description: 'Must be one of <code>0</code>, <code>1</code>, or <code>2</code>.'
         required: false
-        example: '0'
+        example: '1'
         type: number
         custom: []
     cleanBodyParameters:
-      user_id: 18
-      status: '1'
-      type: '0'
+      user_id: 6
+      status: '0'
+      type: '1'
     fileParameters: []
     responses:
       -
@@ -95,35 +95,35 @@ endpoints:
         name: amount
         description: ''
         required: true
-        example: 19
+        example: 16
         type: integer
         custom: []
       user_id:
         name: user_id
         description: ''
         required: true
-        example: 16
+        example: 9
         type: integer
         custom: []
       type:
         name: type
         description: 'Must be one of <code>0</code>, <code>1</code>, or <code>2</code>.'
         required: true
-        example: '1'
+        example: '2'
         type: number
         custom: []
       gateway:
         name: gateway
         description: ''
         required: false
-        example: quo
+        example: sunt
         type: string
         custom: []
     cleanBodyParameters:
-      amount: 19
-      user_id: 16
-      type: '1'
-      gateway: quo
+      amount: 16
+      user_id: 9
+      type: '2'
+      gateway: sunt
     fileParameters: []
     responses: []
     responseFields: []
@@ -204,11 +204,11 @@ endpoints:
         name: id
         description: 'The ID of the update.'
         required: true
-        example: dolor
+        example: quibusdam
         type: string
         custom: []
     cleanUrlParameters:
-      id: dolor
+      id: quibusdam
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -216,14 +216,14 @@ endpoints:
         name: amount
         description: ''
         required: false
-        example: 11
+        example: 4
         type: integer
         custom: []
       user_id:
         name: user_id
         description: ''
         required: false
-        example: 9
+        example: 15
         type: integer
         custom: []
       status:
@@ -234,8 +234,8 @@ endpoints:
         type: number
         custom: []
     cleanBodyParameters:
-      amount: 11
-      user_id: 9
+      amount: 4
+      user_id: 15
       status: '0'
     fileParameters: []
     responses: []
@@ -268,11 +268,11 @@ endpoints:
         name: id
         description: 'The ID of the delete.'
         required: true
-        example: debitis
+        example: dolorem
         type: string
         custom: []
     cleanUrlParameters:
-      id: debitis
+      id: dolorem
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []

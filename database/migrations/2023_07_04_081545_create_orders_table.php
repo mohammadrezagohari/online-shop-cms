@@ -24,7 +24,7 @@ return new class extends Migration
             $table->timestamp('delivery_date')->nullable();
             $table->decimal('order_final_amount',20, 3)->nullable();
             $table->decimal('order_final_amount_with_copan_discount',20, 3)->nullable();
-            $table->unsignedBigInteger('copon_id')->nullable();
+            $table->foreignId('copan_id')->nullable()->constrained('copans') ;
             $table->tinyInteger('order_status')->default(0);
             $table->timestamps();
             $table->softDeletes();

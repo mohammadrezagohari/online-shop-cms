@@ -108,7 +108,6 @@ class ProductTransactionController extends Controller
     public function callback(Request $request, int $id)
     {
         $order = $this->interfaceOrderRepository->findById($id);
-        $amount = $this->interfaceOrderRepository->findById($id)['order_final_amount'];
         $authority = $request["Authority"];
         if ($request['Status'] == "OK") {
 
@@ -118,7 +117,7 @@ class ProductTransactionController extends Controller
 
             ])->post('https://api.zarinpal.com/pg/v4/payment/verify.json', [
                 "merchant_id" => "1344b5d4-0048-11e8-94db-005056a205be",
-                "amount" => $amount,
+                "amount" =>$order['order_final_amount'],
                 "authority" => $authority,
             ]);
             $results = json_decode($response, true)["data"];

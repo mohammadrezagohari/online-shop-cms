@@ -2,7 +2,6 @@
 
 namespace App\Mail;
 
-use App\Models\Market\EmailFile;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Attachment;
@@ -11,14 +10,15 @@ use Illuminate\Mail\Mailables\Address;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use phpDocumentor\Reflection\File;
 
 class SendEmail extends Mailable
 {
     use Queueable, SerializesModels;
 
     public $subject;
-    public $body;
-    public $attachment;
+    public string $body;
+    public ?string $attachment;
 
     /**
      * Create a new message instance.
@@ -58,10 +58,16 @@ class SendEmail extends Mailable
      */
     public function attachments(): array
     {
+        if ($this->attachment) {
+            return [
+                Attachment::fromPath(public_path($this->attachment)),
+            ];
+        } else {
+            return [
 
-        return [
-            Attachment::fromPath(public_path($this->attachment)),
-        ];
+            ];
+        }
+
 
     }
 }

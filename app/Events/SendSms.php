@@ -10,23 +10,21 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class SendEmail
+class SendSms
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public string $subject;
+    public string $title;
     public string $body;
-    public ?string $attachment;
 
     /**
      * Create a new event instance.
      */
-    public function __construct(string $subject,string $body,string $attachment=null)
+    public function __construct(string $title,string $body)
     {
         //
-        $this->subject = $subject;
+        $this->title = $title;
         $this->body = $body;
-        $this->attachment = $attachment;
     }
 
     /**

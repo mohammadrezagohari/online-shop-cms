@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
             $table->unsignedDouble("amount")->index();
-            $table->unsignedBigInteger('order_id')->index();
+            $table->foreignId('order_id')->constrained('orders');
             $table->foreignId('user_id')->constrained('users');
             $table->enum("bank",App\Enums\GatewayType::ALL)->default(App\Enums\GatewayType::Zarinpal)->index();  //// Use Enum BankName => BankName::ALL
             $table->string("message")->nullable();   //// عنوان تراکنش

@@ -32,7 +32,7 @@ endpoints:
         name: count
         description: ''
         required: false
-        example: 5
+        example: 10
         type: integer
         custom: []
       product_id:
@@ -43,7 +43,7 @@ endpoints:
         type: string
         custom: []
     cleanBodyParameters:
-      count: 5
+      count: 10
     fileParameters: []
     responses:
       -
@@ -88,19 +88,19 @@ endpoints:
         name: product_id
         description: ''
         required: true
-        example: 4
+        example: 18
         type: integer
         custom: []
       list:
         name: list
         description: 'Must be a valid JSON string.'
         required: true
-        example: '["perferendis","aperiam"]'
+        example: '["quisquam","eveniet"]'
         type: string
         custom: []
     cleanBodyParameters:
-      product_id: 4
-      list: '["perferendis","aperiam"]'
+      product_id: 18
+      list: '["quisquam","eveniet"]'
     fileParameters: []
     responses: []
     responseFields: []
@@ -132,11 +132,11 @@ endpoints:
         name: id
         description: 'The ID of the show.'
         required: true
-        example: provident
+        example: eius
         type: string
         custom: []
     cleanUrlParameters:
-      id: provident
+      id: eius
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -181,11 +181,11 @@ endpoints:
         name: id
         description: 'The ID of the update.'
         required: true
-        example: veritatis
+        example: autem
         type: string
         custom: []
     cleanUrlParameters:
-      id: veritatis
+      id: autem
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -193,27 +193,27 @@ endpoints:
         name: property_key
         description: 'Must not be greater than 255 characters.'
         required: false
-        example: d
+        example: bywgem
         type: string
         custom: []
       property_value:
         name: property_value
         description: 'Must not be greater than 255 characters.'
         required: false
-        example: vl
+        example: ujdvhlyamjboxmhovv
         type: string
         custom: []
       product_id:
         name: product_id
         description: ''
         required: false
-        example: 16
+        example: 13
         type: integer
         custom: []
     cleanBodyParameters:
-      property_key: d
-      property_value: vl
-      product_id: 16
+      property_key: bywgem
+      property_value: ujdvhlyamjboxmhovv
+      product_id: 13
     fileParameters: []
     responses: []
     responseFields: []
@@ -245,11 +245,11 @@ endpoints:
         name: id
         description: 'The ID of the delete.'
         required: true
-        example: tenetur
+        example: aspernatur
         type: string
         custom: []
     cleanUrlParameters:
-      id: tenetur
+      id: aspernatur
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []

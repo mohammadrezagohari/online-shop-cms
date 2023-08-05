@@ -25,7 +25,7 @@ class StoreEmailFileRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'public_mail_id'=>'required|exists:public_email,id',
+            'public_mail_id'=>'required|exists:public_mail,id',
             'file'=>['required',File::types(['pdf','png','jpg','jpeg','txt'])->max(2*1024)],
             'status'=>'nullable|numeric|in:0,1'
         ];

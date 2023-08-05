@@ -30,14 +30,14 @@ endpoints:
         name: keyword
         description: 'Must not be greater than 30 characters.'
         required: false
-        example: npdmuq
+        example: sbkkimzjjcwhqxnawjax
         type: string
         custom: []
       count:
         name: count
         description: ''
         required: false
-        example: 2490453.1491002
+        example: 3449.95
         type: number
         custom: []
       user_id:
@@ -48,8 +48,8 @@ endpoints:
         type: string
         custom: []
     cleanBodyParameters:
-      keyword: npdmuq
-      count: 2490453.1491002
+      keyword: sbkkimzjjcwhqxnawjax
+      count: 3449.95
     fileParameters: []
     responses:
       -
@@ -94,63 +94,63 @@ endpoints:
         name: user_id
         description: ''
         required: true
-        example: 15
+        example: 2
         type: integer
         custom: []
       province_id:
         name: province_id
         description: ''
         required: true
-        example: 10
+        example: 2
         type: integer
         custom: []
       city_id:
         name: city_id
         description: ''
         required: true
-        example: 5
+        example: 9
         type: integer
         custom: []
       postal_code:
         name: postal_code
         description: ''
         required: true
-        example: voluptatum
+        example: quas
         type: string
         custom: []
       address:
         name: address
         description: ''
         required: true
-        example: est
+        example: ut
         type: string
         custom: []
       unit:
         name: unit
         description: ''
         required: true
-        example: nam
+        example: adipisci
         type: string
         custom: []
       recipient_first_name:
         name: recipient_first_name
         description: ''
         required: false
-        example: voluptas
+        example: consequatur
         type: string
         custom: []
       recipient_last_name:
         name: recipient_last_name
         description: ''
         required: false
-        example: expedita
+        example: eum
         type: string
         custom: []
       mobile:
         name: mobile
         description: ''
         required: false
-        example: facere
+        example: eos
         type: string
         custom: []
       status:
@@ -161,15 +161,15 @@ endpoints:
         type: number
         custom: []
     cleanBodyParameters:
-      user_id: 15
-      province_id: 10
-      city_id: 5
-      postal_code: voluptatum
-      address: est
-      unit: nam
-      recipient_first_name: voluptas
-      recipient_last_name: expedita
-      mobile: facere
+      user_id: 2
+      province_id: 2
+      city_id: 9
+      postal_code: quas
+      address: ut
+      unit: adipisci
+      recipient_first_name: consequatur
+      recipient_last_name: eum
+      mobile: eos
       status: '1'
     fileParameters: []
     responses: []
@@ -202,11 +202,11 @@ endpoints:
         name: id
         description: 'The ID of the show.'
         required: true
-        example: beatae
+        example: animi
         type: string
         custom: []
     cleanUrlParameters:
-      id: beatae
+      id: animi
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -251,11 +251,11 @@ endpoints:
         name: id
         description: 'The ID of the update.'
         required: true
-        example: veritatis
+        example: quia
         type: string
         custom: []
     cleanUrlParameters:
-      id: veritatis
+      id: quia
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -263,83 +263,83 @@ endpoints:
         name: user_id
         description: ''
         required: false
-        example: 9
+        example: 18
         type: integer
         custom: []
       province_id:
         name: province_id
         description: ''
         required: false
-        example: 4
+        example: 20
         type: integer
         custom: []
       city_id:
         name: city_id
         description: ''
         required: false
-        example: 6
+        example: 10
         type: integer
         custom: []
       postal_code:
         name: postal_code
         description: ''
         required: false
-        example: aut
+        example: eum
         type: string
         custom: []
       address:
         name: address
         description: ''
         required: false
-        example: corrupti
+        example: quod
         type: string
         custom: []
       unit:
         name: unit
         description: ''
         required: false
-        example: praesentium
+        example: veritatis
         type: string
         custom: []
       recipient_first_name:
         name: recipient_first_name
         description: ''
         required: false
-        example: aperiam
+        example: ut
         type: string
         custom: []
       recipient_last_name:
         name: recipient_last_name
         description: ''
         required: false
-        example: iusto
+        example: ipsa
         type: string
         custom: []
       mobile:
         name: mobile
         description: ''
         required: false
-        example: explicabo
+        example: odio
         type: string
         custom: []
       status:
         name: status
         description: 'Must be one of <code>0</code> or <code>1</code>.'
         required: false
-        example: '1'
+        example: '0'
         type: number
         custom: []
     cleanBodyParameters:
-      user_id: 9
-      province_id: 4
-      city_id: 6
-      postal_code: aut
-      address: corrupti
-      unit: praesentium
-      recipient_first_name: aperiam
-      recipient_last_name: iusto
-      mobile: explicabo
-      status: '1'
+      user_id: 18
+      province_id: 20
+      city_id: 10
+      postal_code: eum
+      address: quod
+      unit: veritatis
+      recipient_first_name: ut
+      recipient_last_name: ipsa
+      mobile: odio
+      status: '0'
     fileParameters: []
     responses: []
     responseFields: []
@@ -371,11 +371,11 @@ endpoints:
         name: id
         description: 'The ID of the delete.'
         required: true
-        example: sequi
+        example: facere
         type: string
         custom: []
     cleanUrlParameters:
-      id: sequi
+      id: facere
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []

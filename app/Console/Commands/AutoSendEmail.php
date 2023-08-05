@@ -2,7 +2,8 @@
 
 namespace App\Console\Commands;
 
-use App\Events\SendEmail;
+
+use App\Events\SendEmailForAllUsersEvent;
 use App\Models\Market\Email;
 use App\Models\Market\EmailFile;
 use Illuminate\Console\Command;
@@ -32,9 +33,7 @@ class AutoSendEmail extends Command
 
         foreach ($emailsForSend as $emailForSend) {
             $attachment = EmailFile::where('public_mail_id', '=', $emailForSend['id'])->first()->toArray();
-
-            event(new SendEmail($emailForSend['subject'], $emailForSend['body'], $attachment['file_path']));
-
+            event(new SendEmailForAllUsersEvent($emailForSend['subject'], $emailForSend['body'], $attachment['file_path']));
         }
     }
 }

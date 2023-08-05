@@ -22,7 +22,7 @@ class EmailFileRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'public_mail_id' => 'nullable|exists:public_email,id',
+            'public_mail_id' => 'nullable|exists:public_mail,id',
             'status' => 'nullable|numeric|in:0,1',
             'count' => 'nullable|integer',
         ];

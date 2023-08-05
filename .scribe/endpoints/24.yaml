@@ -30,7 +30,7 @@ endpoints:
         name: name
         description: ''
         required: false
-        example: corporis
+        example: qui
         type: string
         custom: []
       status:
@@ -41,7 +41,7 @@ endpoints:
         type: number
         custom: []
     cleanBodyParameters:
-      name: corporis
+      name: qui
       status: '0'
     fileParameters: []
     responses:
@@ -87,14 +87,14 @@ endpoints:
         name: name
         description: 'Must be at least 3 characters. Must not be greater than 255 characters.'
         required: true
-        example: hyjwychoqbwmqlfbeq
+        example: njquy
         type: string
         custom: []
       description:
         name: description
         description: ''
         required: true
-        example: 'Quam maiores et officia voluptatem non totam aut.'
+        example: 'Consequatur accusamus voluptatibus adipisci rerum.'
         type: string
         custom: []
       status:
@@ -105,8 +105,8 @@ endpoints:
         type: number
         custom: []
     cleanBodyParameters:
-      name: hyjwychoqbwmqlfbeq
-      description: 'Quam maiores et officia voluptatem non totam aut.'
+      name: njquy
+      description: 'Consequatur accusamus voluptatibus adipisci rerum.'
       status: '1'
     fileParameters: []
     responses: []
@@ -139,11 +139,11 @@ endpoints:
         name: id
         description: 'The ID of the show.'
         required: true
-        example: cum
+        example: distinctio
         type: string
         custom: []
     cleanUrlParameters:
-      id: cum
+      id: distinctio
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -188,11 +188,11 @@ endpoints:
         name: id
         description: 'The ID of the update.'
         required: true
-        example: quis
+        example: laboriosam
         type: string
         custom: []
     cleanUrlParameters:
-      id: quis
+      id: laboriosam
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -200,14 +200,14 @@ endpoints:
         name: name
         description: ''
         required: false
-        example: soluta
+        example: tempora
         type: string
         custom: []
       description:
         name: description
         description: ''
         required: false
-        example: 'Et et in sint veniam beatae maiores et veritatis.'
+        example: 'Culpa exercitationem nihil saepe dolores ducimus.'
         type: string
         custom: []
       status:
@@ -218,8 +218,8 @@ endpoints:
         type: number
         custom: []
     cleanBodyParameters:
-      name: soluta
-      description: 'Et et in sint veniam beatae maiores et veritatis.'
+      name: tempora
+      description: 'Culpa exercitationem nihil saepe dolores ducimus.'
       status: '1'
     fileParameters: []
     responses: []
@@ -252,11 +252,11 @@ endpoints:
         name: id
         description: 'The ID of the delete.'
         required: true
-        example: enim
+        example: ut
         type: string
         custom: []
     cleanUrlParameters:
-      id: enim
+      id: ut
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
