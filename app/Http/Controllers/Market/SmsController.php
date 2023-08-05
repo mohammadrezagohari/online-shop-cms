@@ -121,8 +121,9 @@ class SmsController extends Controller
 
     public function sendSms(int $id)
     {
+
         if ($sms = $this->interfaceSmsRepository->findById($id)) {
-            SendSmsForAllUsers::dispatch($sms['title'], $sms['body']);
+            SendSmsForAllUsers::dispatch($sms['body']);
             $sms['published_at'] = now();
             return response()->json(['message' => 'successfully your transaction!'], HTTPResponse::HTTP_OK);
 

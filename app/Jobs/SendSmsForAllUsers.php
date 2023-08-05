@@ -16,16 +16,13 @@ class SendSmsForAllUsers implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    public string $title;
     public string $body;
 
     /**
      * Create a new job instance.
      */
-    public function __construct(string $title, string $body)
+    public function __construct( string $body)
     {
-        //
-        $this->title = $title;
         $this->body = $body;
     }
 
@@ -34,14 +31,12 @@ class SendSmsForAllUsers implements ShouldQueue
      */
     public function handle()
     {
-        $receptor = User::where('mobile', '!=', null)->pluck('mobile')->toArray();
-        $message = $this->title;
-        $message .= $this->body;
-        //   $sender=env('KAVENEGAR_SENDER');
+        $receptor=User::where('mobile','!=',null)->pluck('mobile');
+
         $type = env("KAVEHNEGAR_DATA_TYPE_PASS");
         $template = env("KAVEHNEGAR_OTP_NAME");
-        Kavenegar::VerifyLookup($receptor, $message, null, null, $template, $type);
-        // Kavenegar::Send($sender,$receptor,$message);
+        Kavenegar::VerifyLookup($receptor, $this->body, null, null, $template, $type);
+
 
     }
 }
