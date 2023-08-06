@@ -5,20 +5,14 @@ namespace App\Http\Controllers\Market;
 use App\Events\SendEmailForAllUsersEvent;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\email\EmailRequest;
-use App\Http\Requests\email\SendOrderPaymentRequest;
 use App\Http\Requests\email\StoreEmailRequest;
 use App\Http\Requests\email\UpdateEmailRequest;
 use App\Http\Requests\sms\StoreSmsRequest;
 use App\Http\Resources\email\EmailResource;
 use App\Jobs\SendEmailForAllUsersJob;
-use App\Jobs\SendOrderPaymentEmail;
-use App\Jobs\SendOrderPaymentEmailJob;
-use App\Mail\SendEmail;
 use App\Models\Market\EmailFile;
-use App\Models\Market\Order;
 use App\Models\User;
 use App\Repositories\MySQL\EmailRepository\InterfaceEmailRepository;
-use App\Repositories\MySQL\OrderRepository\InterfaceOrderRepository;
 use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -36,15 +30,11 @@ class EmailController extends Controller
 {
 
     private InterfaceEmailRepository $interfaceEmailRepository;
-    private InterfaceOrderRepository $interfaceOrderRepository;
 
-    public function __construct(InterfaceEmailRepository $interfaceEmailRepository,
-                                InterfaceOrderRepository $interfaceOrderRepository,
-    )
+    public function __construct(InterfaceEmailRepository $interfaceEmailRepository)
     {
 
         $this->interfaceEmailRepository = $interfaceEmailRepository;
-        $this->interfaceOrderRepository = $interfaceOrderRepository;
     }
 
     /**
@@ -125,47 +115,31 @@ class EmailController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(int $id): JsonResponse
+    public function destroy(int $id):JsonResponse
     {
-        if ($this->interfaceEmailRepository->deleteData($id))
+        if($this->interfaceEmailRepository->deleteData($id))
             return response()->json(['message' => 'successfully your transaction!'], HTTPResponse::HTTP_OK);
         return response()->json(['message' => 'sorry, your transaction fails!'], HTTPResponse::HTTP_BAD_REQUEST);
     }
 
 
-    public function sendEmailForAllUsers(int $id): JsonResponse
+    public function sendEmailForAllUsers(int $id):JsonResponse
     {
 
-        $data = $this->interfaceEmailRepository->findById($id);
+        $data=$this->interfaceEmailRepository->findById($id);
 
-        $attachment = EmailFile::where('public_mail_id', '=', $data['id'])->first();
+        $attachment=EmailFile::where('public_mail_id','=',$data['id'])->first();
 
 //        SendEmailForAllUsersJob::dispatch($data['subject'],$data['body'],$attachment['file_path']);
-        if (event(new SendEmailForAllUsersEvent($data['subject'], $data['body'], @$attachment['file_path']))) {
-            $this->interfaceEmailRepository->updateItem($id,
-                [
-                    'published_at' => now()
-                ]);
-            return response()->json(['message' => 'successfully your transaction!'], HTTPResponse::HTTP_OK);
-        }
+           if(event(new SendEmailForAllUsersEvent($data['subject'],$data['body'],@$attachment['file_path']))){
+               $this->interfaceEmailRepository->updateItem($id,
+               [
+                   'published_at'=>now()
+               ]);
+               return response()->json(['message' => 'successfully your transaction!'], HTTPResponse::HTTP_OK);
+           }
         return response()->json(['message' => 'sorry, your transaction fails!'], HTTPResponse::HTTP_BAD_REQUEST);
     }
 
-
-    public function sendOrderPaymentEmail(SendOrderPaymentRequest $request)
-    {
-        $data=$request->except(['_token']);
-        $order=$this->interfaceOrderRepository->findById($data['order_id']);
-
-        $user=User::find($order['user_id'])->first();
-        if($order['order_status']==1){
-            SendOrderPaymentEmailJob::dispatch($user,$order);
-            return response()->json(['message' => 'successfully your transaction!'], HTTPResponse::HTTP_OK);
-        }
-        return response()->json(['message' => 'sorry, your transaction fails because order not payment!'], HTTPResponse::HTTP_BAD_REQUEST);
-
-
-
-    }
 
 }
