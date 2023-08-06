@@ -161,12 +161,9 @@ class EmailController extends Controller
 
         $data=$request->except(['_token']);
         $order=$this->interfaceOrderRepository->findById($data['order_id']);
-        $orderArray=$order->toArray();
         $user=User::find($order['user_id'])->first();
-        if($order['order_status']==1){
-           $orderItems= $this->interfaceOrderItemRepository->findOrderItemsWithOrderID($order['id'])->toArray();
-            $pdf=Pdf::loadView('pdf.sendOrderPaymentPdf',$orderArray);
-
+        if($order['payment_status']==1){
+           $orderItems= $this->interfaceOrderItemRepository->findOrderItemsWithOrderID($order['id']);
             SendOrderPaymentEmailJob::dispatch($user,$order,$orderItems);
             return response()->json(['message' => 'successfully your transaction!'], HTTPResponse::HTTP_OK);
         }

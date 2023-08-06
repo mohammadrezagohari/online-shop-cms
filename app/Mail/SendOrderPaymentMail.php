@@ -37,7 +37,7 @@ class SendOrderPaymentMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            from: new Address('jeffrey@example.com', 'Jeffrey Way'),
+            from: new Address('m.ebrahimi.talo1990@gmail.com', 'Mehrdad Ebrahimi Talokolaii'),
             subject:'خرید کالا',
         );
     }

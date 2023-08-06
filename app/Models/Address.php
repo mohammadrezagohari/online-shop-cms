@@ -73,6 +73,12 @@ class Address extends Model
     }
 
 
+    public function getFullAddressAttribute(){
+        return $this->province->name."  ".$this->city->name."  ".$this->address."  واحد:  ".$this->unit." کدپستی: ".$this->postal_code."  گیرنده محصول :".$this->recipient_first_name." ".$this->recipient_last_name." تلفن همراه: ".$this->mobile;
+    }
+
+
+
     public function scopeWhereUserId($query,$userId){
         return $query->where("user_id","=",$userId);
     }
@@ -81,4 +87,7 @@ class Address extends Model
     public function scopeWherePostalCode($query,$postalCode){
         return $query->where('postal_code','like', "%{$postalCode}%");
     }
+
+
+
 }

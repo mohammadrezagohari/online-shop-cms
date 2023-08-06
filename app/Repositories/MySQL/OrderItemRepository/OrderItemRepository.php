@@ -33,9 +33,9 @@ class OrderItemRepository extends BaseRepository implements InterfaceOrderItemRe
        return [$sumOfOrderItemsAmountWithoutAmazingSale,$sumOfOrderItemsAmountWithAmazingSale];
     }
 
-    public function findOrderItemsWithOrderID(int $orderId): \Illuminate\Database\Eloquent\Collection|array
+    public function findOrderItemsWithOrderID(int $orderId)
     {
-        return  $this->model->where('order_id','=',$orderId)->get();
+        return  $this->model->where('order_id','=',$orderId)->get()->toArray();
 
     }
 }

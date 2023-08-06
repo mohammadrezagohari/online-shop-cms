@@ -52,6 +52,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @method static \Illuminate\Database\Eloquent\Builder|OrderItem whereFinalProductPriceWithoutAmazingSale($value)
  * @method static \Illuminate\Database\Eloquent\Builder|OrderItem whereFinalTotalPriceWithAmazingSale($value)
  * @method static \Illuminate\Database\Eloquent\Builder|OrderItem whereFinalTotalPriceWithoutAmazingSale($value)
+ * @property-read \App\Models\Market\AmazingSale|null $amazingSale
  * @mixin \Eloquent
  */
 class OrderItem extends Model
@@ -69,6 +70,11 @@ class OrderItem extends Model
     public function product()
     {
         return $this->belongsTo(Product::class, 'product_id');
+    }
+
+    public function amazingSale()
+    {
+        return $this->belongsTo(AmazingSale::class);
     }
 
 
