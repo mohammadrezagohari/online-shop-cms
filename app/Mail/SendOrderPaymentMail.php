@@ -5,12 +5,12 @@ namespace App\Mail;
 use App\Models\Market\Order;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Mail\Attachment;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Address;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
-
 class SendOrderPaymentMail extends Mailable
 {
     use Queueable, SerializesModels;
@@ -56,6 +56,7 @@ class SendOrderPaymentMail extends Mailable
      */
     public function attachments(): array
     {
-        return [];
+        return [
+        ];
     }
 }
