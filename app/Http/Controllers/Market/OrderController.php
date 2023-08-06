@@ -257,12 +257,16 @@ class OrderController extends Controller
                         break;
 
                 }
-                $this->interfacePaymentRepository->insertData([
+             $paymentIdForOrder=   $this->interfacePaymentRepository->insertData([
                     'amount' => $order_final_amount_with_copan_discount,
                     'user_id' => $data["user_id"],
                     'type' => $data['payment_type'],
                     'paymentable_id' => $paymentId,
                     'paymentable_type' => $paymentType,
+                ])['id'];
+
+                $this->interfaceOrderRepository->updateItem($order->id,[
+                    'payment_id'=>$paymentIdForOrder
                 ]);
 
                 $this->interfaceCartItemRepository->deleteCollection($data["user_id"]);
@@ -441,3 +445,5 @@ class OrderController extends Controller
 
     }
 }
+
+

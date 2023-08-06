@@ -173,8 +173,6 @@ return [
         App\Providers\RepositoryProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
         Shetabit\Payment\Provider\PaymentServiceProvider::class,
-        niklasravnsborg\LaravelPdf\PdfServiceProvider::class
-
 
 
 
@@ -195,7 +193,8 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         // 'Example' => App\Facades\Example::class,
         'Payment' => Shetabit\Payment\Facade\Payment::class,
-        'PDF' => niklasravnsborg\LaravelPdf\Facades\Pdf::class,
+
+
         'Kavenegar' => Kavenegar\Laravel\Facade::class,
     ])->toArray(),
 

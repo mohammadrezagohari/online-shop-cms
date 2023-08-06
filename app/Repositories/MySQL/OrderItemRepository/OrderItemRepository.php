@@ -32,4 +32,10 @@ class OrderItemRepository extends BaseRepository implements InterfaceOrderItemRe
        }
        return [$sumOfOrderItemsAmountWithoutAmazingSale,$sumOfOrderItemsAmountWithAmazingSale];
     }
+
+    public function findOrderItemsWithOrderID(int $orderId): \Illuminate\Database\Eloquent\Collection|array
+    {
+        return  $this->model->where('order_id','=',$orderId)->get();
+
+    }
 }

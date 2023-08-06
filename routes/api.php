@@ -61,9 +61,9 @@ Route::prefix('v1')->group(function () {
 
 
     Route::prefix('auth')->group(function () {
-        Route::get('login', function () {
-            return redirect('/');
-        })->name('login');
+//        Route::get('login', function () {
+//            return redirect('/');
+//        })->name('login');
         Route::post('login', [AuthController::class, 'login'])->name('login');
         Route::prefix('otp')->group(function () {
             Route::post('/', [AuthController::class, 'otp'])->name('otp');
@@ -77,90 +77,90 @@ Route::prefix('v1')->group(function () {
     Route::middleware('auth:sanctum')->group(function () {
 
         Route::group(['prefix' => 'province'], function () {
-            Route::get('/', [ProvinceController::class, 'index'])->name('index');
-            Route::post('/store', [ProvinceController::class, 'store'])->name('store'); //->middleware('is_admin')
-            Route::get('/show/{id}', [ProvinceController::class, 'show'])->name('show');
-            Route::patch('/update/{id}', [ProvinceController::class, 'update'])->name('update'); //->middleware('is_admin')
-            Route::delete('/delete/{id}', [ProvinceController::class, 'destroy'])->name('delete'); //->middleware('is_admin')
+            Route::get('/', [ProvinceController::class, 'index']) ;
+            Route::post('/store', [ProvinceController::class, 'store']) ; //->middleware('is_admin')
+            Route::get('/show/{id}', [ProvinceController::class, 'show']) ;
+            Route::patch('/update/{id}', [ProvinceController::class, 'update']) ; //->middleware('is_admin')
+            Route::delete('/delete/{id}', [ProvinceController::class, 'destroy']) ; //->middleware('is_admin')
         });
 
 
 
 
         Route::group(['prefix' => 'city'], function () {
-            Route::get('/', [CityController::class, 'index'])->name('index');
-            Route::post('/store', [CityController::class, 'store'])->name('store'); //->middleware('is_admin')
-            Route::get('/show/{id}', [CityController::class, 'show'])->name('show');
-            Route::patch('/update/{id}', [CityController::class, 'update'])->name('update'); //->middleware('is_admin')
-            Route::delete('/delete/{id}', [CityController::class, 'destroy'])->name('delete');  //->middleware('is_admin')
+            Route::get('/', [CityController::class, 'index']) ;
+            Route::post('/store', [CityController::class, 'store']) ; //->middleware('is_admin')
+            Route::get('/show/{id}', [CityController::class, 'show']);
+            Route::patch('/update/{id}', [CityController::class, 'update']); //->middleware('is_admin')
+            Route::delete('/delete/{id}', [CityController::class, 'destroy']);  //->middleware('is_admin')
         });
 
 
 
         Route::group(['prefix' => 'address'], function () {
-            Route::get('/', [AddressController::class, 'index'])->name('index');
-            Route::post('/store', [AddressController::class, 'store'])->name('store'); //->middleware('is_admin')
-            Route::get('/show/{id}', [AddressController::class, 'show'])->name('show');
-            Route::patch('/update/{id}', [AddressController::class, 'update'])->name('update'); //->middleware('is_admin')
-            Route::delete('/delete/{id}', [AddressController::class, 'destroy'])->name('delete');  //->middleware('is_admin')
+            Route::get('/', [AddressController::class, 'index']);
+            Route::post('/store', [AddressController::class, 'store']); //->middleware('is_admin')
+            Route::get('/show/{id}', [AddressController::class, 'show']);
+            Route::patch('/update/{id}', [AddressController::class, 'update']); //->middleware('is_admin')
+            Route::delete('/delete/{id}', [AddressController::class, 'destroy']);  //->middleware('is_admin')
         });
 
 
 
 
         Route::group(['prefix' => 'otp'], function () {
-            Route::get('/', [OtpController::class, 'index'])->name('index');
-//            Route::post('/store', [OtpController::class, 'store'])->name('store'); //->middleware('is_admin')
-            Route::get('/show/{id}', [OtpController::class, 'show'])->name('show');
-//            Route::patch('/update/{id}', [OtpController::class, 'update'])->name('update'); //->middleware('is_admin')
-            Route::delete('/delete/{id}', [OtpController::class, 'destroy'])->name('delete');  //->middleware('is_admin')
+            Route::get('/', [OtpController::class, 'index']);
+//            Route::post('/store', [OtpController::class, 'store']) ; //->middleware('is_admin')
+            Route::get('/show/{id}', [OtpController::class, 'show']);
+//            Route::patch('/update/{id}', [OtpController::class, 'update']) ; //->middleware('is_admin')
+            Route::delete('/delete/{id}', [OtpController::class, 'destroy']);  //->middleware('is_admin')
         });
 
 
         Route::group(['prefix' => 'brand'], function () {
-            Route::get('/', [BrandController::class, 'index'])->name('index');
-            Route::post('/store', [BrandController::class, 'store'])->name('store'); //->middleware('is_admin')
-            Route::get('/show/{id}', [BrandController::class, 'show'])->name('show');
-            Route::post('/update/{id}', [BrandController::class, 'update'])->name('update'); //->middleware('is_admin')
-            Route::delete('/delete/{id}', [BrandController::class, 'destroy'])->name('delete');  //->middleware('is_admin')
+            Route::get('/', [BrandController::class, 'index']);
+            Route::post('/store', [BrandController::class, 'store']); //->middleware('is_admin')
+            Route::get('/show/{id}', [BrandController::class, 'show']);
+            Route::post('/update/{id}', [BrandController::class, 'update']); //->middleware('is_admin')
+            Route::delete('/delete/{id}', [BrandController::class, 'destroy']);  //->middleware('is_admin')
         });
 
 
         Route::group(['prefix' => 'cart-item'], function () {
-            Route::get('/', [CartItemController::class, 'index'])->name('index');
-            Route::post('/store', [CartItemController::class, 'store'])->name('store'); //->middleware('is_admin')
-            Route::get('/show/{id}', [CartItemController::class, 'show'])->name('show');
-            Route::patch('/update/{id}', [CartItemController::class, 'update'])->name('update'); //->middleware('is_admin')
-            Route::delete('/delete/{id}', [CartItemController::class, 'destroy'])->name('delete');  //->middleware('is_admin')
+            Route::get('/', [CartItemController::class, 'index']);
+            Route::post('/store', [CartItemController::class, 'store']); //->middleware('is_admin')
+            Route::get('/show/{id}', [CartItemController::class, 'show']);
+            Route::patch('/update/{id}', [CartItemController::class, 'update']); //->middleware('is_admin')
+            Route::delete('/delete/{id}', [CartItemController::class, 'destroy']);  //->middleware('is_admin')
         });
 
 
 
         Route::group(['prefix' => 'cash-payment'], function () {
-            Route::get('/', [CashPaymentController::class, 'index'])->name('index');
-            Route::post('/store', [CashPaymentController::class, 'store'])->name('store'); //->middleware('is_admin')
-            Route::get('/show/{id}', [CashPaymentController::class, 'show'])->name('show');
-            Route::patch('/update/{id}', [CashPaymentController::class, 'update'])->name('update'); //->middleware('is_admin')
-            Route::delete('/delete/{id}', [CashPaymentController::class, 'destroy'])->name('delete');  //->middleware('is_admin')
+            Route::get('/', [CashPaymentController::class, 'index']);
+            Route::post('/store', [CashPaymentController::class, 'store']); //->middleware('is_admin')
+            Route::get('/show/{id}', [CashPaymentController::class, 'show']);
+            Route::patch('/update/{id}', [CashPaymentController::class, 'update']); //->middleware('is_admin')
+            Route::delete('/delete/{id}', [CashPaymentController::class, 'destroy']);  //->middleware('is_admin')
         });
 
 
         Route::group(['prefix' => 'online-payment'], function () {
-            Route::get('/', [OnlinePaymentController::class, 'index'])->name('index');
-            Route::post('/store', [OnlinePaymentController::class, 'store'])->name('store'); //->middleware('is_admin')
-            Route::get('/show/{id}', [OnlinePaymentController::class, 'show'])->name('show');
-            Route::patch('/update/{id}', [OnlinePaymentController::class, 'update'])->name('update'); //->middleware('is_admin')
-            Route::delete('/delete/{id}', [OnlinePaymentController::class, 'destroy'])->name('delete');  //->middleware('is_admin')
+            Route::get('/', [OnlinePaymentController::class, 'index']);
+            Route::post('/store', [OnlinePaymentController::class, 'store']); //->middleware('is_admin')
+            Route::get('/show/{id}', [OnlinePaymentController::class, 'show']);
+            Route::patch('/update/{id}', [OnlinePaymentController::class, 'update']); //->middleware('is_admin')
+            Route::delete('/delete/{id}', [OnlinePaymentController::class, 'destroy']);  //->middleware('is_admin')
         });
 
 
 
         Route::group(['prefix' => 'delivery'], function () {
-            Route::get('/', [DeliveryController::class, 'index'])->name('index');
-            Route::post('/store', [DeliveryController::class, 'store'])->name('store'); //->middleware('is_admin')
-            Route::get('/show/{id}', [DeliveryController::class, 'show'])->name('show');
-            Route::patch('/update/{id}', [DeliveryController::class, 'update'])->name('update'); //->middleware('is_admin')
-            Route::delete('/delete/{id}', [DeliveryController::class, 'destroy'])->name('delete');  //->middleware('is_admin')
+            Route::get('/', [DeliveryController::class, 'index']);
+            Route::post('/store', [DeliveryController::class, 'store']); //->middleware('is_admin')
+            Route::get('/show/{id}', [DeliveryController::class, 'show']);
+            Route::patch('/update/{id}', [DeliveryController::class, 'update']); //->middleware('is_admin')
+            Route::delete('/delete/{id}', [DeliveryController::class, 'destroy']);  //->middleware('is_admin')
         });
 
 
@@ -168,59 +168,59 @@ Route::prefix('v1')->group(function () {
 
 
         Route::group(['prefix' => 'guarantee'], function () {
-            Route::get('/', [GuaranteeController::class, 'index'])->name('index');
-            Route::post('/store', [GuaranteeController::class, 'store'])->name('store'); //->middleware('is_admin')
-            Route::get('/show/{id}', [GuaranteeController::class, 'show'])->name('show');
-            Route::patch('/update/{id}', [GuaranteeController::class, 'update'])->name('update'); //->middleware('is_admin')
-            Route::delete('/delete/{id}', [GuaranteeController::class, 'destroy'])->name('delete');  //->middleware('is_admin')
+            Route::get('/', [GuaranteeController::class, 'index']);
+            Route::post('/store', [GuaranteeController::class, 'store']); //->middleware('is_admin')
+            Route::get('/show/{id}', [GuaranteeController::class, 'show']);
+            Route::patch('/update/{id}', [GuaranteeController::class, 'update']); //->middleware('is_admin')
+            Route::delete('/delete/{id}', [GuaranteeController::class, 'destroy']);  //->middleware('is_admin')
         });
 
 
 
         Route::group(['prefix' => 'offline-payment'], function () {
-            Route::get('/', [OfflinePaymentController::class, 'index'])->name('index');
-            Route::post('/store', [OfflinePaymentController::class, 'store'])->name('store'); //->middleware('is_admin')
-            Route::get('/show/{id}', [OfflinePaymentController::class, 'show'])->name('show');
-            Route::patch('/update/{id}', [OfflinePaymentController::class, 'update'])->name('update'); //->middleware('is_admin')
-            Route::delete('/delete/{id}', [OfflinePaymentController::class, 'destroy'])->name('delete');  //->middleware('is_admin')
+            Route::get('/', [OfflinePaymentController::class, 'index']);
+            Route::post('/store', [OfflinePaymentController::class, 'store']); //->middleware('is_admin')
+            Route::get('/show/{id}', [OfflinePaymentController::class, 'show']);
+            Route::patch('/update/{id}', [OfflinePaymentController::class, 'update']); //->middleware('is_admin')
+            Route::delete('/delete/{id}', [OfflinePaymentController::class, 'destroy']);  //->middleware('is_admin')
         });
 
 
 
 
         Route::group(['prefix' => 'product-category'], function () {
-            Route::get('/', [ProductCategoryController::class, 'index'])->name('index');
-            Route::post('/store', [ProductCategoryController::class, 'store'])->name('store'); //->middleware('is_admin')
-            Route::get('/show/{id}', [ProductCategoryController::class, 'show'])->name('show');
-            Route::post('/update/{id}', [ProductCategoryController::class, 'update'])->name('update'); //->middleware('is_admin')
-            Route::delete('/delete/{id}', [ProductCategoryController::class, 'destroy'])->name('delete');  //->middleware('is_admin')
+            Route::get('/', [ProductCategoryController::class, 'index']);
+            Route::post('/store', [ProductCategoryController::class, 'store']); //->middleware('is_admin')
+            Route::get('/show/{id}', [ProductCategoryController::class, 'show']);
+            Route::post('/update/{id}', [ProductCategoryController::class, 'update']); //->middleware('is_admin')
+            Route::delete('/delete/{id}', [ProductCategoryController::class, 'destroy']);  //->middleware('is_admin')
         });
 
 
         Route::group(['prefix' => 'product'], function () {
             Route::get('/', [ProductController::class, 'index']);
-            Route::post('/store', [ProductController::class, 'store'])->name('store'); //->middleware('is_admin')
-            Route::get('/show/{id}', [ProductController::class, 'show'])->name('show');
-            Route::post('/update/{id}', [ProductController::class, 'update'])->name('update'); //->middleware('is_admin')
-            Route::delete('/delete/{id}', [ProductController::class, 'destroy'])->name('delete');  //->middleware('is_admin')
+            Route::post('/store', [ProductController::class, 'store']); //->middleware('is_admin')
+            Route::get('/show/{id}', [ProductController::class, 'show']);
+            Route::post('/update/{id}', [ProductController::class, 'update']); //->middleware('is_admin')
+            Route::delete('/delete/{id}', [ProductController::class, 'destroy']);  //->middleware('is_admin')
         });
 
 
 
         Route::group(['prefix' => 'product-image'], function () {
             Route::get('/', [ProductImageController::class, 'index']);
-            Route::post('/store', [ProductImageController::class, 'store'])->name('store'); //->middleware('is_admin')
-            Route::get('/show/{id}', [ProductImageController::class, 'show'])->name('show');
-            Route::post('/update/{id}', [ProductImageController::class, 'update'])->name('update'); //->middleware('is_admin')
-            Route::delete('/delete/{id}', [ProductImageController::class, 'destroy'])->name('delete');  //->middleware('is_admin')
+            Route::post('/store', [ProductImageController::class, 'store']); //->middleware('is_admin')
+            Route::get('/show/{id}', [ProductImageController::class, 'show']);
+            Route::post('/update/{id}', [ProductImageController::class, 'update']); //->middleware('is_admin')
+            Route::delete('/delete/{id}', [ProductImageController::class, 'destroy']);  //->middleware('is_admin')
         });
 
         Route::group(['prefix' => 'product-color'], function () {
             Route::get('/', [ProductColorController::class, 'index']);
-            Route::post('/store', [ProductColorController::class, 'store'])->name('store'); //->middleware('is_admin')
-            Route::get('/show/{id}', [ProductColorController::class, 'show'])->name('show');
-            Route::patch('/update/{id}', [ProductColorController::class, 'update'])->name('update'); //->middleware('is_admin')
-            Route::delete('/delete/{id}', [ProductColorController::class, 'destroy'])->name('delete');  //->middleware('is_admin')
+            Route::post('/store', [ProductColorController::class, 'store']); //->middleware('is_admin')
+            Route::get('/show/{id}', [ProductColorController::class, 'show']);
+            Route::patch('/update/{id}', [ProductColorController::class, 'update']); //->middleware('is_admin')
+            Route::delete('/delete/{id}', [ProductColorController::class, 'destroy']);  //->middleware('is_admin')
         });
 
 
@@ -228,18 +228,18 @@ Route::prefix('v1')->group(function () {
 
         Route::group(['prefix' => 'product-property'], function () {
             Route::get('/', [ProductPropertyController::class, 'index']);
-            Route::post('/store', [ProductPropertyController::class, 'store'])->name('store'); //->middleware('is_admin')
-            Route::get('/show/{id}', [ProductPropertyController::class, 'show'])->name('show');
-            Route::patch('/update/{id}', [ProductPropertyController::class, 'update'])->name('update'); //->middleware('is_admin')
-            Route::delete('/delete/{id}', [ProductPropertyController::class, 'destroy'])->name('delete');  //->middleware('is_admin')
+            Route::post('/store', [ProductPropertyController::class, 'store']); //->middleware('is_admin')
+            Route::get('/show/{id}', [ProductPropertyController::class, 'show']);
+            Route::patch('/update/{id}', [ProductPropertyController::class, 'update']); //->middleware('is_admin')
+            Route::delete('/delete/{id}', [ProductPropertyController::class, 'destroy']);  //->middleware('is_admin')
         });
 
         Route::group(['prefix' => 'payment'], function () {
             Route::get('/', [PaymentController::class, 'index']);
-            Route::post('/store', [PaymentController::class, 'store'])->name('store'); //->middleware('is_admin')
-            Route::get('/show/{id}', [PaymentController::class, 'show'])->name('show');
-            Route::patch('/update/{id}', [PaymentController::class, 'update'])->name('update'); //->middleware('is_admin')
-            Route::delete('/delete/{id}', [PaymentController::class, 'destroy'])->name('delete');  //->middleware('is_admin')
+            Route::post('/store', [PaymentController::class, 'store']); //->middleware('is_admin')
+            Route::get('/show/{id}', [PaymentController::class, 'show']);
+            Route::patch('/update/{id}', [PaymentController::class, 'update']); //->middleware('is_admin')
+            Route::delete('/delete/{id}', [PaymentController::class, 'destroy']);  //->middleware('is_admin')
         });
 
 
@@ -248,112 +248,114 @@ Route::prefix('v1')->group(function () {
 
 
         Route::group(['prefix' => 'order'], function () {
-            Route::get('/', [OrderController::class, 'index'])->name('index');
-            Route::post('/store', [OrderController::class, 'store'])->name('store'); //->middleware('is_admin')
-            Route::get('/show/{id}', [OrderController::class, 'show'])->name('show');
-            Route::patch('/update/{id}', [OrderController::class, 'update'])->name('update'); //->middleware('is_admin')
-            Route::delete('/delete/{id}', [OrderController::class, 'destroy'])->name('delete');  //->middleware('is_admin')
+            Route::get('/', [OrderController::class, 'index']);
+            Route::post('/store', [OrderController::class, 'store']); //->middleware('is_admin')
+            Route::get('/show/{id}', [OrderController::class, 'show']);
+            Route::patch('/update/{id}', [OrderController::class, 'update']); //->middleware('is_admin')
+            Route::delete('/delete/{id}', [OrderController::class, 'destroy']);  //->middleware('is_admin')
         });
 
 
         Route::group(['prefix' => 'order-item'], function () {
-            Route::get('/', [OrderItemController::class, 'index'])->name('index');
-            Route::post('/store', [OrderItemController::class, 'store'])->name('store'); //->middleware('is_admin')
-            Route::get('/show/{id}', [OrderItemController::class, 'show'])->name('show');
-            Route::patch('/update/{id}', [OrderItemController::class, 'update'])->name('update'); //->middleware('is_admin')
-            Route::delete('/delete/{id}', [OrderItemController::class, 'destroy'])->name('delete');  //->middleware('is_admin')
+            Route::get('/', [OrderItemController::class, 'index']);
+            Route::post('/store', [OrderItemController::class, 'store']); //->middleware('is_admin')
+            Route::get('/show/{id}', [OrderItemController::class, 'show']);
+            Route::patch('/update/{id}', [OrderItemController::class, 'update']); //->middleware('is_admin')
+            Route::delete('/delete/{id}', [OrderItemController::class, 'destroy']);  //->middleware('is_admin')
         });
 
 
         Route::group(['prefix' => 'transaction'], function () {
-            Route::get('/', [ProductTransactionController::class, 'index'])->name('index');
-            Route::post('/verify', [ProductTransactionController::class, 'verify'])->name('verify'); //->middleware('is_admin')
-            Route::get('/callback', [ProductTransactionController::class, 'callback'])->name('callback'); //->middleware('is_admin')
-            Route::get('/show/{id}', [ProductTransactionController::class, 'show'])->name('show');
-            Route::patch('/update/{id}', [ProductTransactionController::class, 'update'])->name('update'); //->middleware('is_admin')
-            Route::delete('/delete/{id}', [ProductTransactionController::class, 'destroy'])->name('delete');  //->middleware('is_admin')
+            Route::get('/', [ProductTransactionController::class, 'index']);
+            Route::post('/verify', [ProductTransactionController::class, 'verify']); //->middleware('is_admin')
+            Route::get('/callback', [ProductTransactionController::class, 'callback']); //->middleware('is_admin')
+            Route::get('/show/{id}', [ProductTransactionController::class, 'show']);
+            Route::patch('/update/{id}', [ProductTransactionController::class, 'update']); //->middleware('is_admin')
+            Route::delete('/delete/{id}', [ProductTransactionController::class, 'destroy']);  //->middleware('is_admin')
         });
 
 
 
 
         Route::group(['prefix' => 'amazing-sale'], function () {
-            Route::get('/', [AmazingSaleController::class, 'index'])->name('index');
-            Route::post('/store', [AmazingSaleController::class, 'store'])->name('verify'); //->middleware('is_admin')
-            Route::get('/show/{id}', [AmazingSaleController::class, 'show'])->name('show');
-            Route::patch('/update/{id}', [AmazingSaleController::class, 'update'])->name('update'); //->middleware('is_admin')
-            Route::delete('/delete/{id}', [AmazingSaleController::class, 'destroy'])->name('delete');  //->middleware('is_admin')
+            Route::get('/', [AmazingSaleController::class, 'index']);
+            Route::post('/store', [AmazingSaleController::class, 'store']); //->middleware('is_admin')
+            Route::get('/show/{id}', [AmazingSaleController::class, 'show']);
+            Route::patch('/update/{id}', [AmazingSaleController::class, 'update']); //->middleware('is_admin')
+            Route::delete('/delete/{id}', [AmazingSaleController::class, 'destroy']);  //->middleware('is_admin')
         });
 
 
         Route::group(['prefix' => 'copan'], function () {
-            Route::get('/', [CopanController::class, 'index'])->name('index');
-            Route::post('/store', [CopanController::class, 'store'])->name('verify'); //->middleware('is_admin')
-            Route::get('/show/{id}', [CopanController::class, 'show'])->name('show');
-            Route::patch('/update/{id}', [CopanController::class, 'update'])->name('update'); //->middleware('is_admin')
-            Route::delete('/delete/{id}', [CopanController::class, 'destroy'])->name('delete');  //->middleware('is_admin')
+            Route::get('/', [CopanController::class, 'index']);
+            Route::post('/store', [CopanController::class, 'store']); //->middleware('is_admin')
+            Route::get('/show/{id}', [CopanController::class, 'show']);
+            Route::patch('/update/{id}', [CopanController::class, 'update']); //->middleware('is_admin')
+            Route::delete('/delete/{id}', [CopanController::class, 'destroy']);  //->middleware('is_admin')
         });
 
         Route::group(['prefix' => 'post-category'], function () {
-            Route::get('/', [PostCategoryController::class, 'index'])->name('index');
-            Route::post('/store', [PostCategoryController::class, 'store'])->name('verify'); //->middleware('is_admin')
-            Route::get('/show/{id}', [PostCategoryController::class, 'show'])->name('show');
-            Route::patch('/update/{id}', [PostCategoryController::class, 'update'])->name('update'); //->middleware('is_admin')
-            Route::delete('/delete/{id}', [PostCategoryController::class, 'destroy'])->name('delete');  //->middleware('is_admin')
+            Route::get('/', [PostCategoryController::class, 'index']);
+            Route::post('/store', [PostCategoryController::class, 'store']); //->middleware('is_admin')
+            Route::get('/show/{id}', [PostCategoryController::class, 'show']);
+            Route::patch('/update/{id}', [PostCategoryController::class, 'update']); //->middleware('is_admin')
+            Route::delete('/delete/{id}', [PostCategoryController::class, 'destroy']);  //->middleware('is_admin')
         });
 
 
         Route::group(['prefix' => 'post'], function () {
-            Route::get('/', [PostController::class, 'index'])->name('index');
-            Route::post('/store', [PostController::class, 'store'])->name('verify'); //->middleware('is_admin')
-            Route::get('/show/{id}', [PostController::class, 'show'])->name('show');
-            Route::post('/update/{id}', [PostController::class, 'update'])->name('update'); //->middleware('is_admin')
-            Route::delete('/delete/{id}', [PostController::class, 'destroy'])->name('delete');  //->middleware('is_admin')
+            Route::get('/', [PostController::class, 'index']);
+            Route::post('/store', [PostController::class, 'store']); //->middleware('is_admin')
+            Route::get('/show/{id}', [PostController::class, 'show']);
+            Route::post('/update/{id}', [PostController::class, 'update']); //->middleware('is_admin')
+            Route::delete('/delete/{id}', [PostController::class, 'destroy']);  //->middleware('is_admin')
         });
 
 
 
         Route::group(['prefix' => 'comment'], function () {
-            Route::get('/', [commentController::class, 'index'])->name('index');
-            Route::post('/store', [commentController::class, 'store'])->name('verify'); //->middleware('is_admin')
-            Route::get('/show/{id}', [commentController::class, 'show'])->name('show');
-            Route::post('/update/{id}', [commentController::class, 'update'])->name('update'); //->middleware('is_admin')
-            Route::delete('/delete/{id}', [commentController::class, 'destroy'])->name('delete');  //->middleware('is_admin')
+            Route::get('/', [commentController::class, 'index']);
+            Route::post('/store', [commentController::class, 'store']); //->middleware('is_admin')
+            Route::get('/show/{id}', [commentController::class, 'show']);
+            Route::post('/update/{id}', [commentController::class, 'update']); //->middleware('is_admin')
+            Route::delete('/delete/{id}', [commentController::class, 'destroy']);  //->middleware('is_admin')
         });
 
 
         Route::group(['prefix' => 'sms'], function () {
-            Route::get('/', [SmsController::class, 'index'])->name('index');
-            Route::post('/store', [SmsController::class, 'store'])->name('verify'); //->middleware('is_admin')
-            Route::get('/show/{id}', [SmsController::class, 'show'])->name('show');
-            Route::patch('/update/{id}', [SmsController::class, 'update'])->name('update'); //->middleware('is_admin')
-            Route::delete('/delete/{id}', [SmsController::class, 'destroy'])->name('delete');  //->middleware('is_admin')
-            Route::get('/send-sms/{id}', [SmsController::class, 'sendSms'])->name('sendSms');  //->middleware('is_admin')
+            Route::get('/', [SmsController::class, 'index']);
+            Route::post('/store', [SmsController::class, 'store']); //->middleware('is_admin')
+            Route::get('/show/{id}', [SmsController::class, 'show']);
+            Route::patch('/update/{id}', [SmsController::class, 'update']); //->middleware('is_admin')
+            Route::delete('/delete/{id}', [SmsController::class, 'destroy']);  //->middleware('is_admin')
+            Route::get('/send-sms/{id}', [SmsController::class, 'sendSms']);  //->middleware('is_admin')
         });
 
 
 
         Route::group(['prefix' => 'email'], function () {
-            Route::get('/', [EmailController::class, 'index'])->name('index');
-            Route::post('/store', [EmailController::class, 'store'])->name('verify'); //->middleware('is_admin')
-            Route::get('/show/{id}', [EmailController::class, 'show'])->name('show');
-            Route::post('/update/{id}', [EmailController::class, 'update'])->name('update'); //->middleware('is_admin')
-            Route::delete('/delete/{id}', [EmailController::class, 'destroy'])->name('delete');  //->middleware('is_admin')
-            Route::get('/send-email/{id}',[EmailController::class,'sendEmailForAllUsers'])->name('sendEmail');
+            Route::get('/', [EmailController::class, 'index']);
+            Route::post('/store', [EmailController::class, 'store']); //->middleware('is_admin')
+            Route::get('/show/{id}', [EmailController::class, 'show']);
+            Route::post('/update/{id}', [EmailController::class, 'update']); //->middleware('is_admin')
+            Route::delete('/delete/{id}', [EmailController::class, 'destroy']);  //->middleware('is_admin')
+            Route::get('/send-email/{id}',[EmailController::class,'sendEmailForAllUsers']);
+            Route::post('/send-order-payment-email',[EmailController::class,'sendOrderPaymentEmail']);
+
         });
 
 
         Route::group(['prefix' => 'email-file'], function () {
-            Route::get('/', [EmailFileController::class, 'index'])->name('index');
-            Route::post('/store', [EmailFileController::class, 'store'])->name('verify'); //->middleware('is_admin')
-            Route::get('/show/{id}', [EmailFileController::class, 'show'])->name('show');
-            Route::post('/update/{id}', [EmailFileController::class, 'update'])->name('update'); //->middleware('is_admin')
-            Route::delete('/delete/{id}', [EmailFileController::class, 'destroy'])->name('delete');  //->middleware('is_admin')
+            Route::get('/', [EmailFileController::class, 'index']);
+            Route::post('/store', [EmailFileController::class, 'store']); //->middleware('is_admin')
+            Route::get('/show/{id}', [EmailFileController::class, 'show']);
+            Route::post('/update/{id}', [EmailFileController::class, 'update']); //->middleware('is_admin')
+            Route::delete('/delete/{id}', [EmailFileController::class, 'destroy']);  //->middleware('is_admin')
         });
 
 
     });
-    Route::get('/transaction/callback/{id}', [ProductTransactionController::class, 'callback'])->name('callback'); //->middleware('is_admin')
+    Route::get('/transaction/callback/{id}', [ProductTransactionController::class, 'callback']); //->middleware('is_admin')
 
 
 });

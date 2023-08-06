@@ -3,29 +3,32 @@
 namespace App\Mail;
 
 use App\Models\Market\Order;
+use App\Models\Market\OrderItem;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Mail\Attachment;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Address;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+
 class SendOrderPaymentMail extends Mailable
 {
     use Queueable, SerializesModels;
 
     public Order $order;
+    public array $orderItems;
 
 
     /**
      * Create a new message instance.
      */
-    public function __construct(Order $order)
+    public function __construct(Order $order,array $orderItems)
     {
         //
 
         $this->order = $order;
+        $this->orderItems = $orderItems;
     }
 
     /**
@@ -56,7 +59,6 @@ class SendOrderPaymentMail extends Mailable
      */
     public function attachments(): array
     {
-        return [
-        ];
+        return [];
     }
 }
