@@ -5,10 +5,8 @@ namespace App\Http\Requests\user;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
-use Illuminate\Validation\Rules\Password;
 
-
-class StoreUserRequest extends FormRequest
+class UserRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,14 +24,13 @@ class StoreUserRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'mobile'=>'required|string|max:11|unique:users',
-            'password'=>['required',Password::min(8)->letters()->mixedCase()->numbers()->symbols()->uncompromised()],
-            'avatar'=>'required|numeric|in:0,1',
-            'national_code'=>'required|string|digits:10|unique:users',
-            'first_name'=>'required|string|max:255',
-            'last_name'=>'required|string|max:255',
+            'mobile'=>'nullable|string|max:11',
+            'national_code'=>'nullable|string|max:10',
+            'first_name'=>'nullable|string|max:255',
+            'last_name'=>'nullable|string|max:255',
             'user_type'=>'nullable|numeric|in:0,1',
-            'status'=>'required|numeric|in:0,1',
+            'status'=>'nullable|numeric|in:0,1',
+
 
         ];
     }

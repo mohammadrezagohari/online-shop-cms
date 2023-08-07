@@ -2,36 +2,28 @@
 
 namespace App\Mail;
 
-use App\Models\Market\Order;
-use App\Models\Market\OrderItem;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Mail\Attachment;
 use Illuminate\Mail\Mailable;
-use Illuminate\Mail\Mailables\Address;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
-use Barryvdh\DomPDF\Facade\Pdf;
 
-
-class SendOrderPaymentMail extends Mailable
+class sendEmailVerificationMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public Order $order;
-    public array $orderItems;
-
+    public $user;
+    public $code;
 
     /**
      * Create a new message instance.
      */
-    public function __construct(Order $order,array $orderItems)
+    public function __construct($user,$code)
     {
         //
-
-        $this->order = $order;
-        $this->orderItems = $orderItems;
+        $this->user = $user;
+        $this->code = $code;
     }
 
     /**
@@ -40,8 +32,7 @@ class SendOrderPaymentMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            from: new Address('jeffrey@example.com', 'Jeffrey Way'),
-            subject:'خرید کالا',
+            subject: 'ارسال کد تایید ',
         );
     }
 
@@ -51,7 +42,7 @@ class SendOrderPaymentMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'emails.sendOrderPaymentEmail',
+            view: 'emails.sendEmailVerificationCode',
         );
     }
 
@@ -62,8 +53,6 @@ class SendOrderPaymentMail extends Mailable
      */
     public function attachments(): array
     {
-        return [
-
-        ];
+        return [];
     }
 }

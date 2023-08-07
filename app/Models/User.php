@@ -18,6 +18,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 
+
 /**
  * App\Models\User
  *
@@ -185,11 +186,6 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
 
-    public function scopeWhereMobile($query, $mobile)
-    {
-        return $query->where('mobile', '=', $mobile);
-    }
-
     public function whereEmailNotNull()
     {
         return $this->where('email','!=',null)->get();
@@ -206,4 +202,45 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->belongsToMany(Copan::class);
     }
+
+
+    public function scopeWhereStatus($query,$status){
+
+        return $query->where('status','=',$status);
+    }
+
+    public function scopeWhereMobile($query,$mobile){
+
+        return $query->where('mobile','like',"%{$mobile}%");
+    }
+
+
+    public function scopeWhereNationalCode($query,$national_code){
+
+        return $query->where('national_code','like',"%{$national_code}%");
+    }
+
+
+    public function scopeWhereFirstName($query,$first_name){
+
+        return $query->where('first_name','like',"%{$first_name}%");
+    }
+
+
+    public function scopeWhereLastName($query,$last_name){
+
+        return $query->where('last_name','like',"%{$last_name}%");
+    }
+
+
+    public function scopeWhereUserType($query,$user_type){
+
+        return $query->where('user_type','=',"%{$user_type}%");
+    }
+
+
+
+
+
+
 }

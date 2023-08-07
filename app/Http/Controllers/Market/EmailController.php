@@ -164,6 +164,7 @@ class EmailController extends Controller
         $user=User::find($order['user_id'])->first();
         if($order['payment_status']==1){
            $orderItems= $this->interfaceOrderItemRepository->findOrderItemsWithOrderID($order['id']);
+
             SendOrderPaymentEmailJob::dispatch($user,$order,$orderItems);
             return response()->json(['message' => 'successfully your transaction!'], HTTPResponse::HTTP_OK);
         }

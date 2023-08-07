@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
+use App\Jobs\SendEmailVerificationCodeJob;
 use App\Jobs\VerificationSMSCodeJob;
 use App\Notifications\SMSActivationCodeNotification;
+use Carbon\Carbon;
 use Exception;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\JsonResponse;
@@ -41,7 +43,7 @@ class AuthController extends Controller
      * you must assign two parameters for login
      * email address and password
      */
-    public function login(LoginRequest $request):JsonResponse
+    public function login(LoginRequest $request): JsonResponse
     {
         $credentials = $request->only('mobile', 'password');
 
@@ -72,7 +74,7 @@ class AuthController extends Controller
             $user = User::create([
                 'first_name' => $request->first_name,
                 'mobile' => $request->mobile,
-                'password'=>Hash::make($request->password)
+                'password' => Hash::make($request->password)
             ]);
 
 
@@ -108,6 +110,7 @@ class AuthController extends Controller
             $user = null;
             if (User::whereMobile($request->mobile)->count()) {
                 /// login senario
+
                 $user = User::whereMobile($request->mobile)->first();
             } else {
                 /// register senario
@@ -128,7 +131,7 @@ class AuthController extends Controller
         }
     }
 
-    public function verifyMobile(Request $request):JsonResponse
+    public function verifyMobile(Request $request): JsonResponse
     {
 
         $validation = \Validator::make($request->all(), [
@@ -152,6 +155,9 @@ class AuthController extends Controller
                 'message' => 'Invalid register details'
             ], HTTPResponse::HTTP_UNAUTHORIZED);
 
+        $user->mobile_verified_at = Carbon::now();
+        $user->activation_date = Carbon::now();
+        $user->save();
 
         return response()->json([
             'message' => 'login successfully',
@@ -180,5 +186,66 @@ class AuthController extends Controller
                 'message' => $e->getMessage()
             ], $e->getCode());
         }
+    }
+
+
+    public function sendCodeVerificationWithEmail(Request $request): JsonResponse
+    {
+        $validation = \Validator::make($request->all(), [
+            'email' => 'required|email|exists:users,email',
+        ]);
+
+        if ($validation->fails())
+            return response()->json([
+                'message' => $validation->messages(),
+                'status' => false,
+            ], HTTPResponse::HTTP_OK);
+        try {
+            $user = User::whereEmail($request->email)->first();
+
+            $userOtp = otp_generator($user);
+            SendEmailVerificationCodeJob::dispatch($user, $userOtp->otp_code);
+            return response()->json([
+                'message' => 'successfully send code, please enter the code',
+                'status' => true
+            ], HTTPResponse::HTTP_OK);
+        } catch (Exception $exception) {
+            return response()->json(['message' => $exception->getMessage(), 'line' => $exception->getLine()], $exception->getCode());
+        }
+
+
+    }
+
+
+    public function verifyEmail(Request $request)
+    {
+
+        $validation = \Validator::make($request->all(), [
+            'code' => 'required|exists:otps,otp_code',
+            'email' => 'required|email|exists:users,email',
+        ]);
+        if ($validation->fails())
+            return response()->json([
+                'message' => $validation->messages(),
+                'status' => false,
+            ], HTTPResponse::HTTP_OK);
+      $user = User::with('Otps')->whereEmail($request->email)->first();
+
+        $code = $request->code;
+        if (!$user->Otps()->notExpire()->checkCode($code)->count())
+            return response()->json([
+                'status' => false,
+                'message' => "sorry, your code invalid, maybe it's expire"
+            ], HTTPResponse::HTTP_BAD_REQUEST);
+
+        $user->email_verified_at = Carbon::now();
+        $user->activation_date = Carbon::now();
+        $user->save();
+
+        return response()->json([
+            'message' => 'verified successfully',
+            'status' => true,
+            'token' => $user->accesstoken
+        ], HTTPResponse::HTTP_OK);
     }
 }

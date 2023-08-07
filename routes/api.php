@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AddressController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\Market\BrandController;
 use App\Http\Controllers\Market\CartItemController;
 use App\Http\Controllers\Market\CashPaymentController;
@@ -10,6 +11,8 @@ use App\Http\Controllers\Market\GuaranteeController;
 use App\Http\Controllers\Market\OfflinePaymentController;
 use App\Http\Controllers\Market\ProductCategoryController;
 use App\Http\Controllers\Market\ProductController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\Market\SmsController;
 use App\Http\Controllers\Market\PostController;
 use App\Http\Controllers\Market\ProductImageController;
@@ -44,10 +47,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
 
 Route::get('/mobile', function (Request $request) {
     $mobile = "09387589696";
@@ -59,42 +58,69 @@ Route::get('/mobile', function (Request $request) {
 Route::prefix('v1')->group(function () {
 
 
-
     Route::prefix('auth')->group(function () {
 //        Route::get('login', function () {
 //            return redirect('/');
 //        })->name('login');
+        Route::post('/sendCodeVerificationWithEmail', [AuthController::class, 'sendCodeVerificationWithEmail']);
+        Route::post('/verifyEmail', [AuthController::class, 'verifyEmail']);
         Route::post('login', [AuthController::class, 'login'])->name('login');
         Route::prefix('otp')->group(function () {
             Route::post('/', [AuthController::class, 'otp'])->name('otp');
-            Route::post('/verify', [AuthController::class, 'verifyMobile'])->name('verifyMobile');
-         //   Route::get('/verify', [AuthController::class, 'verifyMobile'])->name('verifyMobile');
+            Route::post('/verify', [AuthController::class, 'verifyMobile']);
+            //   Route::get('/verify', [AuthController::class, 'verifyMobile']);
         });
-        Route::post('register', [AuthController::class, 'register'])->name('register');
+        Route::post('register', [AuthController::class, 'register']);
     });
 
 
     Route::middleware('auth:sanctum')->group(function () {
 
-        Route::group(['prefix' => 'province'], function () {
-            Route::get('/', [ProvinceController::class, 'index']) ;
-            Route::post('/store', [ProvinceController::class, 'store']) ; //->middleware('is_admin')
-            Route::get('/show/{id}', [ProvinceController::class, 'show']) ;
-            Route::patch('/update/{id}', [ProvinceController::class, 'update']) ; //->middleware('is_admin')
-            Route::delete('/delete/{id}', [ProvinceController::class, 'destroy']) ; //->middleware('is_admin')
+        Route::group(['prefix' => 'user'], function () {
+            Route::get('/', [UserController::class, 'index']);
+            Route::post('/store', [UserController::class, 'store']);
+            Route::get('/show/{id}', [UserController::class, 'show']);
+            Route::patch('/update/{id}', [UserController::class, 'update']);
+            Route::delete('/delete/{id}', [UserController::class, 'destroy']);
+
+                Route::group(['prefix' => 'role'], function () {
+                      Route::get('/', [RoleController::class, 'index']);
+                      Route::post('/store', [RoleController::class, 'store']);
+                      Route::get('/show/{id}', [RoleController::class, 'show']);
+                      Route::patch('/update/{id}', [RoleController::class, 'update']);
+                      Route::delete('/delete/{id}', [RoleController::class, 'destroy']);
+
+
+               });
+               Route::group(['prefix' => 'permission'], function () {
+                   Route::get('/', [PermissionController::class, 'index']);
+                   Route::post('/store', [PermissionController::class, 'store']);
+                   Route::get('/show/{id}', [PermissionController::class, 'show']);
+                   Route::patch('/update/{id}', [PermissionController::class, 'update']);
+                   Route::delete('/delete/{id}', [PermissionController::class, 'destroy']);
+
+               });
+
+
         });
 
 
+        Route::group(['prefix' => 'province'], function () {
+            Route::get('/', [ProvinceController::class, 'index']);
+            Route::post('/store', [ProvinceController::class, 'store']); //->middleware('is_admin')
+            Route::get('/show/{id}', [ProvinceController::class, 'show']);
+            Route::patch('/update/{id}', [ProvinceController::class, 'update']); //->middleware('is_admin')
+            Route::delete('/delete/{id}', [ProvinceController::class, 'destroy']); //->middleware('is_admin')
+        });
 
 
         Route::group(['prefix' => 'city'], function () {
-            Route::get('/', [CityController::class, 'index']) ;
-            Route::post('/store', [CityController::class, 'store']) ; //->middleware('is_admin')
+            Route::get('/', [CityController::class, 'index']);
+            Route::post('/store', [CityController::class, 'store']); //->middleware('is_admin')
             Route::get('/show/{id}', [CityController::class, 'show']);
             Route::patch('/update/{id}', [CityController::class, 'update']); //->middleware('is_admin')
             Route::delete('/delete/{id}', [CityController::class, 'destroy']);  //->middleware('is_admin')
         });
-
 
 
         Route::group(['prefix' => 'address'], function () {
@@ -104,8 +130,6 @@ Route::prefix('v1')->group(function () {
             Route::patch('/update/{id}', [AddressController::class, 'update']); //->middleware('is_admin')
             Route::delete('/delete/{id}', [AddressController::class, 'destroy']);  //->middleware('is_admin')
         });
-
-
 
 
         Route::group(['prefix' => 'otp'], function () {
@@ -135,7 +159,6 @@ Route::prefix('v1')->group(function () {
         });
 
 
-
         Route::group(['prefix' => 'cash-payment'], function () {
             Route::get('/', [CashPaymentController::class, 'index']);
             Route::post('/store', [CashPaymentController::class, 'store']); //->middleware('is_admin')
@@ -154,7 +177,6 @@ Route::prefix('v1')->group(function () {
         });
 
 
-
         Route::group(['prefix' => 'delivery'], function () {
             Route::get('/', [DeliveryController::class, 'index']);
             Route::post('/store', [DeliveryController::class, 'store']); //->middleware('is_admin')
@@ -162,9 +184,6 @@ Route::prefix('v1')->group(function () {
             Route::patch('/update/{id}', [DeliveryController::class, 'update']); //->middleware('is_admin')
             Route::delete('/delete/{id}', [DeliveryController::class, 'destroy']);  //->middleware('is_admin')
         });
-
-
-
 
 
         Route::group(['prefix' => 'guarantee'], function () {
@@ -176,7 +195,6 @@ Route::prefix('v1')->group(function () {
         });
 
 
-
         Route::group(['prefix' => 'offline-payment'], function () {
             Route::get('/', [OfflinePaymentController::class, 'index']);
             Route::post('/store', [OfflinePaymentController::class, 'store']); //->middleware('is_admin')
@@ -184,8 +202,6 @@ Route::prefix('v1')->group(function () {
             Route::patch('/update/{id}', [OfflinePaymentController::class, 'update']); //->middleware('is_admin')
             Route::delete('/delete/{id}', [OfflinePaymentController::class, 'destroy']);  //->middleware('is_admin')
         });
-
-
 
 
         Route::group(['prefix' => 'product-category'], function () {
@@ -206,7 +222,6 @@ Route::prefix('v1')->group(function () {
         });
 
 
-
         Route::group(['prefix' => 'product-image'], function () {
             Route::get('/', [ProductImageController::class, 'index']);
             Route::post('/store', [ProductImageController::class, 'store']); //->middleware('is_admin')
@@ -224,8 +239,6 @@ Route::prefix('v1')->group(function () {
         });
 
 
-
-
         Route::group(['prefix' => 'product-property'], function () {
             Route::get('/', [ProductPropertyController::class, 'index']);
             Route::post('/store', [ProductPropertyController::class, 'store']); //->middleware('is_admin')
@@ -241,10 +254,6 @@ Route::prefix('v1')->group(function () {
             Route::patch('/update/{id}', [PaymentController::class, 'update']); //->middleware('is_admin')
             Route::delete('/delete/{id}', [PaymentController::class, 'destroy']);  //->middleware('is_admin')
         });
-
-
-
-
 
 
         Route::group(['prefix' => 'order'], function () {
@@ -273,8 +282,6 @@ Route::prefix('v1')->group(function () {
             Route::patch('/update/{id}', [ProductTransactionController::class, 'update']); //->middleware('is_admin')
             Route::delete('/delete/{id}', [ProductTransactionController::class, 'destroy']);  //->middleware('is_admin')
         });
-
-
 
 
         Route::group(['prefix' => 'amazing-sale'], function () {
@@ -312,7 +319,6 @@ Route::prefix('v1')->group(function () {
         });
 
 
-
         Route::group(['prefix' => 'comment'], function () {
             Route::get('/', [commentController::class, 'index']);
             Route::post('/store', [commentController::class, 'store']); //->middleware('is_admin')
@@ -332,15 +338,14 @@ Route::prefix('v1')->group(function () {
         });
 
 
-
         Route::group(['prefix' => 'email'], function () {
             Route::get('/', [EmailController::class, 'index']);
             Route::post('/store', [EmailController::class, 'store']); //->middleware('is_admin')
             Route::get('/show/{id}', [EmailController::class, 'show']);
             Route::post('/update/{id}', [EmailController::class, 'update']); //->middleware('is_admin')
             Route::delete('/delete/{id}', [EmailController::class, 'destroy']);  //->middleware('is_admin')
-            Route::get('/send-email/{id}',[EmailController::class,'sendEmailForAllUsers']);
-            Route::post('/send-order-payment-email',[EmailController::class,'sendOrderPaymentEmail']);
+            Route::get('/send-email/{id}', [EmailController::class, 'sendEmailForAllUsers']);
+            Route::post('/send-order-payment-email', [EmailController::class, 'sendOrderPaymentEmail']);
 
         });
 

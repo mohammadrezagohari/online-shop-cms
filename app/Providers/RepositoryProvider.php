@@ -40,6 +40,8 @@ use App\Repositories\MySQL\OtpRepository\InterfaceOtpRepository;
 use App\Repositories\MySQL\OtpRepository\OtpRepository;
 use App\Repositories\MySQL\PaymentRepository\InterfacePaymentRepository;
 use App\Repositories\MySQL\PaymentRepository\PaymentRepository;
+use App\Repositories\MySQL\PermissionRepository\InterfacePermissionRepository;
+use App\Repositories\MySQL\PermissionRepository\PermissionRepository;
 use App\Repositories\MySQL\PostCategoryRepository\PostCategoryRepository;
 use App\Repositories\MySQL\PostCategoryRepository\InterfacePostCategoryRepository;
 use App\Repositories\MySQL\PostRepository\InterfacePostRepository;
@@ -56,10 +58,14 @@ use App\Repositories\MySQL\ProductRepository\InterfaceProductRepository;
 use App\Repositories\MySQL\ProductRepository\ProductRepository;
 use App\Repositories\MySQL\ProvinceRepository\InterfaceProvinceRepository;
 use App\Repositories\MySQL\ProvinceRepository\ProvinceRepository;
+use App\Repositories\MySQL\RoleRepository\InterfaceRoleRepository;
+use App\Repositories\MySQL\RoleRepository\RoleRepository;
 use App\Repositories\MySQL\SmsRepository\InterfaceSmsRepository;
 use App\Repositories\MySQL\SmsRepository\SmsRepository;
 use App\Repositories\MySQL\TransactionRepository\InterfaceTransactionRepository;
 use App\Repositories\MySQL\TransactionRepository\TransactionRepository;
+use App\Repositories\MySQL\UserRepository\InterfaceUserRepository;
+use App\Repositories\MySQL\UserRepository\UserRepository;
 use Illuminate\Support\ServiceProvider;
 
 class RepositoryProvider extends ServiceProvider
@@ -98,6 +104,9 @@ class RepositoryProvider extends ServiceProvider
         $this->app->bind(InterfaceSmsRepository::class,SmsRepository::class);
         $this->app->bind(InterfaceEmailRepository::class,EmailRepository::class);
         $this->app->bind(InterfaceEmailFileRepository::class,EmailFileRepository::class);
+        $this->app->bind(InterfaceUserRepository::class,UserRepository::class);
+        $this->app->bind(InterfacePermissionRepository::class,PermissionRepository::class);
+        $this->app->bind(InterfaceRoleRepository::class,RoleRepository::class);
     }
 
     /**

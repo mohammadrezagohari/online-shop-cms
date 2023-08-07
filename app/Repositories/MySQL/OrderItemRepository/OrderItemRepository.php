@@ -4,6 +4,8 @@ namespace App\Repositories\MySQL\OrderItemRepository;
 
 use App\Models\Market\OrderItem;
 use App\Repositories\MySQL\BaseRepository;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Model;
 
 class OrderItemRepository extends BaseRepository implements InterfaceOrderItemRepository{
 
@@ -33,7 +35,7 @@ class OrderItemRepository extends BaseRepository implements InterfaceOrderItemRe
        return [$sumOfOrderItemsAmountWithoutAmazingSale,$sumOfOrderItemsAmountWithAmazingSale];
     }
 
-    public function findOrderItemsWithOrderID(int $orderId)
+    public function findOrderItemsWithOrderID(int $orderId):array
     {
         return  $this->model->where('order_id','=',$orderId)->get()->toArray();
 
