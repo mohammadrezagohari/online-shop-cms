@@ -48,7 +48,7 @@ class PermissionController extends Controller
                 'status' => false,
             ], HTTPResponse::HTTP_OK);
         try {
-            Permission::create(['name' => $request->input('permission')]);
+            Permission::create(['name' => $request->input('permission'),'guard_name'=>'web']);
             return response()->json(['message' => 'successfully your transaction!'], HTTPResponse::HTTP_OK);
 
         } catch (\Exception $exception) {

@@ -83,6 +83,25 @@ Route::prefix('v1')->group(function () {
             Route::patch('/update/{id}', [UserController::class, 'update']);
             Route::delete('/delete/{id}', [UserController::class, 'destroy']);
 
+
+            Route::post('/assign-role', [UserController::class, 'assignRole']);
+            Route::post('/has-role', [UserController::class, 'hasRole']);
+            Route::post('/has-any-role', [UserController::class, 'hasAnyRole']);
+            Route::post('/has-all-roles', [UserController::class, 'hasAllRoles']);
+            Route::post('/remove-role', [UserController::class, 'removeRole']);
+            Route::post('/revoke-permission-from-role', [UserController::class, 'revokePermissionFromRole']);
+            Route::post('/role/permissions', [UserController::class, 'permissionsForRole']);
+
+
+
+            Route::post('/assign-permission', [UserController::class, 'assignPermission']);
+            Route::post('/assign-permission-to-role', [UserController::class, 'assignPermissionToRole']);
+            Route::post('/has-direct-permission', [UserController::class, 'hasDirectPermission']);
+            Route::post('/has-all-direct-permissions', [UserController::class, 'hasAllDirectPermissions']);
+            Route::post('/has-any-direct-permissions', [UserController::class, 'hasAnyDirectPermission']);
+            Route::post('/get-direct-permissions', [UserController::class, 'getDirectPermissions']);
+
+
                 Route::group(['prefix' => 'role'], function () {
                       Route::get('/', [RoleController::class, 'index']);
                       Route::post('/store', [RoleController::class, 'store']);

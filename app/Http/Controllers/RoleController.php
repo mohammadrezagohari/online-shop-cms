@@ -48,7 +48,7 @@ class RoleController extends Controller
                 'status' => false,
             ], HTTPResponse::HTTP_OK);
         try {
-            Role::create(['name' => $request->input('role')]);
+            Role::create(['name' => $request->input('role'),'guard_name'=>'web']);
             return response()->json(['message' => 'successfully your transaction!'], HTTPResponse::HTTP_OK);
 
         } catch (\Exception $exception) {

@@ -47,6 +47,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Address withoutTrashed()
  * @property-read \App\Models\City $city
  * @property-read \App\Models\Province $province
+ * @property-read mixed $full_address
  * @mixin \Eloquent
  */
 class Address extends Model
