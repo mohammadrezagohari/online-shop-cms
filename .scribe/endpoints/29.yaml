@@ -1,17 +1,17 @@
-name: EmailFile
+name: Email
 description: |-
 
-  API endpoints for EmailFile Services
+  API endpoints for Email Services
 endpoints:
   -
     httpMethods:
       - GET
-    uri: api/v1/email-file
+    uri: api/v1/email
     metadata:
-      groupName: EmailFile
+      groupName: Email
       groupDescription: |-
 
-        API endpoints for EmailFile Services
+        API endpoints for Email Services
       subgroup: ''
       subgroupDescription: ''
       title: 'Display a listing of the resource.'
@@ -26,12 +26,12 @@ endpoints:
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
-      public_mail_id:
-        name: public_mail_id
+      count:
+        name: count
         description: ''
         required: false
-        example: null
-        type: string
+        example: 2
+        type: integer
         custom: []
       status:
         name: status
@@ -40,16 +40,17 @@ endpoints:
         example: '0'
         type: number
         custom: []
-      count:
-        name: count
-        description: ''
+      published_at:
+        name: published_at
+        description: 'Must be a valid date.'
         required: false
-        example: 20
-        type: integer
+        example: '2023-08-08T21:21:46'
+        type: string
         custom: []
     cleanBodyParameters:
+      count: 2
       status: '0'
-      count: 20
+      published_at: '2023-08-08T21:21:46'
     fileParameters: []
     responses:
       -
@@ -70,12 +71,12 @@ endpoints:
   -
     httpMethods:
       - POST
-    uri: api/v1/email-file/store
+    uri: api/v1/email/store
     metadata:
-      groupName: EmailFile
+      groupName: Email
       groupDescription: |-
 
-        API endpoints for EmailFile Services
+        API endpoints for Email Services
       subgroup: ''
       subgroupDescription: ''
       title: 'Store a newly created resource in storage.'
@@ -90,31 +91,39 @@ endpoints:
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
-      public_mail_id:
-        name: public_mail_id
-        description: ''
+      subject:
+        name: subject
+        description: 'Must not be greater than 255 characters.'
         required: true
-        example: eum
+        example: ftumknairebbh
         type: string
         custom: []
-      file:
-        name: file
+      body:
+        name: body
         description: ''
         required: true
-        example: adipisci
+        example: aliquam
         type: string
         custom: []
       status:
         name: status
         description: 'Must be one of <code>0</code> or <code>1</code>.'
-        required: false
+        required: true
         example: '0'
         type: number
         custom: []
+      published_at:
+        name: published_at
+        description: 'Must be a valid date. Must be a valid date in the format <code>Y-m-d H:i:s</code>.'
+        required: true
+        example: '2023-08-08 21:21:46'
+        type: string
+        custom: []
     cleanBodyParameters:
-      public_mail_id: eum
-      file: adipisci
+      subject: ftumknairebbh
+      body: aliquam
       status: '0'
+      published_at: '2023-08-08 21:21:46'
     fileParameters: []
     responses: []
     responseFields: []
@@ -126,12 +135,12 @@ endpoints:
   -
     httpMethods:
       - GET
-    uri: 'api/v1/email-file/show/{id}'
+    uri: 'api/v1/email/show/{id}'
     metadata:
-      groupName: EmailFile
+      groupName: Email
       groupDescription: |-
 
-        API endpoints for EmailFile Services
+        API endpoints for Email Services
       subgroup: ''
       subgroupDescription: ''
       title: 'Display the specified resource.'
@@ -146,11 +155,11 @@ endpoints:
         name: id
         description: 'The ID of the show.'
         required: true
-        example: porro
+        example: et
         type: string
         custom: []
     cleanUrlParameters:
-      id: porro
+      id: et
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -175,12 +184,12 @@ endpoints:
   -
     httpMethods:
       - POST
-    uri: 'api/v1/email-file/update/{id}'
+    uri: 'api/v1/email/update/{id}'
     metadata:
-      groupName: EmailFile
+      groupName: Email
       groupDescription: |-
 
-        API endpoints for EmailFile Services
+        API endpoints for Email Services
       subgroup: ''
       subgroupDescription: ''
       title: 'Update the specified resource in storage.'
@@ -195,26 +204,26 @@ endpoints:
         name: id
         description: 'The ID of the update.'
         required: true
-        example: temporibus
+        example: placeat
         type: string
         custom: []
     cleanUrlParameters:
-      id: temporibus
+      id: placeat
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
-      public_mail_id:
-        name: public_mail_id
-        description: ''
+      subject:
+        name: subject
+        description: 'Must not be greater than 255 characters.'
         required: false
-        example: null
+        example: j
         type: string
         custom: []
-      file:
-        name: file
+      body:
+        name: body
         description: ''
         required: false
-        example: null
+        example: mollitia
         type: string
         custom: []
       status:
@@ -224,8 +233,18 @@ endpoints:
         example: '0'
         type: number
         custom: []
+      published_at:
+        name: published_at
+        description: 'Must be a valid date. Must be a valid date in the format <code>Y-m-d H:i:s</code>.'
+        required: false
+        example: '2023-08-08 21:21:46'
+        type: string
+        custom: []
     cleanBodyParameters:
+      subject: j
+      body: mollitia
       status: '0'
+      published_at: '2023-08-08 21:21:46'
     fileParameters: []
     responses: []
     responseFields: []
@@ -237,12 +256,12 @@ endpoints:
   -
     httpMethods:
       - DELETE
-    uri: 'api/v1/email-file/delete/{id}'
+    uri: 'api/v1/email/delete/{id}'
     metadata:
-      groupName: EmailFile
+      groupName: Email
       groupDescription: |-
 
-        API endpoints for EmailFile Services
+        API endpoints for Email Services
       subgroup: ''
       subgroupDescription: ''
       title: 'Remove the specified resource from storage.'
@@ -257,15 +276,104 @@ endpoints:
         name: id
         description: 'The ID of the delete.'
         required: true
-        example: distinctio
+        example: veritatis
         type: string
         custom: []
     cleanUrlParameters:
-      id: distinctio
+      id: veritatis
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
     cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/v1/email/send-email/{id}'
+    metadata:
+      groupName: Email
+      groupDescription: |-
+
+        API endpoints for Email Services
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the send email.'
+        required: true
+        example: sunt
+        type: string
+        custom: []
+    cleanUrlParameters:
+      id: sunt
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/email/send-order-payment-email
+    metadata:
+      groupName: Email
+      groupDescription: |-
+
+        API endpoints for Email Services
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      order_id:
+        name: order_id
+        description: ''
+        required: true
+        example: aut
+        type: string
+        custom: []
+    cleanBodyParameters:
+      order_id: aut
     fileParameters: []
     responses: []
     responseFields: []

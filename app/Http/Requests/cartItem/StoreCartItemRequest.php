@@ -26,8 +26,8 @@ class StoreCartItemRequest extends FormRequest
         return [
             'user_id'=>'required|exists:users,id',
             'product_id'=>'required|exists:products,id',
-            'color_id'=>'required|exists:product_colors,id',
-            'guarantee_id'=>'required|exists:guarantees,id',
+            'color_id'=>'nullable|exists:product_colors,id',
+            'guarantee_id'=>'nullable|exists:guarantees,id',
             'number'=>'required|numeric'
         ];
     }

@@ -1,17 +1,17 @@
-name: CartItem
+name: Brand
 description: |-
 
-  API endpoints for CartItem Services
+  API endpoints for Brand Services
 endpoints:
   -
     httpMethods:
       - GET
-    uri: api/v1/cart-item
+    uri: api/v1/brand
     metadata:
-      groupName: CartItem
+      groupName: Brand
       groupDescription: |-
 
-        API endpoints for CartItem Services
+        API endpoints for Brand Services
       subgroup: ''
       subgroupDescription: ''
       title: 'Display a listing of the resource.'
@@ -26,43 +26,31 @@ endpoints:
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
+      persian_name:
+        name: persian_name
+        description: 'Must not be greater than 30 characters.'
+        required: false
+        example: pcrijqjwsavzqaf
+        type: string
+        custom: []
       count:
         name: count
         description: ''
         required: false
-        example: 26905.34988709
+        example: 19647.7
         type: number
         custom: []
-      user_id:
-        name: user_id
-        description: ''
+      original_name:
+        name: original_name
+        description: 'Must be one of <code>0</code> or <code>1</code>.'
         required: false
-        example: null
-        type: string
-        custom: []
-      product_id:
-        name: product_id
-        description: ''
-        required: false
-        example: null
-        type: string
-        custom: []
-      color_id:
-        name: color_id
-        description: ''
-        required: false
-        example: null
-        type: string
-        custom: []
-      guarantee_id:
-        name: guarantee_id
-        description: ''
-        required: false
-        example: null
-        type: string
+        example: '0'
+        type: number
         custom: []
     cleanBodyParameters:
-      count: 26905.34988709
+      persian_name: pcrijqjwsavzqaf
+      count: 19647.7
+      original_name: '0'
     fileParameters: []
     responses:
       -
@@ -83,12 +71,12 @@ endpoints:
   -
     httpMethods:
       - POST
-    uri: api/v1/cart-item/store
+    uri: api/v1/brand/store
     metadata:
-      groupName: CartItem
+      groupName: Brand
       groupDescription: |-
 
-        API endpoints for CartItem Services
+        API endpoints for Brand Services
       subgroup: ''
       subgroupDescription: ''
       title: 'Store a newly created resource in storage.'
@@ -96,55 +84,47 @@ endpoints:
       authenticated: false
       custom: []
     headers:
-      Content-Type: application/json
+      Content-Type: multipart/form-data
       Accept: application/json
     urlParameters: []
     cleanUrlParameters: []
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
-      user_id:
-        name: user_id
-        description: ''
+      persian_name:
+        name: persian_name
+        description: 'Must not be greater than 255 characters.'
         required: true
-        example: molestiae
+        example: tfekwihcx
         type: string
         custom: []
-      product_id:
-        name: product_id
-        description: ''
+      original_name:
+        name: original_name
+        description: 'Must not be greater than 255 characters.'
         required: true
-        example: vitae
+        example: ijpzbowyxvdhgjescza
         type: string
         custom: []
-      color_id:
-        name: color_id
-        description: ''
+      logo:
+        name: logo
+        description: 'Must be an image. Must not be greater than 2048 kilobytes.'
         required: true
-        example: est
-        type: string
+        example: null
+        type: file
         custom: []
-      guarantee_id:
-        name: guarantee_id
-        description: ''
+      status:
+        name: status
+        description: 'Must be one of <code>0</code> or <code>1</code>.'
         required: true
-        example: ut
-        type: string
-        custom: []
-      number:
-        name: number
-        description: ''
-        required: true
-        example: 20487.5052
+        example: '0'
         type: number
         custom: []
     cleanBodyParameters:
-      user_id: molestiae
-      product_id: vitae
-      color_id: est
-      guarantee_id: ut
-      number: 20487.5052
-    fileParameters: []
+      persian_name: tfekwihcx
+      original_name: ijpzbowyxvdhgjescza
+      status: '0'
+    fileParameters:
+      logo: null
     responses: []
     responseFields: []
     auth: []
@@ -155,12 +135,12 @@ endpoints:
   -
     httpMethods:
       - GET
-    uri: 'api/v1/cart-item/show/{id}'
+    uri: 'api/v1/brand/show/{id}'
     metadata:
-      groupName: CartItem
+      groupName: Brand
       groupDescription: |-
 
-        API endpoints for CartItem Services
+        API endpoints for Brand Services
       subgroup: ''
       subgroupDescription: ''
       title: 'Display the specified resource.'
@@ -175,11 +155,11 @@ endpoints:
         name: id
         description: 'The ID of the show.'
         required: true
-        example: id
+        example: et
         type: string
         custom: []
     cleanUrlParameters:
-      id: id
+      id: et
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -203,13 +183,13 @@ endpoints:
     custom: []
   -
     httpMethods:
-      - PATCH
-    uri: 'api/v1/cart-item/update/{id}'
+      - POST
+    uri: 'api/v1/brand/update/{id}'
     metadata:
-      groupName: CartItem
+      groupName: Brand
       groupDescription: |-
 
-        API endpoints for CartItem Services
+        API endpoints for Brand Services
       subgroup: ''
       subgroupDescription: ''
       title: 'Update the specified resource in storage.'
@@ -217,59 +197,55 @@ endpoints:
       authenticated: false
       custom: []
     headers:
-      Content-Type: application/json
+      Content-Type: multipart/form-data
       Accept: application/json
     urlParameters:
       id:
         name: id
         description: 'The ID of the update.'
         required: true
-        example: ut
+        example: est
         type: string
         custom: []
     cleanUrlParameters:
-      id: ut
+      id: est
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
-      user_id:
-        name: user_id
-        description: ''
+      persian_name:
+        name: persian_name
+        description: 'Must not be greater than 255 characters.'
         required: false
-        example: null
+        example: duyax
         type: string
         custom: []
-      product_id:
-        name: product_id
-        description: ''
+      original_name:
+        name: original_name
+        description: 'Must not be greater than 255 characters.'
         required: false
-        example: null
+        example: abokmrolpshp
         type: string
         custom: []
-      color_id:
-        name: color_id
-        description: ''
+      logo:
+        name: logo
+        description: 'Must be an image. Must not be greater than 2048 kilobytes.'
         required: false
         example: null
-        type: string
+        type: file
         custom: []
-      guarantee_id:
-        name: guarantee_id
-        description: ''
+      status:
+        name: status
+        description: 'Must be one of <code>0</code> or <code>1</code>.'
         required: false
-        example: null
-        type: string
-        custom: []
-      number:
-        name: number
-        description: ''
-        required: false
-        example: 158607989.29373
+        example: '1'
         type: number
         custom: []
     cleanBodyParameters:
-      number: 158607989.29373
-    fileParameters: []
+      persian_name: duyax
+      original_name: abokmrolpshp
+      status: '1'
+    fileParameters:
+      logo: null
     responses: []
     responseFields: []
     auth: []
@@ -280,12 +256,12 @@ endpoints:
   -
     httpMethods:
       - DELETE
-    uri: 'api/v1/cart-item/delete/{id}'
+    uri: 'api/v1/brand/delete/{id}'
     metadata:
-      groupName: CartItem
+      groupName: Brand
       groupDescription: |-
 
-        API endpoints for CartItem Services
+        API endpoints for Brand Services
       subgroup: ''
       subgroupDescription: ''
       title: 'Remove the specified resource from storage.'
@@ -300,11 +276,11 @@ endpoints:
         name: id
         description: 'The ID of the delete.'
         required: true
-        example: accusamus
+        example: impedit
         type: string
         custom: []
     cleanUrlParameters:
-      id: accusamus
+      id: impedit
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []

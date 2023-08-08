@@ -1,17 +1,17 @@
-name: ProductImage
+name: Product
 description: |-
 
-  API endpoints for ProductImage Services
+  API endpoints for Product Services
 endpoints:
   -
     httpMethods:
       - GET
-    uri: api/v1/product-image
+    uri: api/v1/product
     metadata:
-      groupName: ProductImage
+      groupName: Product
       groupDescription: |-
 
-        API endpoints for ProductImage Services
+        API endpoints for Product Services
       subgroup: ''
       subgroupDescription: ''
       title: 'Display a listing of the resource.'
@@ -26,22 +26,31 @@ endpoints:
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
+      name:
+        name: name
+        description: 'Must match the regex /^[ا-یa-zA-Z0-9\-۰-۹ء-ي., ]+$/u. Must not be greater than 255 characters.'
+        required: false
+        example: pcjqzlietcfgqi
+        type: string
+        custom: []
       count:
         name: count
         description: ''
         required: false
-        example: 19
-        type: integer
+        example: 1303864.7
+        type: number
         custom: []
-      product_id:
-        name: product_id
-        description: ''
+      status:
+        name: status
+        description: 'Must be one of <code>0</code> or <code>1</code>.'
         required: false
-        example: null
-        type: string
+        example: '1'
+        type: number
         custom: []
     cleanBodyParameters:
-      count: 19
+      name: pcjqzlietcfgqi
+      count: 1303864.7
+      status: '1'
     fileParameters: []
     responses:
       -
@@ -62,12 +71,12 @@ endpoints:
   -
     httpMethods:
       - POST
-    uri: api/v1/product-image/store
+    uri: api/v1/product/store
     metadata:
-      groupName: ProductImage
+      groupName: Product
       groupDescription: |-
 
-        API endpoints for ProductImage Services
+        API endpoints for Product Services
       subgroup: ''
       subgroupDescription: ''
       title: 'Store a newly created resource in storage.'
@@ -75,33 +84,97 @@ endpoints:
       authenticated: false
       custom: []
     headers:
-      Content-Type: multipart/form-data
+      Content-Type: application/json
       Accept: application/json
     urlParameters: []
     cleanUrlParameters: []
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
-      product_id:
-        name: product_id
+      name:
+        name: name
+        description: 'Must match the regex /^[ا-یa-zA-Z0-9\-۰-۹ء-ي., ]+$/u. Must not be greater than 255 characters.'
+        required: true
+        example: crt
+        type: string
+        custom: []
+      introduction:
+        name: introduction
+        description: 'Must match the regex /^[ا-یa-zA-Z0-9\-۰-۹ء-ي., ]+$/u.'
+        required: true
+        example: !!binary ZFpJiiQvdQ==
+        type: string
+        custom: []
+      status:
+        name: status
+        description: 'Must be one of <code>0</code> or <code>1</code>.'
+        required: true
+        example: '1'
+        type: number
+        custom: []
+      marketable:
+        name: marketable
+        description: 'Must be one of <code>0</code> or <code>1</code>.'
+        required: true
+        example: '1'
+        type: number
+        custom: []
+      sold_number:
+        name: sold_number
         description: ''
         required: true
-        example: et
+        example: 9
+        type: integer
+        custom: []
+      frozen_number:
+        name: frozen_number
+        description: ''
+        required: true
+        example: 18
+        type: integer
+        custom: []
+      marketable_number:
+        name: marketable_number
+        description: ''
+        required: true
+        example: 1
+        type: integer
+        custom: []
+      brand_id:
+        name: brand_id
+        description: ''
+        required: true
+        example: non
+        type: string
+        custom: []
+      category_id:
+        name: category_id
+        description: ''
+        required: true
+        example: quia
         type: string
         custom: []
       images:
         name: images
-        description: 'Must be an image. Must not be greater than 2048 kilobytes.'
+        description: 'Must not be greater than 2048 characters.'
         required: false
         example:
-          - null
-        type: 'file[]'
+          - nivgvdacxcwxnmqeuu
+        type: 'string[]'
         custom: []
     cleanBodyParameters:
-      product_id: et
-    fileParameters:
+      name: crt
+      introduction: !!binary ZFpJiiQvdQ==
+      status: '1'
+      marketable: '1'
+      sold_number: 9
+      frozen_number: 18
+      marketable_number: 1
+      brand_id: non
+      category_id: quia
       images:
-        - null
+        - nivgvdacxcwxnmqeuu
+    fileParameters: []
     responses: []
     responseFields: []
     auth: []
@@ -112,12 +185,12 @@ endpoints:
   -
     httpMethods:
       - GET
-    uri: 'api/v1/product-image/show/{id}'
+    uri: 'api/v1/product/show/{id}'
     metadata:
-      groupName: ProductImage
+      groupName: Product
       groupDescription: |-
 
-        API endpoints for ProductImage Services
+        API endpoints for Product Services
       subgroup: ''
       subgroupDescription: ''
       title: 'Display the specified resource.'
@@ -132,11 +205,11 @@ endpoints:
         name: id
         description: 'The ID of the show.'
         required: true
-        example: fugit
+        example: quam
         type: string
         custom: []
     cleanUrlParameters:
-      id: fugit
+      id: quam
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -161,12 +234,12 @@ endpoints:
   -
     httpMethods:
       - POST
-    uri: 'api/v1/product-image/update/{id}'
+    uri: 'api/v1/product/update/{id}'
     metadata:
-      groupName: ProductImage
+      groupName: Product
       groupDescription: |-
 
-        API endpoints for ProductImage Services
+        API endpoints for Product Services
       subgroup: ''
       subgroupDescription: ''
       title: 'Update the specified resource in storage.'
@@ -181,16 +254,72 @@ endpoints:
         name: id
         description: 'The ID of the update.'
         required: true
-        example: qui
+        example: a
         type: string
         custom: []
     cleanUrlParameters:
-      id: qui
+      id: a
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
-      product_id:
-        name: product_id
+      name:
+        name: name
+        description: 'Must match the regex /^[ا-یa-zA-Z0-9\-۰-۹ء-ي., ]+$/u. Must not be greater than 255 characters.'
+        required: false
+        example: xqqywwpoyiufbkovsvvajyic
+        type: string
+        custom: []
+      introduction:
+        name: introduction
+        description: 'Must match the regex /^[ا-یa-zA-Z0-9\-۰-۹ء-ي., ]+$/u.'
+        required: false
+        example: 2$/u
+        type: string
+        custom: []
+      status:
+        name: status
+        description: 'Must be one of <code>0</code> or <code>1</code>.'
+        required: false
+        example: '0'
+        type: number
+        custom: []
+      marketable:
+        name: marketable
+        description: 'Must be one of <code>0</code> or <code>1</code>.'
+        required: false
+        example: '1'
+        type: number
+        custom: []
+      sold_number:
+        name: sold_number
+        description: ''
+        required: false
+        example: 14
+        type: integer
+        custom: []
+      frozen_number:
+        name: frozen_number
+        description: ''
+        required: false
+        example: 1
+        type: integer
+        custom: []
+      marketable_number:
+        name: marketable_number
+        description: ''
+        required: false
+        example: 5
+        type: integer
+        custom: []
+      brand_id:
+        name: brand_id
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+      category_id:
+        name: category_id
         description: ''
         required: false
         example: null
@@ -204,7 +333,14 @@ endpoints:
           - null
         type: 'file[]'
         custom: []
-    cleanBodyParameters: []
+    cleanBodyParameters:
+      name: xqqywwpoyiufbkovsvvajyic
+      introduction: 2$/u
+      status: '0'
+      marketable: '1'
+      sold_number: 14
+      frozen_number: 1
+      marketable_number: 5
     fileParameters:
       images:
         - null
@@ -218,12 +354,12 @@ endpoints:
   -
     httpMethods:
       - DELETE
-    uri: 'api/v1/product-image/delete/{id}'
+    uri: 'api/v1/product/delete/{id}'
     metadata:
-      groupName: ProductImage
+      groupName: Product
       groupDescription: |-
 
-        API endpoints for ProductImage Services
+        API endpoints for Product Services
       subgroup: ''
       subgroupDescription: ''
       title: 'Remove the specified resource from storage.'
@@ -238,11 +374,11 @@ endpoints:
         name: id
         description: 'The ID of the delete.'
         required: true
-        example: facere
+        example: aut
         type: string
         custom: []
     cleanUrlParameters:
-      id: facere
+      id: aut
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []

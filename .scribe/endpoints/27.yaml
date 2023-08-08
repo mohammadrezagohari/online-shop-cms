@@ -1,17 +1,17 @@
-name: Sms
+name: Comment
 description: |-
 
-  API endpoints for Sms Services
+  API endpoints for Comment Services
 endpoints:
   -
     httpMethods:
       - GET
-    uri: api/v1/sms
+    uri: api/v1/comment
     metadata:
-      groupName: Sms
+      groupName: Comment
       groupDescription: |-
 
-        API endpoints for Sms Services
+        API endpoints for Comment Services
       subgroup: ''
       subgroupDescription: ''
       title: 'Display a listing of the resource.'
@@ -26,12 +26,26 @@ endpoints:
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
-      title:
-        name: title
-        description: 'Must not be greater than 255 characters.'
+      user_id:
+        name: user_id
+        description: ''
         required: false
-        example: ndlyyknl
+        example: null
         type: string
+        custom: []
+      count:
+        name: count
+        description: ''
+        required: false
+        example: 124235.19653342
+        type: number
+        custom: []
+      approved:
+        name: approved
+        description: 'Must be one of <code>0</code> or <code>1</code>.'
+        required: false
+        example: '0'
+        type: number
         custom: []
       status:
         name: status
@@ -40,17 +54,10 @@ endpoints:
         example: '1'
         type: number
         custom: []
-      published_at:
-        name: published_at
-        description: 'Must be a valid date. Must be a valid date in the format <code>Y-m-d H:i:s</code>.'
-        required: false
-        example: '2023-08-03 11:18:09'
-        type: string
-        custom: []
     cleanBodyParameters:
-      title: ndlyyknl
+      count: 124235.19653342
+      approved: '0'
       status: '1'
-      published_at: '2023-08-03 11:18:09'
     fileParameters: []
     responses:
       -
@@ -71,12 +78,12 @@ endpoints:
   -
     httpMethods:
       - POST
-    uri: api/v1/sms/store
+    uri: api/v1/comment/store
     metadata:
-      groupName: Sms
+      groupName: Comment
       groupDescription: |-
 
-        API endpoints for Sms Services
+        API endpoints for Comment Services
       subgroup: ''
       subgroupDescription: ''
       title: 'Store a newly created resource in storage.'
@@ -91,39 +98,39 @@ endpoints:
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
-      title:
-        name: title
-        description: 'Must not be greater than 255 characters.'
-        required: true
-        example: yvyypufjocjzk
-        type: string
-        custom: []
       body:
         name: body
-        description: ''
+        description: 'Must be at least 3 characters.'
         required: true
-        example: enim
+        example: bkmovzttzpkgztnowkzdoplnjpqyavolzc
         type: string
         custom: []
-      status:
-        name: status
-        description: 'Must be one of <code>0</code> or <code>1</code>.'
-        required: true
-        example: '1'
-        type: number
+      parent_id:
+        name: parent_id
+        description: ''
+        required: false
+        example: 9
+        type: integer
         custom: []
-      published_at:
-        name: published_at
-        description: 'Must be a valid date. Must be a valid date in the format <code>Y-m-d H:i:s</code>.'
+      user_id:
+        name: user_id
+        description: ''
         required: true
-        example: '2023-08-03 11:18:09'
+        example: omnis
+        type: string
+        custom: []
+      type:
+        name: type
+        description: ''
+        required: true
+        example: et
         type: string
         custom: []
     cleanBodyParameters:
-      title: yvyypufjocjzk
-      body: enim
-      status: '1'
-      published_at: '2023-08-03 11:18:09'
+      body: bkmovzttzpkgztnowkzdoplnjpqyavolzc
+      parent_id: 9
+      user_id: omnis
+      type: et
     fileParameters: []
     responses: []
     responseFields: []
@@ -135,12 +142,12 @@ endpoints:
   -
     httpMethods:
       - GET
-    uri: 'api/v1/sms/show/{id}'
+    uri: 'api/v1/comment/show/{id}'
     metadata:
-      groupName: Sms
+      groupName: Comment
       groupDescription: |-
 
-        API endpoints for Sms Services
+        API endpoints for Comment Services
       subgroup: ''
       subgroupDescription: ''
       title: 'Display the specified resource.'
@@ -155,11 +162,11 @@ endpoints:
         name: id
         description: 'The ID of the show.'
         required: true
-        example: nam
+        example: accusantium
         type: string
         custom: []
     cleanUrlParameters:
-      id: nam
+      id: accusantium
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -183,13 +190,13 @@ endpoints:
     custom: []
   -
     httpMethods:
-      - PATCH
-    uri: 'api/v1/sms/update/{id}'
+      - POST
+    uri: 'api/v1/comment/update/{id}'
     metadata:
-      groupName: Sms
+      groupName: Comment
       groupDescription: |-
 
-        API endpoints for Sms Services
+        API endpoints for Comment Services
       subgroup: ''
       subgroupDescription: ''
       title: 'Update the specified resource in storage.'
@@ -204,15 +211,46 @@ endpoints:
         name: id
         description: 'The ID of the update.'
         required: true
-        example: qui
+        example: est
         type: string
         custom: []
     cleanUrlParameters:
-      id: qui
+      id: est
     queryParameters: []
     cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
+    bodyParameters:
+      body:
+        name: body
+        description: 'Must be at least 3 characters.'
+        required: false
+        example: azgtbcvsvxemjarforwrfjspsqxmeaqodlkiafzijldbyeakajndvfuryqawnvquqdsurpebkqflngom
+        type: string
+        custom: []
+      parent_id:
+        name: parent_id
+        description: ''
+        required: false
+        example: 11
+        type: integer
+        custom: []
+      user_id:
+        name: user_id
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+      type:
+        name: type
+        description: ''
+        required: false
+        example: est
+        type: string
+        custom: []
+    cleanBodyParameters:
+      body: azgtbcvsvxemjarforwrfjspsqxmeaqodlkiafzijldbyeakajndvfuryqawnvquqdsurpebkqflngom
+      parent_id: 11
+      type: est
     fileParameters: []
     responses: []
     responseFields: []
@@ -224,12 +262,12 @@ endpoints:
   -
     httpMethods:
       - DELETE
-    uri: 'api/v1/sms/delete/{id}'
+    uri: 'api/v1/comment/delete/{id}'
     metadata:
-      groupName: Sms
+      groupName: Comment
       groupDescription: |-
 
-        API endpoints for Sms Services
+        API endpoints for Comment Services
       subgroup: ''
       subgroupDescription: ''
       title: 'Remove the specified resource from storage.'
@@ -244,66 +282,17 @@ endpoints:
         name: id
         description: 'The ID of the delete.'
         required: true
-        example: dolore
+        example: ipsam
         type: string
         custom: []
     cleanUrlParameters:
-      id: dolore
+      id: ipsam
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
     cleanBodyParameters: []
     fileParameters: []
     responses: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - GET
-    uri: 'api/v1/sms/send-sms/{id}'
-    metadata:
-      groupName: Sms
-      groupDescription: |-
-
-        API endpoints for Sms Services
-      subgroup: ''
-      subgroupDescription: ''
-      title: ''
-      description: ''
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      id:
-        name: id
-        description: 'The ID of the send sm.'
-        required: true
-        example: impedit
-        type: string
-        custom: []
-    cleanUrlParameters:
-      id: impedit
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses:
-      -
-        status: 401
-        content: '{"message":"Unauthenticated."}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          access-control-allow-origin: '*'
-        description: null
-        custom: []
     responseFields: []
     auth: []
     controller: null

@@ -1,17 +1,17 @@
-name: Payment
+name: ProductProperty
 description: |-
 
-  API endpoints for Payment Services
+  API endpoints for ProductProperty Services
 endpoints:
   -
     httpMethods:
       - GET
-    uri: api/v1/payment
+    uri: api/v1/product-property
     metadata:
-      groupName: Payment
+      groupName: ProductProperty
       groupDescription: |-
 
-        API endpoints for Payment Services
+        API endpoints for ProductProperty Services
       subgroup: ''
       subgroupDescription: ''
       title: 'Display a listing of the resource.'
@@ -26,31 +26,22 @@ endpoints:
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
-      user_id:
-        name: user_id
+      count:
+        name: count
         description: ''
         required: false
-        example: 6
+        example: 3
         type: integer
         custom: []
-      status:
-        name: status
-        description: 'Must be one of <code>0</code> or <code>1</code>.'
+      product_id:
+        name: product_id
+        description: ''
         required: false
-        example: '0'
-        type: number
-        custom: []
-      type:
-        name: type
-        description: 'Must be one of <code>0</code>, <code>1</code>, or <code>2</code>.'
-        required: false
-        example: '1'
-        type: number
+        example: null
+        type: string
         custom: []
     cleanBodyParameters:
-      user_id: 6
-      status: '0'
-      type: '1'
+      count: 3
     fileParameters: []
     responses:
       -
@@ -71,12 +62,12 @@ endpoints:
   -
     httpMethods:
       - POST
-    uri: api/v1/payment/store
+    uri: api/v1/product-property/store
     metadata:
-      groupName: Payment
+      groupName: ProductProperty
       groupDescription: |-
 
-        API endpoints for Payment Services
+        API endpoints for ProductProperty Services
       subgroup: ''
       subgroupDescription: ''
       title: 'Store a newly created resource in storage.'
@@ -91,39 +82,23 @@ endpoints:
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
-      amount:
-        name: amount
+      product_id:
+        name: product_id
         description: ''
         required: true
-        example: 16
+        example: 7
         type: integer
         custom: []
-      user_id:
-        name: user_id
-        description: ''
+      list:
+        name: list
+        description: 'Must be a valid JSON string.'
         required: true
-        example: 9
-        type: integer
-        custom: []
-      type:
-        name: type
-        description: 'Must be one of <code>0</code>, <code>1</code>, or <code>2</code>.'
-        required: true
-        example: '2'
-        type: number
-        custom: []
-      gateway:
-        name: gateway
-        description: ''
-        required: false
-        example: sunt
+        example: '["inventore","nobis"]'
         type: string
         custom: []
     cleanBodyParameters:
-      amount: 16
-      user_id: 9
-      type: '2'
-      gateway: sunt
+      product_id: 7
+      list: '["inventore","nobis"]'
     fileParameters: []
     responses: []
     responseFields: []
@@ -135,12 +110,12 @@ endpoints:
   -
     httpMethods:
       - GET
-    uri: 'api/v1/payment/show/{id}'
+    uri: 'api/v1/product-property/show/{id}'
     metadata:
-      groupName: Payment
+      groupName: ProductProperty
       groupDescription: |-
 
-        API endpoints for Payment Services
+        API endpoints for ProductProperty Services
       subgroup: ''
       subgroupDescription: ''
       title: 'Display the specified resource.'
@@ -155,11 +130,11 @@ endpoints:
         name: id
         description: 'The ID of the show.'
         required: true
-        example: ullam
+        example: sit
         type: string
         custom: []
     cleanUrlParameters:
-      id: ullam
+      id: sit
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -184,12 +159,12 @@ endpoints:
   -
     httpMethods:
       - PATCH
-    uri: 'api/v1/payment/update/{id}'
+    uri: 'api/v1/product-property/update/{id}'
     metadata:
-      groupName: Payment
+      groupName: ProductProperty
       groupDescription: |-
 
-        API endpoints for Payment Services
+        API endpoints for ProductProperty Services
       subgroup: ''
       subgroupDescription: ''
       title: 'Update the specified resource in storage.'
@@ -204,39 +179,39 @@ endpoints:
         name: id
         description: 'The ID of the update.'
         required: true
-        example: quibusdam
+        example: vitae
         type: string
         custom: []
     cleanUrlParameters:
-      id: quibusdam
+      id: vitae
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
-      amount:
-        name: amount
+      property_key:
+        name: property_key
+        description: 'Must not be greater than 255 characters.'
+        required: false
+        example: xzisezazhmrqdcisvrcbaet
+        type: string
+        custom: []
+      property_value:
+        name: property_value
+        description: 'Must not be greater than 255 characters.'
+        required: false
+        example: yunzk
+        type: string
+        custom: []
+      product_id:
+        name: product_id
         description: ''
         required: false
-        example: 4
+        example: 2
         type: integer
-        custom: []
-      user_id:
-        name: user_id
-        description: ''
-        required: false
-        example: 15
-        type: integer
-        custom: []
-      status:
-        name: status
-        description: 'Must be one of <code>0</code> or <code>1</code>.'
-        required: false
-        example: '0'
-        type: number
         custom: []
     cleanBodyParameters:
-      amount: 4
-      user_id: 15
-      status: '0'
+      property_key: xzisezazhmrqdcisvrcbaet
+      property_value: yunzk
+      product_id: 2
     fileParameters: []
     responses: []
     responseFields: []
@@ -248,12 +223,12 @@ endpoints:
   -
     httpMethods:
       - DELETE
-    uri: 'api/v1/payment/delete/{id}'
+    uri: 'api/v1/product-property/delete/{id}'
     metadata:
-      groupName: Payment
+      groupName: ProductProperty
       groupDescription: |-
 
-        API endpoints for Payment Services
+        API endpoints for ProductProperty Services
       subgroup: ''
       subgroupDescription: ''
       title: 'Remove the specified resource from storage.'
@@ -268,11 +243,11 @@ endpoints:
         name: id
         description: 'The ID of the delete.'
         required: true
-        example: dolorem
+        example: velit
         type: string
         custom: []
     cleanUrlParameters:
-      id: dolorem
+      id: velit
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []

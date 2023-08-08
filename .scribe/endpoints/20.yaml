@@ -1,17 +1,17 @@
-name: OrderItem
+name: Order
 description: |-
 
-  API endpoints for OrderItem Services
+  API endpoints for Order Services
 endpoints:
   -
     httpMethods:
       - GET
-    uri: api/v1/order-item
+    uri: api/v1/order
     metadata:
-      groupName: OrderItem
+      groupName: Order
       groupDescription: |-
 
-        API endpoints for OrderItem Services
+        API endpoints for Order Services
       subgroup: ''
       subgroupDescription: ''
       title: 'Display a listing of the resource.'
@@ -26,39 +26,30 @@ endpoints:
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
-      order_id:
-        name: order_id
+      count:
+        name: count
         description: ''
         required: false
         example: 11
         type: integer
         custom: []
-      product_id:
-        name: product_id
+      user_id:
+        name: user_id
         description: ''
         required: false
-        example: 5
-        type: integer
+        example: null
+        type: string
         custom: []
-      color_id:
-        name: color_id
-        description: ''
+      order_status:
+        name: order_status
+        description: 'Must be one of <code>0</code> or <code>1</code>.'
         required: false
-        example: 1
-        type: integer
-        custom: []
-      guarantee_id:
-        name: guarantee_id
-        description: ''
-        required: false
-        example: 14
-        type: integer
+        example: '0'
+        type: number
         custom: []
     cleanBodyParameters:
-      order_id: 11
-      product_id: 5
-      color_id: 1
-      guarantee_id: 14
+      count: 11
+      order_status: '0'
     fileParameters: []
     responses:
       -
@@ -79,12 +70,12 @@ endpoints:
   -
     httpMethods:
       - POST
-    uri: api/v1/order-item/store
+    uri: api/v1/order/store
     metadata:
-      groupName: OrderItem
+      groupName: Order
       groupDescription: |-
 
-        API endpoints for OrderItem Services
+        API endpoints for Order Services
       subgroup: ''
       subgroupDescription: ''
       title: 'Store a newly created resource in storage.'
@@ -99,47 +90,47 @@ endpoints:
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
-      order_id:
-        name: order_id
+      user_id:
+        name: user_id
         description: ''
         required: true
-        example: esse
+        example: soluta
         type: string
         custom: []
-      product_id:
-        name: product_id
+      address_id:
+        name: address_id
         description: ''
         required: true
-        example: eum
+        example: est
         type: string
         custom: []
-      color_id:
-        name: color_id
+      payment_type:
+        name: payment_type
+        description: 'Must be one of <code>0</code>, <code>1</code>, or <code>2</code>.'
+        required: true
+        example: '0'
+        type: string
+        custom: []
+      delivery_id:
+        name: delivery_id
         description: ''
         required: true
-        example: veritatis
+        example: eveniet
         type: string
         custom: []
-      guarantee_id:
-        name: guarantee_id
-        description: ''
-        required: true
-        example: quidem
-        type: string
-        custom: []
-      number:
-        name: number
+      code:
+        name: code
         description: ''
         required: false
-        example: 4
-        type: integer
+        example: qui
+        type: string
         custom: []
     cleanBodyParameters:
-      order_id: esse
-      product_id: eum
-      color_id: veritatis
-      guarantee_id: quidem
-      number: 4
+      user_id: soluta
+      address_id: est
+      payment_type: '0'
+      delivery_id: eveniet
+      code: qui
     fileParameters: []
     responses: []
     responseFields: []
@@ -151,12 +142,12 @@ endpoints:
   -
     httpMethods:
       - GET
-    uri: 'api/v1/order-item/show/{id}'
+    uri: 'api/v1/order/show/{id}'
     metadata:
-      groupName: OrderItem
+      groupName: Order
       groupDescription: |-
 
-        API endpoints for OrderItem Services
+        API endpoints for Order Services
       subgroup: ''
       subgroupDescription: ''
       title: 'Display the specified resource.'
@@ -171,11 +162,11 @@ endpoints:
         name: id
         description: 'The ID of the show.'
         required: true
-        example: recusandae
+        example: ipsam
         type: string
         custom: []
     cleanUrlParameters:
-      id: recusandae
+      id: ipsam
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -200,12 +191,12 @@ endpoints:
   -
     httpMethods:
       - PATCH
-    uri: 'api/v1/order-item/update/{id}'
+    uri: 'api/v1/order/update/{id}'
     metadata:
-      groupName: OrderItem
+      groupName: Order
       groupDescription: |-
 
-        API endpoints for OrderItem Services
+        API endpoints for Order Services
       subgroup: ''
       subgroupDescription: ''
       title: 'Update the specified resource in storage.'
@@ -220,51 +211,37 @@ endpoints:
         name: id
         description: 'The ID of the update.'
         required: true
-        example: autem
+        example: ut
         type: string
         custom: []
     cleanUrlParameters:
-      id: autem
+      id: ut
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
-      order_id:
-        name: order_id
+      address_id:
+        name: address_id
         description: ''
         required: false
         example: null
         type: string
         custom: []
-      product_id:
-        name: product_id
+      payment_type:
+        name: payment_type
+        description: 'Must be one of <code>0</code>, <code>1</code>, or <code>2</code>.'
+        required: false
+        example: '1'
+        type: string
+        custom: []
+      delivery_id:
+        name: delivery_id
         description: ''
         required: false
         example: null
         type: string
-        custom: []
-      color_id:
-        name: color_id
-        description: ''
-        required: false
-        example: null
-        type: string
-        custom: []
-      guarantee_id:
-        name: guarantee_id
-        description: ''
-        required: false
-        example: null
-        type: string
-        custom: []
-      number:
-        name: number
-        description: ''
-        required: false
-        example: 18
-        type: integer
         custom: []
     cleanBodyParameters:
-      number: 18
+      payment_type: '1'
     fileParameters: []
     responses: []
     responseFields: []
@@ -276,12 +253,12 @@ endpoints:
   -
     httpMethods:
       - DELETE
-    uri: 'api/v1/order-item/delete/{id}'
+    uri: 'api/v1/order/delete/{id}'
     metadata:
-      groupName: OrderItem
+      groupName: Order
       groupDescription: |-
 
-        API endpoints for OrderItem Services
+        API endpoints for Order Services
       subgroup: ''
       subgroupDescription: ''
       title: 'Remove the specified resource from storage.'
@@ -296,11 +273,11 @@ endpoints:
         name: id
         description: 'The ID of the delete.'
         required: true
-        example: cum
+        example: dolorem
         type: string
         custom: []
     cleanUrlParameters:
-      id: cum
+      id: dolorem
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []

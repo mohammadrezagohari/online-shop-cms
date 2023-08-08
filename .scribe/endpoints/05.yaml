@@ -1,20 +1,20 @@
-name: Otp
+name: Address
 description: |-
 
-  API endpoints for Otp Services
+  API endpoints for Address Services
 endpoints:
   -
     httpMethods:
       - GET
-    uri: api/v1/otp
+    uri: api/v1/address
     metadata:
-      groupName: Otp
+      groupName: Address
       groupDescription: |-
 
-        API endpoints for Otp Services
+        API endpoints for Address Services
       subgroup: ''
       subgroupDescription: ''
-      title: 'Display a listing of the resource.'
+      title: ''
       description: ''
       authenticated: false
       custom: []
@@ -26,18 +26,18 @@ endpoints:
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
-      login_type:
-        name: login_type
-        description: ''
+      keyword:
+        name: keyword
+        description: 'Must not be greater than 30 characters.'
         required: false
-        example: aut
+        example: zeovairdqukyuzpcw
         type: string
         custom: []
       count:
         name: count
         description: ''
         required: false
-        example: 3590.0
+        example: 58342466.627
         type: number
         custom: []
       user_id:
@@ -48,8 +48,8 @@ endpoints:
         type: string
         custom: []
     cleanBodyParameters:
-      login_type: aut
-      count: 3590.0
+      keyword: zeovairdqukyuzpcw
+      count: 58342466.627
     fileParameters: []
     responses:
       -
@@ -69,13 +69,125 @@ endpoints:
     custom: []
   -
     httpMethods:
-      - GET
-    uri: 'api/v1/otp/show/{id}'
+      - POST
+    uri: api/v1/address/store
     metadata:
-      groupName: Otp
+      groupName: Address
       groupDescription: |-
 
-        API endpoints for Otp Services
+        API endpoints for Address Services
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Store a newly created resource in storage.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      user_id:
+        name: user_id
+        description: ''
+        required: true
+        example: 9
+        type: integer
+        custom: []
+      province_id:
+        name: province_id
+        description: ''
+        required: true
+        example: 11
+        type: integer
+        custom: []
+      city_id:
+        name: city_id
+        description: ''
+        required: true
+        example: 13
+        type: integer
+        custom: []
+      postal_code:
+        name: postal_code
+        description: ''
+        required: true
+        example: dicta
+        type: string
+        custom: []
+      address:
+        name: address
+        description: ''
+        required: true
+        example: rerum
+        type: string
+        custom: []
+      unit:
+        name: unit
+        description: ''
+        required: true
+        example: asperiores
+        type: string
+        custom: []
+      recipient_first_name:
+        name: recipient_first_name
+        description: ''
+        required: false
+        example: impedit
+        type: string
+        custom: []
+      recipient_last_name:
+        name: recipient_last_name
+        description: ''
+        required: false
+        example: repudiandae
+        type: string
+        custom: []
+      mobile:
+        name: mobile
+        description: ''
+        required: false
+        example: ab
+        type: string
+        custom: []
+      status:
+        name: status
+        description: 'Must be one of <code>0</code> or <code>1</code>.'
+        required: true
+        example: '1'
+        type: number
+        custom: []
+    cleanBodyParameters:
+      user_id: 9
+      province_id: 11
+      city_id: 13
+      postal_code: dicta
+      address: rerum
+      unit: asperiores
+      recipient_first_name: impedit
+      recipient_last_name: repudiandae
+      mobile: ab
+      status: '1'
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/v1/address/show/{id}'
+    metadata:
+      groupName: Address
+      groupDescription: |-
+
+        API endpoints for Address Services
       subgroup: ''
       subgroupDescription: ''
       title: 'Display the specified resource.'
@@ -90,11 +202,11 @@ endpoints:
         name: id
         description: 'The ID of the show.'
         required: true
-        example: assumenda
+        example: maxime
         type: string
         custom: []
     cleanUrlParameters:
-      id: assumenda
+      id: maxime
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -118,13 +230,133 @@ endpoints:
     custom: []
   -
     httpMethods:
-      - DELETE
-    uri: 'api/v1/otp/delete/{id}'
+      - PATCH
+    uri: 'api/v1/address/update/{id}'
     metadata:
-      groupName: Otp
+      groupName: Address
       groupDescription: |-
 
-        API endpoints for Otp Services
+        API endpoints for Address Services
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Update the specified resource in storage.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the update.'
+        required: true
+        example: molestiae
+        type: string
+        custom: []
+    cleanUrlParameters:
+      id: molestiae
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      user_id:
+        name: user_id
+        description: ''
+        required: false
+        example: 15
+        type: integer
+        custom: []
+      province_id:
+        name: province_id
+        description: ''
+        required: false
+        example: 11
+        type: integer
+        custom: []
+      city_id:
+        name: city_id
+        description: ''
+        required: false
+        example: 6
+        type: integer
+        custom: []
+      postal_code:
+        name: postal_code
+        description: ''
+        required: false
+        example: rem
+        type: string
+        custom: []
+      address:
+        name: address
+        description: ''
+        required: false
+        example: voluptatibus
+        type: string
+        custom: []
+      unit:
+        name: unit
+        description: ''
+        required: false
+        example: quas
+        type: string
+        custom: []
+      recipient_first_name:
+        name: recipient_first_name
+        description: ''
+        required: false
+        example: tempore
+        type: string
+        custom: []
+      recipient_last_name:
+        name: recipient_last_name
+        description: ''
+        required: false
+        example: et
+        type: string
+        custom: []
+      mobile:
+        name: mobile
+        description: ''
+        required: false
+        example: et
+        type: string
+        custom: []
+      status:
+        name: status
+        description: 'Must be one of <code>0</code> or <code>1</code>.'
+        required: false
+        example: '0'
+        type: number
+        custom: []
+    cleanBodyParameters:
+      user_id: 15
+      province_id: 11
+      city_id: 6
+      postal_code: rem
+      address: voluptatibus
+      unit: quas
+      recipient_first_name: tempore
+      recipient_last_name: et
+      mobile: et
+      status: '0'
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/v1/address/delete/{id}'
+    metadata:
+      groupName: Address
+      groupDescription: |-
+
+        API endpoints for Address Services
       subgroup: ''
       subgroupDescription: ''
       title: 'Remove the specified resource from storage.'
@@ -139,11 +371,11 @@ endpoints:
         name: id
         description: 'The ID of the delete.'
         required: true
-        example: qui
+        example: voluptates
         type: string
         custom: []
     cleanUrlParameters:
-      id: qui
+      id: voluptates
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []

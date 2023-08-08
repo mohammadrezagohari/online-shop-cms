@@ -141,6 +141,8 @@ class OrderController extends Controller
     public function store(StoreOrderRequest $request)
     {
         $data = @$request->except(['_token']);
+
+
         $copan_amount = null;
         $copan_amount_type = null;
         $copan_id = null;

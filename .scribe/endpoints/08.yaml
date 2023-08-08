@@ -1,17 +1,17 @@
-name: CashPayment
+name: CartItem
 description: |-
 
-  API endpoints for CashPayment Services
+  API endpoints for CartItem Services
 endpoints:
   -
     httpMethods:
       - GET
-    uri: api/v1/cash-payment
+    uri: api/v1/cart-item
     metadata:
-      groupName: CashPayment
+      groupName: CartItem
       groupDescription: |-
 
-        API endpoints for CashPayment Services
+        API endpoints for CartItem Services
       subgroup: ''
       subgroupDescription: ''
       title: 'Display a listing of the resource.'
@@ -26,6 +26,13 @@ endpoints:
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
+      count:
+        name: count
+        description: ''
+        required: false
+        example: 65.5755696
+        type: number
+        custom: []
       user_id:
         name: user_id
         description: ''
@@ -33,23 +40,29 @@ endpoints:
         example: null
         type: string
         custom: []
-      cash_receiver:
-        name: cash_receiver
-        description: 'Must not be greater than 255 characters.'
-        required: false
-        example: mipukdqex
-        type: string
-        custom: []
-      count:
-        name: count
+      product_id:
+        name: product_id
         description: ''
         required: false
-        example: 5450.188
-        type: number
+        example: null
+        type: string
+        custom: []
+      color_id:
+        name: color_id
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+      guarantee_id:
+        name: guarantee_id
+        description: ''
+        required: false
+        example: null
+        type: string
         custom: []
     cleanBodyParameters:
-      cash_receiver: mipukdqex
-      count: 5450.188
+      count: 65.5755696
     fileParameters: []
     responses:
       -
@@ -70,12 +83,12 @@ endpoints:
   -
     httpMethods:
       - POST
-    uri: api/v1/cash-payment/store
+    uri: api/v1/cart-item/store
     metadata:
-      groupName: CashPayment
+      groupName: CartItem
       groupDescription: |-
 
-        API endpoints for CashPayment Services
+        API endpoints for CartItem Services
       subgroup: ''
       subgroupDescription: ''
       title: 'Store a newly created resource in storage.'
@@ -90,39 +103,47 @@ endpoints:
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
-      amount:
-        name: amount
-        description: ''
-        required: true
-        example: quis
-        type: string
-        custom: []
       user_id:
         name: user_id
         description: ''
         required: true
-        example: iste
+        example: velit
         type: string
         custom: []
-      cash_receiver:
-        name: cash_receiver
-        description: 'Must not be greater than 255 characters. Must be at least 3 characters.'
+      product_id:
+        name: product_id
+        description: ''
         required: true
-        example: cracyowoptplep
+        example: fuga
         type: string
         custom: []
-      status:
-        name: status
-        description: 'Must be one of <code>0</code> or <code>1</code>.'
+      color_id:
+        name: color_id
+        description: ''
         required: true
-        example: '1'
+        example: eum
+        type: string
+        custom: []
+      guarantee_id:
+        name: guarantee_id
+        description: ''
+        required: true
+        example: ut
+        type: string
+        custom: []
+      number:
+        name: number
+        description: ''
+        required: true
+        example: 1.6514
         type: number
         custom: []
     cleanBodyParameters:
-      amount: quis
-      user_id: iste
-      cash_receiver: cracyowoptplep
-      status: '1'
+      user_id: velit
+      product_id: fuga
+      color_id: eum
+      guarantee_id: ut
+      number: 1.6514
     fileParameters: []
     responses: []
     responseFields: []
@@ -134,12 +155,12 @@ endpoints:
   -
     httpMethods:
       - GET
-    uri: 'api/v1/cash-payment/show/{id}'
+    uri: 'api/v1/cart-item/show/{id}'
     metadata:
-      groupName: CashPayment
+      groupName: CartItem
       groupDescription: |-
 
-        API endpoints for CashPayment Services
+        API endpoints for CartItem Services
       subgroup: ''
       subgroupDescription: ''
       title: 'Display the specified resource.'
@@ -154,11 +175,11 @@ endpoints:
         name: id
         description: 'The ID of the show.'
         required: true
-        example: ipsa
+        example: eos
         type: string
         custom: []
     cleanUrlParameters:
-      id: ipsa
+      id: eos
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -183,12 +204,12 @@ endpoints:
   -
     httpMethods:
       - PATCH
-    uri: 'api/v1/cash-payment/update/{id}'
+    uri: 'api/v1/cart-item/update/{id}'
     metadata:
-      groupName: CashPayment
+      groupName: CartItem
       groupDescription: |-
 
-        API endpoints for CashPayment Services
+        API endpoints for CartItem Services
       subgroup: ''
       subgroupDescription: ''
       title: 'Update the specified resource in storage.'
@@ -203,21 +224,14 @@ endpoints:
         name: id
         description: 'The ID of the update.'
         required: true
-        example: a
+        example: recusandae
         type: string
         custom: []
     cleanUrlParameters:
-      id: a
+      id: recusandae
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
-      amount:
-        name: amount
-        description: ''
-        required: false
-        example: null
-        type: string
-        custom: []
       user_id:
         name: user_id
         description: ''
@@ -225,23 +239,36 @@ endpoints:
         example: null
         type: string
         custom: []
-      cash_receiver:
-        name: cash_receiver
-        description: 'Must not be greater than 255 characters. Must be at least 3 characters.'
+      product_id:
+        name: product_id
+        description: ''
         required: false
-        example: hjwjczsqiwpejicwaydcmjwqhrhpvbyceqsposrepywvcyicuvmthni
+        example: null
         type: string
         custom: []
-      status:
-        name: status
-        description: 'Must be one of <code>0</code> or <code>1</code>.'
+      color_id:
+        name: color_id
+        description: ''
         required: false
-        example: '1'
+        example: null
+        type: string
+        custom: []
+      guarantee_id:
+        name: guarantee_id
+        description: ''
+        required: false
+        example: null
+        type: string
+        custom: []
+      number:
+        name: number
+        description: ''
+        required: false
+        example: 3269.093341
         type: number
         custom: []
     cleanBodyParameters:
-      cash_receiver: hjwjczsqiwpejicwaydcmjwqhrhpvbyceqsposrepywvcyicuvmthni
-      status: '1'
+      number: 3269.093341
     fileParameters: []
     responses: []
     responseFields: []
@@ -253,12 +280,12 @@ endpoints:
   -
     httpMethods:
       - DELETE
-    uri: 'api/v1/cash-payment/delete/{id}'
+    uri: 'api/v1/cart-item/delete/{id}'
     metadata:
-      groupName: CashPayment
+      groupName: CartItem
       groupDescription: |-
 
-        API endpoints for CashPayment Services
+        API endpoints for CartItem Services
       subgroup: ''
       subgroupDescription: ''
       title: 'Remove the specified resource from storage.'
@@ -273,11 +300,11 @@ endpoints:
         name: id
         description: 'The ID of the delete.'
         required: true
-        example: quod
+        example: in
         type: string
         custom: []
     cleanUrlParameters:
-      id: quod
+      id: in
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []

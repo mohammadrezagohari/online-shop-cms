@@ -1,17 +1,17 @@
-name: Province
+name: User
 description: |-
 
-  API endpoints for Province Services
+  API endpoints for User Services
 endpoints:
   -
     httpMethods:
       - GET
-    uri: api/v1/province
+    uri: api/v1/user
     metadata:
-      groupName: Province
+      groupName: User
       groupDescription: |-
 
-        API endpoints for Province Services
+        API endpoints for User Services
       subgroup: ''
       subgroupDescription: ''
       title: 'Display a listing of the resource.'
@@ -26,30 +26,55 @@ endpoints:
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
-      keyword:
-        name: keyword
-        description: 'Must not be greater than 30 characters.'
+      mobile:
+        name: mobile
+        description: 'Must not be greater than 11 characters.'
         required: false
-        example: iacgzstlfwnn
+        example: eftypeodlro
         type: string
         custom: []
-      count:
-        name: count
-        description: ''
+      national_code:
+        name: national_code
+        description: 'Must not be greater than 10 characters.'
         required: false
-        example: 81259.0
+        example: htisa
+        type: string
+        custom: []
+      first_name:
+        name: first_name
+        description: 'Must not be greater than 255 characters.'
+        required: false
+        example: druxvobhtpvh
+        type: string
+        custom: []
+      last_name:
+        name: last_name
+        description: 'Must not be greater than 255 characters.'
+        required: false
+        example: l
+        type: string
+        custom: []
+      user_type:
+        name: user_type
+        description: 'Must be one of <code>0</code> or <code>1</code>.'
+        required: false
+        example: '0'
         type: number
         custom: []
-      province_id:
-        name: province_id
-        description: ''
+      status:
+        name: status
+        description: 'Must be one of <code>0</code> or <code>1</code>.'
         required: false
-        example: null
-        type: string
+        example: '0'
+        type: number
         custom: []
     cleanBodyParameters:
-      keyword: iacgzstlfwnn
-      count: 81259.0
+      mobile: eftypeodlro
+      national_code: htisa
+      first_name: druxvobhtpvh
+      last_name: l
+      user_type: '0'
+      status: '0'
     fileParameters: []
     responses:
       -
@@ -70,12 +95,12 @@ endpoints:
   -
     httpMethods:
       - POST
-    uri: api/v1/province/store
+    uri: api/v1/user/store
     metadata:
-      groupName: Province
+      groupName: User
       groupDescription: |-
 
-        API endpoints for Province Services
+        API endpoints for User Services
       subgroup: ''
       subgroupDescription: ''
       title: 'Store a newly created resource in storage.'
@@ -90,23 +115,71 @@ endpoints:
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
-      name:
-        name: name
-        description: ''
+      mobile:
+        name: mobile
+        description: 'Must not be greater than 11 characters.'
         required: true
-        example: omnis
+        example: mccqnb
         type: string
         custom: []
-      slug:
-        name: slug
+      password:
+        name: password
         description: ''
         required: true
-        example: a
+        example: aliquid
         type: string
+        custom: []
+      avatar:
+        name: avatar
+        description: 'Must be one of <code>0</code> or <code>1</code>.'
+        required: true
+        example: '0'
+        type: number
+        custom: []
+      national_code:
+        name: national_code
+        description: 'Must be 10 digits.'
+        required: true
+        example: '8001322659'
+        type: string
+        custom: []
+      first_name:
+        name: first_name
+        description: 'Must not be greater than 255 characters.'
+        required: true
+        example: pueli
+        type: string
+        custom: []
+      last_name:
+        name: last_name
+        description: 'Must not be greater than 255 characters.'
+        required: true
+        example: hvuxurkhvnbv
+        type: string
+        custom: []
+      user_type:
+        name: user_type
+        description: 'Must be one of <code>0</code> or <code>1</code>.'
+        required: false
+        example: '1'
+        type: number
+        custom: []
+      status:
+        name: status
+        description: 'Must be one of <code>0</code> or <code>1</code>.'
+        required: true
+        example: '0'
+        type: number
         custom: []
     cleanBodyParameters:
-      name: omnis
-      slug: a
+      mobile: mccqnb
+      password: aliquid
+      avatar: '0'
+      national_code: '8001322659'
+      first_name: pueli
+      last_name: hvuxurkhvnbv
+      user_type: '1'
+      status: '0'
     fileParameters: []
     responses: []
     responseFields: []
@@ -118,12 +191,12 @@ endpoints:
   -
     httpMethods:
       - GET
-    uri: 'api/v1/province/show/{id}'
+    uri: 'api/v1/user/show/{id}'
     metadata:
-      groupName: Province
+      groupName: User
       groupDescription: |-
 
-        API endpoints for Province Services
+        API endpoints for User Services
       subgroup: ''
       subgroupDescription: ''
       title: 'Display the specified resource.'
@@ -138,11 +211,11 @@ endpoints:
         name: id
         description: 'The ID of the show.'
         required: true
-        example: quis
+        example: ea
         type: string
         custom: []
     cleanUrlParameters:
-      id: quis
+      id: ea
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -167,12 +240,12 @@ endpoints:
   -
     httpMethods:
       - PATCH
-    uri: 'api/v1/province/update/{id}'
+    uri: 'api/v1/user/update/{id}'
     metadata:
-      groupName: Province
+      groupName: User
       groupDescription: |-
 
-        API endpoints for Province Services
+        API endpoints for User Services
       subgroup: ''
       subgroupDescription: ''
       title: 'Update the specified resource in storage.'
@@ -187,31 +260,78 @@ endpoints:
         name: id
         description: 'The ID of the update.'
         required: true
-        example: eveniet
+        example: quibusdam
         type: string
         custom: []
     cleanUrlParameters:
-      id: eveniet
+      id: quibusdam
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
-      name:
-        name: name
-        description: ''
-        required: true
-        example: ut
+      mobile:
+        name: mobile
+        description: 'Must not be greater than 11 characters.'
+        required: false
+        example: ldthot
         type: string
         custom: []
-      slug:
-        name: slug
+      password:
+        name: password
         description: ''
-        required: true
-        example: aut
+        required: false
+        example: null
         type: string
+        custom: []
+      avatar:
+        name: avatar
+        description: 'Must be one of <code>0</code> or <code>1</code>.'
+        required: false
+        example: '1'
+        type: number
+        custom: []
+      national_code:
+        name: national_code
+        description: 'Must be 10 digits.'
+        required: false
+        example: '5479406011'
+        type: string
+        custom: []
+      first_name:
+        name: first_name
+        description: 'Must not be greater than 255 characters.'
+        required: false
+        example: klvqlpvofhkw
+        type: string
+        custom: []
+      last_name:
+        name: last_name
+        description: 'Must not be greater than 255 characters.'
+        required: false
+        example: qx
+        type: string
+        custom: []
+      user_type:
+        name: user_type
+        description: 'Must be one of <code>0</code> or <code>1</code>.'
+        required: false
+        example: '1'
+        type: number
+        custom: []
+      status:
+        name: status
+        description: 'Must be one of <code>0</code> or <code>1</code>.'
+        required: false
+        example: '1'
+        type: number
         custom: []
     cleanBodyParameters:
-      name: ut
-      slug: aut
+      mobile: ldthot
+      avatar: '1'
+      national_code: '5479406011'
+      first_name: klvqlpvofhkw
+      last_name: qx
+      user_type: '1'
+      status: '1'
     fileParameters: []
     responses: []
     responseFields: []
@@ -223,12 +343,12 @@ endpoints:
   -
     httpMethods:
       - DELETE
-    uri: 'api/v1/province/delete/{id}'
+    uri: 'api/v1/user/delete/{id}'
     metadata:
-      groupName: Province
+      groupName: User
       groupDescription: |-
 
-        API endpoints for Province Services
+        API endpoints for User Services
       subgroup: ''
       subgroupDescription: ''
       title: 'Remove the specified resource from storage.'
@@ -243,15 +363,621 @@ endpoints:
         name: id
         description: 'The ID of the delete.'
         required: true
-        example: veritatis
+        example: perferendis
         type: string
         custom: []
     cleanUrlParameters:
-      id: veritatis
+      id: perferendis
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
     cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/user/assign-role
+    metadata:
+      groupName: User
+      groupDescription: |-
+
+        API endpoints for User Services
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      user_id:
+        name: user_id
+        description: ''
+        required: true
+        example: reprehenderit
+        type: string
+        custom: []
+      role_id:
+        name: role_id
+        description: ''
+        required: true
+        example: sunt
+        type: string
+        custom: []
+    cleanBodyParameters:
+      user_id: reprehenderit
+      role_id: sunt
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/user/has-role
+    metadata:
+      groupName: User
+      groupDescription: |-
+
+        API endpoints for User Services
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      role_id:
+        name: role_id
+        description: ''
+        required: true
+        example: ratione
+        type: string
+        custom: []
+      user_id:
+        name: user_id
+        description: ''
+        required: true
+        example: voluptas
+        type: string
+        custom: []
+    cleanBodyParameters:
+      role_id: ratione
+      user_id: voluptas
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/user/has-any-role
+    metadata:
+      groupName: User
+      groupDescription: |-
+
+        API endpoints for User Services
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      user_id:
+        name: user_id
+        description: ''
+        required: true
+        example: excepturi
+        type: string
+        custom: []
+      roles:
+        name: roles
+        description: ''
+        required: true
+        example:
+          - eos
+        type: 'string[]'
+        custom: []
+    cleanBodyParameters:
+      user_id: excepturi
+      roles:
+        - eos
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/user/has-all-roles
+    metadata:
+      groupName: User
+      groupDescription: |-
+
+        API endpoints for User Services
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      user_id:
+        name: user_id
+        description: ''
+        required: true
+        example: sapiente
+        type: string
+        custom: []
+    cleanBodyParameters:
+      user_id: sapiente
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/user/remove-role
+    metadata:
+      groupName: User
+      groupDescription: |-
+
+        API endpoints for User Services
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      user_id:
+        name: user_id
+        description: ''
+        required: true
+        example: reprehenderit
+        type: string
+        custom: []
+      role_id:
+        name: role_id
+        description: ''
+        required: true
+        example: et
+        type: string
+        custom: []
+    cleanBodyParameters:
+      user_id: reprehenderit
+      role_id: et
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/user/revoke-permission-from-role
+    metadata:
+      groupName: User
+      groupDescription: |-
+
+        API endpoints for User Services
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      permission_id:
+        name: permission_id
+        description: ''
+        required: true
+        example: et
+        type: string
+        custom: []
+      role_id:
+        name: role_id
+        description: ''
+        required: true
+        example: aut
+        type: string
+        custom: []
+    cleanBodyParameters:
+      permission_id: et
+      role_id: aut
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/user/role/permissions
+    metadata:
+      groupName: User
+      groupDescription: |-
+
+        API endpoints for User Services
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      role_id:
+        name: role_id
+        description: ''
+        required: true
+        example: quis
+        type: string
+        custom: []
+    cleanBodyParameters:
+      role_id: quis
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/user/assign-permission
+    metadata:
+      groupName: User
+      groupDescription: |-
+
+        API endpoints for User Services
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      permission_id:
+        name: permission_id
+        description: ''
+        required: true
+        example: molestias
+        type: string
+        custom: []
+      user_id:
+        name: user_id
+        description: ''
+        required: true
+        example: fuga
+        type: string
+        custom: []
+    cleanBodyParameters:
+      permission_id: molestias
+      user_id: fuga
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/user/assign-permission-to-role
+    metadata:
+      groupName: User
+      groupDescription: |-
+
+        API endpoints for User Services
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      permission_id:
+        name: permission_id
+        description: ''
+        required: true
+        example: quos
+        type: string
+        custom: []
+      role_id:
+        name: role_id
+        description: ''
+        required: true
+        example: illum
+        type: string
+        custom: []
+    cleanBodyParameters:
+      permission_id: quos
+      role_id: illum
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/user/has-direct-permission
+    metadata:
+      groupName: User
+      groupDescription: |-
+
+        API endpoints for User Services
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      user_id:
+        name: user_id
+        description: ''
+        required: true
+        example: voluptatem
+        type: string
+        custom: []
+      permission_id:
+        name: permission_id
+        description: ''
+        required: true
+        example: ut
+        type: string
+        custom: []
+    cleanBodyParameters:
+      user_id: voluptatem
+      permission_id: ut
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/user/has-all-direct-permissions
+    metadata:
+      groupName: User
+      groupDescription: |-
+
+        API endpoints for User Services
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      user_id:
+        name: user_id
+        description: ''
+        required: true
+        example: sunt
+        type: string
+        custom: []
+      permissions:
+        name: permissions
+        description: ''
+        required: true
+        example:
+          - voluptatum
+        type: 'string[]'
+        custom: []
+    cleanBodyParameters:
+      user_id: sunt
+      permissions:
+        - voluptatum
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/user/has-any-direct-permissions
+    metadata:
+      groupName: User
+      groupDescription: |-
+
+        API endpoints for User Services
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      user_id:
+        name: user_id
+        description: ''
+        required: true
+        example: enim
+        type: string
+        custom: []
+      permissions:
+        name: permissions
+        description: ''
+        required: true
+        example:
+          - ducimus
+        type: 'string[]'
+        custom: []
+    cleanBodyParameters:
+      user_id: enim
+      permissions:
+        - ducimus
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/user/get-direct-permissions
+    metadata:
+      groupName: User
+      groupDescription: |-
+
+        API endpoints for User Services
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      user_id:
+        name: user_id
+        description: ''
+        required: true
+        example: ea
+        type: string
+        custom: []
+    cleanBodyParameters:
+      user_id: ea
     fileParameters: []
     responses: []
     responseFields: []

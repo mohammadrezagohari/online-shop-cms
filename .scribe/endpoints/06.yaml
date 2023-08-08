@@ -1,17 +1,17 @@
-name: Brand
+name: Otp
 description: |-
 
-  API endpoints for Brand Services
+  API endpoints for Otp Services
 endpoints:
   -
     httpMethods:
       - GET
-    uri: api/v1/brand
+    uri: api/v1/otp
     metadata:
-      groupName: Brand
+      groupName: Otp
       groupDescription: |-
 
-        API endpoints for Brand Services
+        API endpoints for Otp Services
       subgroup: ''
       subgroupDescription: ''
       title: 'Display a listing of the resource.'
@@ -26,31 +26,30 @@ endpoints:
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
-      persian_name:
-        name: persian_name
-        description: 'Must not be greater than 30 characters.'
+      login_type:
+        name: login_type
+        description: ''
         required: false
-        example: rur
+        example: corporis
         type: string
         custom: []
       count:
         name: count
         description: ''
         required: false
-        example: 743931640.84838
+        example: 15.2399358
         type: number
         custom: []
-      original_name:
-        name: original_name
-        description: 'Must be one of <code>0</code> or <code>1</code>.'
+      user_id:
+        name: user_id
+        description: ''
         required: false
-        example: '1'
-        type: number
+        example: null
+        type: string
         custom: []
     cleanBodyParameters:
-      persian_name: rur
-      count: 743931640.84838
-      original_name: '1'
+      login_type: corporis
+      count: 15.2399358
     fileParameters: []
     responses:
       -
@@ -70,77 +69,13 @@ endpoints:
     custom: []
   -
     httpMethods:
-      - POST
-    uri: api/v1/brand/store
-    metadata:
-      groupName: Brand
-      groupDescription: |-
-
-        API endpoints for Brand Services
-      subgroup: ''
-      subgroupDescription: ''
-      title: 'Store a newly created resource in storage.'
-      description: ''
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: multipart/form-data
-      Accept: application/json
-    urlParameters: []
-    cleanUrlParameters: []
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters:
-      persian_name:
-        name: persian_name
-        description: 'Must not be greater than 255 characters.'
-        required: true
-        example: fycowslhzqzuxjdviah
-        type: string
-        custom: []
-      original_name:
-        name: original_name
-        description: 'Must not be greater than 255 characters.'
-        required: true
-        example: orfxvosmfjuqpdm
-        type: string
-        custom: []
-      logo:
-        name: logo
-        description: 'Must be an image. Must not be greater than 2048 kilobytes.'
-        required: true
-        example: null
-        type: file
-        custom: []
-      status:
-        name: status
-        description: 'Must be one of <code>0</code> or <code>1</code>.'
-        required: true
-        example: '1'
-        type: number
-        custom: []
-    cleanBodyParameters:
-      persian_name: fycowslhzqzuxjdviah
-      original_name: orfxvosmfjuqpdm
-      status: '1'
-    fileParameters:
-      logo: null
-    responses: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
       - GET
-    uri: 'api/v1/brand/show/{id}'
+    uri: 'api/v1/otp/show/{id}'
     metadata:
-      groupName: Brand
+      groupName: Otp
       groupDescription: |-
 
-        API endpoints for Brand Services
+        API endpoints for Otp Services
       subgroup: ''
       subgroupDescription: ''
       title: 'Display the specified resource.'
@@ -155,11 +90,11 @@ endpoints:
         name: id
         description: 'The ID of the show.'
         required: true
-        example: dolorum
+        example: corrupti
         type: string
         custom: []
     cleanUrlParameters:
-      id: dolorum
+      id: corrupti
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -183,85 +118,13 @@ endpoints:
     custom: []
   -
     httpMethods:
-      - POST
-    uri: 'api/v1/brand/update/{id}'
-    metadata:
-      groupName: Brand
-      groupDescription: |-
-
-        API endpoints for Brand Services
-      subgroup: ''
-      subgroupDescription: ''
-      title: 'Update the specified resource in storage.'
-      description: ''
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: multipart/form-data
-      Accept: application/json
-    urlParameters:
-      id:
-        name: id
-        description: 'The ID of the update.'
-        required: true
-        example: eum
-        type: string
-        custom: []
-    cleanUrlParameters:
-      id: eum
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters:
-      persian_name:
-        name: persian_name
-        description: 'Must not be greater than 255 characters.'
-        required: false
-        example: iaqsawmtwhtbudexguvg
-        type: string
-        custom: []
-      original_name:
-        name: original_name
-        description: 'Must not be greater than 255 characters.'
-        required: false
-        example: mohylyepludcswyxalznsthn
-        type: string
-        custom: []
-      logo:
-        name: logo
-        description: 'Must be an image. Must not be greater than 2048 kilobytes.'
-        required: false
-        example: null
-        type: file
-        custom: []
-      status:
-        name: status
-        description: 'Must be one of <code>0</code> or <code>1</code>.'
-        required: false
-        example: '1'
-        type: number
-        custom: []
-    cleanBodyParameters:
-      persian_name: iaqsawmtwhtbudexguvg
-      original_name: mohylyepludcswyxalznsthn
-      status: '1'
-    fileParameters:
-      logo: null
-    responses: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
       - DELETE
-    uri: 'api/v1/brand/delete/{id}'
+    uri: 'api/v1/otp/delete/{id}'
     metadata:
-      groupName: Brand
+      groupName: Otp
       groupDescription: |-
 
-        API endpoints for Brand Services
+        API endpoints for Otp Services
       subgroup: ''
       subgroupDescription: ''
       title: 'Remove the specified resource from storage.'
@@ -276,11 +139,11 @@ endpoints:
         name: id
         description: 'The ID of the delete.'
         required: true
-        example: perferendis
+        example: sed
         type: string
         custom: []
     cleanUrlParameters:
-      id: perferendis
+      id: sed
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []

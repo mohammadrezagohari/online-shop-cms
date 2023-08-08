@@ -1,17 +1,17 @@
-name: Copan
+name: AmazingSale
 description: |-
 
-  API endpoints for Copan Services
+  API endpoints for AmazingSale Services
 endpoints:
   -
     httpMethods:
       - GET
-    uri: api/v1/copan
+    uri: api/v1/amazing-sale
     metadata:
-      groupName: Copan
+      groupName: AmazingSale
       groupDescription: |-
 
-        API endpoints for Copan Services
+        API endpoints for AmazingSale Services
       subgroup: ''
       subgroupDescription: ''
       title: 'Display a listing of the resource.'
@@ -26,47 +26,30 @@ endpoints:
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
-      code:
-        name: code
+      count:
+        name: count
         description: ''
         required: false
-        example: voluptatibus
+        example: 1
+        type: integer
+        custom: []
+      product_id:
+        name: product_id
+        description: ''
+        required: false
+        example: null
         type: string
-        custom: []
-      amount_type:
-        name: amount_type
-        description: 'Must be one of <code>0</code> or <code>1</code>.'
-        required: false
-        example: '1'
-        type: number
-        custom: []
-      type:
-        name: type
-        description: 'Must be one of <code>0</code> or <code>1</code>.'
-        required: false
-        example: '1'
-        type: number
         custom: []
       status:
         name: status
         description: 'Must be one of <code>0</code> or <code>1</code>.'
         required: false
-        example: '1'
-        type: number
-        custom: []
-      count:
-        name: count
-        description: ''
-        required: false
-        example: 16
-        type: integer
+        example: '0'
+        type: string
         custom: []
     cleanBodyParameters:
-      code: voluptatibus
-      amount_type: '1'
-      type: '1'
-      status: '1'
-      count: 16
+      count: 1
+      status: '0'
     fileParameters: []
     responses:
       -
@@ -87,12 +70,12 @@ endpoints:
   -
     httpMethods:
       - POST
-    uri: api/v1/copan/store
+    uri: api/v1/amazing-sale/store
     metadata:
-      groupName: Copan
+      groupName: AmazingSale
       groupDescription: |-
 
-        API endpoints for Copan Services
+        API endpoints for AmazingSale Services
       subgroup: ''
       subgroupDescription: ''
       title: 'Store a newly created resource in storage.'
@@ -107,86 +90,47 @@ endpoints:
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
-      code:
-        name: code
-        description: 'Must not be greater than 255 characters. Must be at least 3 characters.'
+      product_id:
+        name: product_id
+        description: ''
         required: true
-        example: sdjvifcrpqbpcuxbyhyviqdybpcpgxoubb
+        example: sit
         type: string
         custom: []
-      amount:
-        name: amount
-        description: ''
+      percentage:
+        name: percentage
+        description: 'Must be at least 1. Must not be greater than 100.'
         required: true
-        example: 5
-        type: integer
-        custom: []
-      amount_type:
-        name: amount_type
-        description: 'Must be one of <code>0</code> or <code>1</code>.'
-        required: true
-        example: '1'
-        type: number
-        custom: []
-      discount_ceiling:
-        name: discount_ceiling
-        description: ''
-        required: false
-        example: 16
-        type: integer
-        custom: []
-      type:
-        name: type
-        description: 'Must be one of <code>0</code> or <code>1</code>.'
-        required: true
-        example: '0'
+        example: 2
         type: number
         custom: []
       status:
         name: status
         description: 'Must be one of <code>0</code> or <code>1</code>.'
-        required: true
+        required: false
         example: '1'
         type: number
-        custom: []
-      max_use_code:
-        name: max_use_code
-        description: ''
-        required: true
-        example: 11
-        type: integer
         custom: []
       start_date:
         name: start_date
         description: 'Must be a valid date. Must be a valid date in the format <code>Y-m-d H:i:s</code>.'
         required: true
-        example: '2023-08-03 11:18:09'
+        example: '2023-08-08 21:21:45'
         type: string
         custom: []
       end_date:
         name: end_date
         description: 'Must be a valid date. Must be a valid date in the format <code>Y-m-d H:i:s</code>.'
         required: true
-        example: '2023-08-03 11:18:09'
-        type: string
-        custom: []
-      user_id:
-        name: user_id
-        description: ''
-        required: false
-        example: null
+        example: '2023-08-08 21:21:45'
         type: string
         custom: []
     cleanBodyParameters:
-      code: sdjvifcrpqbpcuxbyhyviqdybpcpgxoubb
-      amount: 5
-      amount_type: '1'
-      discount_ceiling: 16
-      type: '0'
+      product_id: sit
+      percentage: 2
       status: '1'
-      max_use_code: 11
-      start_date: '2023-08-03 11:18:09'
-      end_date: '2023-08-03 11:18:09'
+      start_date: '2023-08-08 21:21:45'
+      end_date: '2023-08-08 21:21:45'
     fileParameters: []
     responses: []
     responseFields: []
@@ -198,12 +142,12 @@ endpoints:
   -
     httpMethods:
       - GET
-    uri: 'api/v1/copan/show/{id}'
+    uri: 'api/v1/amazing-sale/show/{id}'
     metadata:
-      groupName: Copan
+      groupName: AmazingSale
       groupDescription: |-
 
-        API endpoints for Copan Services
+        API endpoints for AmazingSale Services
       subgroup: ''
       subgroupDescription: ''
       title: 'Display the specified resource.'
@@ -218,11 +162,11 @@ endpoints:
         name: id
         description: 'The ID of the show.'
         required: true
-        example: ipsum
+        example: rerum
         type: string
         custom: []
     cleanUrlParameters:
-      id: ipsum
+      id: rerum
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -247,12 +191,12 @@ endpoints:
   -
     httpMethods:
       - PATCH
-    uri: 'api/v1/copan/update/{id}'
+    uri: 'api/v1/amazing-sale/update/{id}'
     metadata:
-      groupName: Copan
+      groupName: AmazingSale
       groupDescription: |-
 
-        API endpoints for Copan Services
+        API endpoints for AmazingSale Services
       subgroup: ''
       subgroupDescription: ''
       title: 'Update the specified resource in storage.'
@@ -267,47 +211,26 @@ endpoints:
         name: id
         description: 'The ID of the update.'
         required: true
-        example: et
+        example: voluptatem
         type: string
         custom: []
     cleanUrlParameters:
-      id: et
+      id: voluptatem
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
-      code:
-        name: code
-        description: 'Must not be greater than 255 characters. Must be at least 3 characters.'
+      product_id:
+        name: product_id
+        description: ''
         required: false
-        example: vpm
+        example: null
         type: string
         custom: []
-      amount:
-        name: amount
-        description: ''
+      percentage:
+        name: percentage
+        description: 'Must be at least 1. Must not be greater than 100.'
         required: false
-        example: 3
-        type: integer
-        custom: []
-      amount_type:
-        name: amount_type
-        description: 'Must be one of <code>0</code> or <code>1</code>.'
-        required: false
-        example: '0'
-        type: number
-        custom: []
-      discount_ceiling:
-        name: discount_ceiling
-        description: ''
-        required: false
-        example: 12
-        type: integer
-        custom: []
-      type:
-        name: type
-        description: 'Must be one of <code>0</code> or <code>1</code>.'
-        required: false
-        example: '0'
+        example: 22
         type: number
         custom: []
       status:
@@ -317,44 +240,25 @@ endpoints:
         example: '0'
         type: number
         custom: []
-      max_use_code:
-        name: max_use_code
-        description: ''
-        required: false
-        example: 7
-        type: integer
-        custom: []
       start_date:
         name: start_date
         description: 'Must be a valid date. Must be a valid date in the format <code>Y-m-d H:i:s</code>.'
-        required: false
-        example: '2023-08-03 11:18:09'
+        required: true
+        example: '2023-08-08 21:21:45'
         type: string
         custom: []
       end_date:
         name: end_date
         description: 'Must be a valid date. Must be a valid date in the format <code>Y-m-d H:i:s</code>.'
-        required: false
-        example: '2023-08-03 11:18:09'
-        type: string
-        custom: []
-      user_id:
-        name: user_id
-        description: ''
-        required: false
-        example: null
+        required: true
+        example: '2023-08-08 21:21:45'
         type: string
         custom: []
     cleanBodyParameters:
-      code: vpm
-      amount: 3
-      amount_type: '0'
-      discount_ceiling: 12
-      type: '0'
+      percentage: 22
       status: '0'
-      max_use_code: 7
-      start_date: '2023-08-03 11:18:09'
-      end_date: '2023-08-03 11:18:09'
+      start_date: '2023-08-08 21:21:45'
+      end_date: '2023-08-08 21:21:45'
     fileParameters: []
     responses: []
     responseFields: []
@@ -366,12 +270,12 @@ endpoints:
   -
     httpMethods:
       - DELETE
-    uri: 'api/v1/copan/delete/{id}'
+    uri: 'api/v1/amazing-sale/delete/{id}'
     metadata:
-      groupName: Copan
+      groupName: AmazingSale
       groupDescription: |-
 
-        API endpoints for Copan Services
+        API endpoints for AmazingSale Services
       subgroup: ''
       subgroupDescription: ''
       title: 'Remove the specified resource from storage.'
@@ -386,11 +290,11 @@ endpoints:
         name: id
         description: 'The ID of the delete.'
         required: true
-        example: voluptates
+        example: et
         type: string
         custom: []
     cleanUrlParameters:
-      id: voluptates
+      id: et
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []

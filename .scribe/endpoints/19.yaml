@@ -1,17 +1,17 @@
-name: Order
+name: Payment
 description: |-
 
-  API endpoints for Order Services
+  API endpoints for Payment Services
 endpoints:
   -
     httpMethods:
       - GET
-    uri: api/v1/order
+    uri: api/v1/payment
     metadata:
-      groupName: Order
+      groupName: Payment
       groupDescription: |-
 
-        API endpoints for Order Services
+        API endpoints for Payment Services
       subgroup: ''
       subgroupDescription: ''
       title: 'Display a listing of the resource.'
@@ -26,30 +26,31 @@ endpoints:
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
-      count:
-        name: count
-        description: ''
-        required: false
-        example: 3
-        type: integer
-        custom: []
       user_id:
         name: user_id
         description: ''
         required: false
-        example: null
-        type: string
+        example: 13
+        type: integer
         custom: []
-      order_status:
-        name: order_status
+      status:
+        name: status
         description: 'Must be one of <code>0</code> or <code>1</code>.'
         required: false
-        example: '0'
+        example: '1'
+        type: number
+        custom: []
+      type:
+        name: type
+        description: 'Must be one of <code>0</code>, <code>1</code>, or <code>2</code>.'
+        required: false
+        example: '2'
         type: number
         custom: []
     cleanBodyParameters:
-      count: 3
-      order_status: '0'
+      user_id: 13
+      status: '1'
+      type: '2'
     fileParameters: []
     responses:
       -
@@ -70,12 +71,12 @@ endpoints:
   -
     httpMethods:
       - POST
-    uri: api/v1/order/store
+    uri: api/v1/payment/store
     metadata:
-      groupName: Order
+      groupName: Payment
       groupDescription: |-
 
-        API endpoints for Order Services
+        API endpoints for Payment Services
       subgroup: ''
       subgroupDescription: ''
       title: 'Store a newly created resource in storage.'
@@ -90,47 +91,39 @@ endpoints:
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
+      amount:
+        name: amount
+        description: ''
+        required: true
+        example: 17
+        type: integer
+        custom: []
       user_id:
         name: user_id
         description: ''
         required: true
-        example: voluptatum
-        type: string
+        example: 20
+        type: integer
         custom: []
-      address_id:
-        name: address_id
-        description: ''
-        required: true
-        example: sed
-        type: string
-        custom: []
-      payment_type:
-        name: payment_type
+      type:
+        name: type
         description: 'Must be one of <code>0</code>, <code>1</code>, or <code>2</code>.'
         required: true
-        example: '2'
-        type: string
+        example: '0'
+        type: number
         custom: []
-      delivery_id:
-        name: delivery_id
-        description: ''
-        required: true
-        example: quasi
-        type: string
-        custom: []
-      code:
-        name: code
+      gateway:
+        name: gateway
         description: ''
         required: false
-        example: molestiae
+        example: blanditiis
         type: string
         custom: []
     cleanBodyParameters:
-      user_id: voluptatum
-      address_id: sed
-      payment_type: '2'
-      delivery_id: quasi
-      code: molestiae
+      amount: 17
+      user_id: 20
+      type: '0'
+      gateway: blanditiis
     fileParameters: []
     responses: []
     responseFields: []
@@ -142,12 +135,12 @@ endpoints:
   -
     httpMethods:
       - GET
-    uri: 'api/v1/order/show/{id}'
+    uri: 'api/v1/payment/show/{id}'
     metadata:
-      groupName: Order
+      groupName: Payment
       groupDescription: |-
 
-        API endpoints for Order Services
+        API endpoints for Payment Services
       subgroup: ''
       subgroupDescription: ''
       title: 'Display the specified resource.'
@@ -162,11 +155,11 @@ endpoints:
         name: id
         description: 'The ID of the show.'
         required: true
-        example: perspiciatis
+        example: iure
         type: string
         custom: []
     cleanUrlParameters:
-      id: perspiciatis
+      id: iure
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -191,12 +184,12 @@ endpoints:
   -
     httpMethods:
       - PATCH
-    uri: 'api/v1/order/update/{id}'
+    uri: 'api/v1/payment/update/{id}'
     metadata:
-      groupName: Order
+      groupName: Payment
       groupDescription: |-
 
-        API endpoints for Order Services
+        API endpoints for Payment Services
       subgroup: ''
       subgroupDescription: ''
       title: 'Update the specified resource in storage.'
@@ -211,37 +204,39 @@ endpoints:
         name: id
         description: 'The ID of the update.'
         required: true
-        example: vero
+        example: repellendus
         type: string
         custom: []
     cleanUrlParameters:
-      id: vero
+      id: repellendus
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
-      address_id:
-        name: address_id
+      amount:
+        name: amount
         description: ''
         required: false
-        example: null
-        type: string
+        example: 19
+        type: integer
         custom: []
-      payment_type:
-        name: payment_type
-        description: 'Must be one of <code>0</code>, <code>1</code>, or <code>2</code>.'
-        required: false
-        example: '1'
-        type: string
-        custom: []
-      delivery_id:
-        name: delivery_id
+      user_id:
+        name: user_id
         description: ''
         required: false
-        example: null
-        type: string
+        example: 13
+        type: integer
+        custom: []
+      status:
+        name: status
+        description: 'Must be one of <code>0</code> or <code>1</code>.'
+        required: false
+        example: '0'
+        type: number
         custom: []
     cleanBodyParameters:
-      payment_type: '1'
+      amount: 19
+      user_id: 13
+      status: '0'
     fileParameters: []
     responses: []
     responseFields: []
@@ -253,12 +248,12 @@ endpoints:
   -
     httpMethods:
       - DELETE
-    uri: 'api/v1/order/delete/{id}'
+    uri: 'api/v1/payment/delete/{id}'
     metadata:
-      groupName: Order
+      groupName: Payment
       groupDescription: |-
 
-        API endpoints for Order Services
+        API endpoints for Payment Services
       subgroup: ''
       subgroupDescription: ''
       title: 'Remove the specified resource from storage.'
@@ -273,11 +268,11 @@ endpoints:
         name: id
         description: 'The ID of the delete.'
         required: true
-        example: iusto
+        example: est
         type: string
         custom: []
     cleanUrlParameters:
-      id: iusto
+      id: est
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []

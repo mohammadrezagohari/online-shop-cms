@@ -14,10 +14,14 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
 
-            ProvinceSeeder::class,
-            CitySeeder::class,
-            RuleSeeder::class,
-            SuperAdminSeeder::class,
+          //  ProvinceSeeder::class,
+          //  CitySeeder::class,
+            //RuleSeeder::class,
+           // SuperAdminSeeder::class,
+           // DeliveryStatusSeeder::class,
+          //  OrderStatusSeeder::class,
+           // PaymentStatusSeeder::class,
+            PaymentTypeSeeder::class
 
         ]);
     }
