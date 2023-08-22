@@ -62,11 +62,13 @@ use App\Repositories\MySQL\RoleRepository\InterfaceRoleRepository;
 use App\Repositories\MySQL\RoleRepository\RoleRepository;
 use App\Repositories\MySQL\SmsRepository\InterfaceSmsRepository;
 use App\Repositories\MySQL\SmsRepository\SmsRepository;
+use App\Repositories\MySQL\StripeTransactionRepository\InterfaceStripeTransactionRepository;
 use App\Repositories\MySQL\TransactionRepository\InterfaceTransactionRepository;
 use App\Repositories\MySQL\TransactionRepository\TransactionRepository;
 use App\Repositories\MySQL\UserRepository\InterfaceUserRepository;
 use App\Repositories\MySQL\UserRepository\UserRepository;
 use Illuminate\Support\ServiceProvider;
+use App\Repositories\MySQL\StripeTransactionRepository\StripeTransactionRepository;
 
 class RepositoryProvider extends ServiceProvider
 {
@@ -107,6 +109,7 @@ class RepositoryProvider extends ServiceProvider
         $this->app->bind(InterfaceUserRepository::class,UserRepository::class);
         $this->app->bind(InterfacePermissionRepository::class,PermissionRepository::class);
         $this->app->bind(InterfaceRoleRepository::class,RoleRepository::class);
+        $this->app->bind(InterfaceStripeTransactionRepository::class,StripeTransactionRepository::class);
     }
 
     /**

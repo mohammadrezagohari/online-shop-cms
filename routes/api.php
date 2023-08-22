@@ -31,6 +31,7 @@ use App\Http\Controllers\Market\EmailController;
 use App\Http\Controllers\Market\EmailFileController;
 use App\Http\Controllers\OtpController;
 use App\Http\Controllers\CityController;
+use App\Http\Controllers\Market\StripeController;
 use App\Http\Controllers\ProvinceController;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -303,6 +304,18 @@ Route::prefix('v1')->group(function () {
         });
 
 
+
+        Route::group(['prefix' => 'stripe-transaction'], function () {
+            Route::get('/', [StripeController::class, 'index']);
+            Route::post('/checkout', [StripeController::class, 'checkout']); //->middleware('is_admin')
+          
+            Route::post('/webhook',[StripeController::class,'webhook'])->name('checkout.webhook');
+            Route::get('/show/{id}', [StripeController::class, 'show']);
+            Route::patch('/update/{id}', [StripeController::class, 'update']); //->middleware('is_admin')
+            Route::delete('/delete/{id}', [StripeController::class, 'destroy']);  //->middleware('is_admin')
+        });
+
+
         Route::group(['prefix' => 'amazing-sale'], function () {
             Route::get('/', [AmazingSaleController::class, 'index']);
             Route::post('/store', [AmazingSaleController::class, 'store']); //->middleware('is_admin')
@@ -379,7 +392,11 @@ Route::prefix('v1')->group(function () {
 
 
     });
-    Route::get('/transaction/callback/{id}', [ProductTransactionController::class, 'callback']); //->middleware('is_admin')
+    Route::get('/transaction/callback/{id}', [ProductTransactionController::class, 'callback']); //->middleware('is_admin') 
+
+    Route::get('/stripe-transaction/success',[StripeController::class,'success'])->name('checkout.success');
+    Route::get('/stripe-transaction/cancel',[StripeController::class,'cancel'])->name('checkout.cancel');
+    Route::get('/stripe-transaction/webhook',[StripeController::class,'webhook'])->name('checkout.webhook');
 
 
 });
