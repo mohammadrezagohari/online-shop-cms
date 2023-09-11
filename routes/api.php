@@ -60,9 +60,9 @@ Route::prefix('v1')->group(function () {
 
 
     Route::prefix('auth')->group(function () {
-//        Route::get('login', function () {
-//            return redirect('/');
-//        })->name('login');
+        //        Route::get('login', function () {
+        //            return redirect('/');
+        //        })->name('login');
         Route::post('/sendCodeVerificationWithEmail', [AuthController::class, 'sendCodeVerificationWithEmail']);
         Route::post('/verifyEmail', [AuthController::class, 'verifyEmail']);
         Route::post('login', [AuthController::class, 'login'])->name('login');
@@ -103,25 +103,20 @@ Route::prefix('v1')->group(function () {
             Route::post('/get-direct-permissions', [UserController::class, 'getDirectPermissions']);
 
 
-                Route::group(['prefix' => 'role'], function () {
-                      Route::get('/', [RoleController::class, 'index']);
-                      Route::post('/store', [RoleController::class, 'store']);
-                      Route::get('/show/{id}', [RoleController::class, 'show']);
-                      Route::patch('/update/{id}', [RoleController::class, 'update']);
-                      Route::delete('/delete/{id}', [RoleController::class, 'destroy']);
-
-
-               });
-               Route::group(['prefix' => 'permission'], function () {
-                   Route::get('/', [PermissionController::class, 'index']);
-                   Route::post('/store', [PermissionController::class, 'store']);
-                   Route::get('/show/{id}', [PermissionController::class, 'show']);
-                   Route::patch('/update/{id}', [PermissionController::class, 'update']);
-                   Route::delete('/delete/{id}', [PermissionController::class, 'destroy']);
-
-               });
-
-
+            Route::group(['prefix' => 'role'], function () {
+                Route::get('/', [RoleController::class, 'index']);
+                Route::post('/store', [RoleController::class, 'store']);
+                Route::get('/show/{id}', [RoleController::class, 'show']);
+                Route::patch('/update/{id}', [RoleController::class, 'update']);
+                Route::delete('/delete/{id}', [RoleController::class, 'destroy']);
+            });
+            Route::group(['prefix' => 'permission'], function () {
+                Route::get('/', [PermissionController::class, 'index']);
+                Route::post('/store', [PermissionController::class, 'store']);
+                Route::get('/show/{id}', [PermissionController::class, 'show']);
+                Route::patch('/update/{id}', [PermissionController::class, 'update']);
+                Route::delete('/delete/{id}', [PermissionController::class, 'destroy']);
+            });
         });
 
 
@@ -154,9 +149,9 @@ Route::prefix('v1')->group(function () {
 
         Route::group(['prefix' => 'otp'], function () {
             Route::get('/', [OtpController::class, 'index']);
-//            Route::post('/store', [OtpController::class, 'store']) ; //->middleware('is_admin')
+            //            Route::post('/store', [OtpController::class, 'store']) ; //->middleware('is_admin')
             Route::get('/show/{id}', [OtpController::class, 'show']);
-//            Route::patch('/update/{id}', [OtpController::class, 'update']) ; //->middleware('is_admin')
+            //            Route::patch('/update/{id}', [OtpController::class, 'update']) ; //->middleware('is_admin')
             Route::delete('/delete/{id}', [OtpController::class, 'destroy']);  //->middleware('is_admin')
         });
 
@@ -304,18 +299,6 @@ Route::prefix('v1')->group(function () {
         });
 
 
-
-        Route::group(['prefix' => 'stripe-transaction'], function () {
-            Route::get('/', [StripeController::class, 'index']);
-            Route::post('/checkout', [StripeController::class, 'checkout']); //->middleware('is_admin')
-          
-            Route::post('/webhook',[StripeController::class,'webhook'])->name('checkout.webhook');
-            Route::get('/show/{id}', [StripeController::class, 'show']);
-            Route::patch('/update/{id}', [StripeController::class, 'update']); //->middleware('is_admin')
-            Route::delete('/delete/{id}', [StripeController::class, 'destroy']);  //->middleware('is_admin')
-        });
-
-
         Route::group(['prefix' => 'amazing-sale'], function () {
             Route::get('/', [AmazingSaleController::class, 'index']);
             Route::post('/store', [AmazingSaleController::class, 'store']); //->middleware('is_admin')
@@ -378,7 +361,6 @@ Route::prefix('v1')->group(function () {
             Route::delete('/delete/{id}', [EmailController::class, 'destroy']);  //->middleware('is_admin')
             Route::get('/send-email/{id}', [EmailController::class, 'sendEmailForAllUsers']);
             Route::post('/send-order-payment-email', [EmailController::class, 'sendOrderPaymentEmail']);
-
         });
 
 
@@ -389,14 +371,8 @@ Route::prefix('v1')->group(function () {
             Route::post('/update/{id}', [EmailFileController::class, 'update']); //->middleware('is_admin')
             Route::delete('/delete/{id}', [EmailFileController::class, 'destroy']);  //->middleware('is_admin')
         });
-
-
     });
     Route::get('/transaction/callback/{id}', [ProductTransactionController::class, 'callback']); //->middleware('is_admin') 
-
-    Route::get('/stripe-transaction/success',[StripeController::class,'success'])->name('checkout.success');
-    Route::get('/stripe-transaction/cancel',[StripeController::class,'cancel'])->name('checkout.cancel');
-    Route::get('/stripe-transaction/webhook',[StripeController::class,'webhook'])->name('checkout.webhook');
 
 
 });

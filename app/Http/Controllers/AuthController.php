@@ -6,17 +6,15 @@ use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
 use App\Jobs\SendEmailVerificationCodeJob;
 use App\Jobs\VerificationSMSCodeJob;
-use App\Notifications\SMSActivationCodeNotification;
 use Carbon\Carbon;
 use Exception;
-use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use DB;
 use Symfony\Component\HttpFoundation\Response as HTTPResponse;
-use Whoops\Handler\JsonResponseHandler;
 
 use function App\otp_generator;
 
@@ -67,22 +65,21 @@ class AuthController extends Controller
      *********************************************************/
     public function register(RegisterRequest $request)
     {
-
-
         try {
-
+            DB::beginTransaction();
             $user = User::create([
                 'first_name' => $request->first_name,
                 'mobile' => $request->mobile,
                 'password' => Hash::make($request->password)
             ]);
-
-
             $credentials = $request->only('mobile', 'password');
             if (!Auth::attempt($credentials))
                 return response()->json([
                     'message' => 'Invalid register details'
                 ], HTTPResponse::HTTP_UNAUTHORIZED);
+
+
+            DB::commit();
             return response()->json([
                 'message' => 'your user created successfully',
                 'status' => true,
@@ -117,7 +114,6 @@ class AuthController extends Controller
                 $user = User::create([
                     'mobile' => $request->mobile,
                 ]);
-
             }
             $userOtp = otp_generator($user);
 
@@ -212,8 +208,6 @@ class AuthController extends Controller
         } catch (Exception $exception) {
             return response()->json(['message' => $exception->getMessage(), 'line' => $exception->getLine()], $exception->getCode());
         }
-
-
     }
 
 
@@ -229,7 +223,7 @@ class AuthController extends Controller
                 'message' => $validation->messages(),
                 'status' => false,
             ], HTTPResponse::HTTP_OK);
-      $user = User::with('Otps')->whereEmail($request->email)->first();
+        $user = User::with('Otps')->whereEmail($request->email)->first();
 
         $code = $request->code;
         if (!$user->Otps()->notExpire()->checkCode($code)->count())
