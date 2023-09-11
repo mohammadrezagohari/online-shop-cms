@@ -299,6 +299,17 @@ Route::prefix('v1')->group(function () {
         });
 
 
+        Route::group(['prefix' => 'stripe-transaction'], function () {
+            Route::get('/', [StripeController::class, 'index']);
+            Route::post('/checkout', [StripeController::class, 'checkout']); //->middleware('is_admin')
+            Route::post('/webhook',[StripeController::class,'webhook'])->name('checkout.webhook');
+            Route::get('/show/{id}', [StripeController::class, 'show']);
+            Route::patch('/update/{id}', [StripeController::class, 'update']); //->middleware('is_admin')
+            Route::delete('/delete/{id}', [StripeController::class, 'destroy']);  //->middleware('is_admin')
+        });
+
+
+
         Route::group(['prefix' => 'amazing-sale'], function () {
             Route::get('/', [AmazingSaleController::class, 'index']);
             Route::post('/store', [AmazingSaleController::class, 'store']); //->middleware('is_admin')
