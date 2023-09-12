@@ -66,9 +66,9 @@ class BrandController extends Controller
     public function store(StoreBrandRequest $request):JsonResponse
     {
         $data=$request->except(['_token']);
-        $result =upload_asset_file($request->file('logo'),'brands');
+        $image_url =upload_asset_file($request->file('logo'),'brands');
 
-        $data['logo']="brands/".$result;
+        $data['logo']=$image_url;
         if($this->interfaceBrandRepository->insertData($data))
             return response()->json(['message' => 'successfully your transaction!'], HTTPResponse::HTTP_OK);
         return response()->json(['message' => 'sorry, your transaction fails!'], HTTPResponse::HTTP_BAD_REQUEST);
@@ -117,8 +117,13 @@ class BrandController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(int $id)
+    public function destroy(int $id):JsonResponse
     {
+        
+        $image_url=$this->interfaceBrandRepository->findById($id)['logo'];
+     
+        \File::delete(public_path($image_url));
+       
         if($this->interfaceBrandRepository->deleteData($id))
             return response()->json(['message' => 'successfully your transaction!'], HTTPResponse::HTTP_OK);
         return response()->json(['message' => 'sorry, your transaction fails!'], HTTPResponse::HTTP_BAD_REQUEST);

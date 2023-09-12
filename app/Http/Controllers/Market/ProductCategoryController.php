@@ -13,6 +13,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Symfony\Component\HttpFoundation\Response as HTTPResponse;
 use function App\upload_asset_file;
+
 /**
  * @group ProductCategory
  *
@@ -36,12 +37,18 @@ class ProductCategoryController extends Controller
     {
         $count = @$request->count ?? 10;
         $name = @$request->name;
+        $english_name = @$request->english_name;
         $status = @$request->status;
         $productCategories = $this->interfaceProductCategoryRepository->query();
 
 
         if (@$name)
             $productCategories = $productCategories->whereName($name);
+
+        if (@$english_name)
+            $productCategories = $productCategories->whereEnglishName($english_name);
+
+
         if (@$status != null)
             $productCategories = $productCategories->whereStatus($status);
 
@@ -64,10 +71,10 @@ class ProductCategoryController extends Controller
         $data = $request->except(['_token']);
         $image = $request->file('image');
         $data['image'] = upload_asset_file($image, 'product-category');
+        
         if ($this->interfaceProductCategoryRepository->insertData($data))
             return response()->json(['message' => 'successfully your transaction!'], HTTPResponse::HTTP_OK);
         return response()->json(['message' => 'sorry, your transaction fails!'], HTTPResponse::HTTP_BAD_REQUEST);
-
     }
 
     /**
@@ -98,20 +105,18 @@ class ProductCategoryController extends Controller
             if ($this->interfaceProductCategoryRepository->updateItem($id, $data))
                 return response()->json(['message' => 'successfully your transaction!'], HTTPResponse::HTTP_OK);
             return response()->json(['message' => 'sorry, your transaction fails!'], HTTPResponse::HTTP_BAD_REQUEST);
-
         }
 
 
         if ($this->interfaceProductCategoryRepository->updateItem($id, $data))
             return response()->json(['message' => 'successfully your transaction!'], HTTPResponse::HTTP_OK);
         return response()->json(['message' => 'sorry, your transaction fails!'], HTTPResponse::HTTP_BAD_REQUEST);
-
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(int $id):JsonResponse
+    public function destroy(int $id): JsonResponse
     {
         if ($this->interfaceProductCategoryRepository->deleteData($id))
             return response()->json(['message' => 'successfully your transaction!'], HTTPResponse::HTTP_OK);

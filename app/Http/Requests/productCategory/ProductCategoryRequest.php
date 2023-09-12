@@ -24,6 +24,7 @@ class ProductCategoryRequest extends FormRequest
         return [
             'count'=>'nullable|string',
             'name'=>'nullable|string|max:255',
+            'english_name'=>'nullable|string|max:255',
             'status'=>'nullable|numeric|in:0,1'
         ];
     }

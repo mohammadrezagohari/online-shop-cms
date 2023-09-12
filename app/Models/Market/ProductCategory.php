@@ -51,7 +51,7 @@ class ProductCategory extends Model
 
   //  protected $casts = ['image' => 'array'];
 
-    protected $fillable = ['name', 'description', 'image', 'status',  'show_in_menu', 'parent_id'];
+    protected $fillable = ['name', 'description', 'image', 'status',  'show_in_menu', 'parent_id','english_name'];
 
     public function parent()
     {
@@ -71,6 +71,11 @@ class ProductCategory extends Model
     public function scopeWhereName($query,$name){
         return $query->where('name','like',"%{$name}%");
     }
+
+    public function scopeWhereEnglishName($query,$english_name){
+        return $query->where('english_name','like',"%{$english_name}%");
+    }
+
     public function scopeWhereStatus($query,$status){
         return $query->where('status','=',$status);
     }
