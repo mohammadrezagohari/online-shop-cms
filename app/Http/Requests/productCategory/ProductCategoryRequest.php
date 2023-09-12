@@ -25,7 +25,8 @@ class ProductCategoryRequest extends FormRequest
             'count'=>'nullable|string',
             'name'=>'nullable|string|max:255',
             'english_name'=>'nullable|string|max:255',
-            'status'=>'nullable|numeric|in:0,1'
+            'status'=>'nullable|numeric|in:0,1',
+            'parent'=>'nullable'
         ];
     }
 }

@@ -86,7 +86,7 @@ class PostCategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(PostCategory $postCategory)
+    public function edit()
     {
         //
     }

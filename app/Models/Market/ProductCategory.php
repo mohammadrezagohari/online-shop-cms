@@ -80,6 +80,15 @@ class ProductCategory extends Model
         return $query->where('status','=',$status);
     }
 
+    public function scopeWhereParent($query,$parent){
+        return $query->where('parent_id','=',$parent);
+    }
+
+    public function scopeWhereParentNull($query,$parent){
+        return $query->where('parent_id','=',$parent);
+    }
+
+
 
 
 }

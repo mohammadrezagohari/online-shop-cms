@@ -35,7 +35,7 @@ class OnlinePaymentController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreOnlinePaymentRequest $request)
+    public function store()
     {
         //
     }
@@ -59,7 +59,7 @@ class OnlinePaymentController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateOnlinePaymentRequest $request, OnlinePayment $onlinePayment)
+    public function update()
     {
         //
     }

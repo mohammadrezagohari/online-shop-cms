@@ -33,15 +33,25 @@ class ProductCategoryController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(ProductCategoryRequest $request): AnonymousResourceCollection
-    {
+    public function index(ProductCategoryRequest $request) //: AnonymousResourceCollection
+    { //if user nothing send parent and parent null or parent equals one parent
         $count = @$request->count ?? 10;
         $name = @$request->name;
+        $parent = @$request->parent;
         $english_name = @$request->english_name;
         $status = @$request->status;
         $productCategories = $this->interfaceProductCategoryRepository->query();
 
+        if(@$parent){
+            if(@$parent=="null"){
+                $productCategories = $productCategories->where('parent_id',"=",null);
+            }else{
+                $productCategories = $productCategories->where('parent_id',"=",@$parent);
 
+            }
+        }
+       
+      
         if (@$name)
             $productCategories = $productCategories->whereName($name);
 
@@ -71,7 +81,7 @@ class ProductCategoryController extends Controller
         $data = $request->except(['_token']);
         $image = $request->file('image');
         $data['image'] = upload_asset_file($image, 'product-category');
-        
+
         if ($this->interfaceProductCategoryRepository->insertData($data))
             return response()->json(['message' => 'successfully your transaction!'], HTTPResponse::HTTP_OK);
         return response()->json(['message' => 'sorry, your transaction fails!'], HTTPResponse::HTTP_BAD_REQUEST);
@@ -116,13 +126,13 @@ class ProductCategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(int $id)//: JsonResponse
+    public function destroy(int $id) //: JsonResponse
     {
 
-      $image_url=$this->interfaceProductCategoryRepository->findById($id)['image'];
-     
+        $image_url = $this->interfaceProductCategoryRepository->findById($id)['image'];
+
         \File::delete(public_path($image_url));
-       
+
 
         if ($this->interfaceProductCategoryRepository->deleteData($id))
             return response()->json(['message' => 'successfully your transaction!'], HTTPResponse::HTTP_OK);
