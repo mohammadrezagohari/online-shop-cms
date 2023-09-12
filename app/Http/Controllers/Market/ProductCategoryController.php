@@ -116,8 +116,14 @@ class ProductCategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(int $id): JsonResponse
+    public function destroy(int $id)//: JsonResponse
     {
+
+      $image_url=$this->interfaceProductCategoryRepository->findById($id)['image'];
+     
+        \File::delete(public_path($image_url));
+       
+
         if ($this->interfaceProductCategoryRepository->deleteData($id))
             return response()->json(['message' => 'successfully your transaction!'], HTTPResponse::HTTP_OK);
         return response()->json(['message' => 'sorry, your transaction fails!'], HTTPResponse::HTTP_BAD_REQUEST);

@@ -25,6 +25,7 @@ class UpdateProductCategoryRequest extends FormRequest
     {
         return [
             'name' => 'nullable|max:120|min:2|regex:/^[ا-یa-zA-Z0-9\-۰-۹ء-ي., ]+$/u',
+            'english_name' => 'nullable|max:120|min:2|regex:/^[ا-یa-zA-Z0-9\-۰-۹ء-ي., ]+$/u',
             'description' => 'nullable|max:500|min:5|regex:/^[ا-یa-zA-Z0-9\-۰-۹ء-ي.,><\/;\n\r& ]+$/u',
             'image' => 'nullable|image|mimes:png,jpg,jpeg,gif',
             'status' => 'nullable|numeric|in:0,1',
