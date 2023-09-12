@@ -31,9 +31,9 @@ use App\Http\Controllers\Market\EmailController;
 use App\Http\Controllers\Market\EmailFileController;
 use App\Http\Controllers\OtpController;
 use App\Http\Controllers\CityController;
+use App\Http\Controllers\Market\BannerController;
 use App\Http\Controllers\Market\StripeController;
 use App\Http\Controllers\ProvinceController;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -237,6 +237,21 @@ Route::prefix('v1')->group(function () {
             Route::get('/newest', [ProductController::class, 'newest']);
 
         });
+
+
+
+
+        Route::group(['prefix' => 'banner'], function () {
+            Route::get('/', [BannerController::class, 'index']);
+            Route::post('/store', [BannerController::class, 'store']); //->middleware('is_admin')
+            Route::get('/show/{id}', [BannerController::class, 'show']);
+            Route::post('/update/{id}', [BannerController::class, 'update']); //->middleware('is_admin')
+            Route::delete('/delete/{id}', [BannerController::class, 'destroy']);  //->middleware('is_admin')
+        });
+
+
+     
+
 
 
         Route::group(['prefix' => 'product-image'], function () {

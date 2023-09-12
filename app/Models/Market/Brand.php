@@ -51,7 +51,7 @@ protected  $guarded=['id'];
 
 
     public  function  scopeWherePersianName($query,$persian_name){
-        return $query->whrer('persian_name','=',$persian_name);
+        return $query->where('persian_name','=',$persian_name);
     }
 
 

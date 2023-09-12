@@ -16,6 +16,8 @@ use App\Repositories\MySQL\IBaseRepository;
 use App\Repositories\MySQL\BaseRepository;
 use App\Repositories\MySQL\AddressRepository\AddressRepository;
 use App\Repositories\MySQL\AddressRepository\InterfaceAddressRepository;
+use App\Repositories\MySQL\BannerRepository\BannerRepository;
+use App\Repositories\MySQL\BannerRepository\InterfaceBannerRepository;
 use App\Repositories\MySQL\BrandRepository\BrandRepository;
 use App\Repositories\MySQL\BrandRepository\InterfaceBrandRepository;
 use App\Repositories\MySQL\CartItemRepository\CartItemRepository;
@@ -110,6 +112,7 @@ class RepositoryProvider extends ServiceProvider
         $this->app->bind(InterfacePermissionRepository::class,PermissionRepository::class);
         $this->app->bind(InterfaceRoleRepository::class,RoleRepository::class);
         $this->app->bind(InterfaceStripeTransactionRepository::class,StripeTransactionRepository::class);
+        $this->app->bind(InterfaceBannerRepository::class,BannerRepository::class);
     }
 
     /**
