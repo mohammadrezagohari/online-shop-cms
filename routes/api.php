@@ -234,6 +234,8 @@ Route::prefix('v1')->group(function () {
             Route::get('/show/{id}', [ProductController::class, 'show']);
             Route::post('/update/{id}', [ProductController::class, 'update']); //->middleware('is_admin')
             Route::delete('/delete/{id}', [ProductController::class, 'destroy']);  //->middleware('is_admin')
+            Route::get('/newest', [ProductController::class, 'newest']);
+
         });
 
 

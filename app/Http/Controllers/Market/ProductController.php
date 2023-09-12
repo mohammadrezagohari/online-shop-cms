@@ -146,4 +146,12 @@ class ProductController extends Controller
     }
 
 
+    public function newest(){
+        return ProductResource::collection($this->interfaceProductRepository->query()->orderBy('created_at','desc')->get());
+    }
+
+
+    
+
+
 }
