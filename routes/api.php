@@ -32,6 +32,7 @@ use App\Http\Controllers\Market\EmailFileController;
 use App\Http\Controllers\OtpController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\Market\BannerController;
+use App\Http\Controllers\Market\EmailInsertController;
 use App\Http\Controllers\Market\StripeController;
 use App\Http\Controllers\ProvinceController;
 use Illuminate\Http\Request;
@@ -126,6 +127,14 @@ Route::prefix('v1')->group(function () {
             Route::get('/show/{id}', [ProvinceController::class, 'show']);
             Route::patch('/update/{id}', [ProvinceController::class, 'update']); //->middleware('is_admin')
             Route::delete('/delete/{id}', [ProvinceController::class, 'destroy']); //->middleware('is_admin')
+        });
+
+        Route::group(['prefix' => 'emailInsert'], function () {
+            Route::get('/', [EmailInsertController::class, 'index']);
+            Route::post('/store', [EmailInsertController::class, 'store']); //->middleware('is_admin')
+            Route::get('/show/{id}', [EmailInsertController::class, 'show']);
+            Route::patch('/update/{id}', [EmailInsertController::class, 'update']); //->middleware('is_admin')
+            Route::delete('/delete/{id}', [EmailInsertController::class, 'destroy']); //->middleware('is_admin')
         });
 
 

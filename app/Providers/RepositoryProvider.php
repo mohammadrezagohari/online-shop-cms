@@ -28,6 +28,8 @@ use App\Repositories\MySQL\CityRepository\CityRepository;
 use App\Repositories\MySQL\CityRepository\InterfaceCityRepository;
 use App\Repositories\MySQL\DeliveryRepository\DeliveryRepository;
 use App\Repositories\MySQL\DeliveryRepository\InterfaceDeliveryRepository;
+use App\Repositories\MySQL\EmailInsertRepository\EmailInsertRepository;
+use App\Repositories\MySQL\EmailInsertRepository\InterfaceEmailInsertRepository;
 use App\Repositories\MySQL\GuaranteeRepository\GuaranteeRepository;
 use App\Repositories\MySQL\GuaranteeRepository\InterfaceGuaranteeRepository;
 use App\Repositories\MySQL\OfflinePaymentRepository\InterfaceOfflinePaymentRepository;
@@ -113,6 +115,7 @@ class RepositoryProvider extends ServiceProvider
         $this->app->bind(InterfaceRoleRepository::class,RoleRepository::class);
         $this->app->bind(InterfaceStripeTransactionRepository::class,StripeTransactionRepository::class);
         $this->app->bind(InterfaceBannerRepository::class,BannerRepository::class);
+        $this->app->bind(InterfaceEmailInsertRepository::class,EmailInsertRepository::class);
     }
 
     /**
