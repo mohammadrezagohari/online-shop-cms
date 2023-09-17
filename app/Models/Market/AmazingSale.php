@@ -2,6 +2,7 @@
 
 namespace App\Models\Market;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -55,6 +56,11 @@ class AmazingSale extends Model
     public function product(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(Product::class);
+    }
+
+    public function active()
+    {
+        return $this->where('start_date', '<', Carbon::now())->where('end_date', '>', Carbon::now())->where('amazing_sales.status','=',1);
     }
 
     public function scopeWhereProductId($query ,$product_id)

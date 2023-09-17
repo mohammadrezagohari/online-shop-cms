@@ -4,6 +4,7 @@ namespace App;
 
 
 use App\Models\Address;
+use App\Models\Market\AmazingSale;
 use Carbon\Carbon;
 use GuzzleHttp\Client;
 use Illuminate\Database\Eloquent\Model;
@@ -181,17 +182,18 @@ if (!function_exists("final_total_price_with_amazing_sale")) {
 
 
 
-//if (!function_exists("get_full_address_for_user")) {
-//    /*********************************
-//     * upload asset file on storage
-//     ********************************/
-//    function get_full_address_for_user($address_id): int
-//    {
-//       $data=Address::find($address_id)->get();
-//       return
-//
-//    }
-//}
+if (!function_exists("get_percentage_from_amazing_sale")) {
+   /*********************************
+    * upload asset file on storage
+    ********************************/
+   function get_percentage_from_amazing_sale($product_id)
+   {
+      $data=AmazingSale::where("product_id","=",$product_id)->where('start_date', '<', Carbon::now())->where('end_date', '>', Carbon::now())->where('status', '=', 1)->get();
+      
+      return $data;
+
+   }
+}
 
 
 

@@ -9,11 +9,14 @@ use App\Http\Requests\product\UpdateProductRequest;
 use App\Http\Resources\resource\ProductResource;
 use App\Models\Market\Product;
 use App\Models\Market\ProductImage;
+use App\Repositories\MySQL\AmazingSaleRepository\InterfaceAmazingSaleRepository;
 use App\Repositories\MySQL\ProductRepository\InterfaceProductRepository;
+use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Symfony\Component\HttpFoundation\Response as HTTPResponse;
 use function App\upload_asset_file;
+
 /**
  * @group Product
  *
@@ -25,20 +28,24 @@ class ProductController extends Controller
 {
 
     private InterfaceProductRepository $interfaceProductRepository;
+    private InterfaceAmazingSaleRepository $interfaceAmazingSaleRepository;
 
-    public function __construct(InterfaceProductRepository $interfaceProductRepository)
+    public function __construct(InterfaceProductRepository $interfaceProductRepository, InterfaceAmazingSaleRepository $interfaceAmazingSaleRepository)
     {
         $this->interfaceProductRepository = $interfaceProductRepository;
+        $this->interfaceAmazingSaleRepository = $interfaceAmazingSaleRepository;
     }
 
     /**
      * Display a listing of the resource.
      */
-    public function index(ProductRequest $request): AnonymousResourceCollection
+    public function index(ProductRequest $request) //: AnonymousResourceCollection
     {
+
         $count = @$request->count ?? 10;
         $name = @$request->name;
         $status = @$request->status;
+        $order = @$request->order;
 
         $products = $this->interfaceProductRepository->query();
 
@@ -46,6 +53,30 @@ class ProductController extends Controller
             $products = $products->whereName($name);
         if (@$status != null)
             $products = $products->whereStatus($status);
+        if (@$order) {
+            switch ($order) {
+                case "newest":
+                    $products = $products->whereNewest();
+                    break;
+                case "price_increase":
+                    $products = $products->wherePriceIncrese();
+                    break;
+                case "price_decrese":
+                    $products = $products->wherePriceDecrese();
+                    break;
+                case "favarite":
+                    $products = $products->whereProductFavarite();
+                    break;
+                case "amazing":
+                    $products = $products
+                        ->join('amazing_sales', 'products.id', '=', 'amazing_sales.product_id')
+                        ->where('amazing_sales.start_date', '<', Carbon::now())->where('amazing_sales.end_date', '>', Carbon::now())->where('amazing_sales.status', '=', 1)
+                        ->where('products.status', '=', 1)
+                        ->select('products.*', 'amazing_sales.*');
+                    break;
+            }
+        }
+
 
         return ProductResource::collection($products->paginate($count));
     }
@@ -64,9 +95,9 @@ class ProductController extends Controller
     public function store(StoreProductRequest $request)
     {
         try {
-          $data = $request->except(['_token']);
+            $data = $request->except(['_token']);
 
-          $product = $this->interfaceProductRepository->insertData($data);
+            $product = $this->interfaceProductRepository->insertData($data);
             foreach ($request->file('images') as $key => $image) {
                 $url = upload_asset_file($image, "product-image");
 
@@ -76,13 +107,9 @@ class ProductController extends Controller
                 ]);
             }
             return response()->json(['message' => 'successfully your transaction!'], HTTPResponse::HTTP_OK);
-
         } catch (\Exception $e) {
             return response()->json(['message' => 'sorry, your transaction fails!'], HTTPResponse::HTTP_BAD_REQUEST);
-
         }
-
-
     }
 
     /**
@@ -108,7 +135,7 @@ class ProductController extends Controller
     {
 
         if ($request->file('images')) {
-            $data = $request->except(['_token','images']);
+            $data = $request->except(['_token', 'images']);
             $productImages = ProductImage::where('product_id', '=', $id)->get();
 
             foreach ($productImages as $image) {
@@ -123,15 +150,12 @@ class ProductController extends Controller
                     'product_id' => $id
                 ]);
             }
-
         } else {
             $data = $request->except(['_token', 'images']);
         }
         if ($this->interfaceProductRepository->updateItem($id, $data))
             return response()->json(['message' => 'successfully your transaction!'], HTTPResponse::HTTP_OK);
         return response()->json(['message' => 'sorry, your transaction fails!'], HTTPResponse::HTTP_BAD_REQUEST);
-
-
     }
 
     /**
@@ -142,16 +166,11 @@ class ProductController extends Controller
         if ($this->interfaceProductRepository->deleteData($id))
             return response()->json(['message' => 'successfully your transaction!'], HTTPResponse::HTTP_OK);
         return response()->json(['message' => 'sorry, your transaction fails!'], HTTPResponse::HTTP_BAD_REQUEST);
-
     }
 
 
-    public function newest(){
-        return ProductResource::collection($this->interfaceProductRepository->query()->orderBy('created_at','desc')->get());
+    public function newest()
+    {
+        return ProductResource::collection($this->interfaceProductRepository->query()->orderBy('created_at', 'desc')->get());
     }
-
-
-    
-
-
 }

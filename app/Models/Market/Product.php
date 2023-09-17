@@ -138,4 +138,26 @@ class Product extends Model
 
     }
 
+    public function scopeWhereNewest($query)
+    {
+        return $query->orderBy('created_at','desc');
+
+    }  
+    public function scopeWherePriceIncrese($query)
+    {
+        return $query->orderBy('price','asc');
+
+    }  
+     public function scopeWherePriceDecrese($query)
+    {
+        return $query->orderBy('price','desc');
+    } 
+      
+    public function scopeWhereProductFavarite($query)
+    {
+        return $query->orderBy('sold_number',"desc");
+
+    }  
+ 
+
 }
