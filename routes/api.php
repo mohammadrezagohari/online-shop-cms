@@ -33,6 +33,7 @@ use App\Http\Controllers\OtpController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\Market\BannerController;
 use App\Http\Controllers\Market\EmailInsertController;
+use App\Http\Controllers\Market\RateController;
 use App\Http\Controllers\Market\StripeController;
 use App\Http\Controllers\ProvinceController;
 use Illuminate\Http\Request;
@@ -243,7 +244,17 @@ Route::prefix('v1')->group(function () {
             Route::get('/show/{id}', [ProductController::class, 'show']);
             Route::post('/update/{id}', [ProductController::class, 'update']); //->middleware('is_admin')
             Route::delete('/delete/{id}', [ProductController::class, 'destroy']);  //->middleware('is_admin')
-            Route::get('/newest', [ProductController::class, 'newest']);
+            Route::post('/storeAverageRate/{id}', [ProductController::class, 'storeAverageRate']); //->middleware('is_admin')
+
+        });
+
+
+        Route::group(['prefix' => 'rate'], function () {
+            Route::get('/', [RateController::class, 'index']);
+            Route::post('/store', [RateController::class, 'store']); //->middleware('is_admin')
+            Route::get('/show/{id}', [RateController::class, 'show']);
+            Route::post('/update/{id}', [RateController::class, 'update']); //->middleware('is_admin')
+            Route::delete('/delete/{id}', [RateController::class, 'destroy']);  //->middleware('is_admin')
 
         });
 
@@ -256,6 +267,7 @@ Route::prefix('v1')->group(function () {
             Route::get('/show/{id}', [BannerController::class, 'show']);
             Route::post('/update/{id}', [BannerController::class, 'update']); //->middleware('is_admin')
             Route::delete('/delete/{id}', [BannerController::class, 'destroy']);  //->middleware('is_admin')
+            
         });
 
 

@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Requests\product;
+namespace App\Http\Requests\address;
 
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class ProductRequest extends FormRequest
+class UpdateAddressRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,15 +23,20 @@ class ProductRequest extends FormRequest
      */
     public function rules(): array
     {
-
         return [
-            'name'=>'nullable||string|max:255|regex:/^[ا-یa-zA-Z0-9\-۰-۹ء-ي., ]+$/u',
-            'count'=>'nullable|numeric',
-            'status'=>'nullable|numeric|in:0,1',
-            'category'=>'nullable|numeric|exists:product_categories,id',
-            'brand'=>'nullable|numeric|exists:brands,id',
+            'user_id'=>'integer|exists:users,id',
+            'province_id'=>'integer|exists:provinces,id',
+            'city_id'=>'integer|exists:cities,id',
+            'postal_code'=>'string',
+            'address'=>'string',
+            'unit'=>'string',
+            'recipient_first_name'=>'string',
+            'recipient_last_name'=>'string',
+            'mobile'=>'string|ir_mobile',
+            'status'=>'numeric|in:0,1'
         ];
     }
+
 
     public function failedValidation(Validator $validator)
     {

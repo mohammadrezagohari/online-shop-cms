@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Requests\product;
+namespace App\Http\Requests\rate;
 
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class ProductRequest extends FormRequest
+class RateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -19,19 +19,17 @@ class ProductRequest extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array|string>
+     * @return array<string>
      */
     public function rules(): array
     {
-
         return [
-            'name'=>'nullable||string|max:255|regex:/^[ا-یa-zA-Z0-9\-۰-۹ء-ي., ]+$/u',
-            'count'=>'nullable|numeric',
-            'status'=>'nullable|numeric|in:0,1',
-            'category'=>'nullable|numeric|exists:product_categories,id',
-            'brand'=>'nullable|numeric|exists:brands,id',
+            'product_id'=>'nullable|exists:product_images',
+            'user_id'=>'nullable|exists:users,id',
+            
         ];
     }
+
 
     public function failedValidation(Validator $validator)
     {

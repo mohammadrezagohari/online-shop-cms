@@ -12,9 +12,12 @@ use App\Models\Market\ProductImage;
 use App\Repositories\MySQL\AmazingSaleRepository\InterfaceAmazingSaleRepository;
 use App\Repositories\MySQL\ProductRepository\InterfaceProductRepository;
 use Carbon\Carbon;
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Symfony\Component\HttpFoundation\Response as HTTPResponse;
+
 use function App\upload_asset_file;
 
 /**
@@ -45,16 +48,36 @@ class ProductController extends Controller
         $count = @$request->count ?? 10;
         $name = @$request->name;
         $status = @$request->status;
+        $category = @$request->category;
+        $brand = @$request->brand;
         $order = @$request->order;
 
         $products = $this->interfaceProductRepository->query();
 
         if (@$name)
             $products = $products->whereName($name);
+
+        if (@$category)
+
+            $products = $products->whereCategory($category);
+
+        if (@$brand)
+
+            $products = $products->whereBrand($brand);
+
         if (@$status != null)
+
             $products = $products->whereStatus($status);
+
         if (@$order) {
             switch ($order) {
+                case "most_visited":
+                    $products = $products->whereMostVisited();
+                    break;
+
+                case "most_popular":
+                    $products = $products->whereMostPopular();
+                    break;
                 case "newest":
                     $products = $products->whereNewest();
                     break;
@@ -117,6 +140,10 @@ class ProductController extends Controller
      */
     public function show(int $id): ProductResource
     {
+        $product = $this->interfaceProductRepository->findById($id);
+        $this->interfaceProductRepository->updateItem($id, [
+            'product_viewer_counter' => $product['product_viewer_counter'] + 1
+        ]);
         return ProductResource::make($this->interfaceProductRepository->findById($id));
     }
 
@@ -169,8 +196,24 @@ class ProductController extends Controller
     }
 
 
-    public function newest()
+    public function storeAverageRate(int $id, Request $request)
     {
-        return ProductResource::collection($this->interfaceProductRepository->query()->orderBy('created_at', 'desc')->get());
+
+        $validation = \validator::make($request->only('rate'), [
+            'rate' => 'required|string|in:1,2,3,4,5',
+        ]);
+
+        if ($validation->fails()) {
+            return response()->json([
+                'message' => $validation->messages(),
+                'status' => false,
+            ], HTTPResponse::HTTP_OK);
+        }
+        $product = $this->interfaceProductRepository->findById($id);
+        if ($this->interfaceProductRepository->updateItem($id, [
+            'average_rate' => ($product['average_rate'] + $request->input('rate')) / 2
+        ]))
+            return response()->json(['message' => 'successfully your transaction!'], HTTPResponse::HTTP_OK);
+        return response()->json(['message' => 'sorry, your transaction fails!'], HTTPResponse::HTTP_BAD_REQUEST);
     }
 }

@@ -62,6 +62,8 @@ use App\Repositories\MySQL\ProductRepository\InterfaceProductRepository;
 use App\Repositories\MySQL\ProductRepository\ProductRepository;
 use App\Repositories\MySQL\ProvinceRepository\InterfaceProvinceRepository;
 use App\Repositories\MySQL\ProvinceRepository\ProvinceRepository;
+use App\Repositories\MySQL\RateRepository\InterfaceRateRepository;
+use App\Repositories\MySQL\RateRepository\RateRepository;
 use App\Repositories\MySQL\RoleRepository\InterfaceRoleRepository;
 use App\Repositories\MySQL\RoleRepository\RoleRepository;
 use App\Repositories\MySQL\SmsRepository\InterfaceSmsRepository;
@@ -116,6 +118,7 @@ class RepositoryProvider extends ServiceProvider
         $this->app->bind(InterfaceStripeTransactionRepository::class,StripeTransactionRepository::class);
         $this->app->bind(InterfaceBannerRepository::class,BannerRepository::class);
         $this->app->bind(InterfaceEmailInsertRepository::class,EmailInsertRepository::class);
+        $this->app->bind(InterfaceRateRepository::class,RateRepository::class);
     }
 
     /**

@@ -132,6 +132,25 @@ class Product extends Model
         return $query->where('name','like',"%{$name}%");
     }
 
+    public  function scopeWhereCategory($query,$category)
+    {
+        return $query->where("category_id","=",$category);
+    }
+    public  function scopeWhereMostVisited($query)
+    {
+        return $query->orderBy('product_viewer_counter','desc');
+    }
+
+    public  function scopeWhereMostPopular($query)
+    {
+        return $query->orderBy('average_rate','desc');
+    }
+
+    public  function scopeWhereBrand($query,$brand)
+    {
+        return $query->where("brand_id","=",$brand);
+    }
+
     public function scopeWhereStatus($query ,$status)
     {
         return $query->where('status','=',$status);

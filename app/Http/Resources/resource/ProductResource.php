@@ -29,6 +29,8 @@ class ProductResource extends JsonResource
             'brand'=>$this->brand,
             'category'=>$this->category,
             'images'=>$this->images,
+            'product_viewer_counter'=>$this->product_viewer_counter,
+            'average_rate'=>$this->average_rate*20,
             'amazing_sales'=>get_percentage_from_amazing_sale($this->id),
             'published_at'=>$this->published_at
 
