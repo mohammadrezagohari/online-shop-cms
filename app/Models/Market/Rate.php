@@ -23,4 +23,15 @@ class Rate extends Model
     public function product(){
         return $this->belongsTo(Product::class);
     }
+
+
+    public function scopeWhereProductId($query,$product_id)
+    {
+        return $query->where('product_id','=',$product_id);
+    }
+
+    public function scopeWhereUserId($query,$user_id)
+    {
+        return $query->where('user_id','=',$user_id);
+    }
 }

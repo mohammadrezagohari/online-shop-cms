@@ -14,4 +14,10 @@ class RateRepository extends BaseRepository implements InterfaceRateRepository{
         parent::__construct($model);
         $this->model=$model;
     }
+
+
+    public function checkUserInsertProductRate(int $user_id, int $product_id)
+    {
+        return $this->model->where('user_id','=',$user_id)->where('product_id','=',$product_id)->first();
+    }
 }

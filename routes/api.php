@@ -253,7 +253,7 @@ Route::prefix('v1')->group(function () {
             Route::get('/', [RateController::class, 'index']);
             Route::post('/store', [RateController::class, 'store']); //->middleware('is_admin')
             Route::get('/show/{id}', [RateController::class, 'show']);
-            Route::post('/update/{id}', [RateController::class, 'update']); //->middleware('is_admin')
+            Route::patch('/update/{id}', [RateController::class, 'update']); //->middleware('is_admin')
             Route::delete('/delete/{id}', [RateController::class, 'destroy']);  //->middleware('is_admin')
 
         });

@@ -24,7 +24,7 @@ class RateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'product_id'=>'nullable|exists:product_images',
+            'product_id'=>'nullable|exists:products,id',
             'user_id'=>'nullable|exists:users,id',
             
         ];
