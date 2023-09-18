@@ -50,6 +50,8 @@ class ProductController extends Controller
         $category = @$request->category;
         $brand = @$request->brand;
         $order = @$request->order;
+        $min_price = @$request->min_price;
+        $max_price = @$request->max_price;
 
         $products = $this->interfaceProductRepository->query();
 
@@ -67,6 +69,12 @@ class ProductController extends Controller
         if (@$status != null)
 
             $products = $products->whereStatus($status);
+
+
+        if (@$min_price && @$max_price)
+
+            $products = $products->whereBetweenMainAndMaxPrice($min_price,$max_price);
+
 
         if (@$order) {
             switch ($order) {

@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\Market\CategoryAttribute;
+use App\Models\Market\CategoryValue;
 use App\Repositories\MySQL\CommentRepository\CommentRepository;
 use App\Repositories\MySQL\CommentRepository\InterfaceCommentRepository;
 use App\Repositories\MySQL\CopanRepository\CopanRepository;
@@ -24,6 +26,10 @@ use App\Repositories\MySQL\CartItemRepository\CartItemRepository;
 use App\Repositories\MySQL\CartItemRepository\InterfaceCartItemRepository;
 use App\Repositories\MySQL\CashPaymentRepository\CashPaymentRepository;
 use App\Repositories\MySQL\CashPaymentRepository\InterfaceCashPaymentRepository;
+use App\Repositories\MySQL\CategoryAttributeRepository\CategoryAttributeRepository;
+use App\Repositories\MySQL\CategoryAttributeRepository\InterfaceCategoryAttributeRepository;
+use App\Repositories\MySQL\CategoryValueRepository\CategoryValueRepository;
+use App\Repositories\MySQL\CategoryValueRepository\InterfaceCategoryValueRepository;
 use App\Repositories\MySQL\CityRepository\CityRepository;
 use App\Repositories\MySQL\CityRepository\InterfaceCityRepository;
 use App\Repositories\MySQL\DeliveryRepository\DeliveryRepository;
@@ -119,6 +125,8 @@ class RepositoryProvider extends ServiceProvider
         $this->app->bind(InterfaceBannerRepository::class,BannerRepository::class);
         $this->app->bind(InterfaceEmailInsertRepository::class,EmailInsertRepository::class);
         $this->app->bind(InterfaceRateRepository::class,RateRepository::class);
+        $this->app->bind(InterfaceCategoryAttributeRepository::class,CategoryAttributeRepository::class);
+        $this->app->bind(InterfaceCategoryValueRepository::class,CategoryValueRepository::class);
     }
 
     /**

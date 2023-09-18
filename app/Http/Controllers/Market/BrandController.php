@@ -106,7 +106,6 @@ class BrandController extends Controller
 
        if ($this->interfaceBrandRepository->updateItem($id,$data))
              return response()->json(['message' => 'successfully your transaction!'], HTTPResponse::HTTP_OK);
-
            return response()->json(['message' => 'sorry, your transaction fails!'], HTTPResponse::HTTP_BAD_REQUEST);
 
 

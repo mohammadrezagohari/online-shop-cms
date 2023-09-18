@@ -146,6 +146,12 @@ class Product extends Model
         return $query->orderBy('average_rate','desc');
     }
 
+
+    public  function scopeWhereBetweenMainAndMaxPrice($query,$min_price,$max_price)
+    {
+        return $query->where('price', '>=' ,$min_price)->where('price','<=',$max_price);
+    }
+
     public  function scopeWhereBrand($query,$brand)
     {
         return $query->where("brand_id","=",$brand);
