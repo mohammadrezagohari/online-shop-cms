@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AddressController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BasicInfoController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Market\BrandController;
 use App\Http\Controllers\Market\CartItemController;
@@ -269,6 +270,16 @@ Route::prefix('v1')->group(function () {
             Route::get('/show/{id}', [CategoryAttributeController::class, 'show']);
             Route::patch('/update/{id}', [CategoryAttributeController::class, 'update']); //->middleware('is_admin')
             Route::delete('/delete/{id}', [CategoryAttributeController::class, 'destroy']);  //->middleware('is_admin')
+
+        });
+
+
+        Route::group(['prefix' => 'basic-info'], function () {
+            Route::get('/', [BasicInfoController::class, 'index']);
+            Route::post('/store', [BasicInfoController::class, 'store']); //->middleware('is_admin')
+            Route::get('/show/{id}', [BasicInfoController::class, 'show']);
+            Route::patch('/update/{id}', [BasicInfoController::class, 'update']); //->middleware('is_admin')
+            Route::delete('/delete/{id}', [BasicInfoController::class, 'destroy']);  //->middleware('is_admin')
 
         });
 

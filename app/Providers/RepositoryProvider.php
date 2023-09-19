@@ -20,6 +20,8 @@ use App\Repositories\MySQL\AddressRepository\AddressRepository;
 use App\Repositories\MySQL\AddressRepository\InterfaceAddressRepository;
 use App\Repositories\MySQL\BannerRepository\BannerRepository;
 use App\Repositories\MySQL\BannerRepository\InterfaceBannerRepository;
+use App\Repositories\MySQL\BasicInfoRepository\BasicInfoRepository;
+use App\Repositories\MySQL\BasicInfoRepository\InterfaceBasicInfoRepository;
 use App\Repositories\MySQL\BrandRepository\BrandRepository;
 use App\Repositories\MySQL\BrandRepository\InterfaceBrandRepository;
 use App\Repositories\MySQL\CartItemRepository\CartItemRepository;
@@ -127,6 +129,7 @@ class RepositoryProvider extends ServiceProvider
         $this->app->bind(InterfaceRateRepository::class,RateRepository::class);
         $this->app->bind(InterfaceCategoryAttributeRepository::class,CategoryAttributeRepository::class);
         $this->app->bind(InterfaceCategoryValueRepository::class,CategoryValueRepository::class);
+        $this->app->bind(InterfaceBasicInfoRepository::class,BasicInfoRepository::class);
     }
 
     /**
