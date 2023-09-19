@@ -34,6 +34,8 @@ use App\Repositories\MySQL\CategoryValueRepository\CategoryValueRepository;
 use App\Repositories\MySQL\CategoryValueRepository\InterfaceCategoryValueRepository;
 use App\Repositories\MySQL\CityRepository\CityRepository;
 use App\Repositories\MySQL\CityRepository\InterfaceCityRepository;
+use App\Repositories\MySQL\ContactRepository\ContactRepository;
+use App\Repositories\MySQL\ContactRepository\InterfaceContactRepository;
 use App\Repositories\MySQL\DeliveryRepository\DeliveryRepository;
 use App\Repositories\MySQL\DeliveryRepository\InterfaceDeliveryRepository;
 use App\Repositories\MySQL\EmailInsertRepository\EmailInsertRepository;
@@ -130,6 +132,7 @@ class RepositoryProvider extends ServiceProvider
         $this->app->bind(InterfaceCategoryAttributeRepository::class,CategoryAttributeRepository::class);
         $this->app->bind(InterfaceCategoryValueRepository::class,CategoryValueRepository::class);
         $this->app->bind(InterfaceBasicInfoRepository::class,BasicInfoRepository::class);
+        $this->app->bind(InterfaceContactRepository::class,ContactRepository::class);
     }
 
     /**

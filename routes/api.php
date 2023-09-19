@@ -32,6 +32,7 @@ use App\Http\Controllers\Market\EmailController;
 use App\Http\Controllers\Market\EmailFileController;
 use App\Http\Controllers\OtpController;
 use App\Http\Controllers\CityController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\Market\BannerController;
 use App\Http\Controllers\Market\CategoryAttributeController;
 use App\Http\Controllers\Market\CategoryValueController;
@@ -280,6 +281,16 @@ Route::prefix('v1')->group(function () {
             Route::get('/show/{id}', [BasicInfoController::class, 'show']);
             Route::patch('/update/{id}', [BasicInfoController::class, 'update']); //->middleware('is_admin')
             Route::delete('/delete/{id}', [BasicInfoController::class, 'destroy']);  //->middleware('is_admin')
+
+        });
+
+
+        Route::group(['prefix' => 'contact-us'], function () {
+            Route::get('/', [ContactController::class, 'index']);
+            Route::post('/store', [ContactController::class, 'store']); //->middleware('is_admin')
+            Route::get('/show/{id}', [ContactController::class, 'show']);
+            Route::patch('/update/{id}', [ContactController::class, 'update']); //->middleware('is_admin')
+            Route::delete('/delete/{id}', [ContactController::class, 'destroy']);  //->middleware('is_admin')
 
         });
 
