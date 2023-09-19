@@ -4,6 +4,10 @@ namespace App\Providers;
 
 use App\Models\Market\CategoryAttribute;
 use App\Models\Market\CategoryValue;
+use App\Repositories\MySQL\AboutAttachmentRepository\AboutAttachmentRepository;
+use App\Repositories\MySQL\AboutAttachmentRepository\InterfaceAboutAttachmentRepository;
+use App\Repositories\MySQL\AboutRepository\AboutRepository;
+use App\Repositories\MySQL\AboutRepository\InterfaceAboutRepository;
 use App\Repositories\MySQL\CommentRepository\CommentRepository;
 use App\Repositories\MySQL\CommentRepository\InterfaceCommentRepository;
 use App\Repositories\MySQL\CopanRepository\CopanRepository;
@@ -133,6 +137,8 @@ class RepositoryProvider extends ServiceProvider
         $this->app->bind(InterfaceCategoryValueRepository::class,CategoryValueRepository::class);
         $this->app->bind(InterfaceBasicInfoRepository::class,BasicInfoRepository::class);
         $this->app->bind(InterfaceContactRepository::class,ContactRepository::class);
+        $this->app->bind(InterfaceAboutRepository::class,AboutRepository::class);
+        $this->app->bind(InterfaceAboutAttachmentRepository::class,AboutAttachmentRepository::class);
     }
 
     /**

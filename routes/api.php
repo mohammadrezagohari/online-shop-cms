@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AboutController;
 use App\Http\Controllers\AddressController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BasicInfoController;
@@ -291,6 +292,15 @@ Route::prefix('v1')->group(function () {
             Route::get('/show/{id}', [ContactController::class, 'show']);
             Route::patch('/update/{id}', [ContactController::class, 'update']); //->middleware('is_admin')
             Route::delete('/delete/{id}', [ContactController::class, 'destroy']);  //->middleware('is_admin')
+
+        });
+
+        Route::group(['prefix' => 'about-us'], function () {
+            Route::get('/', [AboutController::class, 'index']);
+            Route::post('/store', [AboutController::class, 'store']); //->middleware('is_admin')
+            Route::get('/show/{id}', [AboutController::class, 'show']);
+            Route::post('/update/{id}', [AboutController::class, 'update']); //->middleware('is_admin')
+            Route::delete('/delete/{id}', [AboutController::class, 'destroy']);  //->middleware('is_admin')
 
         });
 
