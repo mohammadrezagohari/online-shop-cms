@@ -33,6 +33,7 @@ use App\Http\Controllers\OtpController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\Market\BannerController;
 use App\Http\Controllers\Market\CategoryAttributeController;
+use App\Http\Controllers\Market\CategoryValueController;
 use App\Http\Controllers\Market\EmailInsertController;
 use App\Http\Controllers\Market\RateController;
 use App\Http\Controllers\Market\StripeController;
@@ -268,6 +269,15 @@ Route::prefix('v1')->group(function () {
             Route::get('/show/{id}', [CategoryAttributeController::class, 'show']);
             Route::patch('/update/{id}', [CategoryAttributeController::class, 'update']); //->middleware('is_admin')
             Route::delete('/delete/{id}', [CategoryAttributeController::class, 'destroy']);  //->middleware('is_admin')
+
+        });
+
+        Route::group(['prefix' => 'category-value'], function () {
+            Route::get('/', [CategoryValueController::class, 'index']);
+            Route::post('/store', [CategoryValueController::class, 'store']); //->middleware('is_admin')
+            Route::get('/show/{id}', [CategoryValueController::class, 'show']);
+            Route::patch('/update/{id}', [CategoryValueController::class, 'update']); //->middleware('is_admin')
+            Route::delete('/delete/{id}', [CategoryValueController::class, 'destroy']);  //->middleware('is_admin')
 
         });
 

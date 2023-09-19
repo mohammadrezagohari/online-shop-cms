@@ -14,6 +14,11 @@ class CategoryValueResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        return [
+           
+            'product' => $this->product,
+            'category_attribute_id' => $this->attribute,
+            'value' => $this->value,
+        ];
     }
 }

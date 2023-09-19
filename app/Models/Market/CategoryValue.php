@@ -23,4 +23,18 @@ class CategoryValue extends Model
         return $this->belongsTo(Product::class);
     }
 
+
+    public function scopeWhereProductId($query,$product_id){
+        return $query->where('product_id','=',$product_id);
+    }
+
+
+    public function scopeWhereCategoryAttributesId($query,$category_attribute_id){
+        return $query->where('category_attribute_id','=',$category_attribute_id);
+    }
+
+    public function scopeWhereValue($query,$value){
+        return $query->where("value","like","%{$value}%");
+    }
+
 }
