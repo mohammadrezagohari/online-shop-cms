@@ -37,10 +37,6 @@ class AboutController extends Controller
             $abouts = $abouts->whereTitle($title);
         if (@$description)
             $abouts = $abouts->whereDescription($description);
-
-
-
-
         return AboutResource::collection($abouts->paginate($count));
     }
 
@@ -83,7 +79,7 @@ class AboutController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateAboutRequest $request, int $id)
+    public function update(UpdateAboutRequest $request, int $id):JsonResponse
     {
         $data=$request->except(["_token"]);
         if($request->hasFile('image')){
@@ -99,7 +95,7 @@ class AboutController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(int $id)
+    public function destroy(int $id):JsonResponse
     {
         $image_url=$this->interfaceAboutRepository->findById($id)['image'];
      

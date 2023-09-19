@@ -20,4 +20,17 @@ class AboutAttachment extends Model
     {
         return $this->belongsTo(About::class);
     }
+
+
+    public function scopeWhereTitle($query,$title)
+    {
+        return  $query->where('title','like',"%{$title}%");
+    }
+
+
+    public function scopeWhereAboutId($query,$about_id)
+    {
+        return  $query->where('about_id','=',$about_id);
+    }
+
 }

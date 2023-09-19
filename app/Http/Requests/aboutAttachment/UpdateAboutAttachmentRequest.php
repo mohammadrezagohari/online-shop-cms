@@ -24,16 +24,9 @@ class UpdateAboutAttachmentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'user_id'=>'integer|exists:users,id',
-            'province_id'=>'integer|exists:provinces,id',
-            'city_id'=>'integer|exists:cities,id',
-            'postal_code'=>'string',
-            'address'=>'string',
-            'unit'=>'string',
-            'recipient_first_name'=>'string',
-            'recipient_last_name'=>'string',
-            'mobile'=>'string|ir_mobile',
-            'status'=>'numeric|in:0,1'
+            'about_id'   => 'nullable|integer|exists:abouts,id',
+            'title'     => 'nullable|string|max:255',
+            'icon'     => 'nullable|image|mimes:png,jpg,jpeg,svg',
         ];
     }
 

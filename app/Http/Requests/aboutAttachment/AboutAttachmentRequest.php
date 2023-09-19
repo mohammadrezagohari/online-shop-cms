@@ -24,9 +24,8 @@ class AboutAttachmentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'keyword'   => 'nullable|string|max:30',
-            'count'     => 'nullable|numeric',
-            'user_id'     => 'nullable|exists:users,id',
+            'about_id'   => 'nullable|integer|exists:abouts,id',
+            'title'     => 'nullable|string|max:255',
         ];
     }
 

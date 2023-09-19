@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AboutAttachmentController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\AddressController;
 use App\Http\Controllers\AuthController;
@@ -301,6 +302,16 @@ Route::prefix('v1')->group(function () {
             Route::get('/show/{id}', [AboutController::class, 'show']);
             Route::post('/update/{id}', [AboutController::class, 'update']); //->middleware('is_admin')
             Route::delete('/delete/{id}', [AboutController::class, 'destroy']);  //->middleware('is_admin')
+
+        });
+
+
+        Route::group(['prefix' => 'about-attachment'], function () {
+            Route::get('/', [AboutAttachmentController::class, 'index']);
+            Route::post('/store', [AboutAttachmentController::class, 'store']); //->middleware('is_admin')
+            Route::get('/show/{id}', [AboutAttachmentController::class, 'show']);
+            Route::post('/update/{id}', [AboutAttachmentController::class, 'update']); //->middleware('is_admin')
+            Route::delete('/delete/{id}', [AboutAttachmentController::class, 'destroy']);  //->middleware('is_admin')
 
         });
 

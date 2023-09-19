@@ -24,16 +24,9 @@ class StoreAboutAttachmentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'user_id'=>'required|integer|exists:users,id',
-            'province_id'=>'required|integer|exists:provinces,id',
-            'city_id'=>'required|integer|exists:cities,id',
-            'postal_code'=>'required|string',
-            'address'=>'required|string',
-            'unit'=>'required|string',
-            'recipient_first_name'=>'string',
-            'recipient_last_name'=>'string',
-            'mobile'=>'string|ir_mobile',
-            'status'=>'required|numeric|in:0,1'
+            'about_id'   => 'required|integer|exists:abouts,id',
+            'title'     => 'required|string|max:255',
+            'icon'     => 'required|image|mimes:png,jpg,jpeg,svg',
 
 
         ];
