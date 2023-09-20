@@ -24,16 +24,14 @@ class UpdateArticleRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'user_id'=>'integer|exists:users,id',
-            'province_id'=>'integer|exists:provinces,id',
-            'city_id'=>'integer|exists:cities,id',
-            'postal_code'=>'string',
-            'address'=>'string',
-            'unit'=>'string',
-            'recipient_first_name'=>'string',
-            'recipient_last_name'=>'string',
-            'mobile'=>'string|ir_mobile',
-            'status'=>'numeric|in:0,1'
+            'title'   => 'nullable|string|max:255',
+            'description'   => 'nullable|string',
+            'author_id'     => 'nullable|exists:users,id',
+            'image'     => 'nullable|image|mimes:png,jpg,jpeg,svg',
+            'selected_content'     => 'nullable|numeric|in:0,1',
+            'product_category_id'     => 'nullable|integer|exists:product_categories,id',
+            'article_category_id'     => 'nullable|integer|exists:article_categories,id',
+       
         ];
     }
 

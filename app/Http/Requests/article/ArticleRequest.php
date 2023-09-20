@@ -24,9 +24,11 @@ class ArticleRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'keyword'   => 'nullable|string|max:30',
-            'count'     => 'nullable|numeric',
-            'user_id'     => 'nullable|exists:users,id',
+            'title'   => 'nullable|string|max:255',
+            'author_id'     => 'nullable|exists:users,id',
+            'selected_content'     => 'nullable|numeric|in:0,1',
+            'product_category_id'     => 'nullable|integer|exists:product_categories,id',
+            'article_category_id'     => 'nullable|integer|exists:article_categories,id',
         ];
     }
 

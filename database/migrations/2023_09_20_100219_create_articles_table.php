@@ -17,7 +17,7 @@ return new class extends Migration
             $table->text('description');
             $table->foreignId('author_id')->constrained('users');
             $table->text('image');
-            $table->integer('count_viewer');
+            $table->integer('count_viewer')->default(0);
             $table->tinyInteger('selected_content')->default(0);
             $table->tinyInteger('status')->default(0);
             $table->foreignId('product_category_id')->constrained('product_categories');

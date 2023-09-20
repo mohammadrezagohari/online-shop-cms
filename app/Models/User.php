@@ -2,7 +2,8 @@
 
 namespace App\Models;
 
- use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Market\Article;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\Market\Copan;
 use App\Models\Market\Order;
 use App\Models\Market\Payment;
@@ -161,6 +162,11 @@ class User extends Authenticatable implements MustVerifyEmail
     public function addresses()
     {
         return $this->hasMany(Address::class);
+    }
+
+    public function articles()
+    {
+        return $this->hasMany(Article::class);
     }
 
     public function products()
