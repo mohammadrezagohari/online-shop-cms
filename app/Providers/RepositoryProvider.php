@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Market\ArticleCategory;
 use App\Models\Market\CategoryAttribute;
 use App\Models\Market\CategoryValue;
 use App\Repositories\MySQL\AboutAttachmentRepository\AboutAttachmentRepository;
@@ -22,6 +23,10 @@ use App\Repositories\MySQL\IBaseRepository;
 use App\Repositories\MySQL\BaseRepository;
 use App\Repositories\MySQL\AddressRepository\AddressRepository;
 use App\Repositories\MySQL\AddressRepository\InterfaceAddressRepository;
+use App\Repositories\MySQL\ArticleCategoryRepository\ArticleCategoryRepository;
+use App\Repositories\MySQL\ArticleCategoryRepository\InterfaceArticleCategoryRepository;
+use App\Repositories\MySQL\ArticleRepository\ArticleRepository;
+use App\Repositories\MySQL\ArticleRepository\InterfaceArticleRepository;
 use App\Repositories\MySQL\BannerRepository\BannerRepository;
 use App\Repositories\MySQL\BannerRepository\InterfaceBannerRepository;
 use App\Repositories\MySQL\BasicInfoRepository\BasicInfoRepository;
@@ -139,6 +144,8 @@ class RepositoryProvider extends ServiceProvider
         $this->app->bind(InterfaceContactRepository::class,ContactRepository::class);
         $this->app->bind(InterfaceAboutRepository::class,AboutRepository::class);
         $this->app->bind(InterfaceAboutAttachmentRepository::class,AboutAttachmentRepository::class);
+        $this->app->bind(InterfaceArticleCategoryRepository::class,ArticleCategoryRepository::class);
+        $this->app->bind(InterfaceArticleRepository::class,ArticleRepository::class);
     }
 
     /**

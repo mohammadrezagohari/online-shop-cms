@@ -41,8 +41,9 @@ use App\Http\Controllers\Market\CategoryValueController;
 use App\Http\Controllers\Market\EmailInsertController;
 use App\Http\Controllers\Market\RateController;
 use App\Http\Controllers\Market\StripeController;
+use App\Http\Controllers\Market\ArticleCategoryController;
+use App\Http\Controllers\Market\ArticleController;
 use App\Http\Controllers\ProvinceController;
-use App\Models\Market\CategoryAttribute;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -314,6 +315,27 @@ Route::prefix('v1')->group(function () {
             Route::delete('/delete/{id}', [AboutAttachmentController::class, 'destroy']);  //->middleware('is_admin')
 
         });
+
+        Route::group(['prefix' => 'article-category'], function () {
+            Route::get('/', [ArticleCategoryController::class, 'index']);
+            Route::post('/store', [ArticleCategoryController::class, 'store']); //->middleware('is_admin')
+            Route::get('/show/{id}', [ArticleCategoryController::class, 'show']);
+            Route::patch('/update/{id}', [ArticleCategoryController::class, 'update']); //->middleware('is_admin')
+            Route::delete('/delete/{id}', [ArticleCategoryController::class, 'destroy']);  //->middleware('is_admin')
+
+        });
+
+
+        Route::group(['prefix' => 'article'], function () {
+            Route::get('/', [ArticleController::class, 'index']);
+            Route::post('/store', [ArticleController::class, 'store']); //->middleware('is_admin')
+            Route::get('/show/{id}', [ArticleController::class, 'show']);
+            Route::post('/update/{id}', [ArticleController::class, 'update']); //->middleware('is_admin')
+            Route::delete('/delete/{id}', [ArticleController::class, 'destroy']);  //->middleware('is_admin')
+
+        });
+
+
 
         Route::group(['prefix' => 'category-value'], function () {
             Route::get('/', [CategoryValueController::class, 'index']);
