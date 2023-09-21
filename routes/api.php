@@ -43,6 +43,7 @@ use App\Http\Controllers\Market\RateController;
 use App\Http\Controllers\Market\StripeController;
 use App\Http\Controllers\Market\ArticleCategoryController;
 use App\Http\Controllers\Market\ArticleController;
+use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ProvinceController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -332,6 +333,16 @@ Route::prefix('v1')->group(function () {
             Route::get('/show/{id}', [ArticleController::class, 'show']);
             Route::post('/update/{id}', [ArticleController::class, 'update']); //->middleware('is_admin')
             Route::delete('/delete/{id}', [ArticleController::class, 'destroy']);  //->middleware('is_admin')
+
+        });
+
+
+        Route::group(['prefix' => 'news'], function () {
+            Route::get('/', [NewsController::class, 'index']);
+            Route::post('/store', [NewsController::class, 'store']); //->middleware('is_admin')
+            Route::get('/show/{id}', [NewsController::class, 'show']);
+            Route::patch('/update/{id}', [NewsController::class, 'update']); //->middleware('is_admin')
+            Route::delete('/delete/{id}', [NewsController::class, 'destroy']);  //->middleware('is_admin')
 
         });
 

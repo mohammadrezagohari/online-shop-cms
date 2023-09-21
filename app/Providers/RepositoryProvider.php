@@ -51,6 +51,8 @@ use App\Repositories\MySQL\EmailInsertRepository\EmailInsertRepository;
 use App\Repositories\MySQL\EmailInsertRepository\InterfaceEmailInsertRepository;
 use App\Repositories\MySQL\GuaranteeRepository\GuaranteeRepository;
 use App\Repositories\MySQL\GuaranteeRepository\InterfaceGuaranteeRepository;
+use App\Repositories\MySQL\NewsRepository\InterfaceNewsRepository;
+use App\Repositories\MySQL\NewsRepository\NewsRepository;
 use App\Repositories\MySQL\OfflinePaymentRepository\InterfaceOfflinePaymentRepository;
 use App\Repositories\MySQL\OfflinePaymentRepository\OfflinePaymentRepository;
 use App\Repositories\MySQL\OnlinePaymentRepository\InterfaceOnlinePaymentRepository;
@@ -146,6 +148,7 @@ class RepositoryProvider extends ServiceProvider
         $this->app->bind(InterfaceAboutAttachmentRepository::class,AboutAttachmentRepository::class);
         $this->app->bind(InterfaceArticleCategoryRepository::class,ArticleCategoryRepository::class);
         $this->app->bind(InterfaceArticleRepository::class,ArticleRepository::class);
+        $this->app->bind(InterfaceNewsRepository::class,NewsRepository::class);
     }
 
     /**
