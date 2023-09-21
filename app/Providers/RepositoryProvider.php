@@ -43,6 +43,8 @@ use App\Repositories\MySQL\CategoryValueRepository\CategoryValueRepository;
 use App\Repositories\MySQL\CategoryValueRepository\InterfaceCategoryValueRepository;
 use App\Repositories\MySQL\CityRepository\CityRepository;
 use App\Repositories\MySQL\CityRepository\InterfaceCityRepository;
+use App\Repositories\MySQL\ConditionRepository\ConditionRepository;
+use App\Repositories\MySQL\ConditionRepository\InterfaceConditionRepository;
 use App\Repositories\MySQL\ContactRepository\ContactRepository;
 use App\Repositories\MySQL\ContactRepository\InterfaceContactRepository;
 use App\Repositories\MySQL\DeliveryRepository\DeliveryRepository;
@@ -149,6 +151,7 @@ class RepositoryProvider extends ServiceProvider
         $this->app->bind(InterfaceArticleCategoryRepository::class,ArticleCategoryRepository::class);
         $this->app->bind(InterfaceArticleRepository::class,ArticleRepository::class);
         $this->app->bind(InterfaceNewsRepository::class,NewsRepository::class);
+        $this->app->bind(InterfaceConditionRepository::class,ConditionRepository::class);
     }
 
     /**

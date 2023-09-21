@@ -34,6 +34,7 @@ use App\Http\Controllers\Market\EmailController;
 use App\Http\Controllers\Market\EmailFileController;
 use App\Http\Controllers\OtpController;
 use App\Http\Controllers\CityController;
+use App\Http\Controllers\ConditionController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\Market\BannerController;
 use App\Http\Controllers\Market\CategoryAttributeController;
@@ -343,6 +344,16 @@ Route::prefix('v1')->group(function () {
             Route::get('/show/{id}', [NewsController::class, 'show']);
             Route::patch('/update/{id}', [NewsController::class, 'update']); //->middleware('is_admin')
             Route::delete('/delete/{id}', [NewsController::class, 'destroy']);  //->middleware('is_admin')
+
+        });
+
+
+        Route::group(['prefix' => 'condition'], function () {
+            Route::get('/', [ConditionController::class, 'index']);
+            Route::post('/store', [ConditionController::class, 'store']); //->middleware('is_admin')
+            Route::get('/show/{id}', [ConditionController::class, 'show']);
+            Route::post('/update/{id}', [ConditionController::class, 'update']); //->middleware('is_admin')
+            Route::delete('/delete/{id}', [ConditionController::class, 'destroy']);  //->middleware('is_admin')
 
         });
 
