@@ -68,7 +68,7 @@ class CommentController extends Controller
         $data=$request->except(['_token']);
         if($data["type"]==0)
         {
-            $data['commentable_id']=0;
+            $data['commentable_id']=$data['post_id'];
             $data['commentable_type']="App\Models\Market\Post";
 
         }

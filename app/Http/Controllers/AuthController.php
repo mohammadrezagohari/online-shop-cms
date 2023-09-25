@@ -115,6 +115,7 @@ class AuthController extends Controller
                     'mobile' => $request->mobile,
                 ]);
             }
+            
             $userOtp = otp_generator($user);
 
             VerificationSMSCodeJob::dispatch($userOtp->otp_code, $user);

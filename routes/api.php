@@ -44,8 +44,10 @@ use App\Http\Controllers\Market\RateController;
 use App\Http\Controllers\Market\StripeController;
 use App\Http\Controllers\Market\ArticleCategoryController;
 use App\Http\Controllers\Market\ArticleController;
+use App\Http\Controllers\Market\ProductSocialController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ProvinceController;
+use App\Models\Market\ProductSocial;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -356,6 +358,17 @@ Route::prefix('v1')->group(function () {
             Route::delete('/delete/{id}', [ConditionController::class, 'destroy']);  //->middleware('is_admin')
 
         });
+
+
+        Route::group(['prefix' => 'product-social'], function () {
+            Route::get('/', [ProductSocialController::class, 'index']);
+            Route::post('/store', [ProductSocialController::class, 'store']); //->middleware('is_admin')
+            Route::get('/show/{id}', [ProductSocialController::class, 'show']);
+            Route::post('/update/{id}', [ProductSocialController::class, 'update']); //->middleware('is_admin')
+            Route::delete('/delete/{id}', [ProductSocialController::class, 'destroy']);  //->middleware('is_admin')
+
+        });
+
 
 
 

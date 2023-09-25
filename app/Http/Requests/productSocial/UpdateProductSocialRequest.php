@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Requests\comment;
+namespace App\Http\Requests\productSocial;
 
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class StoreCommentRequest extends FormRequest
+class UpdateProductSocialRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,11 +24,10 @@ class StoreCommentRequest extends FormRequest
     public function rules(): array
     {
         return [
-           'body'=>'required|string|min:3',
-           'parent_id'=>'nullable|integer|exists:comments,id',
-           'post_id'=>'required|integer|exists:posts,id',
-           'user_id'=>'required|exists:users,id',
-           'type'=>'required|string',
+            'title'   =>  'nullable|max:120|min:2|regex:/^[ا-یa-zA-Z0-9\-۰-۹ء-ي., ]+$/u',
+            'product_id'     => 'nullable|integer|exists:products,id',
+            'icon'     => 'nullable|image|mimes:png,jpg,jpeg,svg',
+            'link'     => 'nullable|string',
         ];
     }
 

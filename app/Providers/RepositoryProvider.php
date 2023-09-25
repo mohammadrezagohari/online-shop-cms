@@ -83,6 +83,8 @@ use App\Repositories\MySQL\ProductPropertyRepository\InterfaceProductPropertyRep
 use App\Repositories\MySQL\ProductPropertyRepository\ProductPropertyRepository;
 use App\Repositories\MySQL\ProductRepository\InterfaceProductRepository;
 use App\Repositories\MySQL\ProductRepository\ProductRepository;
+use App\Repositories\MySQL\ProductSocialRepository\InterfaceProductSocialRepository;
+use App\Repositories\MySQL\ProductSocialRepository\ProductSocialRepository;
 use App\Repositories\MySQL\ProvinceRepository\InterfaceProvinceRepository;
 use App\Repositories\MySQL\ProvinceRepository\ProvinceRepository;
 use App\Repositories\MySQL\RateRepository\InterfaceRateRepository;
@@ -152,6 +154,7 @@ class RepositoryProvider extends ServiceProvider
         $this->app->bind(InterfaceArticleRepository::class,ArticleRepository::class);
         $this->app->bind(InterfaceNewsRepository::class,NewsRepository::class);
         $this->app->bind(InterfaceConditionRepository::class,ConditionRepository::class);
+        $this->app->bind(InterfaceProductSocialRepository::class,ProductSocialRepository::class);
     }
 
     /**

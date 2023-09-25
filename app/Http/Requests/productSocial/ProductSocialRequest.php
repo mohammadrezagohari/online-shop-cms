@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Requests\comment;
+namespace App\Http\Requests\productSocial;
 
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class StoreCommentRequest extends FormRequest
+class ProductSocialRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -19,16 +19,14 @@ class StoreCommentRequest extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array|string>
+     * @return array<string>
      */
     public function rules(): array
     {
         return [
-           'body'=>'required|string|min:3',
-           'parent_id'=>'nullable|integer|exists:comments,id',
-           'post_id'=>'required|integer|exists:posts,id',
-           'user_id'=>'required|exists:users,id',
-           'type'=>'required|string',
+            'title'   => 'nullable|string',
+            'product_id'     => 'nullable|integer|exists:products,id',
+            'link'     => 'nullable|string',
         ];
     }
 
