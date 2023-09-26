@@ -12,7 +12,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Symfony\Component\HttpFoundation\Response as HTTPResponse;
-
+use Symfony\Component\VarExporter\Internal\Values;
 
 class CategoryValueController extends Controller
 {
@@ -24,21 +24,33 @@ class CategoryValueController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(CategoryValueRequest $request): AnonymousResourceCollection
+    public function index(CategoryValueRequest $request) //: AnonymousResourceCollection
     {
+
         $count = @$request->count ?? 10;
         $product_id = @$request->product_id;
         $category_attribute_id = @$request->category_attribute_id;
         $value = @$request->value;
+        $min_price = @$request->min_price;
+        $max_price = @$request->max_price;
+        $values = @$request->values;
         $categoryValues = $this->interfaceCategoryValueRepository->query();
 
         if (@$product_id)
             $categoryValues = $categoryValues->whereProductId($product_id);
         if (@$category_attribute_id)
-
             $categoryValues = $categoryValues->whereCategoryAttributesId($category_attribute_id);
         if (@$value)
             $categoryValues = $categoryValues->whereValue($value);
+        if (@$values)
+            $categoryValues = $categoryValues->whereIn('id', $values);
+        if (@$min_price && @$max_price){
+            $categoryValues = $categoryValues->whereHas("product",function($q) use($min_price,$max_price){
+                $q->where('price','>=',$min_price)
+                ->where('price','<=',$max_price);
+            });
+        }
+
 
         return CategoryValueResource::collection($categoryValues->paginate($count));
     }

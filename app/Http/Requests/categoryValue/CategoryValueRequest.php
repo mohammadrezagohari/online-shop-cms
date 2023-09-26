@@ -27,6 +27,7 @@ class CategoryValueRequest extends FormRequest
             'product_id'   => 'nullable|numeric|exists:products,id',
             'category_attribute_id'     => 'nullable|numeric|exists:category_attributes,id',
             'value'     => 'nullable|string',
+            'values.*'     => 'nullable|json',
         ];
     }
 

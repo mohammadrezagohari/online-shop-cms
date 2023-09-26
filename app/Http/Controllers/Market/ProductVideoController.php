@@ -11,8 +11,6 @@ use App\Repositories\MySQL\ProductVideoRepository\InterfaceProductVideoRepositor
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Symfony\Component\HttpFoundation\Response as HTTPResponse;
-
-
 use function App\upload_asset_file;
 
 class ProductVideoController extends Controller
@@ -70,7 +68,7 @@ class ProductVideoController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(int $id):ProductVideoResource
+    public function show(int $id): ProductVideoResource
     {
         return ProductVideoResource::make($this->interfaceProductVideoRepository->findById($id));
     }
@@ -86,7 +84,7 @@ class ProductVideoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateProductVideoRequest $request, int $id):JsonResponse
+    public function update(UpdateProductVideoRequest $request, int $id): JsonResponse
     {
         $data = $request->except(['_token', 'video']);
 
@@ -104,7 +102,7 @@ class ProductVideoController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(int $id):JsonResponse
+    public function destroy(int $id): JsonResponse
     {
         $video_url = $this->interfaceProductVideoRepository->findById($id)['url'];
 
