@@ -46,6 +46,7 @@ use App\Http\Controllers\Market\ArticleCategoryController;
 use App\Http\Controllers\Market\ArticleController;
 use App\Http\Controllers\Market\ProductSocialController;
 use App\Http\Controllers\Market\ProductVideoController;
+use App\Http\Controllers\Market\WalletController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ProvinceController;
 use App\Models\Market\ProductSocial;
@@ -389,6 +390,19 @@ Route::prefix('v1')->group(function () {
             Route::get('/show/{id}', [CategoryValueController::class, 'show']);
             Route::patch('/update/{id}', [CategoryValueController::class, 'update']); //->middleware('is_admin')
             Route::delete('/delete/{id}', [CategoryValueController::class, 'destroy']);  //->middleware('is_admin')
+
+        });
+
+
+        Route::group(['prefix' => 'wallet'], function () {
+            Route::get('/', [WalletController::class, 'index']);
+            Route::post('/store', [WalletController::class, 'store']); //->middleware('is_admin')
+            Route::get('/show/{id}', [WalletController::class, 'show']);
+            Route::post('/increse/{id}', [WalletController::class, 'walletIncrese']);
+            Route::post('/decrese/{id}', [WalletController::class, 'walletDecrese']);
+            
+            Route::patch('/update/{id}', [WalletController::class, 'update']); //->middleware('is_admin')
+            Route::delete('/delete/{id}', [WalletController::class, 'destroy']);  //->middleware('is_admin')
 
         });
 

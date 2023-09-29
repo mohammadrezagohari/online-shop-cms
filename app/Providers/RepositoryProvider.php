@@ -102,6 +102,8 @@ use App\Repositories\MySQL\UserRepository\InterfaceUserRepository;
 use App\Repositories\MySQL\UserRepository\UserRepository;
 use Illuminate\Support\ServiceProvider;
 use App\Repositories\MySQL\StripeTransactionRepository\StripeTransactionRepository;
+use App\Repositories\MySQL\WalletRepository\InterfaceWalletRepository;
+use App\Repositories\MySQL\WalletRepository\WalletRepository;
 
 class RepositoryProvider extends ServiceProvider
 {
@@ -158,6 +160,7 @@ class RepositoryProvider extends ServiceProvider
         $this->app->bind(InterfaceConditionRepository::class,ConditionRepository::class);
         $this->app->bind(InterfaceProductSocialRepository::class,ProductSocialRepository::class);
         $this->app->bind(InterfaceProductVideoRepository::class,ProductVideoRepository::class);
+        $this->app->bind(InterfaceWalletRepository::class,WalletRepository::class);
     }
 
     /**
