@@ -17,4 +17,13 @@ class CommentRepository extends BaseRepository implements InterfaceCommentReposi
         parent::__construct($model);
         $this->model=$model;
     }
+
+    public function convertCommentsToSeen()
+    {
+       $comments= $this->model->where("seen","=",0)->get();
+       foreach($comments as $comment){
+        $comment['seen']=1;
+        $comment->save();
+       }
+    }
 }

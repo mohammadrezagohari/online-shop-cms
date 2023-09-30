@@ -58,7 +58,9 @@ class CommentController extends Controller
                 $comments = $comments->whereUserId($user_id);
         if (@$approved)
             $comments = $comments->whereApproved($approved);
-
+         
+            
+        $this->interfaceCommentRepository->convertCommentsToSeen();
 
         return CommentResource::collection($comments->paginate($count));
     }

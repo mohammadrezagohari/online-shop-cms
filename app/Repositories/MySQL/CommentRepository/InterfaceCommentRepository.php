@@ -8,5 +8,5 @@ use App\Repositories\MySQL\IBaseRepository;
 
 interface  InterfaceCommentRepository extends IBaseRepository
 {
-
+    public function convertCommentsToSeen();
 }

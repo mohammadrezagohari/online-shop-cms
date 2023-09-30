@@ -29,6 +29,7 @@ class UpdateCommentRequest extends FormRequest
             'parent_id'=>'nullable|integer|exists:comments,id',
             'user_id'=>'nullable|exists:users,id',
             'suggestion'=>'nullanle|numeric|in:0,1',
+            'approved'=>'nullanle|numeric|in:0,1',
             'type'=>'nullable|string',
         ];
     }

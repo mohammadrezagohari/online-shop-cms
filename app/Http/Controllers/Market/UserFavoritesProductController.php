@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Market;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\comment\UpdateCommentRequest;
 use App\Http\Requests\userFavoritesUser\DeleteUserFavoritesUserRequest;
 use App\Http\Requests\userFavoritesUser\StoreUserFavoritesUserRequest;
 use App\Http\Requests\userFavoritesUser\UserFavoritesUserRequest;
@@ -73,7 +74,7 @@ class UserFavoritesProductController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateCommentRequest $request, string $id)
     {
         //
     }
