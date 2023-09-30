@@ -69,6 +69,11 @@ class Comment extends Model
         return $query->where('status','=',$status);
     }
 
+    public function scopeWhereSuggestion($query,$suggestion)
+    {
+        return $query->where('suggestion','=',$suggestion);
+    }
+
     public function scopeWhereApproved($query,$approved)
     {
         return $query->where('approved','=',$approved);
@@ -79,4 +84,11 @@ class Comment extends Model
     {
         return $query->where('user_id','=',$userId);
     }
+
+
+    public function scopeWhereTitle($query,$title)
+    {
+        return $query->where('title','like',"%{$title}%");
+    }
+    
 }

@@ -24,9 +24,11 @@ class CommentRequest extends FormRequest
     public function rules(): array
     {
         return [
+          'title'=>'nullable|string',
           'user_id'=>'nullable|exists:users,id',
           'count'=>'nullable|numeric',
           'approved'=>'nullable|numeric|in:0,1',
+          'suggestion'=>'nullable|numeric|in:0,1',
           'status'=>'nullable|numeric|in:0,1',
         ];
     }

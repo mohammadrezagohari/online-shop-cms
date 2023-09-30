@@ -24,7 +24,7 @@ class AddressRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'keyword'   => 'nullable|string|max:30',
+            'postal_code'   => 'nullable|string',
             'count'     => 'nullable|numeric',
             'user_id'     => 'nullable|exists:users,id',
         ];

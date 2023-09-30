@@ -24,9 +24,11 @@ class UpdateCommentRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'title'=>'nullable|string|min:3|max:255',
             'body'=>'nullable|string|min:3',
             'parent_id'=>'nullable|integer|exists:comments,id',
             'user_id'=>'nullable|exists:users,id',
+            'suggestion'=>'nullanle|numeric|in:0,1',
             'type'=>'nullable|string',
         ];
     }

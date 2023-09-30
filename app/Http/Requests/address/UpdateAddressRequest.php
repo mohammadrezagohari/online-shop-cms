@@ -24,16 +24,17 @@ class UpdateAddressRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'user_id'=>'integer|exists:users,id',
-            'province_id'=>'integer|exists:provinces,id',
-            'city_id'=>'integer|exists:cities,id',
-            'postal_code'=>'string',
-            'address'=>'string',
-            'unit'=>'string',
-            'recipient_first_name'=>'string',
-            'recipient_last_name'=>'string',
-            'mobile'=>'string|ir_mobile',
-            'status'=>'numeric|in:0,1'
+            'user_id'=>'nullable|integer|exists:users,id',
+            'province_id'=>'nullable|integer|exists:provinces,id',
+            'city_id'=>'nullable|integer|exists:cities,id',
+            'postal_code'=>'nullable|string',
+            'address'=>'nullable|string',
+            'unit'=>'nullable|string',
+            'recipient_first_name'=>'nullable|string',
+            'recipient_last_name'=>'nullable|string',
+            'mobile'=>'nullable|string|ir_mobile',
+            'national_code'=>'nullable|string|ir_mobile',
+            'status'=>'nullable|numeric|in:0,1'
         ];
     }
 

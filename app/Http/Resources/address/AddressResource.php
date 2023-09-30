@@ -24,7 +24,8 @@ class AddressResource extends JsonResource
             'unit' => $this->unit,
             'recipient_first_name' => $this->recipient_first_name,
             'recipient_last_name' => $this->recipient_last_name,
-            'mobile' => $this->mobile,
+            'recipient_mobile' => $this->mobile,
+            'recipient_national_code' => $this->national_code,
             'status' => $this->status,
 
         ];

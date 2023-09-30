@@ -78,9 +78,9 @@ class Product extends Model
 
 
 
-    public function user()
+    public function users()
     {
-        return $this->belongsToMany(User::class,'user_id');
+        return $this->belongsToMany(User::class);
     }
 
 

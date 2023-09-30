@@ -24,10 +24,12 @@ class StoreCommentRequest extends FormRequest
     public function rules(): array
     {
         return [
+           'title'=>'required|string|min:3|max:255',
            'body'=>'required|string|min:3',
            'parent_id'=>'nullable|integer|exists:comments,id',
            'post_id'=>'required|integer|exists:posts,id',
            'user_id'=>'required|exists:users,id',
+           'suggestion'=>'required|numeric|in:0,1',
            'type'=>'required|string',
         ];
     }
