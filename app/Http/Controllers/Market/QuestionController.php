@@ -10,6 +10,7 @@ use App\Http\Resources\question\QuestionResource;
 use App\Repositories\MySQL\QuestionRepository\InterfaceQuestionRepository;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response as HTTPResponse;
 
 
@@ -78,7 +79,7 @@ class QuestionController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(int $id): QuestionResource
+    public function show(int $id):QuestionResource
     {
         return QuestionResource::make($this->interfaceQuestionRepository->findById($id));
     }
@@ -94,7 +95,7 @@ class QuestionController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateQuestionRequest $request, string $id): JsonResponse
+    public function update(UpdateQuestionRequest $request, string $id):JsonResponse
     {
         $data = $request->except(["_token"]);
 
@@ -108,8 +109,39 @@ class QuestionController extends Controller
      */
     public function destroy(int $id)
     {
-        if ($this->interfaceQuestionRepository->deleteData($id))
-            return response()->json(['message' => 'successfully your transaction!'], HTTPResponse::HTTP_OK);
-        return response()->json(['message' => 'sorry, your transaction fails!'], HTTPResponse::HTTP_BAD_REQUEST);
+       if($this->interfaceQuestionRepository->deleteData($id))
+       return response()->json(['message' => 'successfully your transaction!'], HTTPResponse::HTTP_OK);
+       return response()->json(['message' => 'sorry, your transaction fails!'], HTTPResponse::HTTP_BAD_REQUEST);
+    }
+
+
+    public function isHelpQuestion(Request $request,int $id){
+        
+        $validatedData = $request->validate([
+            'help' => ['required', 'numeric', 'in:0,1'],
+        ]);
+        if (!$validatedData) {
+            return response()->json([
+                'status' => false,
+                'message' => "sorry, your validation fails"
+            ], HTTPResponse::HTTP_BAD_REQUEST);
+        }
+
+      $data = $request->except(["_token"]);
+     $question=$this->interfaceQuestionRepository->findById($id);
+     if($data['help']=="0"){
+        if($this->interfaceQuestionRepository->updateItem($id,[
+            "dislike"=>$question["dislike"]+1
+        ]))
+        return response()->json(['message' => 'successfully your transaction!'], HTTPResponse::HTTP_OK);
+     }else{
+        if($this->interfaceQuestionRepository->updateItem($id,[
+            "like"=>$question["like"]+1
+        ]))
+        return response()->json(['message' => 'successfully your transaction!'], HTTPResponse::HTTP_OK);
+     }
+     return response()->json(['message' => 'sorry, your transaction fails!'], HTTPResponse::HTTP_BAD_REQUEST);
+
+
     }
 }

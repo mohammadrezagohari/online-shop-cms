@@ -11,7 +11,7 @@ class Question extends Model
 {
     use HasFactory,SoftDeletes;
 
-    protected $fillable=["title","mini_description","full_description","status","category_id"];
+    protected $fillable=["title","mini_description","full_description","status","category_id","like","dislike"];
 
 
 

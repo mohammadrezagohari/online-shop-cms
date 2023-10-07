@@ -423,6 +423,7 @@ Route::prefix('v1')->group(function () {
             Route::get('/show/{id}', [QuestionController::class, 'show']);
             Route::patch('/update/{id}', [QuestionController::class, 'update']); //->middleware('is_admin')
             Route::delete('/delete/{id}', [QuestionController::class, 'destroy']);  //->middleware('is_admin')
+            Route::post('/help/{id}', [QuestionController::class, 'isHelpQuestion']);  
 
         });
 

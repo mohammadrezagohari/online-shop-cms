@@ -21,6 +21,8 @@ class QuestionResource extends JsonResource
             "mini_description"=>$this->mini_description,
             "full_description"=>$this->full_description,
             "status"=>$this->status,
+            "like"=>round(($this->like/($this->like+$this->dislike))*100,2),
+            "dislike"=>round(($this->dislike/($this->like+$this->dislike))*100,2),
         ];
     }
 }
