@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Models\Market\ArticleCategory;
 use App\Models\Market\CategoryAttribute;
 use App\Models\Market\CategoryValue;
+use App\Models\Market\QuestionCategory;
 use App\Repositories\MySQL\AboutAttachmentRepository\AboutAttachmentRepository;
 use App\Repositories\MySQL\AboutAttachmentRepository\InterfaceAboutAttachmentRepository;
 use App\Repositories\MySQL\AboutRepository\AboutRepository;
@@ -89,6 +90,8 @@ use App\Repositories\MySQL\ProductVideoRepository\InterfaceProductVideoRepositor
 use App\Repositories\MySQL\ProductVideoRepository\ProductVideoRepository;
 use App\Repositories\MySQL\ProvinceRepository\InterfaceProvinceRepository;
 use App\Repositories\MySQL\ProvinceRepository\ProvinceRepository;
+use App\Repositories\MySQL\QuestionCategoryRepository\InterfaceQuestionCategoryRepository;
+use App\Repositories\MySQL\QuestionCategoryRepository\QuestionCategoryRepository;
 use App\Repositories\MySQL\RateRepository\InterfaceRateRepository;
 use App\Repositories\MySQL\RateRepository\RateRepository;
 use App\Repositories\MySQL\RoleRepository\InterfaceRoleRepository;
@@ -161,6 +164,7 @@ class RepositoryProvider extends ServiceProvider
         $this->app->bind(InterfaceProductSocialRepository::class,ProductSocialRepository::class);
         $this->app->bind(InterfaceProductVideoRepository::class,ProductVideoRepository::class);
         $this->app->bind(InterfaceWalletRepository::class,WalletRepository::class);
+        $this->app->bind(InterfaceQuestionCategoryRepository::class,QuestionCategoryRepository::class);
     }
 
     /**

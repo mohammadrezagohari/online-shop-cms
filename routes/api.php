@@ -46,12 +46,14 @@ use App\Http\Controllers\Market\ArticleCategoryController;
 use App\Http\Controllers\Market\ArticleController;
 use App\Http\Controllers\Market\ProductSocialController;
 use App\Http\Controllers\Market\ProductVideoController;
+use App\Http\Controllers\Market\QuestionCategoryController;
 use App\Http\Controllers\Market\UserFavoritesProductController;
 use App\Http\Controllers\Market\WalletController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ProvinceController;
 use App\Http\Resources\userFavoritesProduct\UserFavoritesProductResource;
 use App\Models\Market\ProductSocial;
+use App\Models\Market\QuestionCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -401,6 +403,16 @@ Route::prefix('v1')->group(function () {
             Route::get('/show/{id}', [UserFavoritesProductController::class, 'show']);
           //  Route::patch('/update/{id}', [UserFavoritesProductController::class, 'update']); //->middleware('is_admin')
             Route::post('/delete/{id}', [UserFavoritesProductController::class, 'destroy']);  //->middleware('is_admin')
+
+        });
+
+
+        Route::group(['prefix' => 'question-category'], function () {
+            Route::get('/', [QuestionCategoryController::class, 'index']);
+            Route::post('/store', [QuestionCategoryController::class, 'store']); //->middleware('is_admin')
+            Route::get('/show/{id}', [QuestionCategoryController::class, 'show']);
+            Route::patch('/update/{id}', [QuestionCategoryController::class, 'update']); //->middleware('is_admin')
+            Route::delete('/delete/{id}', [QuestionCategoryController::class, 'destroy']);  //->middleware('is_admin')
 
         });
 
