@@ -47,6 +47,7 @@ use App\Http\Controllers\Market\ArticleController;
 use App\Http\Controllers\Market\ProductSocialController;
 use App\Http\Controllers\Market\ProductVideoController;
 use App\Http\Controllers\Market\QuestionCategoryController;
+use App\Http\Controllers\Market\QuestionController;
 use App\Http\Controllers\Market\UserFavoritesProductController;
 use App\Http\Controllers\Market\WalletController;
 use App\Http\Controllers\NewsController;
@@ -413,6 +414,15 @@ Route::prefix('v1')->group(function () {
             Route::get('/show/{id}', [QuestionCategoryController::class, 'show']);
             Route::patch('/update/{id}', [QuestionCategoryController::class, 'update']); //->middleware('is_admin')
             Route::delete('/delete/{id}', [QuestionCategoryController::class, 'destroy']);  //->middleware('is_admin')
+
+        });
+
+        Route::group(['prefix' => 'question'], function () {
+            Route::get('/', [QuestionController::class, 'index']);
+            Route::post('/store', [QuestionController::class, 'store']); //->middleware('is_admin')
+            Route::get('/show/{id}', [QuestionController::class, 'show']);
+            Route::patch('/update/{id}', [QuestionController::class, 'update']); //->middleware('is_admin')
+            Route::delete('/delete/{id}', [QuestionController::class, 'destroy']);  //->middleware('is_admin')
 
         });
 
