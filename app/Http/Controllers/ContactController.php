@@ -13,6 +13,8 @@ use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Symfony\Component\HttpFoundation\Response as HTTPResponse;
 
+use function App\upload_asset_file;
+use function App\upload_asset_file_in_storage;
 
 class ContactController extends Controller
 {
@@ -58,9 +60,28 @@ class ContactController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreContactRequest $request): JsonResponse
+    public function store(StoreContactRequest $request) //: JsonResponse
     {
         $data = $request->except(['_token']);
+        if ($request->hasFile("files")) {
+
+            $sum = 0;
+            foreach ($request->file("files") as $file) {
+                $sum += 1;
+            }
+
+            if ($sum >= 6) {
+                return response()->json(['message' => 'sorry, your number of file for upload not bigger 6!'], HTTPResponse::HTTP_BAD_REQUEST);
+            }
+            foreach ($request->file("files") as $file) {
+
+                $images[] = upload_asset_file_in_storage($file, "contact-us/" . $data['name']);
+            }
+
+
+            $data['file'] = json_encode($images);
+        }
+
 
         if ($this->interfaceContactRepository->insertData($data))
             return response()->json(['message' => 'successfully your transaction!'], HTTPResponse::HTTP_OK);
@@ -100,6 +121,14 @@ class ContactController extends Controller
      */
     public function destroy(int $id)
     {
+        @$files = json_decode($this->interfaceContactRepository->findById($id)['file']);
+        if (@$files) {
+            foreach ($files as $file) {
+                \File::delete(storage_path($file));
+            }
+        }
+
+
         if ($this->interfaceContactRepository->deleteData($id))
             return response()->json(['message' => 'successfully your transaction!'], HTTPResponse::HTTP_OK);
         return response()->json(['message' => 'sorry, your transaction fails!'], HTTPResponse::HTTP_BAD_REQUEST);

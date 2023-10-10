@@ -106,6 +106,22 @@ if (!function_exists("upload_asset_file")) {
 }
 
 
+if (!function_exists("upload_asset_file_in_storage")) {
+    /*********************************
+     * upload asset file on storage
+     ********************************/
+    function upload_asset_file_in_storage($file, $path)
+    {
+        $random=rand(1000,9999);
+        $fileName = time().$random . '.' . $file->extension();
+        $prefix_asset = $path;
+        $file->move(storage_path($prefix_asset), $fileName);
+        return $path."/". $fileName;
+//        return $file->storeAs($prefix_asset, $fileName);
+    }
+}
+
+
 if (!function_exists("final_amount_cart_items")) {
     /*********************************
      * upload asset file on storage

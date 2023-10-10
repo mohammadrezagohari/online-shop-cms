@@ -18,6 +18,7 @@ class ContactResource extends JsonResource
             'name'=>$this->name,
             'email'=>$this->email,
             'text'=>$this->text,
+            'file'=>json_decode($this->file),
         ];
     }
 }

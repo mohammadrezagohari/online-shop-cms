@@ -5,6 +5,7 @@ namespace App\Http\Requests\contact;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Validation\Rule;
 
 class StoreContactRequest extends FormRequest
 {
@@ -27,7 +28,7 @@ class StoreContactRequest extends FormRequest
             'name'   => 'required|string|max:255',
             'email'     => 'required|email|max:255',
             'text'     => 'required|string',
-
+            'file' => 'nullable|file|max:5120'
         ];
     }
 

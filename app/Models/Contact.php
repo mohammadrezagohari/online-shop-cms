@@ -12,7 +12,7 @@ class Contact extends Model
 
 
     protected $table="contact_us";
-    protected $fillable=['name','email','text'];
+    protected $fillable=['name','email','text','file'];
 
 
     public function scopeWhereName($query,$name){
