@@ -73,6 +73,8 @@ use App\Repositories\MySQL\PostCategoryRepository\PostCategoryRepository;
 use App\Repositories\MySQL\PostCategoryRepository\InterfacePostCategoryRepository;
 use App\Repositories\MySQL\PostRepository\InterfacePostRepository;
 use App\Repositories\MySQL\PostRepository\PostRepository;
+use App\Repositories\MySQL\ProductCategoryQuestionRepository\InterfaceProductCategoryQuestionRepository;
+use App\Repositories\MySQL\ProductCategoryQuestionRepository\ProductCategoryQuestionRepository;
 use App\Repositories\MySQL\ProductCategoryRepository\InterfaceProductCategoryRepository;
 use App\Repositories\MySQL\ProductCategoryRepository\ProductCategoryRepository;
 use App\Repositories\MySQL\ProductColorRepository\InterfaceProductColorRepository;
@@ -168,6 +170,7 @@ class RepositoryProvider extends ServiceProvider
         $this->app->bind(InterfaceQuestionCategoryRepository::class,QuestionCategoryRepository::class);
         $this->app->bind(InterfaceQuestionRepository::class,QuestionRepository::class);
         $this->app->bind(InterfaceJoinRepository::class,JoinRepository::class);
+        $this->app->bind(InterfaceProductCategoryQuestionRepository::class,ProductCategoryQuestionRepository::class);
     }
 
     /**
