@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Markert;
+namespace App\Models\Market;
 
 use App\Models\Market\QuestionCategory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;

@@ -2,7 +2,7 @@
 
 namespace App\Repositories\MySQL\QuestionRepository;
 
-use App\Models\Markert\Question;
+use App\Models\Market\Question;
 use App\Repositories\MySQL\BaseRepository;
 
 class QuestionRepository extends BaseRepository implements InterfaceQuestionRepository{

@@ -44,6 +44,7 @@ use App\Http\Controllers\Market\RateController;
 use App\Http\Controllers\Market\StripeController;
 use App\Http\Controllers\Market\ArticleCategoryController;
 use App\Http\Controllers\Market\ArticleController;
+use App\Http\Controllers\Market\JoinController;
 use App\Http\Controllers\Market\ProductSocialController;
 use App\Http\Controllers\Market\ProductVideoController;
 use App\Http\Controllers\Market\QuestionCategoryController;
@@ -324,6 +325,15 @@ Route::prefix('v1')->group(function () {
             Route::get('/show/{id}', [AboutAttachmentController::class, 'show']);
             Route::post('/update/{id}', [AboutAttachmentController::class, 'update']); //->middleware('is_admin')
             Route::delete('/delete/{id}', [AboutAttachmentController::class, 'destroy']);  //->middleware('is_admin')
+
+        });
+
+        Route::group(['prefix' => 'join-us'], function () {
+            Route::get('/', [JoinController::class, 'index']);
+            Route::post('/store', [JoinController::class, 'store']); //->middleware('is_admin')
+            Route::get('/show/{id}', [JoinController::class, 'show']);
+            Route::post('/update/{id}', [JoinController::class, 'update']); //->middleware('is_admin')
+            Route::delete('/delete/{id}', [JoinController::class, 'destroy']);  //->middleware('is_admin')
 
         });
 

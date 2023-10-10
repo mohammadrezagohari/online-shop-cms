@@ -51,6 +51,8 @@ use App\Repositories\MySQL\EmailInsertRepository\EmailInsertRepository;
 use App\Repositories\MySQL\EmailInsertRepository\InterfaceEmailInsertRepository;
 use App\Repositories\MySQL\GuaranteeRepository\GuaranteeRepository;
 use App\Repositories\MySQL\GuaranteeRepository\InterfaceGuaranteeRepository;
+use App\Repositories\MySQL\JoinRepository\InterfaceJoinRepository;
+use App\Repositories\MySQL\JoinRepository\JoinRepository;
 use App\Repositories\MySQL\NewsRepository\InterfaceNewsRepository;
 use App\Repositories\MySQL\NewsRepository\NewsRepository;
 use App\Repositories\MySQL\OfflinePaymentRepository\InterfaceOfflinePaymentRepository;
@@ -165,10 +167,11 @@ class RepositoryProvider extends ServiceProvider
         $this->app->bind(InterfaceWalletRepository::class,WalletRepository::class);
         $this->app->bind(InterfaceQuestionCategoryRepository::class,QuestionCategoryRepository::class);
         $this->app->bind(InterfaceQuestionRepository::class,QuestionRepository::class);
+        $this->app->bind(InterfaceJoinRepository::class,JoinRepository::class);
     }
 
     /**
-     * Bootstrap services.
+     * Bootstrap services
      */
     public function boot(): void
     {
