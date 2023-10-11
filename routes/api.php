@@ -46,6 +46,7 @@ use App\Http\Controllers\Market\ArticleCategoryController;
 use App\Http\Controllers\Market\ArticleController;
 use App\Http\Controllers\Market\JoinController;
 use App\Http\Controllers\Market\ProductCategoryQuestionController;
+use App\Http\Controllers\Market\ProductRateController;
 use App\Http\Controllers\Market\ProductSocialController;
 use App\Http\Controllers\Market\ProductVideoController;
 use App\Http\Controllers\Market\QuestionCategoryController;
@@ -247,6 +248,15 @@ Route::prefix('v1')->group(function () {
             Route::get('/show/{id}', [ProductCategoryQuestionController::class, 'show']);
             Route::patch('/update/{id}', [ProductCategoryQuestionController::class, 'update']); //->middleware('is_admin')
             Route::delete('/delete/{id}', [ProductCategoryQuestionController::class, 'destroy']);  //->middleware('is_admin')
+        });
+
+
+        Route::group(['prefix' => 'product-rate'], function () {
+            Route::get('/', [ProductRateController::class, 'index']);
+            Route::post('/store', [ProductRateController::class, 'store']); //->middleware('is_admin')
+            Route::get('/show/{id}', [ProductRateController::class, 'show']);
+            Route::patch('/update/{id}', [ProductRateController::class, 'update']); //->middleware('is_admin')
+            Route::delete('/delete/{id}', [ProductRateController::class, 'destroy']);  //->middleware('is_admin')
         });
 
 
