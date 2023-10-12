@@ -44,6 +44,7 @@ use App\Http\Controllers\Market\RateController;
 use App\Http\Controllers\Market\StripeController;
 use App\Http\Controllers\Market\ArticleCategoryController;
 use App\Http\Controllers\Market\ArticleController;
+use App\Http\Controllers\Market\HelpSizeController;
 use App\Http\Controllers\Market\JoinController;
 use App\Http\Controllers\Market\ProductCategoryQuestionController;
 use App\Http\Controllers\Market\ProductRateController;
@@ -51,6 +52,7 @@ use App\Http\Controllers\Market\ProductSocialController;
 use App\Http\Controllers\Market\ProductVideoController;
 use App\Http\Controllers\Market\QuestionCategoryController;
 use App\Http\Controllers\Market\QuestionController;
+use App\Http\Controllers\Market\RateAverageController;
 use App\Http\Controllers\Market\UserFavoritesProductController;
 use App\Http\Controllers\Market\WalletController;
 use App\Http\Controllers\NewsController;
@@ -260,12 +262,29 @@ Route::prefix('v1')->group(function () {
         });
 
 
+        Route::group(['prefix' => 'product-rate-average'], function () {
+            Route::get('/', [RateAverageController::class, 'index']);
+            Route::post('/store', [RateAverageController::class, 'store']); //->middleware('is_admin')
+            Route::get('/show/{id}', [RateAverageController::class, 'show']);
+          //  Route::patch('/update/{id}', [RateAverageController::class, 'update']); //->middleware('is_admin')
+            Route::delete('/delete/{id}', [RateAverageController::class, 'destroy']);  //->middleware('is_admin')
+        });
+
+
         Route::group(['prefix' => 'offline-payment'], function () {
             Route::get('/', [OfflinePaymentController::class, 'index']);
             Route::post('/store', [OfflinePaymentController::class, 'store']); //->middleware('is_admin')
             Route::get('/show/{id}', [OfflinePaymentController::class, 'show']);
             Route::patch('/update/{id}', [OfflinePaymentController::class, 'update']); //->middleware('is_admin')
             Route::delete('/delete/{id}', [OfflinePaymentController::class, 'destroy']);  //->middleware('is_admin')
+        });
+
+        Route::group(['prefix' => 'help-size'], function () {
+            Route::get('/', [HelpSizeController::class, 'index']);
+            Route::post('/store', [HelpSizeController::class, 'store']); //->middleware('is_admin')
+            Route::get('/show/{id}', [HelpSizeController::class, 'show']);
+            Route::patch('/update/{id}', [HelpSizeController::class, 'update']); //->middleware('is_admin')
+            Route::delete('/delete/{id}', [HelpSizeController::class, 'destroy']);  //->middleware('is_admin')
         });
 
 

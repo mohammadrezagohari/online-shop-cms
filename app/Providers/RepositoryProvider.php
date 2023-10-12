@@ -51,6 +51,8 @@ use App\Repositories\MySQL\EmailInsertRepository\EmailInsertRepository;
 use App\Repositories\MySQL\EmailInsertRepository\InterfaceEmailInsertRepository;
 use App\Repositories\MySQL\GuaranteeRepository\GuaranteeRepository;
 use App\Repositories\MySQL\GuaranteeRepository\InterfaceGuaranteeRepository;
+use App\Repositories\MySQL\HelpSizeRepository\HelpSizeRepository;
+use App\Repositories\MySQL\HelpSizeRepository\InterfaceHelpSizeRepository;
 use App\Repositories\MySQL\JoinRepository\InterfaceJoinRepository;
 use App\Repositories\MySQL\JoinRepository\JoinRepository;
 use App\Repositories\MySQL\NewsRepository\InterfaceNewsRepository;
@@ -97,6 +99,8 @@ use App\Repositories\MySQL\QuestionCategoryRepository\InterfaceQuestionCategoryR
 use App\Repositories\MySQL\QuestionCategoryRepository\QuestionCategoryRepository;
 use App\Repositories\MySQL\QuestionRepository\InterfaceQuestionRepository;
 use App\Repositories\MySQL\QuestionRepository\QuestionRepository;
+use App\Repositories\MySQL\RateAverageRepository\RateAverageRepository;
+use App\Repositories\MySQL\RateAverageRepository\InterfaceRateAverageRepository;
 use App\Repositories\MySQL\RateRepository\InterfaceRateRepository;
 use App\Repositories\MySQL\RateRepository\RateRepository;
 use App\Repositories\MySQL\RoleRepository\InterfaceRoleRepository;
@@ -174,6 +178,8 @@ class RepositoryProvider extends ServiceProvider
         $this->app->bind(InterfaceJoinRepository::class,JoinRepository::class);
         $this->app->bind(InterfaceProductCategoryQuestionRepository::class,ProductCategoryQuestionRepository::class);
         $this->app->bind(InterfaceProductRateRepository::class,ProductRateRepository::class);
+        $this->app->bind(InterfaceRateAverageRepository::class,RateAverageRepository::class);
+        $this->app->bind(InterfaceHelpSizeRepository::class,HelpSizeRepository::class);
     }
 
     /**

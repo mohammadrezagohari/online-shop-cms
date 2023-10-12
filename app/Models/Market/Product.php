@@ -104,6 +104,10 @@ class Product extends Model
     {
         return $this->hasMany(AmazingSale::class);
     }
+    public function productCategoryQuestion():HasMany
+    {
+        return $this->hasMany(ProductRate::class);
+    }
 
     public function activeAmazingSales()
     {

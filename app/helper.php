@@ -5,6 +5,7 @@ namespace App;
 
 use App\Models\Address;
 use App\Models\Market\AmazingSale;
+use App\Models\Market\ProductRate;
 use Carbon\Carbon;
 use GuzzleHttp\Client;
 use Illuminate\Database\Eloquent\Model;
@@ -268,6 +269,8 @@ if (!function_exists("get_reverse_geo_to_address")) {
         return response()->json($data);
     }
 }
+
+
 
 
 

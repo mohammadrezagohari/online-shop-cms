@@ -24,9 +24,9 @@ class ProductRateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'product_category_question_id'   => 'nullable|string|exixts:product_category_question,id',
+            'product_category_question_id'   => 'nullable|string|exists:product_category_question,id',
             'rate'     => 'nullable|numeric|in:0,1',
-            'product_id'   => 'nullable|string|exixts:products,id',
+            'product_id'   => 'nullable|string|exists:products,id',
             'user_id'     => 'nullable|string|exists:users,id',
             'comment'     => 'nullable|string',
             'status'     => 'nullable|numeric|in:0,1',

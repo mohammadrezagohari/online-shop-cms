@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Http\Requests\productRate;
+namespace App\Http\Requests\helpSize;
 
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
-use Illuminate\Validation\Rule;
 
-class StoreProductRateRequest extends FormRequest
+class StoreHelpSizeRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,14 +23,12 @@ class StoreProductRateRequest extends FormRequest
      */
     public function rules(): array
     {
-      
         return [
-            'items' => 'required|array',
-            'items.*.product_category_question_id' => 'required|string|exists:product_category_question,id',
-            'items.*.rate' => 'required|numeric|in:1,2,3,4,5',
-            'product_id'   => 'required|string|exists:products,id',
-            'user_id'     => 'nullable|string|exists:users,id',
-            'comment'     => 'required|string',
+            'size'   => 'required|string',
+            'height'     => 'required|string',
+            'Waist'     => 'required|string',
+            'sleeveـlength'     => 'required|string',
+            'product_id'     => 'required|string|exists:products,id',
             'status'     => 'nullable|numeric|in:0,1',
 
         ];

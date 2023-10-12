@@ -5,6 +5,8 @@ namespace App\Http\Resources\productRate;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
+use function App\get_rate_average_for_one_product;
+
 class ProductRateResource extends JsonResource
 {
     /**
@@ -21,6 +23,8 @@ class ProductRateResource extends JsonResource
             'user_id'=>$this->user,
             'comment'=>$this->comment,
             'status'=>$this->status,
+            'average_rate'=>"1",
+            'rate_number'=>"2"
         ];
     }
 }
