@@ -47,6 +47,7 @@ use App\Http\Controllers\Market\ArticleController;
 use App\Http\Controllers\Market\HelpSizeController;
 use App\Http\Controllers\Market\JoinController;
 use App\Http\Controllers\Market\ProductCategoryQuestionController;
+use App\Http\Controllers\Market\ProductForbidenController;
 use App\Http\Controllers\Market\ProductRateController;
 use App\Http\Controllers\Market\ProductSocialController;
 use App\Http\Controllers\Market\ProductVideoController;
@@ -268,6 +269,15 @@ Route::prefix('v1')->group(function () {
             Route::get('/show/{id}', [RateAverageController::class, 'show']);
           //  Route::patch('/update/{id}', [RateAverageController::class, 'update']); //->middleware('is_admin')
             Route::delete('/delete/{id}', [RateAverageController::class, 'destroy']);  //->middleware('is_admin')
+        });
+
+
+        Route::group(['prefix' => 'product-forbiden'], function () {
+            Route::get('/', [ProductForbidenController::class, 'index']);
+            Route::post('/store', [ProductForbidenController::class, 'store']); //->middleware('is_admin')
+            Route::get('/show/{id}', [ProductForbidenController::class, 'show']);
+            Route::patch('/update/{id}', [ProductForbidenController::class, 'update']); //->middleware('is_admin')
+            Route::delete('/delete/{id}', [ProductForbidenController::class, 'destroy']);  //->middleware('is_admin')
         });
 
 

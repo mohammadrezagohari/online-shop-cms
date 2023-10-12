@@ -41,7 +41,7 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(ProductRequest $request) //: AnonymousResourceCollection
+    public function index(ProductRequest $request) :AnonymousResourceCollection
     {
 
         $count = @$request->count ?? 10;

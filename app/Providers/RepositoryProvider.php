@@ -81,6 +81,8 @@ use App\Repositories\MySQL\ProductCategoryRepository\InterfaceProductCategoryRep
 use App\Repositories\MySQL\ProductCategoryRepository\ProductCategoryRepository;
 use App\Repositories\MySQL\ProductColorRepository\InterfaceProductColorRepository;
 use App\Repositories\MySQL\ProductColorRepository\ProductColorRepository;
+use App\Repositories\MySQL\ProductForbidenRepository\InterfaceProductForbidenRepository ;
+use App\Repositories\MySQL\ProductForbidenRepository\ProductForbidenRepository;
 use App\Repositories\MySQL\ProductImageRepository\InterfaceProductImageRepository;
 use App\Repositories\MySQL\ProductImageRepository\ProductImageRepository;
 use App\Repositories\MySQL\ProductPropertyRepository\InterfaceProductPropertyRepository;
@@ -180,6 +182,7 @@ class RepositoryProvider extends ServiceProvider
         $this->app->bind(InterfaceProductRateRepository::class,ProductRateRepository::class);
         $this->app->bind(InterfaceRateAverageRepository::class,RateAverageRepository::class);
         $this->app->bind(InterfaceHelpSizeRepository::class,HelpSizeRepository::class);
+        $this->app->bind(InterfaceProductForbidenRepository::class,ProductForbidenRepository::class);
     }
 
     /**
