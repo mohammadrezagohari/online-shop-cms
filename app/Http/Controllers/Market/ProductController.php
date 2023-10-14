@@ -15,6 +15,8 @@ use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use PharIo\Manifest\Url;
+use Route;
 use Symfony\Component\HttpFoundation\Response as HTTPResponse;
 
 use function App\upload_asset_file;
@@ -41,7 +43,7 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(ProductRequest $request) :AnonymousResourceCollection
+    public function index(ProductRequest $request): AnonymousResourceCollection
     {
 
         $count = @$request->count ?? 10;
@@ -73,7 +75,7 @@ class ProductController extends Controller
 
         if (@$min_price && @$max_price)
 
-            $products = $products->whereBetweenMainAndMaxPrice($min_price,$max_price);
+            $products = $products->whereBetweenMainAndMaxPrice($min_price, $max_price);
 
 
         if (@$order) {
@@ -221,6 +223,17 @@ class ProductController extends Controller
             'average_rate' => ($product['average_rate'] + $request->input('rate')) / 2
         ]))
             return response()->json(['message' => 'successfully your transaction!'], HTTPResponse::HTTP_OK);
+        return response()->json(['message' => 'sorry, your transaction fails!'], HTTPResponse::HTTP_BAD_REQUEST);
+    }
+
+
+    public function showLink(int $id)
+    {
+
+        $link = route("product.link", ['id' => $id]);
+
+        if ($link)
+            return response()->json(['data' => $link], HTTPResponse::HTTP_OK);
         return response()->json(['message' => 'sorry, your transaction fails!'], HTTPResponse::HTTP_BAD_REQUEST);
     }
 }

@@ -310,10 +310,11 @@ Route::prefix('v1')->group(function () {
         Route::group(['prefix' => 'product'], function () {
             Route::get('/', [ProductController::class, 'index']);
             Route::post('/store', [ProductController::class, 'store']); //->middleware('is_admin')
-            Route::get('/show/{id}', [ProductController::class, 'show']);
+            Route::get('/show/{id}', [ProductController::class, 'show'])->name("product.link");
             Route::post('/update/{id}', [ProductController::class, 'update']); //->middleware('is_admin')
             Route::delete('/delete/{id}', [ProductController::class, 'destroy']);  //->middleware('is_admin')
             Route::post('/storeAverageRate/{id}', [ProductController::class, 'storeAverageRate']); //->middleware('is_admin')
+            Route::get('/show/link/{id}', [ProductController::class, 'showLink']); //->middleware('is_admin')
 
         });
 
