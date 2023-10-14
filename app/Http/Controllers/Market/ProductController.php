@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Market;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\product\ProductRequest;
+use App\Http\Requests\product\StoreNoticesRequest;
+use App\Http\Requests\product\StoreProductNoticeAmazingSaleRequest;
 use App\Http\Requests\product\StoreProductRequest;
 use App\Http\Requests\product\UpdateProductRequest;
 use App\Http\Resources\resource\ProductResource;
@@ -11,12 +13,11 @@ use App\Models\Market\Product;
 use App\Models\Market\ProductImage;
 use App\Repositories\MySQL\AmazingSaleRepository\InterfaceAmazingSaleRepository;
 use App\Repositories\MySQL\ProductRepository\InterfaceProductRepository;
+use App\Repositories\MySQL\UserRepository\InterfaceUserRepository;
 use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
-use PharIo\Manifest\Url;
-use Route;
 use Symfony\Component\HttpFoundation\Response as HTTPResponse;
 
 use function App\upload_asset_file;
@@ -33,11 +34,13 @@ class ProductController extends Controller
 
     private InterfaceProductRepository $interfaceProductRepository;
     private InterfaceAmazingSaleRepository $interfaceAmazingSaleRepository;
+    private InterfaceUserRepository $interfaceUserRepository;
 
-    public function __construct(InterfaceProductRepository $interfaceProductRepository, InterfaceAmazingSaleRepository $interfaceAmazingSaleRepository)
+    public function __construct(InterfaceProductRepository $interfaceProductRepository, InterfaceAmazingSaleRepository $interfaceAmazingSaleRepository, InterfaceUserRepository $interfaceUserRepository)
     {
         $this->interfaceProductRepository = $interfaceProductRepository;
         $this->interfaceAmazingSaleRepository = $interfaceAmazingSaleRepository;
+        $this->interfaceUserRepository = $interfaceUserRepository;
     }
 
     /**
@@ -235,5 +238,19 @@ class ProductController extends Controller
         if ($link)
             return response()->json(['data' => $link], HTTPResponse::HTTP_OK);
         return response()->json(['message' => 'sorry, your transaction fails!'], HTTPResponse::HTTP_BAD_REQUEST);
+    }
+
+    public function noticeForAmazingSales(StoreNoticesRequest $request)
+    {
+        $user = $this->interfaceUserRepository->findById($request->user_id);
+        $product = $this->interfaceProductRepository->findById($request->product_id);
+
+        $result = $user->customProducts()->wherePivot("product_id", "=", $product->id)->first();
+        if ($result) {
+            return response()->json(['message' => 'sorry, your transaction fails because data before inserted!'], HTTPResponse::HTTP_BAD_REQUEST);
+        } else {
+            $user->customProducts()->attach($product->id);
+            return response()->json(['message' => 'successfully your transaction!'], HTTPResponse::HTTP_OK);
+        }
     }
 }

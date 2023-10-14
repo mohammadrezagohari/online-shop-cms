@@ -66,6 +66,9 @@ class AmazingSaleController extends Controller
         $data['start_date']=\Morilog\Jalali\Jalalian::fromFormat('Y-m-d H:i:s',$data['start_date'])->toCarbon();
         $data['end_date']=\Morilog\Jalali\Jalalian::fromFormat('Y-m-d H:i:s',$data['end_date'])->toCarbon();
 
+
+        
+
         if ($this->interfaceAmazingSaleRepository->insertData($data))
             return response()->json(['message' => 'successfully your transaction!'], HTTPResponse::HTTP_OK);
         return response()->json(['message' => 'sorry, your transaction fails!'], HTTPResponse::HTTP_BAD_REQUEST);

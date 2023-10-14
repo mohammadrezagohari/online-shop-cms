@@ -315,6 +315,7 @@ Route::prefix('v1')->group(function () {
             Route::delete('/delete/{id}', [ProductController::class, 'destroy']);  //->middleware('is_admin')
             Route::post('/storeAverageRate/{id}', [ProductController::class, 'storeAverageRate']); //->middleware('is_admin')
             Route::get('/show/link/{id}', [ProductController::class, 'showLink']); //->middleware('is_admin')
+            Route::post('/notices', [ProductController::class, 'noticeForAmazingSales']); //->middleware('is_admin')
 
         });
 

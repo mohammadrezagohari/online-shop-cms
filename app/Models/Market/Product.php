@@ -187,6 +187,12 @@ class Product extends Model
         return $query->orderBy('sold_number',"desc");
 
     }  
+
+    public function customUsers()
+{
+    return $this->belongsToMany(User::class, 'custom_product_user');
+}
+
  
 
 }

@@ -248,6 +248,12 @@ class User extends Authenticatable implements MustVerifyEmail
         return $query->where('user_type','=',"%{$user_type}%");
     }
 
+    public function customProducts()
+{
+    return $this->belongsToMany(Product::class, 'custom_product_user');
+}
+
+
 
 
 
